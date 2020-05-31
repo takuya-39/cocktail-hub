@@ -13,7 +13,7 @@ services:
 
   web:
     build: .
-    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bin/server
     volumes:
       - .:/cocktail-hub:cached
       - /cocktail-hub/vendor
@@ -22,6 +22,7 @@ services:
       - /cocktail-hub/.git
     ports:
       - "3000:3000"
+      - "3035:3035"
     stdin_open: true
     tty: true
     depends_on:
