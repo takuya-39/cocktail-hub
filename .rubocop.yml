@@ -1,0 +1,66 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Include:
+    - rubocop-rspec
+  TargetRubyVersion: 2.7.1
+  Exclude:
+    - 'config.ru'
+    - 'bin/**'
+    - 'lib/**'
+    - 'db/**/*'
+    - 'vendor/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+
+  Rails:
+    enabled: true
+
+# 日本語でのコメントを許可
+AsciiComments:
+  Enabled: false
+
+# クラスのコメント必須を無視
+Documentation:
+  Enabled: false
+
+# モジュール名::クラス名の定義を許可
+ClassAndModuleChildren:
+  Enabled: false
+
+# 文字リテラルのイミュータブル宣言を無視（freezeになるのはRuby3以降）
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# {}のスペースがあることをチェック
+Layout/SpaceInsideStringInterpolation:
+  EnforcedStyle: space
+
+# 本文の周りに空の行はないかチェック
+Layout/EmptyLinesAroundClassBody:
+  Enabled: true
+
+# メソッド定義の周りに空の行はないかチェック
+Layout/EmptyLinesAroundMethodBody:
+  Enabled: true
+
+# モジュール定義の周りに空の行がないかチェック
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: true
+
+# Use `foo {}` not `foo{}`.
+Layout/SpaceBeforeBlockBraces:
+  Enabled: true
+
+# Use `foo { bar }` not `foo {bar}`.
+Layout/SpaceInsideBlockBraces:
+  Enabled: true
+  EnforcedStyleForEmptyBraces: space
+
+# Use `{ a: 1 }` not `{a:1}`.
+Layout/SpaceInsideHashLiteralBraces:
+  Enabled: true
+
+Layout/SpaceInsideParens:
+  Enabled: true
