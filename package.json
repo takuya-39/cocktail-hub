@@ -2,11 +2,23 @@
   "name": "cocktail_hub",
   "private": true,
   "dependencies": {
+    "@mdi/font": "^5.3.45",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
-    "turbolinks": "^5.2.0"
+    "axios": "^0.19.2",
+    "bootstrap": "^4.5.0",
+    "jquery": "^3.5.1",
+    "node-sass": "^4.14.1",
+    "popper.js": "^1.16.1",
+    "sass-loader": "^8.0.2",
+    "turbolinks": "^5.2.0",
+    "vue": "^2.6.11",
+    "vue-loader": "^15.9.2",
+    "vue-router": "^3.3.2",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify": "^2.2.30"
   },
   "version": "0.1.0",
   "devDependencies": {
