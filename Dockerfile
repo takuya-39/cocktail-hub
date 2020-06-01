@@ -5,6 +5,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libpq-dev \
     nodejs \
     npm \
+&&  npm install n -g \
+&&  n stable \
 &&  apt-get clean \
 &&  rm -rf /var/lib/apt/lists/*
 
