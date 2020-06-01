@@ -1,25 +1,2 @@
-h1 Home#top
-p Find me in app/views/home/top.html.slim
-
-/ Bootstrap導入確認サンプルコード
-h1
-  | Posts
-table.table
-  thead
-    tr
-      th[scope="col"]
-        | Title
-      th[scope="col"]
-        | Context
-      th[colspan="3"]
-  tbody
-      tr
-        td[scope="row"]
-          タイトル
-        td[scope="row"]
-          テキスト
-        td
-          = link_to 'Show', root_path, class: "btn btn-outline-primary"
-        td
-          = link_to 'Edit', root_path, class: "btn btn-raised btn-default"
-        td
+= javascript_pack_tag 'hello_vue'
+= stylesheet_pack_tag 'hello_vue'
