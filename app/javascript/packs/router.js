@@ -7,6 +7,6 @@ Vue.use(VueRouter);
 export default new VueRouter({
   mode: 'history',
   routes: [
-    // { path: '/', component: PostsIndex, name: 'root_path' },
+    { path: '/', component: PostsIndex, name: 'root_path' },
   ],
 })
