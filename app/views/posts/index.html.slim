@@ -1,4 +1,4 @@
-.jumbotron.jumbotron-fluid.bg-dark
+.jumbotron.jumbotron-fluid.app-color-dark
   .container-fluid
     h1.text-center.text-light.pb-4 投稿一覧
 
@@ -6,9 +6,9 @@
     .alert.alert-primary.m-3= flash.notice
 
   - @posts.each do |post|
-    .container.rounded-lg.bg-light.linenone.mb-5= link_to post_path(post),data: {"turbolinks" => false}
+    .container.rounded-lg.linenone.mb-5.app-color-sub= link_to post_path(post),data: {"turbolinks" => false}
       .m-2
-        = image_tag post.display_image
+        = image_tag post.display_image, class: 'resize-image'
       h5.col-5.m-3.text-secondary= post.genre
       h5.col-5.m-3.text-secondary= post.title
       p.col.m-3.text-secondary= post.created_at

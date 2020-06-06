@@ -45,7 +45,9 @@
       </v-toolbar-title>
     </v-app-bar>
 
-    <v-container style="height: 70px;"></v-container>
+
+    <!-- <v-container style="height: 70px;"></v-container> -->
+
 
     <!-- ドロワー -->
     <v-navigation-drawer

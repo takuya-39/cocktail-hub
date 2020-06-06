@@ -1,1 +1,15 @@
-.container-fluid
+.app-color-light
+  .container
+    .card.rounded-lg.app-color-sub
+      .card-body
+        .row.card-title
+          .col-6
+            h4.text-monospace= @post.title
+          .col-6
+            h4.text-secondary= @post.genre
+        .card-img
+          = image_tag @post.image, alt: 'post image', class: 'resize-image rounded'
+        .card-body
+          .container.bg-light.rounded
+            .card-text
+              p= @post.memo

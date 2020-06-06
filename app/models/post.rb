@@ -16,6 +16,6 @@ class Post < ApplicationRecord
   validates :memo, presence: true, length: { maximum: 200 }
 
   def display_image
-    image.variant(resize:'500x500')
+    image.variant(resize: "1000^").processed
   end
 end
