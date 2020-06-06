@@ -1,2 +1,18 @@
-h1 Posts#index
-p Find me in app/views/posts/index.html.slim
+.container[style="height: 70px"]
+
+.jumbotron.jumbotron-fluid.bg-dark
+  .container-fluid
+    h1.text-center.text-light.pb-4 投稿一覧
+
+  - if flash.notice.present?
+    .alert.alert-primary.m-3= flash.notice
+
+  - @posts.each do |post|
+    .container.rounded-lg.bg-light.linenone.mb-5= link_to post_path(post)
+        .m-2
+          = image_tag post.display_image
+        h5.col-5.m-3.text-secondary= post.genre
+        h5.col-5.m-3.text-secondary= post.title
+        p.col.m-3.text-secondary= post.created_at
+        = link_to '編集', edit_post_path(post), class: 'btn btn-lg m-2 app-color-light'
+        = link_to '削除', post, method: :delete, class: 'btn btn-lg text-light app-color-dark'

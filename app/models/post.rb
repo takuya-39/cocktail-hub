@@ -14,4 +14,8 @@ class Post < ApplicationRecord
   validates :genre, presence: true, length: { maximum: 20 }
   validates :title, presence: true, length: { maximum: 20 }
   validates :memo, presence: true, length: { maximum: 200 }
+
+  def display_image
+    image.variant(resize:'500x500')
+  end
 end
