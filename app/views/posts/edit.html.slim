@@ -1,2 +1,27 @@
-h1 Posts#edit
-p Find me in app/views/posts/edit.html.slim
+= form_with model: @post, local: true do |p|
+  .container-fluid.app-color-light
+    h1.text-center.text-light.p-4 投稿編集
+
+    - if @post.errors.present?
+      ul#error_explanation.text-secondary.list-group-item-warning.rounded-lg
+        - @post.errors.full_messages.each do |message|
+          li = message
+
+    .container
+      .card.rounded-lg.app-color-sub
+        .card-body
+          .row.card-title
+            .col-6
+              h4.text-monospace= @post.title
+            .col-6
+              h4.text-secondary= @post.genre
+          .card-img
+            = image_tag @post.image, alt: 'post image', class: 'resize-image rounded'
+          .card-body
+            .container.bg-light.rounded
+              .form-group.card-text
+                = p.label 'メモ', class: 'col-form-label-lg text-monospace'
+                = p.text_area :memo, id: 'Memo', class: 'form-control border-app-color-dark'
+
+        .form-group
+          = p.submit '更新する', class: 'btn btn-lg shadow-lg text-light text-bold text-monospace app-color-dark'

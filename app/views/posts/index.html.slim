@@ -1,6 +1,6 @@
-.jumbotron.jumbotron-fluid.app-color-dark
+.app-color-dark
   .container-fluid
-    h1.text-center.text-light.pb-4 投稿一覧
+    h1.text-center.text-light.p-4 投稿一覧
 
   - if flash.notice.present?
     .alert.alert-primary.m-3= flash.notice
@@ -12,5 +12,5 @@
       h5.col-5.m-3.text-secondary= post.genre
       h5.col-5.m-3.text-secondary= post.title
       p.col.m-3.text-secondary= post.created_at
-      = link_to '編集', edit_post_path(post), class: 'btn btn-lg m-2 app-color-light'
-      = link_to '削除', post, method: :delete, class: 'btn btn-lg text-light app-color-dark'
+      = link_to 'メモを編集', edit_post_path(post), data: {"turbolinks" => false}, class: 'btn btn-lg m-2 app-color-light'
+      = link_to '削除', post, method: :delete, data: {"turbolinks" => false}, class: 'btn btn-lg text-light app-color-dark'

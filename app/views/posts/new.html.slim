@@ -1,10 +1,11 @@
 = form_with model: @post, local: true do |p|
   .container-fluid.app-color-light
+    h1.text-center.text-light.p-4 新規投稿
 
     - if @post.errors.present?
-      ul#error_explanation.text-secondary.list-group-item-warning.m-3.rounded-lg
+      ul#error_explanation.text-secondary.list-group-item-warning.rounded-lg
         - @post.errors.full_messages.each do |message|
-          li.li-style-none = message
+          li = message
 
     .container
       .card.rounded-lg.app-color-sub
