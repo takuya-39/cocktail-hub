@@ -10,6 +10,7 @@
 #  updated_at :datetime         not null
 #
 class Post < ApplicationRecord
+  has_one_attached :image
   validates :genre, presence: true, length: { maximum: 20 }
   validates :title, presence: true, length: { maximum: 20 }
   validates :memo, presence: true, length: { maximum: 200 }

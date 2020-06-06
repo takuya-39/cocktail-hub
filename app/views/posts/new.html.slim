@@ -1,2 +1,29 @@
-h1 Posts#new
-p Find me in app/views/posts/new.html.slim
+.container[style="height: 70px"]
+
+= form_with model: @post, local: true do |p|
+  .container-fluid
+    h1.text-center.text-monospace.mt-4 新規投稿
+
+    - if @post.errors.present?
+      ul#error_explanation.li-style-none.bg-danger.text-light.m-3.rounded-lg
+        - @post.errors.full_messages.each do |message|
+          li = message
+
+    .form-group
+      = p.label '画像', class: 'col-form-label-lg text-monospace'
+      = p.file_field :image, id: 'Image', class: 'form-control border border-info'
+
+    .form-group
+      = p.label 'ジャンル', class: 'col-form-label-lg text-monospace'
+      = p.select :genre, %i[ウイスキー ビール ワイン 焼酎], {selected: 'ウイスキー'}, id: 'Genre', class: 'form-control border border-info custom-select custom-select-lg'
+
+    .form-group
+      = p.label 'タイトル', class: 'col-form-label-lg text-monospace'
+      = p.text_field :title, id: 'Title', class: 'form-control border border-info'
+
+    .form-group
+      = p.label 'メモ', class: 'col-form-label-lg text-monospace'
+      = p.text_area :memo, id: 'Memo', class: 'form-control border border-info'
+
+    .form-group
+      = p.submit '投稿する', class: 'btn btn-info shadow-lg text-monospace'
