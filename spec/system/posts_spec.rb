@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Posts', type: :system, js: true do
 
-  it "新規投稿、編集" do
+  it "新規投稿、編集, 削除" do
     # 新規投稿
     visit root_path
     find('.posts-new').click
@@ -36,10 +36,14 @@ RSpec.describe 'Posts', type: :system, js: true do
     fill_in "Memo", with: "サンプルメモ"
     click_button "更新する"
 
-    aggregate_failures do
-      expect(page).not_to have_content "作り方メモ"
-      expect(page).to have_content "サンプルメモ"
-      expect(current_path).to eq "/posts/#{post.id}"
-    end
+    expect(page).not_to have_content "作り方メモ"
+    expect(page).to have_content "サンプルメモ"
+    expect(current_path).to eq "/posts/#{post.id}"
+
+    # 投稿削除
+    expect {
+      click_on "投稿を削除"
+    }.to change(Post, :count).by(-1)
+    expect(current_path).to eq root_path
   end
 end
