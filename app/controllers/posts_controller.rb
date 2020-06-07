@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find_by(id: params[:id])
+    set_post
   end
 
   def new
@@ -23,11 +23,11 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find_by(id: params[:id])
+    set_post
   end
 
   def update
-    @post = Post.find_by(id: params[:id])
+    set_post
 
     if @post.update(post_params)
       redirect_to post_path(@post)
@@ -37,8 +37,8 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post = Post.find_by(id: params[:id])
-    post.destroy
+    set_post
+    @post.destroy
     redirect_to root_path
   end
 
@@ -46,5 +46,10 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:image, :genre, :title, :memo)
+    end
+
+    # 特定のPostを@postに代入する
+    def set_post
+      @post = Post.find_by(id: params[:id])
     end
 end
