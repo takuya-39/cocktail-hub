@@ -15,4 +15,4 @@
               p= @post.memo
 
         = link_to 'メモを編集', edit_post_path(@post), data: {"turbolinks" => false}, class: 'btn btn-lg m-2 app-color-light'
-        = link_to '削除', @post, method: :delete, data: {"turbolinks" => false}, class: 'btn btn-lg text-light app-color-dark'
+        = link_to '投稿を削除', @post, method: :delete, data: {"turbolinks" => false}, class: 'btn btn-lg text-light app-color-dark'
