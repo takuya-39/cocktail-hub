@@ -2,12 +2,13 @@
 #
 # Table name: posts
 #
-#  id         :bigint           not null, primary key
-#  genre      :string(20)       not null
-#  memo       :string(200)      not null
-#  title      :string(20)       not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :bigint           not null, primary key
+#  genre       :string(20)       not null
+#  ingredients :string(200)      not null
+#  memo        :string(200)      not null
+#  title       :string(20)       not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 require 'rails_helper'
 
