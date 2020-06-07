@@ -2,10 +2,7 @@
   .container-fluid.app-color-light
     h1.text-center.text-light.p-4 新規投稿
 
-    - if @post.errors.present?
-      ul#error_explanation.text-secondary.list-group-item-warning.rounded-lg
-        - @post.errors.full_messages.each do |message|
-          li = message
+    = render 'shared/error_messages', post: @post
 
     .container
       .card.rounded-lg.app-color-sub
