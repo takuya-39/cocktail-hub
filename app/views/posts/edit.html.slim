@@ -19,9 +19,14 @@
             = image_tag @post.image, alt: 'post image', class: 'resize-image rounded'
           .card-body
             .container.bg-light.rounded
+              .card-text
+                = @post.ingredients
+          .card-body
+            .container.bg-light.rounded
               .form-group.card-text
                 = p.label 'メモ', class: 'col-form-label-lg text-monospace'
                 = p.text_area :memo, id: 'Memo', class: 'form-control border-app-color-dark'
+          .col.m-3.text-secondary= @post.created_at
 
         .form-group
           = p.submit '更新する', class: 'btn btn-lg shadow-lg text-light text-bold text-monospace app-color-dark'
