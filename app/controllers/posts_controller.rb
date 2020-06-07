@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   private
 
     def post_params
-      params.require(:post).permit(:image, :genre, :title, :memo)
+      params.require(:post).permit(:image, :title, :genre, :ingredients, :memo)
     end
 
     # 特定のPostを@postに代入する

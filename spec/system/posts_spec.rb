@@ -13,6 +13,7 @@ RSpec.describe 'Posts', type: :system, js: true do
       fill_in "Title", with: "オリジナルカクテル"
       select "ウイスキー", from: "Genre"
       attach_file "Image", "#{Rails.root}/spec/support/assets/sample_image.jpeg", make_visible: true
+      fill_in "Ingredients", with: "材料"
       fill_in "Memo", with: "作り方メモ"
       click_button "投稿する"
     }.to change(Post, :count).by(1)
@@ -22,6 +23,7 @@ RSpec.describe 'Posts', type: :system, js: true do
     aggregate_failures do
       expect(post.title).to eq "オリジナルカクテル"
       expect(post.genre).to eq "ウイスキー"
+      expect(post.ingredients).to eq "材料"
       expect(post.memo).to eq "作り方メモ"
       expect(current_path).to eq root_path
     end

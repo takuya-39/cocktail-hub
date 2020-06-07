@@ -19,13 +19,33 @@ RSpec.describe Post, type: :model do
       expect(FactoryBot.build(:post)).to be_valid
     end
 
-    it "ジャンル、タイトル、メモがあれば有効な状態であること" do
+    it "タイトル、ジャンル、画像、材料、メモがあれば有効な状態であること" do
       post = Post.new(
-        genre: "ウイスキー",
         title: "オリジナルカクテル",
+        genre: "ウイスキー",
+        image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_image.jpeg')),
+        ingredients: "材料",
         memo: "作り方メモ",
       )
       expect(post).to be_valid
+    end
+
+    describe "title" do
+      it "タイトルが無ければ無効な状態であること" do
+        post = FactoryBot.build(:post, title: nil)
+        post.valid?
+        expect(post.errors[:title]).to include(I18n.t("errors.messages.blank"))
+      end
+      context "文字数" do
+        it "文字数が20文字以下なら有効であること" do
+          post = FactoryBot.build(:post, title: "a" * 10)
+          expect(post).to be_valid
+        end
+        it "文字数が20文字を超えると無効であること" do
+          post = FactoryBot.build(:post, title: "a" * 21)
+          expect(post).not_to be_valid
+        end
+      end
     end
 
     describe "genre" do
@@ -46,19 +66,27 @@ RSpec.describe Post, type: :model do
       end
     end
 
-    describe "title" do
-      it "タイトルが無ければ無効な状態であること" do
-        post = FactoryBot.build(:post, title: nil)
+    describe "image" do
+      it "画像が無ければ無効な状態であること" do
+        post = FactoryBot.build(:post, image: nil)
         post.valid?
-        expect(post.errors[:title]).to include(I18n.t("errors.messages.blank"))
+        expect(post.errors[:image]).to include(I18n.t("errors.messages.blank"))
+      end
+    end
+
+    describe "ingredients" do
+      it "材料が無ければ無効な状態であること" do
+        post = FactoryBot.build(:post, ingredients: nil)
+        post.valid?
+        expect(post.errors[:ingredients]).to include(I18n.t("errors.messages.blank"))
       end
       context "文字数" do
-        it "文字数が20文字以下なら有効であること" do
-          post = FactoryBot.build(:post, title: "a" * 10)
+        it "文字数が200文字以下なら有効であること" do
+          post = FactoryBot.build(:post, ingredients: "a" * 100)
           expect(post).to be_valid
         end
-        it "文字数が20文字を超えると無効であること" do
-          post = FactoryBot.build(:post, title: "a" * 21)
+        it "文字数が200文字を超えると無効であること" do
+          post = FactoryBot.build(:post, ingredients: "a" * 201)
           expect(post).not_to be_valid
         end
       end
@@ -83,9 +111,3 @@ RSpec.describe Post, type: :model do
     end
   end
 end
-
-
-# it "contentの文字数が140文字を超えると無効なこと" do
-#   micropost.content = "a" * 141
-#   expect(micropost).to_not be_valid
-# end

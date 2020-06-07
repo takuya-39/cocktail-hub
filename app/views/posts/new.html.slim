@@ -23,6 +23,11 @@
           .card-body
             .container.bg-light.rounded
               .form-group.card-text
+                = p.label '材料', class: 'col-form-label-lg text-monospace'
+                = p.text_area :ingredients, id: 'Ingredients', class: 'form-control border-app-color-dark'
+          .card-body
+            .container.bg-light.rounded
+              .form-group.card-text
                 = p.label 'メモ', class: 'col-form-label-lg text-monospace'
                 = p.text_area :memo, id: 'Memo', class: 'form-control border-app-color-dark'
 
