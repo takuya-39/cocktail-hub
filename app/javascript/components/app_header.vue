@@ -27,7 +27,7 @@
       </v-btn>
 
       <!-- 新規投稿アイコン -->
-      <v-btn icon id="posts-new" class="ml-6" @click="$router.push('/posts/new').catch(e=>{}), reload()">
+      <v-btn icon class="ml-6 posts-new" @click="$router.push('/posts/new').catch(e=>{}), reload()">
         <v-icon color="white" large>
           mdi-plus-circle-outline
         </v-icon>
