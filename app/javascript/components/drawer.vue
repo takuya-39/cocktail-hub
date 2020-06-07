@@ -10,7 +10,7 @@
       <!-- ドロワーアイテム【Hubに戻る】 -->
       <!-- rootページにつながる -->
       <!-- root以外のページ -->
-      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('switchDrawer')">
+      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-home-import-outline</v-icon>
         </v-list-item-icon>
@@ -20,7 +20,7 @@
       <!-- ドロワーアイテム【ユーザープロフィール】 -->
       <!-- ユーザープロフィールにつながる -->
       <!-- (ログイン後) root -->
-      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('switchDrawer')">
+      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-account-outline</v-icon>
         </v-list-item-icon>
@@ -31,7 +31,7 @@
       <!-- ユーザー作成ページにつながる -->
       <!-- 別ページ実装かダイアログかで仕様変わる -->
       <!-- (ログイン前) root -->
-      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('switchDrawer')">
+      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-account-plus-outline</v-icon>
           <!-- <v-icon class="mdi-36px">mdi-account-cog-outline</v-icon> -->
@@ -43,7 +43,7 @@
       <!-- ユーザー編集ページにつながる -->
       <!-- 別ページ実装かダイアログかで仕様変わる -->
       <!-- (ログイン後) users/show -->
-      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('switchDrawer')">
+      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-account-cog-outline</v-icon>
           <!-- <v-icon class="mdi-36px">mdi-account-cog-outline</v-icon> -->
@@ -54,7 +54,7 @@
       <!-- ドロワーアイテム【投稿を編集する】 -->
       <!-- 投稿編集ページにつながる -->
       <!-- (ログイン後) posts/show -->
-      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('switchDrawer')">
+      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-file-cog-outline</v-icon>
           <!-- <v-icon class="mdi-36px">mdi-account-cog-outline</v-icon> -->
@@ -106,7 +106,7 @@
       <!-- ドロワーアイテム【ログイン】 -->
       <!-- ダイアログ -->
       <!-- (ログイン前) root -->
-      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('switchDrawer')">
+      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-alpha-l-circle-outline</v-icon>
         </v-list-item-icon>
@@ -116,7 +116,7 @@
       <!-- ドロワーアイテム【ログアウト】 -->
       <!-- ダイアログ -->
       <!-- (ログイン後) 全てのページ -->
-      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('switchDrawer')">
+      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-alpha-l-circle</v-icon>
         </v-list-item-icon>

@@ -1,0 +1,32 @@
+= form_with model: @post, local: true do |p|
+  .container-fluid.app-color-light
+    h1.text-center.text-light.p-4 新規投稿
+
+    = render 'shared/error_messages', post: @post
+
+    .container
+      .card.rounded-lg.app-color-sub
+        .card-body
+          .row.card-title
+            .form-group.col-6
+              = p.label 'タイトル', class: 'col-form-label-lg text-monospace'
+              = p.text_field :title, id: 'Title', class: 'form-control border-app-color-dark'
+            .form-group.col-6
+              = p.label 'ジャンル', class: 'col-form-label-lg text-monospace'
+              = p.select :genre, %i[ウイスキー ビール ワイン 焼酎], {selected: 'ウイスキー'}, id: 'Genre', class: 'form-control custom-select border-app-color-dark'
+          .form-group.card-img
+            = p.label '画像', class: 'col-form-label-lg text-monospace'
+            = p.file_field :image, id: 'Image', class: 'form-control border-app-color-dark'
+          .card-body
+            .container.bg-light.rounded
+              .form-group.card-text
+                = p.label '材料', class: 'col-form-label-lg text-monospace'
+                = p.text_area :ingredients, id: 'Ingredients', class: 'form-control border-app-color-dark'
+          .card-body
+            .container.bg-light.rounded
+              .form-group.card-text
+                = p.label 'メモ', class: 'col-form-label-lg text-monospace'
+                = p.text_area :memo, id: 'Memo', class: 'form-control border-app-color-dark'
+
+        .form-group
+          = p.submit '投稿する', class: 'btn btn-lg shadow-lg text-light text-bold text-monospace app-color-dark'

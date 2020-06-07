@@ -20,17 +20,17 @@
       </v-app-bar-nav-icon>
 
       <!-- 検索アイコン -->
-      <v-btn icon class="ml-6" @click="$router.push('/').catch(e=>{})">
+      <v-btn icon class="ml-6">
         <v-icon color="white" large>
           mdi-magnify
         </v-icon>
       </v-btn>
 
       <!-- 新規投稿アイコン -->
-      <v-btn icon class="ml-6" @click="$router.push('/').catch(e=>{})">
-          <v-icon color="white" large>
-            mdi-plus-circle-outline
-          </v-icon>
+      <v-btn icon class="ml-6 posts-new" @click="$router.push('/posts/new').catch(e=>{}), reload()">
+        <v-icon color="white" large>
+          mdi-plus-circle-outline
+        </v-icon>
       </v-btn>
 
       <!-- 空白 -->
@@ -39,14 +39,15 @@
       <!-- ヘッダータイトル -->
       <v-toolbar-title
         class="font-weight-bold white--text display-1 mr-10"
+        @click="$router.push('/').catch(e=>{}), reload()"
       >
-        <router-link to="/" class="router-link">
-          Cocktail Hub
-        </router-link>
+        Cooktail Hub
       </v-toolbar-title>
     </v-app-bar>
 
-    <v-container style="height: 70px;"></v-container>
+
+    <!-- <v-container style="height: 70px;"></v-container> -->
+
 
     <!-- ドロワー -->
     <v-navigation-drawer
@@ -59,6 +60,7 @@
       <drawer
         @switchDrawer="switchDrawer"
         @switchExplanation="switchExplanation"
+        @reload="reload"
       >
       </drawer>
     </v-navigation-drawer>
@@ -98,13 +100,12 @@ export default {
     switchExplanation: function() {
       this.dialogExplanation = !this.dialogExplanation
     },
+    reload() {
+      this.$router.go({path: this.$router.currentRoute.path, force: true});
+    },
   }
 }
 </script>
 
 <style scoped>
-.router-link {
-  text-decoration: none;
-  color: #ffffff;
-}
 </style>
