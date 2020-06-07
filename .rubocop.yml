@@ -1,17 +1,17 @@
 inherit_from: .rubocop_todo.yml
 
 AllCops:
-  Include:
-    - rubocop-rspec
   TargetRubyVersion: 2.7.1
   Exclude:
     - 'config.ru'
     - 'bin/**'
-    - 'lib/**'
-    - 'db/**/*'
-    - 'vendor/**/*'
     - 'config/**/*'
-    - 'script/**/*'
+    - 'db/**/*'
+    - 'lib/**/*'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - 'Gemfile'
+    - 'Rakefile'
     - !ruby/regexp /old_and_unused\.rb$/
 
   Rails:
@@ -21,12 +21,24 @@ AllCops:
 AsciiComments:
   Enabled: false
 
-# クラスのコメント必須を無視
-Documentation:
+# 複数行での「lambda」で「->」による省略記法を許可
+Lambda:
   Enabled: false
 
 # モジュール名::クラス名の定義を許可
 ClassAndModuleChildren:
+  Enabled: false
+
+# メソッド名のprefixに「set_」「get_」を許可
+AccessorMethodName:
+  Enabled: false
+
+# クラスにコメントを残さない
+Documentation:
+  Enabled: false
+
+# 「and」「or」の使用を許可
+AndOr:
   Enabled: false
 
 # 文字リテラルのイミュータブル宣言を無視（freezeになるのはRuby3以降）
@@ -49,18 +61,17 @@ Layout/EmptyLinesAroundMethodBody:
 Layout/EmptyLinesAroundModuleBody:
   Enabled: true
 
-# Use `foo {}` not `foo{}`.
-Layout/SpaceBeforeBlockBraces:
-  Enabled: true
 
-# Use `foo { bar }` not `foo {bar}`.
-Layout/SpaceInsideBlockBraces:
-  Enabled: true
-  EnforcedStyleForEmptyBraces: space
+# 以下検査で警告出る為記述、行の文字数制限などは改善策見つかり次第改善する
 
-# Use `{ a: 1 }` not `{a:1}`.
-Layout/SpaceInsideHashLiteralBraces:
-  Enabled: true
+# 空のメソッドを一行で記述しなくても許可
+Style/EmptyMethod:
+  Enabled: false
 
-Layout/SpaceInsideParens:
-  Enabled: true
+# ブロックの行が長くても許可
+Metrics/BlockLength:
+  Enabled: false
+
+# 1行あたりの文字数を120文字まで許可
+LineLength:
+  Max: 120
