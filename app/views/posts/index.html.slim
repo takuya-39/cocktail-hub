@@ -12,5 +12,3 @@
       h5.col-5.m-3.text-secondary= post.genre
       h5.col-5.m-3.text-secondary= post.title
       p.col.m-3.text-secondary= post.created_at
-      = link_to 'メモを編集', edit_post_path(post), data: {"turbolinks" => false}, class: 'btn btn-lg m-2 app-color-light'
-      = link_to '削除', post, method: :delete, data: {"turbolinks" => false}, class: 'btn btn-lg text-light app-color-dark'
