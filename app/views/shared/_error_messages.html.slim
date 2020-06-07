@@ -1,0 +1,4 @@
+- if post.errors.present?
+  ul#error_explanation.alert.alert-warning.text-secondary.text-monospace.rounded-lg.list-unstyled
+    - post.errors.full_messages.each do |message|
+      li = message
