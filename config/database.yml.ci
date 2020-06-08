@@ -1,0 +1,11 @@
+test: &default
+  host: <%= ENV['MYSQL_HOST'] %>
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: 5
+  database: cocktail-hub_test
+  username: <%= ENV.fetch("MYSQL_USERNAME") %>
+  password: <%= ENV.fetch("MYSQL_PASSWORD") %>
+  host: <%= ENV.fetch("MYSQL_HOST") %>
+  port: <%= ENV.fetch("MYSQL_PORT") %>
+  socket: /tmp/mysql.sock
