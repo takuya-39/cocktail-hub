@@ -14,7 +14,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 set :linked_files, fetch(:linked_files, []).push('config/secrets.yml')
 
 set :rbenv_type, :user
-set :rbenv_ruby, '2.6.3'
+set :rbenv_ruby, '2.7.1'
 
 # どの公開鍵を利用してデプロイするか
 set :ssh_options, auth_methods: ['publickey'], keys: ['~/.ssh/cocktail-hub-key.pem']
