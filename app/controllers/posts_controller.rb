@@ -44,12 +44,12 @@ class PostsController < ApplicationController
 
   private
 
-    def post_params
-      params.require(:post).permit(:image, :title, :genre, :ingredients, :memo)
-    end
+  def post_params
+    params.require(:post).permit(:image, :title, :genre, :ingredients, :memo)
+  end
 
-    # 特定のPostを@postに代入する
-    def set_post
-      @post = Post.find_by(id: params[:id])
-    end
+  # 特定のPostを@postに代入する
+  def set_post
+    @post = Post.find_by(id: params[:id])
+  end
 end
