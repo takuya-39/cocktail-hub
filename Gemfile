@@ -20,7 +20,8 @@ gem 'sass-rails',           '>= 6'
 gem 'slim-rails'
 gem 'turbolinks',           '~> 5'
 gem 'webpacker',            '~> 4.0'
-gem "websocket-extensions", '>= 0.1.5'
+gem 'websocket-extensions', '>= 0.1.5'
+gem 'aws-sdk-s3',           require: false
 
 group :development, :test do
   gem 'byebug',              platforms: [:mri, :mingw, :x64_mingw]
