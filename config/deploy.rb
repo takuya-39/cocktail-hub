@@ -17,7 +17,7 @@ set :rbenv_type, :user
 set :rbenv_ruby, '2.7.1'
 
 # どの公開鍵を利用してデプロイするか
-set :ssh_options, auth_methods: ['publickey'], keys: ['~/.ssh/cocktail-hub-key.pem']
+set :ssh_options, auth_methods: ['publickey'], keys: ['~/.ssh/cocktail-hub-ssh-key.pem']
 
 set :keep_releases, 5
 
