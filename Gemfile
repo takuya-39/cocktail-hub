@@ -25,7 +25,7 @@ gem 'aws-sdk-s3',           require: false
 
 group :development, :test do
   gem 'byebug',              platforms: [:mri, :mingw, :x64_mingw]
-  gem 'capistrano'
+  gem 'capistrano',          '3.14.0'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'

@@ -36,7 +36,7 @@ jobs:
     <<: *defaults
     docker:
       - *ruby_docker_image
-      - image: circleci/mysql:8.0
+      - image: circleci/mysql
         command: [--default-authentication-plugin=mysql_native_password]
         environment:
           MYSQL_ALLOW_EMPTY_PASSWORD: true
