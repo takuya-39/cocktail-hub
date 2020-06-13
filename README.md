@@ -10,7 +10,7 @@
 
 ## URL
 
-<!-- アプリのURLを記述する -->
+https://www.cocktail-hub.site/
 
 # 機能一覧
 

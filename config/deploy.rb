@@ -12,7 +12,7 @@ set :linked_files, fetch(:linked_files, []).push('config/master.key')
 set :rbenv_type, :user
 set :rbenv_ruby, '2.7.1'
 
-set :ssh_options, auth_methods: ['publickey'], keys: ["#{ENV.fetch('PRODUCTION_SSH_KEY')}"]
+set :ssh_options, auth_methods: ['publickey'], keys: ['~/.ssh/cocktail-hub-ssh-key.pem']
 
 set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
 set :unicorn_config_path, -> { "#{current_path}/config/unicorn/production.rb" }
