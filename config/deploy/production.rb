@@ -1,3 +1,6 @@
+set :stage, :production
+set :rails_env, 'production'
+
 server '18.179.194.105',
 user: "test_user",
 roles: %w{app db web},
