@@ -11,11 +11,21 @@ set :linked_files, fetch(:linked_files, []).push('config/master.key')
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.7.1'
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+set :rbenv_roles, :all
 
 set :ssh_options, auth_methods: ['publickey'], keys: ['~/.ssh/cocktail-hub-ssh-key.pem']
 
-set :unicorn_pid, -> { "#{shared_path}/tmp/pids/unicorn.pid" }
-set :unicorn_config_path, -> { "#{current_path}/config/unicorn/production.rb" }
+set :unicorn_pid, -> { "/var/www/cocktail-hub/current/tmp/pids/unicorn.pid" }
+set :unicorn_config_path, -> { "/var/www/cocktail-hub/current/config/unicorn/production.rb" }
+
+set :default_env, {
+  rbenv_root: "/home/test_user/.rbenv/",
+  path: "$HOME/.rbenv/bin:$PATH",
+  region: ENV["AWS_REGION"],
+  aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+  aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"]
+}
 
 set :keep_releases, 5
 
