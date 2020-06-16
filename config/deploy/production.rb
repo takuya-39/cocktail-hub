@@ -1,12 +1,9 @@
-set :stage, :production
-set :rails_env, 'production'
-
-server '18.179.194.105',
+server '18.178.120.71',
 user: "test_user",
 roles: %w{app db web},
 ssh_options: {
   user: "test_user",
-  keys: %w(~/.ssh/cocktail-hub-ssh-key.pem),
+  keys: %w(~/.ssh/cocktail-hub-ssh.pem),
   forward_agent: true,
   port: 22
 }
