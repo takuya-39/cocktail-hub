@@ -30,6 +30,6 @@ production:
   database: cocktail_hub_production
   username: root
   password: password
-  host: cocktail-hub-web.cbehruninhnb.ap-northeast-1.rds.amazonaws.com
+  host: cocktail-hub-db.cbehruninhnb.ap-northeast-1.rds.amazonaws.com
   port: 3306
   socket: /var/lib/mysql/mysql.sock
