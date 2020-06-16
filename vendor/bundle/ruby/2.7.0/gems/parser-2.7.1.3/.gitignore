@@ -28,10 +28,7 @@ lib/parser/ruby23.rb
 lib/parser/ruby24.rb
 lib/parser/ruby25.rb
 lib/parser/ruby26.rb
-
-# CircleCI上でrubocopを実行した時にエラーが出る為コメントアウト
-# lib/parser/ruby27.rb
-
+lib/parser/ruby27.rb
 lib/parser/ruby28.rb
 lib/parser/macruby.rb
 lib/parser/rubymotion.rb
