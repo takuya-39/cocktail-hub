@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  get 'users/show'
   root to: 'posts#index'
 
   resources :posts
+
+  resources :users, only: [:show]
 
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
