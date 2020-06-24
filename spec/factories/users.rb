@@ -20,6 +20,10 @@
 #
 FactoryBot.define do
   factory :user do
-    
+    username { 'サンプルユーザー' }
+    sequence(:email) { |n| "tester#{n}@example.com" }
+    password { 'password' }
+    profile { 'サンプルプロフィールです。' }
+    image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_user_image.jpg'))
   end
 end
