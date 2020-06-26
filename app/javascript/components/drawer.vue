@@ -106,7 +106,7 @@
       <!-- ドロワーアイテム【ログイン】 -->
       <!-- ダイアログ -->
       <!-- (ログイン前) root -->
-      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('reload')">
+      <v-list-item @click="$router.push('/login').catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-alpha-l-circle-outline</v-icon>
         </v-list-item-icon>
@@ -116,7 +116,7 @@
       <!-- ドロワーアイテム【ログアウト】 -->
       <!-- ダイアログ -->
       <!-- (ログイン後) 全てのページ -->
-      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('reload')">
+      <v-list-item @click="$router.push('/logout').catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-alpha-l-circle</v-icon>
         </v-list-item-icon>
