@@ -13,6 +13,7 @@
 #
 FactoryBot.define do
   factory :post do
+    association :user
     title { 'オリジナルカクテル' }
     genre { 'ウイスキー' }
     image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_post_image.jpg'))

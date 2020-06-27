@@ -31,7 +31,7 @@
       <!-- ユーザー作成ページにつながる -->
       <!-- 別ページ実装かダイアログかで仕様変わる -->
       <!-- (ログイン前) root -->
-      <v-list-item @click="$router.push('/signup').catch(e=>{}), $emit('reload')">
+      <v-list-item class='signup' @click="$router.push('/signup').catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-account-plus-outline</v-icon>
           <!-- <v-icon class="mdi-36px">mdi-account-cog-outline</v-icon> -->

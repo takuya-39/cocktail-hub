@@ -13,7 +13,7 @@
       <!-- ヘッダーナビアイコン -->
       <v-app-bar-nav-icon
         @click="switchDrawer"
-        class="ml-5"
+        class="ml-5 nav-icon"
         color="white"
         x-large
       >

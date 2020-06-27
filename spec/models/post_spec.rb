@@ -21,6 +21,7 @@ RSpec.describe Post, type: :model do
 
     it 'タイトル、ジャンル、画像、材料、メモがあれば有効な状態であること' do
       post = Post.new(
+        user: FactoryBot.build(:user),
         title: 'オリジナルカクテル',
         genre: 'ウイスキー',
         image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_post_image.jpg')),
