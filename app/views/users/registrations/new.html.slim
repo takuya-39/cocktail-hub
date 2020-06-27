@@ -22,11 +22,6 @@
           .form-group.card-img
             = u.label 'ユーザー画像', class: 'col-form-label-lg text-monospace'
             = u.file_field :image, id: 'UserImage', class: 'form-control border-app-color-dark'
-          / .card-body
-          /   .container.bg-light.rounded
-          /     .form-group.card-text
-          /       = u.label :profile, class: 'col-form-label-lg text-monospace'
-          /       = u.text_area :profile, id: 'Profile', class: 'form-control border-app-color-dark'
 
         .form-group
           = u.submit '新規ユーザー登録をする', class: 'btn btn-lg shadow-lg text-light text-bold text-monospace app-color-dark'
