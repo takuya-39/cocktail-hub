@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe 'Login', type: :system, js: true do
   include ActiveJob::TestHelper
-  let(:user) { FactoryBot.build(:user) }
+  let(:user) { FactoryBot.create(:user) }
 
   it 'ユーザーがログインできること' do
     valid_login(user)
 
     expect(current_path).to eq root_path
-    expect(page).to_not have_content 'ログインしました'
+    expect(page).to have_content 'ログインしました'
   end
 
   it '無効な情報ではログインに失敗すること' do

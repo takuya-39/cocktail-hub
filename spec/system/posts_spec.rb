@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Posts', type: :system, js: true do
   it '新規投稿、編集, 削除' do
-    user = FactoryBot.build(:user)
+    user = FactoryBot.create(:user)
     valid_login(user)
     # 新規投稿
     visit root_path
