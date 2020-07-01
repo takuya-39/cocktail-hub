@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
-  let(:post) { FactoryBot.create(:post) }
-
   describe 'index' do
     it '正常にアクセスできること' do
       get root_path
@@ -14,7 +12,7 @@ RSpec.describe 'Posts', type: :request do
   describe 'show' do
     it '正常にアクセスできること' do
       pending
-      get post_path(post)
+      get post_path(@post)
       expect(response).to have_http_status(:success)
       expect(response).to have_http_status(200)
     end
