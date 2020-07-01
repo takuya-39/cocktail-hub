@@ -24,12 +24,20 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  before_create :default_image
+
   has_one_attached :image
 
   has_many :posts, dependent: :destroy
 
   validates :username, presence: true, length: { maximum: 10 }
   validates :profile, length: { maximum: 200 }
+
+  def default_image
+    if !self.image.attached?
+      self.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default_user_image.png')), filename: 'default_user_image.png', content_type: 'image/png')
+    end
+  end
 
   def display_image
     image.variant(resize: '1000^').processed
