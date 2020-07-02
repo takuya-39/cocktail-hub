@@ -34,12 +34,23 @@ class User < ApplicationRecord
   validates :profile, length: { maximum: 200 }
 
   def default_image
-    if !self.image.attached?
-      self.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', 'default_user_image.png')), filename: 'default_user_image.png', content_type: 'image/png')
-    end
+    image.attach(
+      io: File.open(Rails.root.join('app', 'assets', 'images', 'default_user_image.png')),
+      filename: 'default_user_image.png',
+      content_type: 'image/png'
+    ) unless image.attached?
   end
 
   def display_image
     image.variant(resize: '1000^').processed
+  end
+
+  def self.guest
+    find_or_create_by!(
+      username: 'ゲストユーザー',
+      email: 'guest@example.com'
+    ) do |user|
+      user.password = SecureRandom.urlsafe_base64
+    end
   end
 end

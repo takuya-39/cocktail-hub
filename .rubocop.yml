@@ -79,3 +79,7 @@ LineLength:
 # AbcSizeチェックの基準値を20に変更
 Metrics/AbcSize:
   Max: 20
+
+# 複数行ステートメントの修飾子句を許可
+Style/MultilineIfModifier:
+  Enabled: false

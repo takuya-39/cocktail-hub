@@ -8,6 +8,12 @@ class ApplicationController < ActionController::Base
     root_url
   end
 
+  # ゲストかどうかチェックし、ゲストなら編集、削除ができないという警告を表示する
+  def check_guest
+    email = resource&.email || params[:user][:email].downcase
+    redirect_to root_url, notice: 'ゲストユーザーの編集、削除はできません' if email == 'guest@example.com'
+  end
+
   protected
 
   def configure_permitted_parameters

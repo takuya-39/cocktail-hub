@@ -25,4 +25,13 @@ RSpec.describe 'Login', type: :system, js: true do
       end.to change(User, :count).by(0)
     end
   end
+
+  context 'ゲストユーザー' do
+    it 'ゲストユーザーがログインできること' do
+      valid_guest_login(user)
+
+      expect(current_path).to eq root_path
+      expect(page).to have_content 'ゲストユーザーとしてログインしました'
+    end
+  end
 end

@@ -20,7 +20,7 @@
       <!-- ドロワーアイテム【ユーザープロフィール】 -->
       <!-- ユーザープロフィールにつながる -->
       <!-- (ログイン後) root -->
-      <v-list-item class='user-show' @click="$router.push('/').catch(e=>{}), $emit('reload')">
+      <v-list-item class='user-show' @click="$router.push(`/users/${userId}`).catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-account-outline</v-icon>
         </v-list-item-icon>

@@ -5,6 +5,9 @@
     = render 'devise/shared/error_messages', resource: resource
 
     .container
+      = link_to 'ゲストユーザーでログインする', users_guest_sign_in_path, method: :post, class: 'btn btn-lg shadow-lg text-light text-bold text-monospace app-color-dark'
+
+    .container
       .card.rounded-lg.app-color-sub
         .card-body
           .form-group
