@@ -3,7 +3,7 @@
   <!-- ドロワーリスト -->
   <v-list nav>
     <v-list-item-group
-      v-model="group"
+      v-model="userData"
       active-class="deep-purple--text text--accent-4"
     >
 
@@ -20,7 +20,7 @@
       <!-- ドロワーアイテム【ユーザープロフィール】 -->
       <!-- ユーザープロフィールにつながる -->
       <!-- (ログイン後) root -->
-      <v-list-item class='user-show' @click="$router.push(`/users/${userId}`).catch(e=>{}), $emit('reload')">
+      <v-list-item class='users-show' @click="$router.push(`/users/${user.id}`).catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-account-outline</v-icon>
         </v-list-item-icon>
@@ -34,7 +34,6 @@
       <v-list-item class='signup' @click="$router.push('/signup').catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-account-plus-outline</v-icon>
-          <!-- <v-icon class="mdi-36px">mdi-account-cog-outline</v-icon> -->
         </v-list-item-icon>
         <v-list-item-title>ユーザーを作成する</v-list-item-title>
       </v-list-item>
@@ -46,7 +45,6 @@
       <v-list-item class='users-edit' @click="$router.push('/users/edit').catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-account-cog-outline</v-icon>
-          <!-- <v-icon class="mdi-36px">mdi-account-cog-outline</v-icon> -->
         </v-list-item-icon>
         <v-list-item-title>ユーザーを編集する</v-list-item-title>
       </v-list-item>
@@ -57,7 +55,6 @@
       <v-list-item class='posts-edit' @click="$router.push('/').catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-file-cog-outline</v-icon>
-          <!-- <v-icon class="mdi-36px">mdi-account-cog-outline</v-icon> -->
         </v-list-item-icon>
         <v-list-item-title>投稿を編集する</v-list-item-title>
       </v-list-item>
@@ -71,7 +68,6 @@
       <v-list-item @click="$emit('switchDrawer')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-crown-outline</v-icon>
-          <!-- <v-icon class="mdi-36px">mdi-medal-outline</v-icon> -->
         </v-list-item-icon>
         <v-list-item-title>いいねランキング</v-list-item-title>
       </v-list-item>
@@ -127,10 +123,20 @@
 </template>
 
 <script>
+
+import axios from 'axios'
+
 export default {
   data: function () {
     return {
+      user: []
     }
+  },
+  created() {
+    axios.get('/api/v1/users')
+      .then(res => {
+        this.user = res.data
+      })
   },
 }
 </script>
