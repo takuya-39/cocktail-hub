@@ -1,0 +1,20 @@
+.app-color-light
+  .container
+    .card.rounded-lg.app-color-sub
+      .card-body
+        .card-img
+          = image_tag @user.display_image, class: 'resize-image rounded-circle', style: 'width: 150px; height: 150px;'
+        .card-body
+          h5 ユーザーネーム
+          .container.bg-light.rounded
+            .card-text
+              p= @user.username
+        .card-body
+          h5 プロフィール
+          .container.bg-light.rounded
+            .card-text
+              p= @user.profile
+        .col.m-3.text-secondary= @user.created_at
+
+        = link_to 'ユーザーを編集', edit_user_registration_path, data: {"turbolinks" => false}, class: 'btn btn-lg m-2 app-color-light'
+        = link_to 'ユーザーを削除', user_registration_path, method: :delete, data: {"turbolinks" => false}, class: 'btn btn-lg text-light app-color-dark'

@@ -3,7 +3,7 @@
   <!-- ドロワーリスト -->
   <v-list nav>
     <v-list-item-group
-      v-model="group"
+      v-model="userData"
       active-class="deep-purple--text text--accent-4"
     >
 
@@ -20,7 +20,7 @@
       <!-- ドロワーアイテム【ユーザープロフィール】 -->
       <!-- ユーザープロフィールにつながる -->
       <!-- (ログイン後) root -->
-      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('reload')">
+      <v-list-item class='users-show' @click="$router.push(`/users/${user.id}`).catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-account-outline</v-icon>
         </v-list-item-icon>
@@ -31,10 +31,9 @@
       <!-- ユーザー作成ページにつながる -->
       <!-- 別ページ実装かダイアログかで仕様変わる -->
       <!-- (ログイン前) root -->
-      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('reload')">
+      <v-list-item class='signup' @click="$router.push('/signup').catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-account-plus-outline</v-icon>
-          <!-- <v-icon class="mdi-36px">mdi-account-cog-outline</v-icon> -->
         </v-list-item-icon>
         <v-list-item-title>ユーザーを作成する</v-list-item-title>
       </v-list-item>
@@ -43,10 +42,9 @@
       <!-- ユーザー編集ページにつながる -->
       <!-- 別ページ実装かダイアログかで仕様変わる -->
       <!-- (ログイン後) users/show -->
-      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('reload')">
+      <v-list-item class='users-edit' @click="$router.push('/users/edit').catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-account-cog-outline</v-icon>
-          <!-- <v-icon class="mdi-36px">mdi-account-cog-outline</v-icon> -->
         </v-list-item-icon>
         <v-list-item-title>ユーザーを編集する</v-list-item-title>
       </v-list-item>
@@ -54,10 +52,9 @@
       <!-- ドロワーアイテム【投稿を編集する】 -->
       <!-- 投稿編集ページにつながる -->
       <!-- (ログイン後) posts/show -->
-      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('reload')">
+      <v-list-item class='posts-edit' @click="$router.push('/').catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-file-cog-outline</v-icon>
-          <!-- <v-icon class="mdi-36px">mdi-account-cog-outline</v-icon> -->
         </v-list-item-icon>
         <v-list-item-title>投稿を編集する</v-list-item-title>
       </v-list-item>
@@ -71,7 +68,6 @@
       <v-list-item @click="$emit('switchDrawer')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-crown-outline</v-icon>
-          <!-- <v-icon class="mdi-36px">mdi-medal-outline</v-icon> -->
         </v-list-item-icon>
         <v-list-item-title>いいねランキング</v-list-item-title>
       </v-list-item>
@@ -106,7 +102,7 @@
       <!-- ドロワーアイテム【ログイン】 -->
       <!-- ダイアログ -->
       <!-- (ログイン前) root -->
-      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('reload')">
+      <v-list-item class='login' @click="$router.push('/login').catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-alpha-l-circle-outline</v-icon>
         </v-list-item-icon>
@@ -116,7 +112,7 @@
       <!-- ドロワーアイテム【ログアウト】 -->
       <!-- ダイアログ -->
       <!-- (ログイン後) 全てのページ -->
-      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('reload')">
+      <v-list-item class='logout' @click="$router.push('/logout').catch(e=>{}), $emit('reload')">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-alpha-l-circle</v-icon>
         </v-list-item-icon>
@@ -127,10 +123,20 @@
 </template>
 
 <script>
+
+import axios from 'axios'
+
 export default {
   data: function () {
     return {
+      user: []
     }
+  },
+  created() {
+    axios.get('/api/v1/users')
+      .then(res => {
+        this.user = res.data
+      })
   },
 }
 </script>

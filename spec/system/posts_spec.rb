@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Posts', type: :system, js: true do
   it '新規投稿、編集, 削除' do
+    user = FactoryBot.create(:user)
+    valid_login(user)
     # 新規投稿
     visit root_path
     find('.posts-new').click
@@ -11,7 +13,7 @@ RSpec.describe 'Posts', type: :system, js: true do
     expect do
       fill_in 'Title', with: 'オリジナルカクテル'
       select 'ウイスキー', from: 'Genre'
-      attach_file 'Image', "#{ Rails.root }/spec/support/assets/sample_image.jpeg"
+      attach_file 'Image', "#{ Rails.root }/spec/support/assets/sample_post_image.jpg"
       fill_in 'Ingredients', with: '材料'
       fill_in 'Memo', with: '作り方メモ'
       click_button '投稿する'

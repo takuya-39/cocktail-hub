@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, only: %i[show new create edit update destroy]
+
   def index
     @posts = Post.all.order(created_at: :desc)
   end
@@ -12,7 +14,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
     @post.image.attach(params[:post][:image])
 
     if @post.save

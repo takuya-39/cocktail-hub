@@ -75,3 +75,11 @@ Metrics/BlockLength:
 # 1行あたりの文字数を120文字まで許可
 LineLength:
   Max: 120
+
+# AbcSizeチェックの基準値を20に変更
+Metrics/AbcSize:
+  Max: 20
+
+# 複数行ステートメントの修飾子句を許可
+Style/MultilineIfModifier:
+  Enabled: false

@@ -9,6 +9,7 @@
 #  title       :string(20)       not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  user_id     :integer          not null
 #
 class Post < ApplicationRecord
   has_one_attached :image
@@ -17,6 +18,8 @@ class Post < ApplicationRecord
   validates :image, presence: true
   validates :ingredients, presence: true, length: { maximum: 200 }
   validates :memo, presence: true, length: { maximum: 200 }
+
+  belongs_to :user
 
   def display_image
     image.variant(resize: '1000^').processed

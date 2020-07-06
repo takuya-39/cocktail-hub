@@ -1,0 +1,25 @@
+= form_with model: @user, url: session_path(resource_name), local: true do |u|
+  .container-fluid.app-color-light
+    h1.text-center.text-light.p-4 ログイン
+
+    = render 'devise/shared/error_messages', resource: resource
+
+    .container
+      = link_to 'ゲストユーザーでログインする', users_guest_sign_in_path, method: :post, class: 'btn btn-lg shadow-lg text-light text-bold text-monospace app-color-dark'
+
+    .container
+      .card.rounded-lg.app-color-sub
+        .card-body
+          .form-group
+            = u.label :email, class: 'col-form-label-lg text-monospace'
+            = u.email_field :email, autofocus: true, autocomplete: 'email', id: 'Email', class: 'form-control border-app-color-dark'
+          .form-group
+            = u.label :password, class: 'col-form-label-lg text-monospace'
+            = u.password_field :password, autofocus: true, autocomplete: 'new-password', id: 'Password', class: 'form-control border-app-color-dark'
+          - if devise_mapping.rememberable?
+            .field
+              = u.check_box :remember_me
+              = u.label :remember_me
+
+        .form-group
+          = u.submit 'ログインする', class: 'btn btn-lg shadow-lg text-light text-bold text-monospace app-color-dark'
