@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_06_25_125233) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "ingredients", limit: 200, null: false
+<<<<<<< HEAD
     t.integer "user_id", null: false
   end
 
@@ -55,6 +56,8 @@ ActiveRecord::Schema.define(version: 2020_06_25_125233) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+=======
+>>>>>>> master
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
