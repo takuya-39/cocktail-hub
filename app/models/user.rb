@@ -29,6 +29,8 @@ class User < ApplicationRecord
   has_one_attached :image
 
   has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :post
 
   validates :username, presence: true, length: { maximum: 10 }
   validates :profile, length: { maximum: 200 }

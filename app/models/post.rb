@@ -20,6 +20,8 @@ class Post < ApplicationRecord
   validates :memo, presence: true, length: { maximum: 200 }
 
   belongs_to :user
+  has_many :likes
+  has_many :liked_users, through: :likes, source: :user
 
   def display_image
     image.variant(resize: '1000^').processed
