@@ -11,7 +11,7 @@ RSpec.describe 'Signup', type: :system, js: true do
 
     perform_enqueued_jobs do
       expect do
-        fill_in 'UserName', with: 'サンプルユーザー'
+        fill_in 'UserName', with: 'テストユーザー'
         fill_in 'Email', with: 'test@example.com'
         fill_in 'Password', with: 'password'
         fill_in 'PasswordConfirmation', with: 'password'
