@@ -20,6 +20,14 @@
             .card-text
               p= @post.memo
         .col.m-3.text-secondary= @post.created_at
+        .card-body
+          - if current_user.already_liked?(@post)
+            = link_to post_like_path(@post), method: :delete, id: 'unlike-btn'
+              i.mdi.mdi-heart.unlike-btn
+          - else
+            = link_to post_likes_path(@post), method: :post, id: 'like-btn'
+              i.mdi.mdi-heart.like-btn
+          = @likes_count
 
         = link_to 'メモを編集', edit_post_path(@post), data: {"turbolinks" => false}, class: 'btn btn-lg m-2 app-color-light'
         = link_to '投稿を削除', @post, method: :delete, data: {"turbolinks" => false}, class: 'btn btn-lg text-light app-color-dark'
