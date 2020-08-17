@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'users/show'
   root to: 'posts#index'
 
   resources :posts do
@@ -26,4 +25,6 @@ Rails.application.routes.draw do
       resources :users, only: [:index]
     end
   end
+
+  resources :relationships, only: [:create, :destroy]
 end

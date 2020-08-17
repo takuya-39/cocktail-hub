@@ -10,7 +10,7 @@ RSpec.describe 'Users_Profile', type: :system, js: true do
     find('.nav-icon').click
     find('.users-show').click
 
-    # expect(current_path).to user_path(user)
+    expect(current_path).to eq user_path(user)
     expect(page).to have_content user.username
     expect(page).to have_content user.profile
   end

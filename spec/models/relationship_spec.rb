@@ -19,8 +19,20 @@
 #  fk_rails_...  (follow_id => users.id)
 #  fk_rails_...  (user_id => users.id)
 #
+
 require 'rails_helper'
 
 RSpec.describe Relationship, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    user = FactoryBot.create(:user)
+    other_user = FactoryBot.create(:user, :otheruser)
+    @relationship = Relationship.new(
+      follow_id: user.id,
+      user_id: other_user.id
+    )
+  end
+
+  it '関係が有効か' do
+    expect(@relationship).to be_valid
+  end
 end

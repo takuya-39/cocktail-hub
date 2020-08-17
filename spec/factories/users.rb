@@ -28,10 +28,10 @@ FactoryBot.define do
   end
 
   trait :otheruser do
-    username { '他のユーザー' }
+    username { 'サンプルユーザー' }
     sequence(:email) { |n| "other#{ n }@example.com" }
     password { 'password' }
-    profile { '他のユーザーです。' }
+    profile { 'サンプルユーザーです。' }
     image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_user_image.jpg'))
   end
 end
