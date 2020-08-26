@@ -9,10 +9,10 @@ RSpec.describe 'Relationships', type: :system, js: true do
     pending
     visit root_path
 
-    # テストユーザーがログインする
+    # ユーザーBがログインする
     valid_login(user)
 
-    # サンプルユーザーをフォローする
+    # ユーザーAをフォローする
     get user_path(user)
     expect(current_path).to eq "/users/#{ otheruser.id }"
 
@@ -23,7 +23,7 @@ RSpec.describe 'Relationships', type: :system, js: true do
     end.to change(user.follow_id, :count).by(1) &
            change(otheruser.user_id, :count).by(1)
 
-    # # テストユーザーのフォローを解除する
+    # # ユーザーBのフォローを解除する
     # visit user_path(user)
     # expect(current_path).to eq "/users/#{user.id}"
 
