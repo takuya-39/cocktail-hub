@@ -9,8 +9,6 @@ RSpec.describe 'Likes', type: :system, js: true do
     valid_login(user)
 
     visit root_path
-
-    visit root_path
     find('.posts-new').click
     expect(current_path).to eq new_post_path
     expect(page).to have_content '新規投稿'

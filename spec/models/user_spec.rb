@@ -28,11 +28,11 @@ RSpec.describe User, type: :model do
 
     it 'ユーザーネーム、メールアドレス、パスワード、ユーザー画像があれば有効な状態であること' do
       user = User.new(
-        username: 'サンプルユーザー',
-        email: 'tester@example.com',
+        username: 'ユーザーA',
+        email: 'user@example.com',
         password: 'password',
-        profile: 'サンプルプロフィールです',
-        image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_user_image.jpg'))
+        profile: 'ユーザーAです',
+        image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_user_image_cat.jpg'))
       )
       expect(user).to be_valid
     end

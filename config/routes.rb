@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'users/show'
   root to: 'posts#index'
 
   resources :posts do
@@ -19,11 +18,15 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   end
 
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    get :followings, :followers
+  end
 
   namespace :api, { format: 'json' } do
     namespace :v1 do
       resources :users, only: [:index]
     end
   end
+
+  resources :relationships, only: [:create, :destroy]
 end

@@ -15,7 +15,7 @@ RSpec.describe 'Signup', type: :system, js: true do
         fill_in 'Email', with: 'test@example.com'
         fill_in 'Password', with: 'password'
         fill_in 'PasswordConfirmation', with: 'password'
-        attach_file 'UserImage', "#{ Rails.root }/spec/support/assets/sample_user_image.jpg"
+        attach_file 'UserImage', "#{ Rails.root }/spec/support/assets/sample_user_image_cat.jpg"
         click_button '新規ユーザー登録をする'
       end.to change(User, :count).by(1)
 
