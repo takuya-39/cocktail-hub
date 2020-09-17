@@ -19,5 +19,10 @@
         .card-body
           = render 'users/shared/follow_button', user: @user
 
-        = link_to 'ユーザーを編集', edit_user_registration_path, data: {"turbolinks" => false}, class: 'btn btn-lg m-2 app-color-light'
-        = link_to 'ユーザーを削除', user_registration_path, method: :delete, data: {"turbolinks" => false}, class: 'btn btn-lg text-light app-color-dark'
+        .m-3
+          = link_to 'フォロー', user_followings_path(@user), data: {"turbolinks" => false}, class: 'btn btn-lg m-2 app-color-light'
+          = link_to 'フォロワー', user_followers_path(@user), data: {"turbolinks" => false}, class: 'btn btn-lg text-light app-color-dark'
+
+        .m-3
+          = link_to 'ユーザーを編集', edit_user_registration_path, data: {"turbolinks" => false}, class: 'btn btn-lg m-2 app-color-light'
+          = link_to 'ユーザーを削除', user_registration_path, method: :delete, data: {"turbolinks" => false}, class: 'btn btn-lg text-light app-color-dark'

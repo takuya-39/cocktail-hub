@@ -24,7 +24,7 @@ FactoryBot.define do
     sequence(:email) { |n| "user#{ n }@example.com" }
     password { 'password' }
     profile { 'ユーザーAです。' }
-    image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_user_image.jpg'))
+    image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_user_image_cat.jpg'))
   end
 
   trait :otheruser do
@@ -32,6 +32,6 @@ FactoryBot.define do
     sequence(:email) { |n| "otheruser#{ n }@example.com" }
     password { 'password' }
     profile { 'ユーザーBです。' }
-    image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_user_image.jpg'))
+    image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_user_image_cat.jpg'))
   end
 end

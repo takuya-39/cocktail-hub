@@ -6,15 +6,15 @@ RSpec.describe 'Users_Edit', type: :system, js: true do
 
   it 'ユーザーが編集できること' do
     valid_login(user)
-    visit root_path
 
+    visit root_path
     find('.nav-icon').click
     find('.users-edit').click
 
     perform_enqueued_jobs do
       fill_in 'UserName', with: 'エディットユーザー'
       fill_in 'Email', with: 'edit@example.com'
-      attach_file 'UserImage', "#{ Rails.root }/spec/support/assets/sample_user_image.jpg"
+      attach_file 'UserImage', "#{ Rails.root }/spec/support/assets/sample_user_image_cat.jpg"
       fill_in 'Profile', with: 'こんにちは'
       fill_in 'CurrentPassword', with: 'password'
       click_button 'ユーザーを更新する'
@@ -37,7 +37,7 @@ RSpec.describe 'Users_Edit', type: :system, js: true do
         expect do
           fill_in 'UserName', with: 'エディットユーザー'
           fill_in 'Email', with: 'edit@example.com'
-          attach_file 'UserImage', "#{ Rails.root }/spec/support/assets/sample_user_image.jpg"
+          attach_file 'UserImage', "#{ Rails.root }/spec/support/assets/sample_user_image_cat.jpg"
           fill_in 'Profile', with: 'こんにちは'
           fill_in 'CurrentPassword', with: 'password'
           click_button 'ユーザーを更新する'

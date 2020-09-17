@@ -7,18 +7,15 @@ RSpec.describe 'Relationships', type: :system, js: true do
 
   it 'フォロー機能' do
     pending
-    visit root_path
-
-    # ユーザーBがログインする
+    # ユーザーAがユーザーBをフォローする
     valid_login(user)
 
-    # ユーザーAをフォローする
-    get user_path(user)
+    visit root_path
+    get user_path(otheruser)
     expect(current_path).to eq "/users/#{ otheruser.id }"
 
     expect do
       click_link 'フォローする'
-      # click_on 'フォローする'
       expect(page).to have_content 'フォロー中'
     end.to change(user.follow_id, :count).by(1) &
            change(otheruser.user_id, :count).by(1)

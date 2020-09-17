@@ -32,7 +32,7 @@ RSpec.describe User, type: :model do
         email: 'user@example.com',
         password: 'password',
         profile: 'ユーザーAです',
-        image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_user_image.jpg'))
+        image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_user_image_cat.jpg'))
       )
       expect(user).to be_valid
     end
