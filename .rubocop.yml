@@ -2,6 +2,7 @@ inherit_from: .rubocop_todo.yml
 
 AllCops:
   TargetRubyVersion: 2.7.1
+  NewCops: enable
   Exclude:
     - 'config.ru'
     - 'bin/**'
@@ -13,9 +14,8 @@ AllCops:
     - 'Gemfile'
     - 'Rakefile'
     - !ruby/regexp /old_and_unused\.rb$/
-
   Rails:
-    enabled: true
+    Enabled: true
 
 # 日本語でのコメントを許可
 AsciiComments:
