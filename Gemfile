@@ -14,6 +14,7 @@ gem 'jbuilder',             '~> 2.10.1'
 gem 'mini_magick'
 gem 'mysql2',               '>= 0.5.3'
 gem 'puma',                 '~> 4.3.6'
+gem 'parser',               '2.7.0.1'
 gem 'rails',                '~> 6.0.3.3'
 gem 'rails-i18n'
 gem 'sass-rails',           '>= 6'
@@ -32,7 +33,7 @@ group :development, :test do
   gem 'factory_bot_rails',   '~> 4.11'
   gem 'rspec-rails',         '~> 4.0.0.beta2'
   gem 'rubocop',             require: false
-  gem 'rubocop-rails'
+  gem 'rubocop-rails',       require: false
 end
 
 group :development do
