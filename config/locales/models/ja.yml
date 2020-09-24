@@ -22,3 +22,5 @@ ja:
         image: 画像
         ingredients: 材料
         memo: メモ
+        comment:
+          content: コメント内容
