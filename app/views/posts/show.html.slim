@@ -32,6 +32,22 @@
         = link_to 'メモを編集', edit_post_path(@post), data: {"turbolinks" => false}, class: 'btn btn-lg m-2 app-color-light'
         = link_to '投稿を削除', @post, method: :delete, data: {"turbolinks" => false}, class: 'btn btn-lg text-light app-color-dark'
 
-        .m-2.p-3.rounded.bg-light.row= link_to @post.user, data: {"turbolinks" => false}
+        .m-2.p-3.rounded.bg-light= link_to @post.user, data: {"turbolinks" => false}
           = image_tag @post.user.display_image, class: 'resize-image rounded-circle', style: 'width: 50px; height: 50px;'
-          p.m-3.text-secondary= @post.user.username
+          p.m-3.text-secondary.d-inline-block= @post.user.username
+
+        .card-body
+          h4 コメント一覧
+          .card-body
+            - @comments.each do |comment|
+              .container.bg-light.rounded
+                .card-text
+                  = image_tag comment.user.display_image, class: 'resize-image rounded-circle', style: 'width: 50px; height: 50px;'
+                  p.m-3.d-inline-block= comment.user.username
+                  p.m-3.d-inline-block.p-wrap-90= comment.content
+
+          .card-body.bg-secondary.rounded= form_with model: [@post, @comment], local: true do |c|
+            = c.label 'コメント', class: 'col-form-label-lg text-monospace'
+            = c.text_field :content, id: 'Content', class: 'form-control border-app-color-dark'
+            = c.hidden_field :post_id, value: @post.id
+            = c.submit 'コメントする', class: 'btn btn-lg shadow-lg text-light text-bold text-monospace app-color-dark'

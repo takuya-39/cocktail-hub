@@ -7,6 +7,8 @@ class PostsController < ApplicationController
 
   def show
     set_post
+    @comments = @post.comments
+    @comment = Comment.new
     @like = Like.new
     @likes_count = Like.where(post_id: @post.id).count
   end

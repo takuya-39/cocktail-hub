@@ -21,7 +21,7 @@
 #
 FactoryBot.define do
   factory :comment do
-    content 'サンプルのコメントです'
+    content '作ってみようかな！'
     association :post
     user { post.user }
   end
