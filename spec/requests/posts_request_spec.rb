@@ -4,7 +4,7 @@ RSpec.describe 'Posts', type: :request do
   let(:user) { FactoryBot.create(:user) }
   let(:post) { FactoryBot.create(:post) }
 
-  describe 'index' do
+  describe '#index' do
     it '正常にアクセスできること' do
       get root_path
       expect(response).to have_http_status(:success)
@@ -12,7 +12,7 @@ RSpec.describe 'Posts', type: :request do
     end
   end
 
-  describe 'show' do
+  describe '#show' do
     it '正常にアクセスできること' do
       pending
       get post_path(post)
@@ -21,7 +21,7 @@ RSpec.describe 'Posts', type: :request do
     end
   end
 
-  describe 'new' do
+  describe '#new' do
     it '正常にアクセスできること' do
       pending
       get new_post_path
@@ -30,7 +30,7 @@ RSpec.describe 'Posts', type: :request do
     end
   end
 
-  describe 'edit' do
+  describe '#edit' do
     it '正常にアクセスできること' do
       pending
       get edit_post_path(post)

@@ -4,7 +4,7 @@ RSpec.describe 'Users', type: :request do
   let(:user) { FactoryBot.create(:user) }
   let(:post) { FactoryBot.create(:post) }
 
-  describe 'show' do
+  describe '#show' do
     it '正常にアクセスできること' do
       pending
       get user_path(user)
@@ -13,7 +13,7 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
-  describe 'followings' do
+  describe '#followings' do
     it '正常にアクセスできること' do
       pending
       get user_followings_path(user)
@@ -22,7 +22,7 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
-  describe 'followers' do
+  describe '#followers' do
     it '正常にアクセスできること' do
       pending
       get user_followers_path(user)
