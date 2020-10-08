@@ -160,11 +160,23 @@ if Rails.env == 'development'
       ]
     )
 
-    # ゲストユーザーが全ての投稿にコメントする
+    # 全てのユーザーが全ての投稿にコメントする
     Post.all.each do |post|
       post.comments.create!(
         user_id: 1,
-        content: 'ゲストユーザーのコメント'
+        content: '美味しそう！'
+      )
+      post.comments.create!(
+        user_id: 2,
+        content: '作ってみたい！'
+      )
+      post.comments.create!(
+        user_id: 3,
+        content: 'おしゃれ！！'
+      )
+      post.comments.create!(
+        user_id: 4,
+        content: 'アイデアがおもしろい！'
       )
     end
 end
