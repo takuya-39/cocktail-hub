@@ -22,9 +22,9 @@ class PostsController < ApplicationController
     @post.image.attach(params[:post][:image])
 
     if @post.save
-      redirect_to root_url
+      redirect_to root_url, notice: '新規投稿しました'
     else
-      render :new
+      render :new, notice: '新規投稿に失敗しました'
     end
   end
 
@@ -36,16 +36,16 @@ class PostsController < ApplicationController
     set_post
 
     if @post.update(post_params)
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), notice: '投稿を更新しました'
     else
-      render :edit
+      render :edit, notice: '投稿の編集に失敗しました'
     end
   end
 
   def destroy
     set_post
     @post.destroy
-    redirect_to root_path
+    redirect_to root_path, notice: '投稿を削除しました'
   end
 
   private

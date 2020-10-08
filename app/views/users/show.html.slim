@@ -1,4 +1,10 @@
 .app-color-light
+  .container-fluid
+    h1.text-center.text-light.p-4 ユーザー詳細ページ
+
+  - if flash.notice.present?
+    .alert.alert-primary.m-3= flash.notice
+
   .container
     .card.rounded-lg.app-color-sub
       .card-body

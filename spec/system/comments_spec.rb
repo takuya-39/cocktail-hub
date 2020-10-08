@@ -4,9 +4,9 @@ RSpec.describe 'Comments', type: :system, js: true do
   include ActiveJob::TestHelper
   let(:user) { FactoryBot.create(:user) }
   let(:otheruser) { FactoryBot.create(:user, :otheruser) }
-  let(:post) { FactoryBot.create(:post)}
+  let(:post) { FactoryBot.create(:post) }
 
-  it '既存の投稿にコメントをする' do
+  it '既存の投稿にコメントをする、削除する' do
     valid_login(user)
 
     # 新規投稿する
@@ -34,5 +34,11 @@ RSpec.describe 'Comments', type: :system, js: true do
     fill_in 'Content', with: '美味しそう！'
     click_button 'コメントする'
     expect(page).to have_content '美味しそう！'
+
+    # コメントを削除する
+    comment = post.comments.find_by!(content: '美味しそう！')
+    click_link 'コメントを削除'
+    expect(page).to have_content 'コメントを削除しました'
+    expect(Comment.where(id: comment.id)).to be_empty
   end
 end

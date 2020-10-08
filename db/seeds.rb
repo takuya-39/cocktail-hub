@@ -159,6 +159,14 @@ if Rails.env == 'development'
         },
       ]
     )
+
+    # ゲストユーザーが全ての投稿にコメントする
+    Post.all.each do |post|
+      post.comments.create!(
+        user_id: 1,
+        content: 'ゲストユーザーのコメント'
+      )
+    end
 end
 
 
