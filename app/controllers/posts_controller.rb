@@ -2,12 +2,12 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: %i[show new create edit update destroy]
 
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.all.page(params[:page]).per(10).order('updated_at DESC')
   end
 
   def show
     set_post
-    @comments = @post.comments
+    @comments = @post.comments.page(params[:page]).per(10)
     @comment = Comment.new
     @like = Like.new
     @likes_count = Like.where(post_id: @post.id).count

@@ -46,6 +46,7 @@
         .card-body
           h4 コメント一覧
           .card-body
+            = paginate @comments
             - @comments.each do |comment|
               .container.bg-light.rounded.border
                 .card-text
@@ -54,6 +55,7 @@
                   p.m-3.d-inline-block.p-wrap-90= comment.content
                 - if current_user.id == comment.user_id
                   = link_to 'コメントを削除', post_comment_path(@post, comment), method: :delete, data: {"turbolinks" => false}, class: 'btn btn-sm text-light app-color-dark'
+            = paginate @comments
 
           .card-body.bg-secondary.rounded= form_with model: [@post, @comment], local: true do |c|
             = c.label 'コメント', class: 'col-form-label-lg text-monospace'

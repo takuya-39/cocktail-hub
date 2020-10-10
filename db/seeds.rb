@@ -179,6 +179,15 @@ if Rails.env == 'development'
         content: 'アイデアがおもしろい！'
       )
     end
+
+    50.times do |n|
+      Post.all.each do |post|
+        post.comments.create!(
+          user_id: 1,
+          content: '美味しそう！'
+        )
+      end
+    end
 end
 
 

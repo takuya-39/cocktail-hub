@@ -1,10 +1,12 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'posts';
 
+// リンクの装飾を消す
 a:link, a:visited, a:hover, a:active {
   text-decoration: none;
 }
 
+// アプリのテーマカラー
 .app-color-light {
   background-color: #d1c4e9;
 }
@@ -13,18 +15,20 @@ a:link, a:visited, a:hover, a:active {
   background-color: #090422;
 }
 
-.border-app-color-dark {
-  border-color: #090422;
-}
-
 .app-color-sub {
   background-color: #e6e6fa;
 }
 
+.border-app-color-dark {
+  border-color: #090422;
+}
+
+// イメージをリサイズする
 .resize-image {
   width: 100%;
 }
 
+// いいねボタン
 .like-btn {
   width: 25px;
   height: 30px;
@@ -33,6 +37,7 @@ a:link, a:visited, a:hover, a:active {
   margin-left: 20px;
 }
 
+// いいね取り消しボタン
 .unlike-btn {
   width: 25px;
   height: 30px;
@@ -41,6 +46,7 @@ a:link, a:visited, a:hover, a:active {
   margin-left: 20px;
 }
 
+// フォローボタン
 .follow-btn {
   width: 25px;
   height: 30px;
@@ -49,6 +55,7 @@ a:link, a:visited, a:hover, a:active {
   margin-left: 20px;
 }
 
+// フォロー取り消しボタン
 .unfollow-btn {
   width: 25px;
   height: 30px;
@@ -57,6 +64,22 @@ a:link, a:visited, a:hover, a:active {
   margin-left: 20px;
 }
 
+// pタグを90%地点で折り返す
 .p-wrap-90 {
   width: 90%;
+}
+
+// ページネーションの装飾
+.pagination>li>a {
+  border: none;
+  color: #090422;
+}
+
+.pagination>.active>a {
+  background: #090422;
+  border-radius: 15px;
+}
+
+.pagination>li>a:hover {
+  border-radius: 30px;
 }
