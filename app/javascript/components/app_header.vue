@@ -20,7 +20,8 @@
       </v-app-bar-nav-icon>
 
       <!-- 検索アイコン -->
-      <v-btn icon class="ml-6">
+      <!-- ここに検索ダイアログを表示するスイッチを作成する -->
+      <v-btn icon class="ml-6 search-btn" @click="switchSearch">
         <v-icon color="white" large>
           mdi-magnify
         </v-icon>
@@ -45,10 +46,6 @@
       </v-toolbar-title>
     </v-app-bar>
 
-
-    <!-- <v-container style="height: 70px;"></v-container> -->
-
-
     <!-- ドロワー -->
     <v-navigation-drawer
       v-model="menuDrawer"
@@ -64,6 +61,15 @@
       >
       </drawer>
     </v-navigation-drawer>
+
+    <!-- 検索ダイアログ -->
+    <v-dialog
+      v-model="dialogSearch"
+      width="80%"
+      raised
+    >
+      <search @switchSearch="switchSearch"></search>
+    </v-dialog>
 
     <!-- Cocktail Hubとは？ダイアログ -->
     <v-dialog
@@ -81,17 +87,20 @@
 
 import Drawer from 'components/drawer.vue'
 import Explanation from 'components/explanation.vue'
+import Search from 'components/search.vue'
 
 export default {
   data: function () {
     return {
       menuDrawer: false,
       dialogExplanation: false,
+      dialogSearch: false,
     }
   },
   components: {
     Drawer,
     Explanation,
+    Search,
   },
   methods: {
     switchDrawer: function() {
@@ -99,6 +108,9 @@ export default {
     },
     switchExplanation: function() {
       this.dialogExplanation = !this.dialogExplanation
+    },
+    switchSearch: function() {
+      this.dialogSearch = !this.dialogSearch
     },
     reload() {
       this.$router.go({path: this.$router.currentRoute.path, force: true});
