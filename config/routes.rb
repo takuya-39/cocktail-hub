@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   root to: 'posts#index'
 
+  namespace :api, {format: 'json'} do
+    namespace :v1 do
+      resources :posts, only: [:index]
+    end
+  end
+
   resources :posts do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]

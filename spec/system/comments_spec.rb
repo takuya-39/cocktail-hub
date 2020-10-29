@@ -27,7 +27,7 @@ RSpec.describe 'Comments', type: :system, js: true do
     post = Post.first
 
     # 投稿詳細ページに移動する
-    click_link nil, href: "/posts/#{ post.id }"
+    find('.post').click
     expect(current_path).to eq "/posts/#{ post.id }"
 
     # 投稿にコメントをする

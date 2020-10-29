@@ -31,7 +31,7 @@ RSpec.describe 'Posts', type: :system, js: true do
     end
 
     # 投稿編集
-    click_link nil, href: "/posts/#{ post.id }"
+    find('.post').click
     expect(current_path).to eq "/posts/#{ post.id }"
 
     click_on 'メモを編集'

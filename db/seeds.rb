@@ -188,6 +188,21 @@ if Rails.env == 'development'
         )
       end
     end
+
+    # 一覧ページのページネーションの確認の為のサンプルデータ、確認が終わったら削除する
+    50.times do |n|
+      Post.all.create do |post|
+        post = Post.new(
+          title: 'ゲストユーザーの投稿',
+          genre: 'ウイスキー',
+          ingredients: '材料',
+          memo: '作り方メモ',
+          user_id: 1
+        )
+        post.save!(validate: false)
+        post.image.attach(io: File.open('app/assets/images/sample_post_image1.jpg'), filename: 'sample_post_image1.jpg')
+      end
+    end
 end
 
 

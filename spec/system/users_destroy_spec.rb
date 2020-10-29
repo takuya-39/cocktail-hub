@@ -14,7 +14,6 @@ RSpec.describe 'Users_Destroy', type: :system, js: true do
     click_link 'ユーザーを削除'
 
     expect(current_path).to eq root_path
-    expect(page).to have_content 'アカウントを削除しました。またのご利用をお待ちしております。'
   end
 
   context 'ゲストユーザー' do
@@ -28,7 +27,6 @@ RSpec.describe 'Users_Destroy', type: :system, js: true do
       click_link 'ユーザーを削除'
 
       expect(current_path).to eq root_path
-      expect(page).to have_content 'ゲストユーザーの編集、削除はできません'
     end
   end
 end

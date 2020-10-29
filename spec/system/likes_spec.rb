@@ -26,7 +26,7 @@ RSpec.describe 'Likes', type: :system, js: true do
     post = Post.first
 
     # 投稿詳細ページに移動する
-    click_link nil, href: "/posts/#{ post.id }"
+    find('.post').click
     expect(current_path).to eq "/posts/#{ post.id }"
 
     # 投稿にいいねをする
@@ -38,7 +38,7 @@ RSpec.describe 'Likes', type: :system, js: true do
     # いいねを解除する
     visit root_path
 
-    click_link nil, href: "/posts/#{ post.id }"
+    find('.post').click
     expect(current_path).to eq "/posts/#{ post.id }"
 
     expect do
