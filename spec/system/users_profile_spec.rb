@@ -4,8 +4,8 @@ RSpec.describe 'Users_Profile', type: :system, js: true do
   include ActiveJob::TestHelper
   let(:user) { FactoryBot.create(:user) }
 
-  it 'ユーザープロフィールが正しく表示されること' do
-    # ユーザーのプロフィール画面を確認する
+  it 'マイプロフィールが正しく表示されること' do
+    # ユーザーのマイプロフィール画面を確認する
     valid_login(user)
 
     visit root_path
