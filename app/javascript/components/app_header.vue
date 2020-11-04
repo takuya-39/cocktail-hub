@@ -19,16 +19,12 @@
       >
       </v-app-bar-nav-icon>
 
-      <!-- 検索アイコン -->
-      <!-- ここに検索ダイアログを表示するスイッチを作成する -->
-      <v-btn icon class="ml-6 search-btn" @click="switchSearch">
-        <v-icon color="white" large>
-          mdi-magnify
-        </v-icon>
-      </v-btn>
-
       <!-- 新規投稿アイコン -->
-      <v-btn icon class="ml-6 posts-new" @click="$router.push('/posts/new').catch(e=>{}), reload()">
+      <v-btn
+        icon
+        class="ml-6 posts-new"
+        @click="$router.push('/posts/new').catch(e=>{}), reload()"
+      >
         <v-icon color="white" large>
           mdi-plus-circle-outline
         </v-icon>
@@ -57,6 +53,7 @@
       <drawer
         @switchDrawer="switchDrawer"
         @switchExplanation="switchExplanation"
+        @switcSearch="switchSearch"
         @reload="reload"
       >
       </drawer>
