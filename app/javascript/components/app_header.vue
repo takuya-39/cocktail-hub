@@ -30,6 +30,18 @@
         </v-icon>
       </v-btn>
 
+      <!-- トップに戻るアイコン -->
+      <v-btn
+        icon
+        class="ml-6 mt-2 go-top"
+        @click="$emit('goTop')"
+        v-if="this.$route.path === '/'"
+      >
+        <v-icon color="white" large>
+          mdi-apple-keyboard-control
+        </v-icon>
+      </v-btn>
+
       <!-- 空白 -->
       <v-spacer></v-spacer>
 

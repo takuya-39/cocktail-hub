@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <app-header />
+    <app-header @goTop="goTop"/>
     <router-view />
     <app-footer />
   </v-app>
@@ -20,6 +20,11 @@ export default {
     'app-header': AppHeader,
     'app-footer': AppFooter,
   },
+  methods: {
+    goTop: function() {
+      document. getElementById("go-top").scrollIntoView(true)
+    },
+  }
 }
 </script>
 

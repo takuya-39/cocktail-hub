@@ -3,7 +3,7 @@
 
     <!-- コンテンツ全体 -->
     <v-card color="#060211" tile>
-      <v-container fluid class="mx-auto" max-width="100%">
+      <v-container fluid class="mx-auto" max-width="100%" id="go-top">
         <v-row dense>
           <v-col
             v-for="post in posts"
