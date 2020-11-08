@@ -65,7 +65,7 @@
       <drawer
         @switchDrawer="switchDrawer"
         @switchExplanation="switchExplanation"
-        @switcSearch="switchSearch"
+        @switchSearch="switchSearch"
         @reload="reload"
       >
       </drawer>

@@ -36,6 +36,7 @@
         <!-- ドロワーアイテム【投稿を検索する】 -->
         <v-list-item
           @click="$emit('switchDrawer'), $emit('switchSearch')"
+          v-if="this.$route.path === '/'"
         >
           <v-list-item-icon>
             <v-icon class="mdi-36px">
@@ -139,10 +140,6 @@ export default {
         this.loggedInUser = this.user
       })
   },
-  methods: {
-    pageOn() {
-    }
-  }
 }
 </script>
 

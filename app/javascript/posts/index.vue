@@ -6,8 +6,8 @@
       <v-container fluid class="mx-auto" max-width="100%" id="go-top">
         <v-row dense>
           <v-col
-            v-for="post in posts"
-            :key="post.id"
+            v-for="post in displayPosts"
+            :key="post.index"
             cols=12 sm=6 md=6 lg=4
           >
 
@@ -35,6 +35,13 @@
           </v-col>
         </v-row>
 
+      <!-- ページネーション -->
+      <v-pagination
+        v-model="page"
+        :length="length"
+        @input="pageChange"
+      >
+      </v-pagination>
       </v-container>
     </v-card>
 
@@ -50,15 +57,24 @@ export default {
   data: function() {
     return {
       posts: [],
+      displayPosts: [],
+      page: 1,
+      pageSize: 10,
+      length:0,
     };
   },
   created() {
     axios.get('/api/v1/posts')
       .then(res => {
         this.posts = res.data
+        this.length = Math.ceil(this.posts.length/this.pageSize);
+        this.displayPosts = this.posts.slice(this.pageSize*(this.page -1), this.pageSize*(this.page));
       })
   },
   methods: {
+    pageChange: function(pageNumber){
+      this.displayPosts = this.posts.slice(this.pageSize*(pageNumber -1), this.pageSize*(pageNumber));
+    },
     reload() {
       this.$router.go({path: this.$router.currentRoute.path, force: true});
     },
