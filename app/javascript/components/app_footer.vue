@@ -4,7 +4,7 @@
       class="text-center"
       cols="12"
     >
-      {{ new Date().getFullYear() }} — <strong>Cocktail Hub</strong>
+      {{ new Date().getFullYear() }} - <strong>Cocktail Hub</strong>
     </v-col>
   </v-footer>
 </template>
