@@ -33,19 +33,6 @@
           <v-list-item-title>ユーザーを編集する</v-list-item-title>
         </v-list-item>
 
-        <!-- ドロワーアイテム【投稿を検索する】 -->
-        <v-list-item
-          @click="$emit('switchDrawer'), $emit('switchSearch')"
-          v-if="this.$route.path === '/'"
-        >
-          <v-list-item-icon>
-            <v-icon class="mdi-36px">
-              mdi-magnify
-            </v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>投稿を検索する</v-list-item-title>
-        </v-list-item>
-
         <!-- 区切りライン -->
         <v-divider></v-divider>
 

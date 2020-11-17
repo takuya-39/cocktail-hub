@@ -13,7 +13,7 @@ RSpec.describe 'Login', type: :system, js: true do
   it '無効な情報ではログインに失敗すること' do
     visit root_path
 
-    find('.nav-icon').click
+    find('.nav-icon-btn').click
     find('.login').click
 
     perform_enqueued_jobs do

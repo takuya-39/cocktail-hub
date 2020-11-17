@@ -6,7 +6,7 @@ RSpec.describe 'Signup', type: :system, js: true do
   it 'ユーザーがサインアップできること' do
     visit root_path
 
-    find('.nav-icon').click
+    find('.nav-icon-btn').click
     find('.signup').click
 
     perform_enqueued_jobs do

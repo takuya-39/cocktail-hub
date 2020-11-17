@@ -8,7 +8,7 @@ RSpec.describe 'Users_Edit', type: :system, js: true do
     valid_login(user)
 
     visit root_path
-    find('.nav-icon').click
+    find('.nav-icon-btn').click
     find('.users-edit').click
 
     perform_enqueued_jobs do
@@ -30,7 +30,7 @@ RSpec.describe 'Users_Edit', type: :system, js: true do
       valid_guest_login(user)
       visit root_path
 
-      find('.nav-icon').click
+      find('.nav-icon-btn').click
       find('.users-edit').click
 
       perform_enqueued_jobs do

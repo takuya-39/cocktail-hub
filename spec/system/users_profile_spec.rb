@@ -9,7 +9,7 @@ RSpec.describe 'Users_Profile', type: :system, js: true do
     valid_login(user)
 
     visit root_path
-    find('.nav-icon').click
+    find('.nav-icon-btn').click
     find('.users-show').click
 
     expect(current_path).to eq user_path(user)
@@ -18,7 +18,7 @@ RSpec.describe 'Users_Profile', type: :system, js: true do
 
     # ユーザーのフォロー画面を確認する
     visit root_path
-    find('.nav-icon').click
+    find('.nav-icon-btn').click
     find('.users-show').click
     expect(current_path).to eq "/users/#{ user.id }"
 
@@ -27,7 +27,7 @@ RSpec.describe 'Users_Profile', type: :system, js: true do
 
     # ユーザーのフォロワー画面を確認する
     visit root_path
-    find('.nav-icon').click
+    find('.nav-icon-btn').click
     find('.users-show').click
     expect(current_path).to eq "/users/#{ user.id }"
 

@@ -9,7 +9,7 @@ RSpec.describe 'Logout', type: :system, js: true do
 
     expect(current_path).to eq root_path
 
-    find('.nav-icon').click
+    find('.nav-icon-btn').click
     find('.logout').click
 
     expect(current_path).to eq root_path
@@ -21,7 +21,7 @@ RSpec.describe 'Logout', type: :system, js: true do
 
       expect(current_path).to eq root_path
 
-      find('.nav-icon').click
+      find('.nav-icon-btn').click
       find('.logout').click
 
       expect(current_path).to eq root_path

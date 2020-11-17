@@ -8,7 +8,7 @@ RSpec.describe 'Users_Destroy', type: :system, js: true do
     valid_login(user)
 
     visit root_path
-    find('.nav-icon').click
+    find('.nav-icon-btn').click
     find('.users-show').click
 
     click_link 'ユーザーを削除'
@@ -21,7 +21,7 @@ RSpec.describe 'Users_Destroy', type: :system, js: true do
       valid_guest_login(user)
       visit root_path
 
-      find('.nav-icon').click
+      find('.nav-icon-btn').click
       find('.users-show').click
 
       click_link 'ユーザーを削除'
