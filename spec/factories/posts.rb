@@ -14,7 +14,16 @@
 FactoryBot.define do
   factory :post do
     association :user
-    title { 'オリジナルカクテル' }
+    title { 'ユーザーAのカクテル' }
+    genre { 'ウイスキー' }
+    image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_post_image.jpg'))
+    ingredients { '材料' }
+    memo { '作り方メモ' }
+  end
+
+  trait :otherpost do
+    association :otheruser
+    title { 'ユーザーBのカクテル' }
     genre { 'ウイスキー' }
     image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_post_image.jpg'))
     ingredients { '材料' }

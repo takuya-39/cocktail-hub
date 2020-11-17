@@ -1,37 +1,59 @@
 <template>
-
   <!-- 全体 -->
   <v-card max-width="100%" tile>
-
     <!-- ヘッダー -->
-    <v-app-bar
-      class="white--text"
-      color="#d1c4e9"
-      height="70px"
-      fixed
-    >
+    <v-app-bar class="white--text" color="#d1c4e9" height="70px" fixed>
       <!-- ヘッダーナビアイコン -->
-      <v-app-bar-nav-icon
-        @click="switchDrawer"
-        class="ml-5 nav-icon"
-        color="white"
-        x-large
-      >
-      </v-app-bar-nav-icon>
-
-      <!-- 検索アイコン -->
-      <v-btn icon class="ml-6">
-        <v-icon color="white" large>
-          mdi-magnify
-        </v-icon>
-      </v-btn>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-app-bar-nav-icon
+            @click="switchDrawer"
+            class="ml-5 nav-icon-btn"
+            color="white"
+            x-large
+            v-bind="attrs"
+            v-on="on"
+          >
+          </v-app-bar-nav-icon>
+        </template>
+        <span>メニューを開く</span>
+      </v-tooltip>
 
       <!-- 新規投稿アイコン -->
-      <v-btn icon class="ml-6 posts-new" @click="$router.push('/posts/new').catch(e=>{}), reload()">
-        <v-icon color="white" large>
-          mdi-plus-circle-outline
-        </v-icon>
-      </v-btn>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            class="ml-10 posts-new-btn"
+            v-bind="attrs"
+            v-on="on"
+            @click="$router.push('/posts/new').catch((e) => {}), reload()"
+          >
+            <v-icon color="white" large>
+              mdi-plus-circle-outline
+            </v-icon>
+          </v-btn>
+        </template>
+        <span>投稿する</span>
+      </v-tooltip>
+
+      <!-- トップに戻るアイコン -->
+      <v-tooltip bottom v-if="this.$route.path === '/'">
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            class="ml-10 mt-2 go-top-btn"
+            @click="$emit('goTop')"
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon color="white" large>
+              mdi-apple-keyboard-control
+            </v-icon>
+          </v-btn>
+        </template>
+        <span>ページトップへ戻る</span>
+      </v-tooltip>
 
       <!-- 空白 -->
       <v-spacer></v-spacer>
@@ -39,15 +61,11 @@
       <!-- ヘッダータイトル -->
       <v-toolbar-title
         class="font-weight-bold white--text display-1 mr-10"
-        @click="$router.push('/').catch(e=>{}), reload()"
+        @click="$router.push('/').catch((e) => {}), reload()"
       >
         Cooktail Hub
       </v-toolbar-title>
     </v-app-bar>
-
-
-    <!-- <v-container style="height: 70px;"></v-container> -->
-
 
     <!-- ドロワー -->
     <v-navigation-drawer
@@ -66,45 +84,39 @@
     </v-navigation-drawer>
 
     <!-- Cocktail Hubとは？ダイアログ -->
-    <v-dialog
-      v-model="dialogExplanation"
-      width="80%"
-      raised
-    >
+    <v-dialog v-model="dialogExplanation" width="80%" raised>
       <explanation @switchExplanation="switchExplanation"></explanation>
     </v-dialog>
-
   </v-card>
 </template>
 
 <script>
-
-import Drawer from 'components/drawer.vue'
-import Explanation from 'components/explanation.vue'
+import Drawer from "components/drawer.vue";
+import Explanation from "components/explanation.vue";
 
 export default {
   data: function () {
     return {
       menuDrawer: false,
       dialogExplanation: false,
-    }
+    };
   },
   components: {
     Drawer,
     Explanation,
   },
   methods: {
-    switchDrawer: function() {
-      this.menuDrawer = !this.menuDrawer
+    switchDrawer: function () {
+      this.menuDrawer = !this.menuDrawer;
     },
-    switchExplanation: function() {
-      this.dialogExplanation = !this.dialogExplanation
+    switchExplanation: function () {
+      this.dialogExplanation = !this.dialogExplanation;
     },
     reload() {
-      this.$router.go({path: this.$router.currentRoute.path, force: true});
+      this.$router.go({ path: this.$router.currentRoute.path, force: true });
     },
-  }
-}
+  },
+};
 </script>
 
 <style scoped>

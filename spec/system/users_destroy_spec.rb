@@ -8,13 +8,12 @@ RSpec.describe 'Users_Destroy', type: :system, js: true do
     valid_login(user)
 
     visit root_path
-    find('.nav-icon').click
+    find('.nav-icon-btn').click
     find('.users-show').click
 
     click_link 'ユーザーを削除'
 
     expect(current_path).to eq root_path
-    expect(page).to have_content 'アカウントを削除しました。またのご利用をお待ちしております。'
   end
 
   context 'ゲストユーザー' do
@@ -22,13 +21,12 @@ RSpec.describe 'Users_Destroy', type: :system, js: true do
       valid_guest_login(user)
       visit root_path
 
-      find('.nav-icon').click
+      find('.nav-icon-btn').click
       find('.users-show').click
 
       click_link 'ユーザーを削除'
 
       expect(current_path).to eq root_path
-      expect(page).to have_content 'ゲストユーザーの編集、削除はできません'
     end
   end
 end

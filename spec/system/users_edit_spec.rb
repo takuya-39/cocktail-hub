@@ -8,7 +8,7 @@ RSpec.describe 'Users_Edit', type: :system, js: true do
     valid_login(user)
 
     visit root_path
-    find('.nav-icon').click
+    find('.nav-icon-btn').click
     find('.users-edit').click
 
     perform_enqueued_jobs do
@@ -30,7 +30,7 @@ RSpec.describe 'Users_Edit', type: :system, js: true do
       valid_guest_login(user)
       visit root_path
 
-      find('.nav-icon').click
+      find('.nav-icon-btn').click
       find('.users-edit').click
 
       perform_enqueued_jobs do
@@ -44,7 +44,6 @@ RSpec.describe 'Users_Edit', type: :system, js: true do
         end.to change(User, :count).by(0)
 
         expect(current_path).to eq root_path
-        expect(page).to have_content 'ゲストユーザーの編集、削除はできません'
       end
     end
   end

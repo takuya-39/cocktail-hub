@@ -6,7 +6,7 @@ RSpec.describe 'Signup', type: :system, js: true do
   it 'ユーザーがサインアップできること' do
     visit root_path
 
-    find('.nav-icon').click
+    find('.nav-icon-btn').click
     find('.signup').click
 
     perform_enqueued_jobs do
@@ -20,7 +20,6 @@ RSpec.describe 'Signup', type: :system, js: true do
       end.to change(User, :count).by(1)
 
       expect(current_path).to eq root_path
-      expect(page).to have_content 'アカウント登録が完了しました'
     end
   end
 end

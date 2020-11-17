@@ -6,12 +6,15 @@ RSpec.describe 'Relationships', type: :system, js: true do
   let(:otheruser) { FactoryBot.create(:user, :otheruser) }
 
   it 'フォロー機能' do
-    pending
     # ユーザーAがユーザーBをフォローする
+    pending
     valid_login(user)
 
     visit root_path
-    get user_path(otheruser)
+    expect(page).to have_content 'ユーザーAのカクテル'
+    expect(page).to have_content 'ユーザーBのカクテル'
+    find('.post').click
+    find('.post-user').click
     expect(current_path).to eq "/users/#{ otheruser.id }"
 
     expect do

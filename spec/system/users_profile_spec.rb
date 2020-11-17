@@ -4,12 +4,12 @@ RSpec.describe 'Users_Profile', type: :system, js: true do
   include ActiveJob::TestHelper
   let(:user) { FactoryBot.create(:user) }
 
-  it 'ユーザープロフィールが正しく表示されること' do
-    # ユーザーのプロフィール画面を確認する
+  it 'マイプロフィールが正しく表示されること' do
+    # ユーザーのマイプロフィール画面を確認する
     valid_login(user)
 
     visit root_path
-    find('.nav-icon').click
+    find('.nav-icon-btn').click
     find('.users-show').click
 
     expect(current_path).to eq user_path(user)
@@ -18,7 +18,7 @@ RSpec.describe 'Users_Profile', type: :system, js: true do
 
     # ユーザーのフォロー画面を確認する
     visit root_path
-    find('.nav-icon').click
+    find('.nav-icon-btn').click
     find('.users-show').click
     expect(current_path).to eq "/users/#{ user.id }"
 
@@ -27,7 +27,7 @@ RSpec.describe 'Users_Profile', type: :system, js: true do
 
     # ユーザーのフォロワー画面を確認する
     visit root_path
-    find('.nav-icon').click
+    find('.nav-icon-btn').click
     find('.users-show').click
     expect(current_path).to eq "/users/#{ user.id }"
 

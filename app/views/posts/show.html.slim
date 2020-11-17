@@ -40,7 +40,7 @@
           = link_to '投稿を削除', @post, method: :delete, data: {"turbolinks" => false}, class: 'btn btn-lg text-light app-color-dark'
 
         .m-2.p-3.rounded.bg-light= link_to @post.user, data: {"turbolinks" => false}
-          = image_tag @post.user.display_image, class: 'resize-image rounded-circle', style: 'width: 50px; height: 50px;'
+          = image_tag @post.user.display_image, class: 'resize-image rounded-circle post-user', style: 'width: 50px; height: 50px;'
           p.m-3.text-secondary.d-inline-block= @post.user.username
 
         .card-body

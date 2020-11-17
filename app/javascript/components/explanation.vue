@@ -19,14 +19,21 @@
       <v-spacer></v-spacer>
 
       <!-- 閉じるボタン -->
-      <v-btn
-        icon
-        large
-        class="mr-3"
-        @click="$emit('switchExplanation')"
-      >
-        <v-icon color="white">mdi-close</v-icon>
-      </v-btn>
+      <v-tooltip bottom>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn
+            icon
+            large
+            class="mr-3"
+            v-bind="attrs"
+            v-on="on"
+            @click="$emit('switchExplanation')"
+          >
+            <v-icon color="white">mdi-close</v-icon>
+          </v-btn>
+        </template>
+        <span>閉じる</span>
+      </v-tooltip>
     </v-toolbar>
 
     <!-- 本文 -->

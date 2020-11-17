@@ -1,7 +1,7 @@
 module LoginSupport
   def valid_guest_login(_user)
     visit root_path
-    find('.nav-icon').click
+    find('.nav-icon-btn').click
     find('.login').click
 
     click_link 'ゲストユーザーでログインする'
