@@ -3,7 +3,6 @@
 
     <!-- コンテンツ全体 -->
     <v-card color="#060211" tile>
-
       <v-container fluid class="mx-auto" max-width="100%" id="go-top">
 
       <!-- 投稿検索アイコン -->
@@ -31,7 +30,7 @@
       </v-tooltip>
 
       <!-- 投稿検索フォーム -->
-      <v-form v-show="postSearchForm" @submit.prevent>
+      <v-form v-show="postSearchForm" @submit.prevent class="post-search-form">
         <v-container
           rounded
           fluid
@@ -134,10 +133,9 @@ export default {
     return {
       posts: [],
       displayPosts: [],
-      filterPosts: [],
       page: 1,
-      pageSize: 20,
-      length:0,
+      pageSize: 18,
+      length: 0,
       keyword: '',
       postSearchForm: false,
     };
@@ -148,8 +146,6 @@ export default {
       .get(api_url)
       .then(res => {
         this.posts = res.data
-        this.length = Math.ceil(this.posts.length/this.pageSize);
-        this.displayPosts = this.posts.slice(this.pageSize*(this.page -1), this.pageSize*(this.page));
       })
       .catch(err => {
         this.loading = false;
@@ -158,6 +154,8 @@ export default {
   },
   computed: {
     filteredPosts: function() {
+      this.length = Math.ceil(this.posts.length/this.pageSize);
+      this.displayPosts = this.posts.slice(this.pageSize*(this.page -1), this.pageSize*(this.page));
       let displayPosts = [];
       for(let i in this.displayPosts) {
         let post = this.displayPosts[i];
@@ -184,4 +182,9 @@ export default {
 </script>
 
 <style scoped>
+.post-search-form {
+  position: sticky;
+  top: 80px;
+  z-index: 1;
+}
 </style>
