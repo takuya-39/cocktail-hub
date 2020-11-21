@@ -11,10 +11,8 @@
           .col.text-center
             = link_to '新規ユーザーを作成する', signup_path, data: {"turbolinks" => false}, class: 'btn btn-lg shadow-lg text-light text-bold text-monospace m-2 app-color-dark'
 
-    - flash.each do |message_type, message|
-      .container.alert.alert-danger.text-center
-          = flash.now[:alert]
-            = message
+    / .alert.alert-danger
+    /   = flash.now[:alert]
 
     .container
       .card.rounded-lg.app-color-sub
@@ -35,4 +33,4 @@
                       = u.check_box :remember_me, class: 'border-app-color-dark', style: "transform:scale(2.0);"
               .col
                 .form-group.text-center
-                  = u.submit 'ログインする', class: 'btn btn-lg shadow-lg text-light text-bold text-monospace app-color-dark'
+                  = u.submit 'ログインする', class: 'btn btn-lg shadow-lg text-light text-bold text-monospace app-color-btn'

@@ -19,7 +19,7 @@ RSpec.describe 'Signup', type: :system, js: true do
         click_button '新規ユーザー登録をする'
       end.to change(User, :count).by(1)
 
-      expect(current_path).to eq root_path
+      expect(page).to have_content 'テストユーザー'
     end
   end
 end
