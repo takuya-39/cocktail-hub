@@ -11,8 +11,9 @@
           .col.text-center
             = link_to '新規ユーザーを作成する', signup_path, data: {"turbolinks" => false}, class: 'btn btn-lg shadow-lg text-light text-bold text-monospace m-2 app-color-dark'
 
-    / .alert.alert-danger
-    /   = flash.now[:alert]
+    - if alert.present?
+      .error_field.alert.alert-danger
+        = flash.now[:alert]
 
     .container
       .card.rounded-lg.app-color-sub
