@@ -1,0 +1,4 @@
+= form_for(current_user.relationships.build, remote: true) do |f|
+  = f.hidden_field :follow_id, value: @user.id
+  i#follow.mdi.mdi-account-check.bg-light.rounded-pill.p-2.follow-btn
+    = f.submit 'フォローする'

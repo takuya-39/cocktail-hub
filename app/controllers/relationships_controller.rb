@@ -6,7 +6,10 @@ class RelationshipsController < ApplicationController
     following = current_user.follow(@user)
 
     if following.save
-      redirect_back(fallback_location: @user, notice: 'ユーザーをフォローしました')
+      respond_to do |format|
+        format.html { redirect_back(fallback_location: @user, notice: 'ユーザーをフォローしました') }
+        format.js
+      end
     else
       redirect_back(fallback_location: @user, notice: 'ユーザーのフォローに失敗しました')
     end
@@ -16,7 +19,10 @@ class RelationshipsController < ApplicationController
     following = current_user.unfollow(@user)
 
     if following.destroy
-      redirect_back(fallback_location: @user, notice: 'ユーザーのフォローを解除しました')
+      respond_to do |format|
+        format.html { redirect_back(fallback_location: @user, notice: 'ユーザーのフォローを解除しました') }
+        format.js
+      end
     else
       redirect_back(fallback_location: @user, notice: 'ユーザーのフォロー解除に失敗しました')
     end

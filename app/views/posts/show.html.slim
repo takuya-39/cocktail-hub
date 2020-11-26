@@ -25,7 +25,9 @@
           .container.bg-light.rounded
             .card-text
               p= @post.memo
+
         .col.m-3.text-secondary= @post.created_at
+
         .card-body
           - if current_user.already_liked?(@post)
             = link_to post_like_path(@post), method: :delete, id: 'unlike-btn'

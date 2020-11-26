@@ -21,12 +21,12 @@
               .col.text-center
                 = link_to 'フォロー', user_followings_path(@user), data: {"turbolinks" => false}, class: 'btn app-color-btn'
                 .bg-light.rounded.shadow-lg.mt-1.mx-4
-                  p
+                  p#followings
                     =@user.followings.count
               .col.text-center
                 = link_to 'フォロワー', user_followers_path(@user), data: {"turbolinks" => false}, class: 'btn app-color-btn'
                 .bg-light.rounded.shadow-lg.mt-1.mx-4
-                  p
+                  p#followers
                     =@user.followers.count
         .card-body
           h6 プロフィール
@@ -38,7 +38,7 @@
           p ユーザー作成日時
           = @user.created_at
 
-        = render 'users/shared/follow_button', user: @user
+        = render 'users/shared/follow_form', user: @user
 
   - if current_user == @user
     .container
