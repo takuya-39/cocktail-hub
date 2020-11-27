@@ -1,5 +1,5 @@
 - unless current_user == user
-  #follow-form.container.mt-3
+  #follow-form
     - if current_user.following?(user)
       = render "/users/shared/unfollow"
     - else

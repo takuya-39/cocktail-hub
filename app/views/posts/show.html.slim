@@ -61,6 +61,6 @@
 
           .card-body.bg-secondary.rounded= form_with model: [@post, @comment], local: true do |c|
             = c.label 'コメント', class: 'col-form-label-lg text-monospace'
-            = c.text_field :content, id: 'Content', class: 'form-control border-app-color-dark'
+            = c.text_field :content, id: 'Content', class: 'form-control border-dark'
             = c.hidden_field :post_id, value: @post.id
             = c.submit 'コメントする', class: 'btn btn-lg shadow-lg text-light text-bold text-monospace app-color-dark'

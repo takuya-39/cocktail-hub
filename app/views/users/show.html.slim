@@ -19,12 +19,12 @@
                 = @user.username
             .row
               .col.text-center
-                = link_to 'フォロー', user_followings_path(@user), data: {"turbolinks" => false}, class: 'btn app-color-btn'
+                = link_to 'フォロー', followings_user_path(@user), data: {"turbolinks" => false}, class: 'btn app-color-btn'
                 .bg-light.rounded.shadow-lg.mt-1.mx-4
                   p#followings
                     =@user.followings.count
               .col.text-center
-                = link_to 'フォロワー', user_followers_path(@user), data: {"turbolinks" => false}, class: 'btn app-color-btn'
+                = link_to 'フォロワー', followers_user_path(@user), data: {"turbolinks" => false}, class: 'btn app-color-btn'
                 .bg-light.rounded.shadow-lg.mt-1.mx-4
                   p#followers
                     =@user.followers.count

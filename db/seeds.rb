@@ -189,6 +189,23 @@ if Rails.env == 'development'
       end
     end
 
+    # ゲストユーザーのフォロワーページのページネーションの確認の為のサンプルデータ、確認が終わったら削除する
+    20.times do |n|
+      User.all.create do |user|
+        user = User.create!(
+          username:              "ユーザーA#{n + 1}",
+          email:                 "user-a#{n + 1}@example.com",
+          password:              "password",
+          password_confirmation: "password",
+        )
+        Relationship.create!(
+          follow_id: user.id,
+          user_id: 1
+        )
+        user.image.attach(io: File.open('app/assets/images/sample_user_image_cat.jpg'), filename: 'sample_user_image_cat.jpg')
+      end
+    end
+
     # 一覧ページのページネーションの確認の為のサンプルデータ、確認が終わったら削除する
     50.times do |n|
       Post.all.create do |post|

@@ -8,7 +8,7 @@ html
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    = render partial: 'layouts/adjustment_layout'
+    = render 'layouts/adjustment_layout'
     = yield
     = javascript_pack_tag 'hello_vue'
     = stylesheet_pack_tag 'hello_vue'
