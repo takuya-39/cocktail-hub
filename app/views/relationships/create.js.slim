@@ -1,4 +1,6 @@
-| $("#follow-form").html("
+| $("#follow-form
+= @user.id
+| ").html("
 = j(render("users/shared/unfollow"))
 | ");
 

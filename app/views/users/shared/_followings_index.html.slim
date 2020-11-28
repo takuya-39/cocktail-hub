@@ -16,7 +16,7 @@
             h5
               = user.username
           .col.mr-2
-            #follow-form
+            div[id="follow-form#{user.id}"]
               - if current_user.following?(user)
                 = form_for(current_user.relationships.find_by(follow_id: user.id), html: { method: :delete }, remote: true) do |f|
                   = f.hidden_field :follow_id, value: user.id
