@@ -7,9 +7,9 @@
       .card.rounded-lg.app-color-sub
         .row
           .col.text-center
-            = link_to 'ゲストユーザーでログインする', users_guest_sign_in_path, method: :post, class: 'btn btn-lg shadow-lg text-light text-bold text-monospace m-2 app-color-dark'
+            = link_to 'ゲストユーザーでログインする', users_guest_sign_in_path, method: :post, class: 'btn btn-lg shadow-lg text-light text-monospace m-2 app-color-dark'
           .col.text-center
-            = link_to '新規ユーザーを作成する', signup_path, data: {"turbolinks" => false}, class: 'btn btn-lg shadow-lg text-light text-bold text-monospace m-2 app-color-dark'
+            = link_to '新規ユーザーを作成する', signup_path, data: {"turbolinks" => false}, class: 'btn btn-lg shadow-lg text-light text-monospace m-2 app-color-dark'
 
     - if alert.present?
       .error_field.alert.alert-danger
@@ -34,4 +34,4 @@
                       = u.check_box :remember_me, class: 'border-dark', style: "transform:scale(2.0);"
               .col
                 .form-group.text-center
-                  = u.submit 'ログインする', class: 'btn btn-lg shadow-lg text-light text-bold text-monospace app-color-btn'
+                  = u.submit 'ログインする', class: 'btn btn-lg shadow-lg text-light text-monospace app-color-btn'

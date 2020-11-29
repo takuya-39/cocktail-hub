@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     @post.image.attach(params[:post][:image])
 
     if @post.save
-      redirect_to root_url, notice: '新規投稿しました'
+      redirect_to post_path(@post), notice: '新規投稿しました'
     else
       render :new, notice: '新規投稿に失敗しました'
     end
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
   def destroy
     set_post
     @post.destroy
-    redirect_to root_path, notice: '投稿を削除しました'
+    redirect_to root_path
   end
 
   private

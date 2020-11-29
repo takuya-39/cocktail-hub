@@ -23,7 +23,7 @@
               .form-group.card-text
                 = p.label 'メモ', class: 'col-form-label-lg text-monospace'
                 = p.text_area :memo, id: 'Memo', class: 'form-control border-dark'
-          .col.m-3.text-secondary= @post.created_at
+          .col.m-3.text-secondary= simple_time(@post[:created_at])
 
         .form-group
-          = p.submit '更新する', class: 'btn btn-lg shadow-lg text-light text-bold text-monospace app-color-dark'
+          = p.submit '更新する', class: 'btn btn-lg shadow-lg text-light text-monospace app-color-dark'

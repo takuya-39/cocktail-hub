@@ -27,14 +27,18 @@ RSpec.describe 'Posts', type: :system, js: true do
       expect(post.genre).to eq 'ウイスキー'
       expect(post.ingredients).to eq '材料'
       expect(post.memo).to eq '作り方メモ'
-      expect(current_path).to eq root_path
+      expect(current_path).to eq "/posts/#{ post.id }"
     end
 
     # 投稿編集
+    find('.nav-icon-btn').click
+    find('.go-root').click
+    expect(current_path).to eq root_path
+
     find('.post').click
     expect(current_path).to eq "/posts/#{ post.id }"
 
-    click_on 'メモを編集'
+    click_on '投稿を編集'
     expect(current_path).to eq edit_post_path(post)
     expect(page).to have_content '投稿編集'
 
@@ -46,9 +50,9 @@ RSpec.describe 'Posts', type: :system, js: true do
     expect(current_path).to eq "/posts/#{ post.id }"
 
     # 投稿削除
-    expect do
-      click_on '投稿を削除'
-    end.to change(Post, :count).by(-1)
+    click_on '投稿を削除'
+    page.driver.browser.switch_to.alert.accept
+
     expect(current_path).to eq root_path
   end
 end
