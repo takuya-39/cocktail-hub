@@ -42,13 +42,7 @@
               = simple_time(@post[:created_at])
 
             .col-sm-2.col-md-2.card-body
-              - if current_user.already_liked?(@post)
-                = link_to post_like_path(@post), method: :delete, id: 'unlike-btn'
-                  i.mdi.mdi-heart.unlike-btn
-              - else
-                = link_to post_likes_path(@post), method: :post, id: 'like-btn'
-                  i.mdi.mdi-heart.like-btn
-              = @likes_count
+              = render 'shared/like_form'
 
   .container
     .card.rounded-lg.app-color-sub
