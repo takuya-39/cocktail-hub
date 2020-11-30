@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   def show
     set_post
-    @comments = @post.comments.page(params[:page]).per(10)
+    @comments = @post.comments.page(params[:page]).per(10).order(created_at: 'DESC')
     @comment = Comment.new
     @like = Like.new
     @likes_count = Like.where(post_id: @post.id).count
@@ -45,6 +45,10 @@ class PostsController < ApplicationController
     set_post
     @post.destroy
     redirect_to root_path
+  end
+
+  def commments
+    @comments = @post.comments.page(params[:page]).per(10).order(created_at: 'DESC')
   end
 
   private

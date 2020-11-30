@@ -42,7 +42,7 @@
               = simple_time(@post[:created_at])
 
             .col-sm-2.col-md-2.card-body
-              = render 'shared/like_form'
+              = render 'posts/shared/like_form'
 
   .container
     .card.rounded-lg.app-color-sub
@@ -50,25 +50,8 @@
         h4.text-center.text-monospace コメント一覧
 
         .card-body
-          #post-comments-index
-            = paginate @comments
-            - @comments.each do |comment|
-              .container.bg-light.rounded.border
-                .card-text
-                  = image_tag comment.user.display_image, class: 'resize-image rounded-circle', style: 'width: 50px; height: 50px;'
-                  p.m-3.d-inline-block= comment.user.username
-                  p.m-3.d-inline-block.p-wrap-90= comment.content
-                - if current_user.id == comment.user_id
-                  .d-flex.justify-content-end.align-items-center
-                    .mr-3
-                      = simple_time(comment[:created_at])
-                    = link_to 'コメントを削除', post_comment_path(@post, comment), method: :delete, data: {"turbolinks" => false}, class: 'btn btn-sm btn-danger'
-            = paginate @comments
-
-          .card-body.text-center.rounded.mt-3.app-color-light= form_with model: [@post, @comment], local: true do |c|
-            = c.text_field :content, id: 'Content', class: 'form-control border-dark'
-            = c.hidden_field :post_id, value: @post.id
-            = c.submit 'コメントする', class: 'btn btn-lg shadow-lg text-light text-monospace mt-4 app-color-btn'
+          = render 'posts/shared/comments_index'
+          = render 'posts/shared/comments_form'
 
   - if current_user.id == @post.user_id
     .container
