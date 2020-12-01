@@ -1,0 +1,9 @@
+| $("#follow-form
+= @user.id
+| ").html("
+= j(render("users/shared/follow"))
+| ");
+
+| $("#followers").html('
+= @user.followers.count
+| ');

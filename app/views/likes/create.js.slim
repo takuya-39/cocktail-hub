@@ -1,0 +1,9 @@
+| $("#like-form
+= @post.id
+| ").html("
+= j(render("posts/shared/unlike"))
+| ");
+
+| $("#likes").html('
+= @likes.count
+| ');

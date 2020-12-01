@@ -43,7 +43,7 @@ RSpec.describe 'Users_Edit', type: :system, js: true do
           click_button 'ユーザーを更新する'
         end.to change(User, :count).by(0)
 
-        expect(current_path).to eq root_path
+        expect(page).to have_content 'ゲストユーザー'
       end
     end
   end

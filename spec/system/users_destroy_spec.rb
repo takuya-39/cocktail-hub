@@ -12,8 +12,9 @@ RSpec.describe 'Users_Destroy', type: :system, js: true do
     find('.users-show').click
 
     click_link 'ユーザーを削除'
+    page.driver.browser.switch_to.alert.accept
 
-    expect(current_path).to eq root_path
+    expect(current_path).to eq login_path
   end
 
   context 'ゲストユーザー' do
@@ -25,8 +26,9 @@ RSpec.describe 'Users_Destroy', type: :system, js: true do
       find('.users-show').click
 
       click_link 'ユーザーを削除'
+      page.driver.browser.switch_to.alert.accept
 
-      expect(current_path).to eq root_path
+      expect(page).to have_content 'ゲストユーザーの編集、削除はできません'
     end
   end
 end

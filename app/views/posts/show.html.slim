@@ -1,6 +1,6 @@
-.app-color-light
-  .container-fluid
-    h1.text-center.text-light.p-4 投稿詳細ページ
+.container-fluid.app-color-light
+  .text-center.text-light.text-monospace.p-4
+    h1 投稿詳細
 
   - if flash.notice.present?
     .alert.alert-primary.m-3= flash.notice
@@ -8,57 +8,56 @@
   .container
     .card.rounded-lg.app-color-sub
       .card-body
-        .row.card-title
-          .col-6
-            h4.text-monospace= @post.title
-          .col-6
-            h4.text-secondary= @post.genre
-        .card-img
-          = image_tag @post.image, alt: 'post image', class: 'resize-image rounded'
-        .card-body
-          h5 材料
-          .container.bg-light.rounded
-            .card-text
-              p= @post.ingredients
-        .card-body
-          h5 メモ
-          .container.bg-light.rounded
-            .card-text
-              p= @post.memo
-        .col.m-3.text-secondary= @post.created_at
-        .card-body
-          - if current_user.already_liked?(@post)
-            = link_to post_like_path(@post), method: :delete, id: 'unlike-btn'
-              i.mdi.mdi-heart.unlike-btn
-          - else
-            = link_to post_likes_path(@post), method: :post, id: 'like-btn'
-              i.mdi.mdi-heart.like-btn
-          = @likes_count
+        .row.justify-content-center
+          .row.card-title.text-center
+            .col-sm-6.col-md-6
+              h4.text-monospace
+                = @post.title
+            .col-sm-6.col-md-6
+              h4.text-secondary
+                = @post.genre
+          .col-12.card-img
+            = image_tag @post.image, alt: 'post image', class: 'resize-image rounded'
+          .col-12.card-body.m-2
+            h5 材料
+            .container.bg-light.rounded
+              .card-text
+                p
+                  = @post.ingredients
+          .col-12.card-body.m-2
+            h5 メモ
+            .container.bg-light.rounded
+              .card-text
+                p
+                  = @post.memo
 
-        - if current_user.id == @post.user_id
-          = link_to 'メモを編集', edit_post_path(@post), data: {"turbolinks" => false}, class: 'btn btn-lg m-2 app-color-light'
-          = link_to '投稿を削除', @post, method: :delete, data: {"turbolinks" => false}, class: 'btn btn-lg text-light app-color-dark'
+          .col-12.row.m-2.d-flex.align-items-center
+            .col-sm-4.col-md-4.bg-light.rounded= link_to @post.user, data: {"turbolinks" => false}
+              = image_tag @post.user.display_image, class: 'resize-image rounded-circle post-user', style: 'width: 50px; height: 50px;'
+              p.text-secondary.d-inline-block.ml-2
+                = @post.user.username
 
-        .m-2.p-3.rounded.bg-light= link_to @post.user, data: {"turbolinks" => false}
-          = image_tag @post.user.display_image, class: 'resize-image rounded-circle post-user', style: 'width: 50px; height: 50px;'
-          p.m-3.text-secondary.d-inline-block= @post.user.username
+            .col-sm-4.col-md-4.text-secondary.ml-5
+              p 投稿作成日時
+              = simple_time(@post[:created_at])
+
+            .col-sm-2.col-md-2.card-body
+              = render 'posts/shared/like_form'
+
+  .container
+    .card.rounded-lg.app-color-sub
+      .card-body
+        h4.text-center.text-monospace コメント一覧
 
         .card-body
-          h4 コメント一覧
-          .card-body
-            = paginate @comments
-            - @comments.each do |comment|
-              .container.bg-light.rounded.border
-                .card-text
-                  = image_tag comment.user.display_image, class: 'resize-image rounded-circle', style: 'width: 50px; height: 50px;'
-                  p.m-3.d-inline-block= comment.user.username
-                  p.m-3.d-inline-block.p-wrap-90= comment.content
-                - if current_user.id == comment.user_id
-                  = link_to 'コメントを削除', post_comment_path(@post, comment), method: :delete, data: {"turbolinks" => false}, class: 'btn btn-sm text-light app-color-dark'
-            = paginate @comments
+          = render 'posts/shared/comments_index'
+          = render 'posts/shared/comments_form'
 
-          .card-body.bg-secondary.rounded= form_with model: [@post, @comment], local: true do |c|
-            = c.label 'コメント', class: 'col-form-label-lg text-monospace'
-            = c.text_field :content, id: 'Content', class: 'form-control border-app-color-dark'
-            = c.hidden_field :post_id, value: @post.id
-            = c.submit 'コメントする', class: 'btn btn-lg shadow-lg text-light text-bold text-monospace app-color-dark'
+  - if current_user.id == @post.user_id
+    .container
+      .card.rounded-lg.app-color-sub
+        .row
+          .col.text-center.m-2
+            = link_to '投稿を編集', edit_post_path(@post), data: {"turbolinks" => false}, class: 'btn btn-lg app-color-light'
+          .col.text-center.m-2
+            = link_to '投稿を削除', @post, method: :delete, data: {'turbolinks' => false, confirm: '本当に投稿を削除しますか？'}, class: 'btn btn-lg btn-danger text-light'

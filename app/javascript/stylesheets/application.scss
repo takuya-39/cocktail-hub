@@ -6,6 +6,11 @@ a:link, a:visited, a:hover, a:active {
   text-decoration: none;
 }
 
+// outlineの装飾を消す
+*:focus {
+  outline: none;
+}
+
 // アプリのテーマカラー
 .app-color-light {
   background-color: #d1c4e9;
@@ -19,8 +24,8 @@ a:link, a:visited, a:hover, a:active {
   background-color: #e6e6fa;
 }
 
-.border-app-color-dark {
-  border-color: #090422;
+.app-color-btn {
+  background-color: #c1c1ff;
 }
 
 // イメージをリサイズする
@@ -30,38 +35,14 @@ a:link, a:visited, a:hover, a:active {
 
 // いいねボタン
 .like-btn {
-  width: 25px;
-  height: 30px;
   font-size: 25px;
   color: #808080;
-  margin-left: 20px;
 }
 
 // いいね取り消しボタン
 .unlike-btn {
-  width: 25px;
-  height: 30px;
   font-size: 25px;
   color: #e54747;
-  margin-left: 20px;
-}
-
-// フォローボタン
-.follow-btn {
-  width: 25px;
-  height: 30px;
-  font-size: 25px;
-  color: #808080;
-  margin-left: 20px;
-}
-
-// フォロー取り消しボタン
-.unfollow-btn {
-  width: 25px;
-  height: 30px;
-  font-size: 25px;
-  color: #3399ff;
-  margin-left: 20px;
 }
 
 // pタグを90%地点で折り返す

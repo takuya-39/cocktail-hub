@@ -7,7 +7,7 @@ RSpec.describe 'Login', type: :system, js: true do
   it 'ユーザーがログインできること' do
     valid_login(user)
 
-    expect(current_path).to eq root_path
+    expect(current_path).to eq user_path(user)
   end
 
   it '無効な情報ではログインに失敗すること' do
@@ -29,7 +29,7 @@ RSpec.describe 'Login', type: :system, js: true do
     it 'ゲストユーザーがログインできること' do
       valid_guest_login(user)
 
-      expect(current_path).to eq root_path
+      expect(page).to have_content 'ゲストユーザー'
     end
   end
 end

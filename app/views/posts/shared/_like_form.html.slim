@@ -1,0 +1,5 @@
+div[id="like-form#{@post.id}"]
+  - if current_user.already_liked?(@post)
+    = render 'posts/shared/unlike'
+  - else
+    = render 'posts/shared/like'

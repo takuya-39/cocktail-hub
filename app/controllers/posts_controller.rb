@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
   def show
     set_post
-    @comments = @post.comments.page(params[:page]).per(10)
+    @comments = @post.comments.page(params[:page]).per(10).order(created_at: 'DESC')
     @comment = Comment.new
     @like = Like.new
     @likes_count = Like.where(post_id: @post.id).count
@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     @post.image.attach(params[:post][:image])
 
     if @post.save
-      redirect_to root_url, notice: '新規投稿しました'
+      redirect_to post_path(@post), notice: '新規投稿しました'
     else
       render :new, notice: '新規投稿に失敗しました'
     end
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
   def destroy
     set_post
     @post.destroy
-    redirect_to root_path, notice: '投稿を削除しました'
+    redirect_to root_path
   end
 
   private

@@ -8,7 +8,7 @@
     >
 
       <!-- ドロワーアイテム【Hubに戻る】 -->
-      <v-list-item @click="$router.push('/').catch(e=>{}), $emit('reload')" v-if="this.$route.path !== '/'">
+      <v-list-item class='go-root' @click="$router.push('/').catch(e=>{}), $emit('reload')" v-if="this.$route.path !== '/'">
         <v-list-item-icon>
           <v-icon class="mdi-36px">mdi-home-import-outline</v-icon>
         </v-list-item-icon>

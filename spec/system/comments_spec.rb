@@ -27,6 +27,10 @@ RSpec.describe 'Comments', type: :system, js: true do
     post = Post.first
 
     # 投稿詳細ページに移動する
+    find('.nav-icon-btn').click
+    find('.go-root').click
+    expect(current_path).to eq root_path
+
     find('.post').click
     expect(current_path).to eq "/posts/#{ post.id }"
 

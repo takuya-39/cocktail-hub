@@ -26,7 +26,9 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show] do
-    get :followings, :followers
+    member do
+      get :followings, :followers
+    end
   end
 
   namespace :api, { format: 'json' } do

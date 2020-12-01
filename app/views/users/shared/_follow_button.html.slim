@@ -1,9 +1,0 @@
-- unless current_user == user
-  - if current_user.following?(user)
-    = form_for(current_user.relationships.find_by(follow_id: user.id), html: { method: :delete }) do |f|
-      = f.hidden_field :follow_id, value: user.id
-      i.p-1.bg-light.rounded.mdi.mdi-account-check.unfollow-btn.follow-now= f.submit 'フォロー中'
-  - else
-    = form_for(current_user.relationships.build) do |f|
-      = f.hidden_field :follow_id, value: user.id
-      i.p-1.bg-light.rounded.mdi.mdi-account-check.follow-btn.follows= f.submit 'フォローする'
