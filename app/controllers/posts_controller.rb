@@ -47,10 +47,6 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
-  def commments
-    @comments = @post.comments.page(params[:page]).per(10).order(created_at: 'DESC')
-  end
-
   private
 
   def post_params
