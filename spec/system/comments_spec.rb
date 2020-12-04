@@ -16,11 +16,11 @@ RSpec.describe 'Comments', type: :system, js: true do
     expect(page).to have_content '新規投稿'
 
     expect do
-      fill_in 'Title', with: 'オリジナルカクテル'
+      fill_in 'Title', with: 'ホットココアスキー'
       select 'ウイスキー', from: 'Genre'
       attach_file 'Image', "#{ Rails.root }/spec/support/assets/sample_post_image.jpg"
-      fill_in 'Ingredients', with: '材料'
-      fill_in 'Memo', with: '作り方メモ'
+      fill_in 'Ingredients', with: "・ウイスキー 30ml \n・ココアパウダー 5g \n・お湯 100ml".gsub(/(\\r\\n|\\r|\\n)/, "\n")
+      fill_in 'Memo', with: "耐熱グラスにココアパウダーを入れて、 \nお湯で溶かしてウイスキーを入れて完成です！寒い日におすすめ！".gsub(/(\\r\\n|\\r|\\n)/, "\n")
       click_button '投稿する'
     end.to change(Post, :count).by(1)
 

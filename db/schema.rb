@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_24_151532) do
+ActiveRecord::Schema.define(version: 2020_12_03_090306) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2020_09_24_151532) do
     t.string "memo", limit: 200, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "ingredients", limit: 200, null: false
+    t.string "ingredients", limit: 200, default: "・ \n・ \n・ \n・ \n・", null: false
     t.integer "user_id", null: false
   end
 

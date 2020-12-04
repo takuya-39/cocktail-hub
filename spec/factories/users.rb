@@ -20,18 +20,18 @@
 #
 FactoryBot.define do
   factory :user do
-    username { 'ユーザーA' }
+    username { 'takuya' }
     sequence(:email) { |n| "user#{ n }@example.com" }
     password { 'password' }
-    profile { 'ユーザーAです。' }
+    profile { 'よろしくお願いします！' }
     image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_user_image_cat.jpg'))
   end
 
   trait :otheruser do
-    username { 'ユーザーB' }
+    username { 'いっしー' }
     sequence(:email) { |n| "otheruser#{ n }@example.com" }
     password { 'password' }
-    profile { 'ユーザーBです。' }
+    profile { 'こんにちは！' }
     image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_user_image_cat.jpg'))
   end
 end

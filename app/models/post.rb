@@ -4,7 +4,7 @@
 #
 #  id          :bigint           not null, primary key
 #  genre       :string(20)       not null
-#  ingredients :string(200)      not null
+#  ingredients :string(200)      default("・ \n・ \n・ \n・ \n・"), not null
 #  memo        :string(200)      not null
 #  title       :string(20)       not null
 #  created_at  :datetime         not null

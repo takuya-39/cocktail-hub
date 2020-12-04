@@ -4,7 +4,7 @@
 #
 #  id          :bigint           not null, primary key
 #  genre       :string(20)       not null
-#  ingredients :string(200)      not null
+#  ingredients :string(200)      default("・ \n・ \n・ \n・ \n・"), not null
 #  memo        :string(200)      not null
 #  title       :string(20)       not null
 #  created_at  :datetime         not null
@@ -22,11 +22,11 @@ RSpec.describe Post, type: :model do
     it 'タイトル、ジャンル、画像、材料、メモがあれば有効な状態であること' do
       post = Post.new(
         user: FactoryBot.build(:user),
-        title: 'オリジナルカクテル',
+        title: 'ホットココアスキー',
         genre: 'ウイスキー',
         image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_post_image.jpg')),
-        ingredients: '材料',
-        memo: '作り方メモ'
+        ingredients: "・ウイスキー 30ml \n・ココアパウダー 5g \n・お湯 100ml".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
+        memo: "耐熱グラスにココアパウダーを入れて、 \nお湯で溶かしてウイスキーを入れて完成です！寒い日におすすめ！".gsub(/(\\r\\n|\\r|\\n)/, "\n")
       )
       expect(post).to be_valid
     end

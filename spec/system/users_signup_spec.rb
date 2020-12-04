@@ -11,15 +11,16 @@ RSpec.describe 'Signup', type: :system, js: true do
 
     perform_enqueued_jobs do
       expect do
-        fill_in 'UserName', with: 'テストユーザー'
+        fill_in 'UserName', with: 'サインアップユーザー'
         fill_in 'Email', with: 'test@example.com'
         fill_in 'Password', with: 'password'
         fill_in 'PasswordConfirmation', with: 'password'
+        fill_in 'Profile', with: 'サインアップユーザーです。'
         attach_file 'UserImage', "#{ Rails.root }/spec/support/assets/sample_user_image_cat.jpg"
         click_button '新規ユーザー登録をする'
       end.to change(User, :count).by(1)
 
-      expect(page).to have_content 'テストユーザー'
+      expect(page).to have_content 'サインアップユーザー'
     end
   end
 end

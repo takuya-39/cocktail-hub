@@ -32,7 +32,7 @@ RSpec.describe Relationship, type: :model do
     )
   end
 
-  it '関係が有効か' do
+  it 'フォロー関係が有効か' do
     expect(@relationship).to be_valid
   end
 end
