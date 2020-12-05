@@ -27,7 +27,7 @@ RSpec.describe Comment, type: :model do
       expect(FactoryBot.build(:comment)).to be_valid
     end
 
-    context 'コメント内容' do
+    describe 'コメント内容' do
       it 'コメント内容があれば有効な状態であること' do
         comment = Comment.new(
           user: FactoryBot.create(:user),
@@ -44,7 +44,7 @@ RSpec.describe Comment, type: :model do
       end
     end
 
-    context '文字数' do
+    describe '文字数' do
       it '文字数が200文字以下なら有効であること' do
         comment = FactoryBot.build(:comment, content: 'a' * 100)
         expect(comment).to be_valid
@@ -52,6 +52,16 @@ RSpec.describe Comment, type: :model do
       it '文字数が200文字を超えると無効であること' do
         comment = FactoryBot.build(:comment, content: 'a' * 201)
         expect(comment).not_to be_valid
+      end
+    end
+
+    describe '並び順' do
+      it 'コメントが新しい順に並んでいること' do
+        post = FactoryBot.create(:post)
+        post.comments.create(created_at: 3.days.ago)
+        post.comments.create(created_at: 10.minutes.ago)
+        latest_comment = post.comments.create(created_at: Time.zone.now)
+        expect(latest_comment).to eq post.comments.last
       end
     end
   end

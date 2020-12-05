@@ -31,7 +31,7 @@ RSpec.describe Post, type: :model do
       expect(post).to be_valid
     end
 
-    describe 'title' do
+    describe 'タイトル' do
       it 'タイトルが無ければ無効な状態であること' do
         post = FactoryBot.build(:post, title: nil)
         post.valid?
@@ -45,11 +45,12 @@ RSpec.describe Post, type: :model do
         it '文字数が20文字を超えると無効であること' do
           post = FactoryBot.build(:post, title: 'a' * 21)
           expect(post).not_to be_valid
+          expect(post.errors[:title]).to include(I18n.t('errors.messages.too_long', count: 20))
         end
       end
     end
 
-    describe 'genre' do
+    describe 'ジャンル' do
       it 'ジャンルが無ければ無効な状態であること' do
         post = FactoryBot.build(:post, genre: nil)
         post.valid?
@@ -63,11 +64,12 @@ RSpec.describe Post, type: :model do
         it '文字数が20文字を超えると無効であること' do
           post = FactoryBot.build(:post, genre: 'a' * 21)
           expect(post).not_to be_valid
+          expect(post.errors[:genre]).to include(I18n.t('errors.messages.too_long', count: 20))
         end
       end
     end
 
-    describe 'image' do
+    describe '画像' do
       it '画像が無ければ無効な状態であること' do
         post = FactoryBot.build(:post, image: nil)
         post.valid?
@@ -75,7 +77,7 @@ RSpec.describe Post, type: :model do
       end
     end
 
-    describe 'ingredients' do
+    describe '材料' do
       it '材料が無ければ無効な状態であること' do
         post = FactoryBot.build(:post, ingredients: nil)
         post.valid?
@@ -89,11 +91,12 @@ RSpec.describe Post, type: :model do
         it '文字数が200文字を超えると無効であること' do
           post = FactoryBot.build(:post, ingredients: 'a' * 201)
           expect(post).not_to be_valid
+          expect(post.errors[:ingredients]).to include(I18n.t('errors.messages.too_long', count: 200))
         end
       end
     end
 
-    describe 'memo' do
+    describe 'メモ' do
       it 'メモが無ければ無効な状態であること' do
         post = FactoryBot.build(:post, memo: nil)
         post.valid?
@@ -107,7 +110,43 @@ RSpec.describe Post, type: :model do
         it '文字数が200文字を超えると無効であること' do
           post = FactoryBot.build(:post, memo: 'a' * 201)
           expect(post).not_to be_valid
+          expect(post.errors[:memo]).to include(I18n.t('errors.messages.too_long', count: 200))
         end
+      end
+    end
+
+    describe 'いいね機能' do
+      it '投稿をいいね、いいね解除できること' do
+        user = FactoryBot.create(:user)
+        otheruser = FactoryBot.create(:user, :otheruser)
+        otherpost = FactoryBot.create(:post, user_id: otheruser.id)
+        expect(otherpost.liked_by?(user)).to eq false
+        like = otherpost.likes.create(user_id: user.id)
+        expect(otherpost.liked_by?(user)).to eq true
+        like.destroy
+        expect(otherpost.liked_by?(user)).to eq false
+      end
+    end
+
+    describe '並び順' do
+      it '投稿が新しい順に並んでいること' do
+        FactoryBot.create(:post, created_at: 3.days.ago)
+        FactoryBot.create(:post, created_at: 10.minutes.ago)
+        latest_post = FactoryBot.create(:post, created_at: Time.zone.now)
+        expect(latest_post).to eq Post.last
+      end
+    end
+
+    describe '付従性' do
+      it '投稿を削除すると関連するコメントも削除されること' do
+        post = FactoryBot.create(:post)
+        FactoryBot.create(:comment, post: post)
+        expect { post.destroy }.to change { Comment.count }.by(-1)
+      end
+      it '投稿を削除すると関連するいいねも削除されること' do
+        post = FactoryBot.create(:post)
+        FactoryBot.create(:like, post: post)
+        expect { post.destroy }.to change { Like.count }.by(-1)
       end
     end
   end

@@ -23,7 +23,7 @@ FactoryBot.define do
     username { 'takuya' }
     sequence(:email) { |n| "user#{ n }@example.com" }
     password { 'password' }
-    profile { 'よろしくお願いします！' }
+    profile { 'よろしくお願いします' }
     image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_user_image_cat.jpg'))
   end
 
