@@ -26,7 +26,7 @@ RSpec.describe 'Users_Edit', type: :system, js: true do
   end
 
   context 'ゲストユーザー' do
-    it 'ゲストユーザーを編集しようとするとホーム画面にリダイレクトされること' do
+    it 'ゲストユーザーを編集しようとするとマイプロフィール画面にリダイレクトされること' do
       valid_guest_login(user)
       visit root_path
 

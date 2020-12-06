@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, :set_user
+  before_action :authenticate
+  before_action :set_user
 
   def show
     @relationshiops = @user.followings

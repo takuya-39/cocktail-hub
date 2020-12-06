@@ -18,7 +18,7 @@ RSpec.describe 'Users_Destroy', type: :system, js: true do
   end
 
   context 'ゲストユーザー' do
-    it 'ゲストユーザーを削除しようとするとホーム画面にリダイレクトされること' do
+    it 'ゲストユーザーを削除しようとするとマイプロフィール画面にリダイレクトされること' do
       valid_guest_login(user)
       visit root_path
 
