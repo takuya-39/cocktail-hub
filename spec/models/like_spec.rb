@@ -23,8 +23,8 @@ require 'rails_helper'
 RSpec.describe Like, type: :model do
   describe 'Likeモデル' do
     before do
-      user = FactoryBot.create(:user)
-      post = FactoryBot.create(:post)
+      user = create(:user)
+      post = create(:post)
       @like = Like.new(
         post_id: post.id,
         user_id: user.id
@@ -32,10 +32,10 @@ RSpec.describe Like, type: :model do
     end
 
     it '有効なファクトリを持つこと' do
-      expect(FactoryBot.build(:like)).to be_valid
+      expect(build(:like)).to be_valid
     end
 
-    it 'いいねが有効か' do
+    it 'いいねが有効であること' do
       expect(@like).to be_valid
     end
   end
