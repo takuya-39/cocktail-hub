@@ -35,7 +35,7 @@ RSpec.describe 'Posts', type: :system, js: true do
     find('.go-root').click
     expect(current_path).to eq root_path
 
-    find('.post').click
+    find(".post-#{ post.id }").click
     expect(current_path).to eq "/posts/#{ post.id }"
 
     click_on '投稿を編集'

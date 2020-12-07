@@ -89,7 +89,7 @@
             <!-- (それぞれの投稿カード) -->
             <v-card
               @click="$router.push(`/posts/${post.id}`).catch(e=>{}), reload()"
-              class="post"
+              :class="[`post-${post.id}`]"
             >
               <!-- (投稿カードのイメージ) -->
               <v-img
