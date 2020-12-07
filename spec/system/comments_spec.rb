@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe 'Comments', type: :system, js: true do
   include ActiveJob::TestHelper
   let(:user) { create(:user) }
-  let!(:post) { create(:post) }
+  let(:otheruser) { create(:user, :otheruser) }
+  let!(:post) { create(:post, user: user) }
 
   it '既存の投稿にコメントをする、削除する' do
-    valid_login(user)
-
-    post = Post.first
+    # otheruserがログインする
+    valid_login(otheruser)
 
     # 投稿詳細ページに移動する
     find('.nav-icon-btn').click
