@@ -12,7 +12,7 @@ RSpec.describe 'Likes', type: :request do
     it 'いいねが成功すること' do
       expect do
         like.save
-      end.to change{ post.likes.count }.by 1
+      end.to change { post.likes.count }.by 1
     end
   end
 

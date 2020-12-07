@@ -14,7 +14,6 @@ RSpec.describe 'ApiUsers', type: :request do
       end
       it '特定のユーザーを取得できること' do
         get api_v1_users_path
-        json = JSON.parse(response.body)
         expect(response.status).to eq(200)
         expect(response.body).to include 'APIユーザー'
       end

@@ -11,7 +11,7 @@ RSpec.describe 'Relationships', type: :request do
     it 'フォローが成功すること' do
       expect do
         create(:relationship, follow_id: otheruser.id, user_id: user.id)
-      end.to change{ [otheruser.followers.count, user.followings.count] }.to [1, 1]
+      end.to change { [otheruser.followers.count, user.followings.count] }.to [1, 1]
     end
   end
 
@@ -21,7 +21,7 @@ RSpec.describe 'Relationships', type: :request do
       relationship = create(:relationship, follow_id: otheruser.id, user_id: user.id)
       expect do
         relationship.destroy
-      end.to change{ [otheruser.followers.count, user.followings.count] }.to [-1, -1]
+      end.to change { [otheruser.followers.count, user.followings.count] }.to [-1, -1]
     end
   end
 end

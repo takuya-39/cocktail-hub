@@ -13,7 +13,7 @@ RSpec.describe 'Comments', type: :request do
       it 'コメント投稿が成功すること' do
         expect do
           comment.save
-        end.to change{ post.comments.count }.by 1
+        end.to change { post.comments.count }.by 1
       end
     end
     context '不正なパラメータな場合' do
@@ -21,7 +21,7 @@ RSpec.describe 'Comments', type: :request do
         invalid_comment = build(:comment, post: post, content: '')
         expect do
           invalid_comment.save
-        end.to change{ post.comments.count }.by 0
+        end.to change { post.comments.count }.by 0
       end
     end
   end
