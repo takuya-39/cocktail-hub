@@ -5,6 +5,7 @@ RSpec.describe 'Posts', type: :system, js: true do
 
   it '新規投稿、編集, 削除' do
     valid_login(user)
+    expect(current_path).to eq "/users/#{ user.id }"
 
     # 新規投稿する
     find('.posts-new-btn').click
@@ -44,7 +45,6 @@ RSpec.describe 'Posts', type: :system, js: true do
 
     fill_in 'Memo', with: 'エディットメモ'
     click_button '更新する'
-
     expect(page).not_to have_content "耐熱グラスにココアパウダーを入れて、 \nお湯で溶かしてウイスキーを入れて完成です！寒い日におすすめ！".gsub(/(\\r\\n|\\r|\\n)/, "\n")
     expect(page).to have_content 'エディットメモ'
     expect(current_path).to eq "/posts/#{ post.id }"
@@ -52,7 +52,6 @@ RSpec.describe 'Posts', type: :system, js: true do
     # 投稿を削除する
     click_on '投稿を削除'
     page.driver.browser.switch_to.alert.accept
-
     expect(current_path).to eq root_path
     expect(Post.where(id: post.id)).to be_empty
     expect(page).not_to have_link "/posts/#{ post.id }"

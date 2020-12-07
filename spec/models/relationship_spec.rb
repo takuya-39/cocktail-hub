@@ -26,7 +26,7 @@ RSpec.describe Relationship, type: :model do
   describe 'Relationshipモデル' do
     before do
       user = create(:user)
-      other_user = create(:user, :otheruser)
+      other_user = create(:user, :other_user)
       @relationship = Relationship.new(
         follow_id: user.id,
         user_id: other_user.id

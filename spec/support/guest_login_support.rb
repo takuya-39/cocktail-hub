@@ -3,7 +3,6 @@ module LoginSupport
     visit root_path
     find('.nav-icon-btn').click
     find('.login').click
-
     click_link 'ゲストユーザーでログインする'
   end
 end

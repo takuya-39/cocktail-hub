@@ -27,11 +27,19 @@ FactoryBot.define do
     image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_user_image_cat.jpg'))
   end
 
-  trait :otheruser do
+  trait :other_user do
     username { 'いっしー' }
-    sequence(:email) { |n| "otheruser#{ n }@example.com" }
+    sequence(:email) { |n| "other#{ n }@example.com" }
     password { 'password' }
     profile { 'こんにちは！' }
+    image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_user_image_cat.jpg'))
+  end
+
+  trait :guest_user do
+    username { 'ゲストユーザー' }
+    email { 'guest@example.com' }
+    password { 'password' }
+    profile { 'ゲストユーザーです。' }
     image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_user_image_cat.jpg'))
   end
 end

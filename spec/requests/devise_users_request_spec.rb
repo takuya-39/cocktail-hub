@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'DeviseUsers', type: :request do
   let(:user) { create(:user) }
-  let(:otheruser) { create(:user, :otheruser) }
+  let(:other_user) { create(:user, :other_user) }
   let(:user_params) { attributes_for(:user) }
   let(:invalid_user_params) { attributes_for(:user, username: '') }
   let(:update_user_params) { attributes_for(:user, username: 'アップデートユーザー') }

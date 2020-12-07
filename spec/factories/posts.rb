@@ -22,7 +22,7 @@ FactoryBot.define do
   end
 
   trait :otherpost do
-    association :otheruser
+    association :other_user
     title { 'お手軽サングリア' }
     genre { 'ワイン' }
     image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_post_image.jpg'))

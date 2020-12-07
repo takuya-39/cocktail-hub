@@ -125,12 +125,12 @@ RSpec.describe User, type: :model do
     describe 'フォロー機能' do
       it 'ユーザーをフォロー、フォロー解除できること' do
         user = create(:user)
-        otheruser = create(:user, :otheruser)
-        expect(otheruser.following?(user)).to eq false
-        otheruser.follow(user)
-        expect(otheruser.following?(user)).to eq true
-        otheruser.unfollow(user)
-        expect(otheruser.following?(user)).to eq false
+        other_user = create(:user, :other_user)
+        expect(other_user.following?(user)).to eq false
+        other_user.follow(user)
+        expect(other_user.following?(user)).to eq true
+        other_user.unfollow(user)
+        expect(other_user.following?(user)).to eq false
       end
     end
 
@@ -142,23 +142,23 @@ RSpec.describe User, type: :model do
       end
       it 'ユーザーを削除すると関連するコメントも削除されること' do
         user = create(:user)
-        otheruser = create(:user, :otheruser)
-        otherpost = create(:post, user: otheruser)
+        other_user = create(:user, :other_user)
+        otherpost = create(:post, user: other_user)
         create(:comment, post_id: otherpost.id, user_id: user.id)
         expect { user.destroy }.to change { otherpost.comments.count }.by(-1)
       end
       it 'ユーザーを削除すると関連するいいねも削除されること' do
         user = create(:user)
-        otheruser = create(:user, :otheruser)
-        otherpost = create(:post, user: otheruser)
+        other_user = create(:user, :other_user)
+        otherpost = create(:post, user: other_user)
         otherpost.likes.create(user_id: user.id)
         expect { user.destroy }.to change { otherpost.likes.count }.by(-1)
       end
       it 'ユーザーを削除すると関連するフォロー関係も削除されること' do
         user = create(:user)
-        otheruser = create(:user, :otheruser)
-        user.follow(otheruser)
-        expect { user.destroy }.to change { otheruser.followers.count }.by(-1)
+        other_user = create(:user, :other_user)
+        user.follow(other_user)
+        expect { user.destroy }.to change { other_user.followers.count }.by(-1)
       end
     end
   end

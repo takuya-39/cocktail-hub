@@ -3,13 +3,13 @@ require 'rails_helper'
 RSpec.describe 'Likes', type: :system, js: true do
   include ActiveJob::TestHelper
   let(:user) { create(:user) }
-  let(:otheruser) { create(:user, :otheruser) }
+  let(:other_user) { create(:user, :other_user) }
   let!(:post) { create(:post, user: user) }
 
   it 'いいね機能' do
-    # otheruserがログインする
-    valid_login(otheruser)
-    expect(current_path).to eq "/users/#{ otheruser.id }"
+    # other_userがログインする
+    valid_login(other_user)
+    expect(current_path).to eq "/users/#{ other_user.id }"
 
     # 投稿詳細ページに移動する
     find('.nav-icon-btn').click
@@ -26,7 +26,9 @@ RSpec.describe 'Likes', type: :system, js: true do
     end.to change(post.likes, :count).by(1)
 
     # いいねを解除する
-    visit root_path
+    find('.nav-icon-btn').click
+    find('.go-root').click
+    expect(current_path).to eq root_path
 
     find(".post-#{ post.id }").click
     expect(current_path).to eq "/posts/#{ post.id }"

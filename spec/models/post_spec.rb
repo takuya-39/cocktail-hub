@@ -118,8 +118,8 @@ RSpec.describe Post, type: :model do
     describe 'いいね機能' do
       it '投稿をいいね、いいね解除できること' do
         user = create(:user)
-        otheruser = create(:user, :otheruser)
-        otherpost = create(:post, user_id: otheruser.id)
+        other_user = create(:user, :other_user)
+        otherpost = create(:post, user_id: other_user.id)
         expect(otherpost.liked_by?(user)).to eq false
         like = otherpost.likes.create(user_id: user.id)
         expect(otherpost.liked_by?(user)).to eq true

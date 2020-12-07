@@ -3,12 +3,13 @@ require 'rails_helper'
 RSpec.describe 'Relationships', type: :system, js: true do
   include ActiveJob::TestHelper
   let(:user) { create(:user) }
-  let(:otheruser) { create(:user, :otheruser) }
+  let(:other_user) { create(:user, :other_user) }
   let!(:post) { create(:post, user: user) }
 
   it 'フォロー機能' do
-    # otheruserがuserをフォローする
-    valid_login(otheruser)
+    # other_userがuserをフォローする
+    valid_login(other_user)
+    expect(current_path).to eq "/users/#{ other_user.id }"
 
     find('.nav-icon-btn').click
     find('.go-root').click
@@ -24,21 +25,21 @@ RSpec.describe 'Relationships', type: :system, js: true do
       expect(page).to have_button 'フォロー中'
       expect(page).to have_selector '#unfollow'
     end.to change(user.followers, :count).by(1) &
-           change(otheruser.followings, :count).by(1)
+           change(other_user.followings, :count).by(1)
 
-    # otheruserのフォローページにuserが追加されている
+    # other_userのフォローページにuserが追加されている
     find('.nav-icon-btn').click
     find('.users-show').click
-    expect(current_path).to eq user_path(otheruser)
-    expect(page).to have_content otheruser.username
-    expect(page).to have_content otheruser.profile
+    expect(current_path).to eq user_path(other_user)
+    expect(page).to have_content other_user.username
+    expect(page).to have_content other_user.profile
 
     click_link 'フォロー'
-    expect(current_path).to eq followings_user_path(otheruser)
+    expect(current_path).to eq followings_user_path(other_user)
     expect(page).to have_content user.username
     expect(page).to have_button 'フォロー中'
 
-    # otheruserがuserへのフォローを解除する
+    # other_userがuserへのフォローを解除する
     visit user_path(user)
     expect(current_path).to eq "/users/#{ user.id }"
 
@@ -47,17 +48,17 @@ RSpec.describe 'Relationships', type: :system, js: true do
       expect(page).to have_button 'フォローする'
       expect(page).to have_selector '#follow'
     end.to change(user.followers, :count).by(-1) &
-           change(otheruser.followings, :count).by(-1)
+           change(other_user.followings, :count).by(-1)
 
-    # otheruserのフォローページからuserが削除されている
+    # other_userのフォローページからuserが削除されている
     find('.nav-icon-btn').click
     find('.users-show').click
-    expect(current_path).to eq user_path(otheruser)
-    expect(page).to have_content otheruser.username
-    expect(page).to have_content otheruser.profile
+    expect(current_path).to eq user_path(other_user)
+    expect(page).to have_content other_user.username
+    expect(page).to have_content other_user.profile
 
     click_link 'フォロー'
-    expect(current_path).to eq followings_user_path(otheruser)
+    expect(current_path).to eq followings_user_path(other_user)
     expect(page).not_to have_content user.username
     expect(page).not_to have_button 'フォロー中'
   end

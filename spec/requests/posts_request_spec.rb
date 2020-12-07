@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
   let(:user) { create(:user) }
-  let(:otheruser) { create(:user, :otheruser) }
+  let(:other_user) { create(:user, :other_user) }
   let(:post_params) { attributes_for(:post) }
   let(:invalid_post_params) { attributes_for(:post, title: '') }
   let(:update_post_params) { attributes_for(:post, title: 'アップデートタイトル') }
@@ -110,7 +110,7 @@ RSpec.describe 'Posts', type: :request do
     context '認可されていないユーザーがアクセスした場合' do
       it '投稿一覧ページにリダイレクトされること' do
         post = create(:post, user: user)
-        sign_in otheruser
+        sign_in other_user
 
         get edit_post_path(post)
         expect(response.status).to eq 302
@@ -161,7 +161,7 @@ RSpec.describe 'Posts', type: :request do
     context '認可されていないユーザーがアクセスした場合' do
       it '投稿を更新できず、投稿一覧ページにリダイレクトされること' do
         post = create(:post, user: user)
-        sign_in otheruser
+        sign_in other_user
         patch post_path(post), params: { post: post_params }
         expect(response).to redirect_to root_url
       end
@@ -197,7 +197,7 @@ RSpec.describe 'Posts', type: :request do
     context '認可されていないユーザーがアクセスした場合' do
       it '投稿を削除できず、投稿一覧ページにリダイレクトされること' do
         post = create(:post, user: user)
-        sign_in otheruser
+        sign_in other_user
         expect { delete post_path(post) }.to change { Post.count }.by(0)
         expect(response).to redirect_to root_url
       end

@@ -56,8 +56,8 @@ module SSHKit
 
     def test_percentage_symbol_handled_in_env
       SSHKit.config = nil
-      c = Command.new(:rails, 'server', env: {foo: 'asdf%hjkl'}, user: "anotheruser")
-      assert_equal %{( export FOO="asdf%hjkl" ; sudo -u anotheruser FOO=\"asdf%hjkl\" -- sh -c /usr/bin/env\\ rails\\ server )}, c.to_command
+      c = Command.new(:rails, 'server', env: {foo: 'asdf%hjkl'}, user: "another_user")
+      assert_equal %{( export FOO="asdf%hjkl" ; sudo -u another_user FOO=\"asdf%hjkl\" -- sh -c /usr/bin/env\\ rails\\ server )}, c.to_command
     end
 
     def test_including_the_env_doesnt_addressively_escape
@@ -106,8 +106,8 @@ module SSHKit
     end
 
     def test_working_as_a_given_user
-      c = Command.new(:whoami, user: :anotheruser)
-      assert_equal "sudo -u anotheruser -- sh -c /usr/bin/env\\ whoami", c.to_command
+      c = Command.new(:whoami, user: :another_user)
+      assert_equal "sudo -u another_user -- sh -c /usr/bin/env\\ whoami", c.to_command
     end
 
     def test_working_as_a_given_weird_user
@@ -126,8 +126,8 @@ module SSHKit
     end
 
     def test_working_as_a_given_user_and_group
-      c = Command.new(:whoami, user: :anotheruser, group: :devvers)
-      assert_equal %Q(sudo -u anotheruser -- sh -c sg\\ devvers\\ -c\\ /usr/bin/env\\\\\\ whoami), c.to_command
+      c = Command.new(:whoami, user: :another_user, group: :devvers)
+      assert_equal %Q(sudo -u another_user -- sh -c sg\\ devvers\\ -c\\ /usr/bin/env\\\\\\ whoami), c.to_command
     end
 
     def test_umask
