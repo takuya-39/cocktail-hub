@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Posts', type: :system, js: true do
+  let(:user) { create(:user) }
+
   it '新規投稿、編集, 削除' do
-    user = FactoryBot.create(:user)
     valid_login(user)
 
-    # 新規投稿
-    visit root_path
+    # 新規投稿する
     find('.posts-new-btn').click
     expect(current_path).to eq new_post_path
     expect(page).to have_content '新規投稿'
@@ -30,7 +30,7 @@ RSpec.describe 'Posts', type: :system, js: true do
       expect(current_path).to eq "/posts/#{ post.id }"
     end
 
-    # 投稿編集
+    # 投稿を編集する
     find('.nav-icon-btn').click
     find('.go-root').click
     expect(current_path).to eq root_path
@@ -49,10 +49,12 @@ RSpec.describe 'Posts', type: :system, js: true do
     expect(page).to have_content 'エディットメモ'
     expect(current_path).to eq "/posts/#{ post.id }"
 
-    # 投稿削除
+    # 投稿を削除する
     click_on '投稿を削除'
     page.driver.browser.switch_to.alert.accept
 
     expect(current_path).to eq root_path
+    expect(Post.where(id: post.id)).to be_empty
+    expect(page).not_to have_link "/posts/#{ post.id }"
   end
 end
