@@ -131,10 +131,10 @@ RSpec.describe 'Posts', type: :request do
           expect(response.status).to eq 302
         end
         it '投稿の更新が成功すること' do
-          pending
-          post = create(:post, user: user)
-          patch post_path(post), params: { post: update_post_params }
-          expect(post.title).to eq 'アップデートタイトル'
+          post = create(:post, user: user, title: 'サンプルタイトル')
+          expect do
+            patch post_path(post), params: { post: update_post_params }
+          end.to change { Post.find(post.id).title }.from('サンプルタイトル').to('アップデートタイトル')
         end
       end
       context '不正なパラメータな場合' do

@@ -17,11 +17,13 @@ RSpec.describe 'Relationships', type: :request do
 
   describe '#destroy' do
     it 'フォロー解除が成功すること' do
-      pending
       relationship = create(:relationship, follow_id: other_user.id, user_id: user.id)
-      expect do
-        relationship.destroy
-      end.to change { [other_user.followers.count, user.followings.count] }.to [-1, -1]
+      expect(user.followings.count).to eq 1
+      expect(other_user.followers.count).to eq 1
+
+      relationship.destroy
+      expect(user.followings.count).to eq 0
+      expect(other_user.followers.count).to eq 0
     end
   end
 end

@@ -52,8 +52,8 @@ RSpec.describe 'Posts', type: :system, js: true do
     # 投稿を削除する
     click_on '投稿を削除'
     page.driver.browser.switch_to.alert.accept
+    expect(page).not_to have_link "/posts/#{ post.id }"
     expect(current_path).to eq root_path
     expect(Post.where(id: post.id)).to be_empty
-    expect(page).not_to have_link "/posts/#{ post.id }"
   end
 end

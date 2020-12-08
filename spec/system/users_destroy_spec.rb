@@ -13,6 +13,7 @@ RSpec.describe 'UsersDestroy', type: :system, js: true do
 
     click_link 'ユーザーを削除'
     page.driver.browser.switch_to.alert.accept
+    expect(page).to have_content 'ログインページ'
     expect(current_path).to eq login_path
     expect(User.where(email: 'destroy@example.com')).to be_empty
   end
