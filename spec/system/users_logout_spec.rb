@@ -2,28 +2,21 @@ require 'rails_helper'
 
 RSpec.describe 'Logout', type: :system, js: true do
   include ActiveJob::TestHelper
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { create(:user) }
+  let(:guest_user) { create(:user, :guest_user) }
 
   it 'ユーザーがログアウトできること' do
     valid_login(user)
-
-    expect(current_path).to eq user_path(user)
-
     find('.nav-icon-btn').click
     find('.logout').click
-
     expect(current_path).to eq login_path
   end
 
-  context 'ゲストユーザー' do
+  context 'ゲストユーザーの場合' do
     it 'ゲストユーザーがログアウトできること' do
-      valid_guest_login(user)
-
-      expect(page).to have_content 'ゲストユーザー'
-
+      valid_guest_login(guest_user)
       find('.nav-icon-btn').click
       find('.logout').click
-
       expect(current_path).to eq login_path
     end
   end
