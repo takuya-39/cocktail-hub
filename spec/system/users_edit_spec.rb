@@ -15,7 +15,7 @@ RSpec.describe 'UsersEdit', type: :system, js: true do
     perform_enqueued_jobs do
       fill_in 'UserName', with: 'エディットユーザー'
       fill_in 'Email', with: 'edit@example.com'
-      attach_file 'UserImage', "#{ Rails.root }/spec/support/assets/sample_user_image_cat.jpg"
+      attach_file 'UserImage', "#{ Rails.root }/spec/support/assets/default_user_image.png"
       fill_in 'Profile', with: 'エディットユーザーです。'
       fill_in 'CurrentPassword', with: 'password'
       click_button 'ユーザーを更新する'
@@ -29,7 +29,7 @@ RSpec.describe 'UsersEdit', type: :system, js: true do
     perform_enqueued_jobs do
       fill_in 'UserName', with: 'アップデートユーザー'
       fill_in 'Email', with: 'update@example.com'
-      attach_file 'UserImage', "#{ Rails.root }/spec/support/assets/sample_user_image_cat.jpg"
+      attach_file 'UserImage', "#{ Rails.root }/spec/support/assets/default_user_image.png"
       fill_in 'Profile', with: 'アップデートユーザーです。'
       fill_in 'CurrentPassword', with: 'password'
       click_button 'ユーザーを更新する'
@@ -51,7 +51,7 @@ RSpec.describe 'UsersEdit', type: :system, js: true do
       perform_enqueued_jobs do
         fill_in 'UserName', with: 'エディットユーザー'
         fill_in 'Email', with: 'edit@example.com'
-        attach_file 'UserImage', "#{ Rails.root }/spec/support/assets/sample_user_image_cat.jpg"
+        attach_file 'UserImage', "#{ Rails.root }/spec/support/assets/default_user_image.png"
         fill_in 'Profile', with: 'エディットユーザーです。'
         fill_in 'CurrentPassword', with: 'password'
         click_button 'ユーザーを更新する'
@@ -65,7 +65,7 @@ RSpec.describe 'UsersEdit', type: :system, js: true do
       perform_enqueued_jobs do
         fill_in 'UserName', with: 'アップデートユーザー'
         fill_in 'Email', with: 'update@example.com'
-        attach_file 'UserImage', "#{ Rails.root }/spec/support/assets/sample_user_image_cat.jpg"
+        attach_file 'UserImage', "#{ Rails.root }/spec/support/assets/default_user_image.png"
         fill_in 'Profile', with: 'アップデートユーザーです。'
         fill_in 'CurrentPassword', with: 'password'
         click_button 'ユーザーを更新する'

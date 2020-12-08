@@ -17,7 +17,7 @@
     password_confirmation: 'password',
     profile:               'よろしくお願いします！'
   )
-  user.image.attach(io: File.open('app/assets/images/default_user_image.png'), filename: 'sample_user_image_cat.jpg')
+  user.image.attach(io: File.open('app/assets/images/user_a_image.jpg'), filename: 'user_a_image.jpg')
 
   # ユーザー(いっしー)を作成する
   user = User.create!(
@@ -27,7 +27,7 @@
     password_confirmation: 'password',
     profile:               'こんにちは！'
   )
-  user.image.attach(io: File.open('app/assets/images/default_user_image.png'), filename: 'sample_user_image_dog.jpg')
+  user.image.attach(io: File.open('app/assets/images/user_b_image.jpg'), filename: 'user_b_image.jpg')
 
   # ユーザー(ユウタロウ)を作成する
   user = User.create!(
@@ -37,7 +37,7 @@
     password_confirmation: 'password',
     profile:               'お酒が好きです。'
   )
-  user.image.attach(io: File.open('app/assets/images/default_user_image.png'), filename: 'sample_user_image_nature.jpg')
+  user.image.attach(io: File.open('app/assets/images/user_c_image.jpg'), filename: 'user_c_image.jpg')
 
   # ユーザー(安永)を作成する
   user = User.create!(
@@ -47,7 +47,7 @@
     password_confirmation: 'password',
     profile:               '都内在住の20代の男です！'
   )
-  user.image.attach(io: File.open('app/assets/images/default_user_image.png'), filename: 'sample_user_image_nature.jpg')
+  user.image.attach(io: File.open('app/assets/images/user_d_image.jpg'), filename: 'user_d_image.jpg')
 
   # ユーザー(seira)を作成する
   user = User.create!(
@@ -57,7 +57,7 @@
     password_confirmation: 'password',
     profile:               '甘いお酒が好きです。'
   )
-  user.image.attach(io: File.open('app/assets/images/default_user_image.png'), filename: 'sample_user_image_nature.jpg')
+  user.image.attach(io: File.open('app/assets/images/user_e_image.jpg'), filename: 'user_e_image.jpg')
 
   # ユーザー(YUI)を作成する
   user = User.create!(
@@ -67,7 +67,7 @@
     password_confirmation: 'password',
     profile:               ''
   )
-  user.image.attach(io: File.open('app/assets/images/default_user_image.png'), filename: 'sample_user_image_nature.jpg')
+  user.image.attach(io: File.open('app/assets/images/user_f_image.jpg'), filename: 'user_f_image.jpg')
 
 
 # ユーザーの投稿を作成する
@@ -83,7 +83,7 @@
     user_id: 1
   )
   post.save!(validate: false)
-  post.image.attach(io: File.open('app/assets/images/sample_post_image1.jpg'), filename: 'sample_post_image1.jpg')
+  post.image.attach(io: File.open('app/assets/images/guest_user_post_image.jpg'), filename: 'guest_user_post_image.jpg')
 
   # takuyaの投稿を作成する
   post = Post.new(
@@ -97,7 +97,7 @@
     user_id: 2
   )
   post.save!(validate: false)
-  post.image.attach(io: File.open('app/assets/images/sample_post_image1.jpg'), filename: 'sample_post_image2.jpg')
+  post.image.attach(io: File.open('app/assets/images/user_a_post_image.jpg'), filename: 'user_a_post_image.jpg')
 
   # いっしーの投稿を作成する
   post = Post.new(
@@ -111,7 +111,7 @@
     user_id: 3
   )
   post.save!(validate: false)
-  post.image.attach(io: File.open('app/assets/images/sample_post_image1.jpg'), filename: 'sample_post_image3.jpg')
+  post.image.attach(io: File.open('app/assets/images/user_b_post_image.jpg'), filename: 'user_b_post_image.jpg')
 
   # ユウタロウの投稿を作成する
   post = Post.new(
@@ -125,7 +125,7 @@
     user_id: 4
   )
   post.save!(validate: false)
-  post.image.attach(io: File.open('app/assets/images/sample_post_image1.jpg'), filename: 'sample_post_image4.jpg')
+  post.image.attach(io: File.open('app/assets/images/user_c_post_image.jpg'), filename: 'user_c_post_image.jpg')
 
   # 安永の投稿を作成する
   post = Post.new(
@@ -135,11 +135,11 @@
     ingredients:
       "・梅酒  50ml \n・ラム酒 50ml \n・炭酸水 100ml \n・レモン果汁 適量".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
     memo:
-      '梅酒とラムと炭酸水を混ぜてレモン果汁で仕上げます。ラムと梅の甘味がレモンで引き締まって美味し いです。',
+      "梅酒とラムと炭酸水を混ぜてレモン果汁で仕上げます。 \nラムと梅の甘味がレモンで引き締まって美味しいです。",
     user_id: 5
   )
   post.save!(validate: false)
-  post.image.attach(io: File.open('app/assets/images/sample_post_image1.jpg'), filename: 'sample_post_image4.jpg')
+  post.image.attach(io: File.open('app/assets/images/user_d_post_image.jpg'), filename: 'user_d_post_image.jpg')
 
   # seiraの投稿を作成する
   post = Post.new(
@@ -153,7 +153,7 @@
     user_id: 6
   )
   post.save!(validate: false)
-  post.image.attach(io: File.open('app/assets/images/sample_post_image1.jpg'), filename: 'sample_post_image4.jpg')
+  post.image.attach(io: File.open('app/assets/images/user_e_post_image.jpg'), filename: 'user_e_post_image.jpg')
 
   # YUIの投稿を作成する
   post = Post.new(
@@ -167,7 +167,7 @@
     user_id: 7
   )
   post.save!(validate: false)
-  post.image.attach(io: File.open('app/assets/images/sample_post_image1.jpg'), filename: 'sample_post_image4.jpg')
+  post.image.attach(io: File.open('app/assets/images/user_f_post_image.jpg'), filename: 'user_f_post_image.jpg')
 
 
 # 投稿へのいいねを作成する

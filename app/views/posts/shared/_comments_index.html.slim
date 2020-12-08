@@ -3,7 +3,8 @@
   - @comments.each do |comment|
     .container.bg-light.rounded.border
       .card-text
-        = image_tag comment.user.display_image, class: 'resize-image rounded-circle', style: 'width: 50px; height: 50px;'
+        = link_to user_path(comment.user), data: {}
+          = image_tag comment.user.display_image, class: 'resize-image rounded-circle', style: 'width: 50px; height: 50px;'
         p.m-3.d-inline-block= comment.user.username
         p.m-3.d-inline-block.p-wrap-90= comment.content
       - if current_user.id == comment.user_id

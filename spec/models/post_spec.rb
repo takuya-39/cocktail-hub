@@ -24,7 +24,7 @@ RSpec.describe Post, type: :model do
         user: build(:user),
         title: 'ホットココアスキー',
         genre: 'ウイスキー',
-        image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_post_image.jpg')),
+        image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/default_user_image.png')),
         ingredients: "・ウイスキー 30ml \n・ココアパウダー 5g \n・お湯 100ml".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
         memo: "耐熱グラスにココアパウダーを入れて、 \nお湯で溶かしてウイスキーを入れて完成です！寒い日におすすめ！".gsub(/(\\r\\n|\\r|\\n)/, "\n")
       )

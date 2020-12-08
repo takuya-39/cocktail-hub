@@ -15,7 +15,7 @@ RSpec.describe 'Posts', type: :system, js: true do
     expect do
       fill_in 'Title', with: 'ホットココアスキー'
       select 'ウイスキー', from: 'Genre'
-      attach_file 'Image', "#{ Rails.root }/spec/support/assets/sample_post_image.jpg"
+      attach_file 'Image', "#{ Rails.root }/spec/support/assets/default_user_image.png"
       fill_in 'Ingredients', with: "・ウイスキー 30ml \n・ココアパウダー 5g \n・お湯 100ml".gsub(/(\\r\\n|\\r|\\n)/, "\n")
       fill_in 'Memo', with: "耐熱グラスにココアパウダーを入れて、 \nお湯で溶かしてウイスキーを入れて完成です！寒い日におすすめ！".gsub(/(\\r\\n|\\r|\\n)/, "\n")
       click_button '投稿する'

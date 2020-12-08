@@ -32,7 +32,7 @@ RSpec.describe User, type: :model do
         email: 'guest@example.com',
         password: 'password',
         profile: 'ゲストユーザーです。',
-        image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/sample_user_image_cat.jpg'))
+        image: Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/default_user_image.png'))
       )
       expect(user).to be_valid
     end

@@ -16,7 +16,7 @@ RSpec.describe 'UsersSignup', type: :system, js: true do
         fill_in 'Password', with: 'password'
         fill_in 'PasswordConfirmation', with: 'password'
         fill_in 'Profile', with: 'サインアップユーザーです。'
-        attach_file 'UserImage', "#{ Rails.root }/spec/support/assets/sample_user_image_cat.jpg"
+        attach_file 'UserImage', "#{ Rails.root }/spec/support/assets/default_user_image.png"
         click_button '新規ユーザー登録をする'
       end.to change(User, :count).by(1)
     end
