@@ -21,7 +21,7 @@ FactoryBot.define do
     memo { "テキーラとカシスを混ぜてジンジャーエールで割ります、 \n塩とライムを入れて完成です！ \n塩とライムの量多めでよりさっぱりとした仕上がりになります！".gsub(/(\\r\\n|\\r|\\n)/, "\n") }
   end
 
-  trait :otherpost do
+  trait :other_post do
     association :other_user
     title { 'お手軽サングリア' }
     genre { 'ワイン' }

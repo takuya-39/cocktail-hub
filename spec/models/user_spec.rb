@@ -143,16 +143,16 @@ RSpec.describe User, type: :model do
       it 'ユーザーを削除すると関連するコメントも削除されること' do
         user = create(:user)
         other_user = create(:user, :other_user)
-        otherpost = create(:post, user: other_user)
-        create(:comment, post_id: otherpost.id, user_id: user.id)
-        expect { user.destroy }.to change { otherpost.comments.count }.by(-1)
+        other_post = create(:post, user: other_user)
+        create(:comment, post_id: other_post.id, user_id: user.id)
+        expect { user.destroy }.to change { other_post.comments.count }.by(-1)
       end
       it 'ユーザーを削除すると関連するいいねも削除されること' do
         user = create(:user)
         other_user = create(:user, :other_user)
-        otherpost = create(:post, user: other_user)
-        otherpost.likes.create(user_id: user.id)
-        expect { user.destroy }.to change { otherpost.likes.count }.by(-1)
+        other_post = create(:post, user: other_user)
+        other_post.likes.create(user_id: user.id)
+        expect { user.destroy }.to change { other_post.likes.count }.by(-1)
       end
       it 'ユーザーを削除すると関連するフォロー関係も削除されること' do
         user = create(:user)
