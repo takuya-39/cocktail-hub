@@ -6,7 +6,7 @@ RSpec.describe 'Likes', type: :system, js: true do
   let(:other_user) { create(:user, :other_user) }
   let!(:post) { create(:post, user: user) }
 
-  it 'いいね機能' do
+  it 'いいね、いいね解除ができること' do
     # other_userがログインする
     valid_login(other_user)
     expect(current_path).to eq "/users/#{ other_user.id }"

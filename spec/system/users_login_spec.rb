@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Login', type: :system, js: true do
+RSpec.describe 'UsersLogin', type: :system, js: true do
   include ActiveJob::TestHelper
   let(:user) { create(:user) }
   let(:guest_user) { create(:user, :guest_user) }

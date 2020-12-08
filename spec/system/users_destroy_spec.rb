@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Users_Destroy', type: :system, js: true do
+RSpec.describe 'UsersDestroy', type: :system, js: true do
   include ActiveJob::TestHelper
   let(:guest_user) { create(:user, :guest_user) }
 

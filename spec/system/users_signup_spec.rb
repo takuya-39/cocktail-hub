@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Signup', type: :system, js: true do
+RSpec.describe 'UsersSignup', type: :system, js: true do
   include ActiveJob::TestHelper
 
   it 'ユーザーがサインアップできること' do

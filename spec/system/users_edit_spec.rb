@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Users_Edit', type: :system, js: true do
+RSpec.describe 'UsersEdit', type: :system, js: true do
   include ActiveJob::TestHelper
   let(:user) { create(:user) }
   let(:guest_user) { create(:user, :guest_user) }

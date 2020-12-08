@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Posts', type: :system, js: true do
   let(:user) { create(:user) }
 
-  it '新規投稿、編集, 削除' do
+  it '新規投稿、投稿の編集、投稿の削除ができること' do
     valid_login(user)
     expect(current_path).to eq "/users/#{ user.id }"
 

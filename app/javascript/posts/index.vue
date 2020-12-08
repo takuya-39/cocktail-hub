@@ -12,7 +12,8 @@
             icon
             x-large
             btn-primary
-            class="m-4 bg-primary search-post-btn"
+            id="posts-search-btn"
+            class="m-4 bg-primary"
             @click="displaySearchForm"
             v-bind="attrs"
             v-on="on"
@@ -30,7 +31,7 @@
       </v-tooltip>
 
       <!-- 投稿検索フォーム -->
-      <v-form v-show="postSearchForm" @submit.prevent class="post-search-form">
+      <v-form v-show="postSearchForm" @submit.prevent class="posts-search-form">
         <v-container
           rounded
           fluid
@@ -71,6 +72,7 @@
           <v-text-field
             filled
             rounded
+            id="posts-search-form"
             class="pt-4 text-monospace"
             label="投稿検索ワードを入力"
             v-model="keyword"
@@ -182,7 +184,7 @@ export default {
 </script>
 
 <style scoped>
-.post-search-form {
+.posts-search-form {
   position: sticky;
   top: 80px;
   z-index: 1;

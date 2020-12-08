@@ -6,7 +6,7 @@ RSpec.describe 'Comments', type: :system, js: true do
   let(:other_user) { create(:user, :other_user) }
   let!(:post) { create(:post, user: user) }
 
-  it '既存の投稿にコメントをする、削除する' do
+  it '既存の投稿にコメント、コメント削除ができること' do
     # other_userがログインする
     valid_login(other_user)
     expect(current_path).to eq "/users/#{ other_user.id }"

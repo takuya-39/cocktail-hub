@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Users_Profile', type: :system, js: true do
+RSpec.describe 'UsersProfile', type: :system, js: true do
   include ActiveJob::TestHelper
   let(:user) { create(:user) }
   let(:other_user) { create(:user, :other_user) }
