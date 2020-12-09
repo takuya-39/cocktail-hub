@@ -103,6 +103,7 @@
 
       <!-- ドロワーアイテム【Cooktail Hubとは？】 -->
       <v-list-item
+        class="drawer-explanation"
         @click="$emit('switchDrawer'), $emit('switchExplanation')"
       >
         <v-list-item-icon>
