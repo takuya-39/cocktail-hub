@@ -1,18 +1,26 @@
 <template>
   <!-- 全体 -->
-  <v-card max-width="100%" tile>
+  <v-card
+    tile
+    max-width="100%"
+  >
     <!-- ヘッダー -->
-    <v-app-bar class="white--text" color="#d1c4e9" height="70px" fixed>
+    <v-app-bar
+      fixed
+      class="white--text"
+      color="#d1c4e9"
+      height="70px"
+    >
       <!-- ヘッダーナビアイコン -->
       <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-app-bar-nav-icon
-            @click="switchDrawer"
-            class="ml-5 nav-icon-btn"
-            color="white"
             x-large
+            class="nav-icon-btn ml-5"
+            color="white"
             v-bind="attrs"
             v-on="on"
+            @click="switchDrawer"
           >
           </v-app-bar-nav-icon>
         </template>
@@ -24,7 +32,7 @@
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             icon
-            class="ml-10 posts-new-btn"
+            class="posts-new-btn ml-10"
             v-bind="attrs"
             v-on="on"
             @click="$router.push('/posts/new').catch((e) => {}), reload()"
@@ -38,7 +46,10 @@
       </v-tooltip>
 
       <!-- トップに戻るアイコン -->
-      <v-tooltip bottom v-if="this.$route.path === '/'">
+      <v-tooltip
+        bottom
+        v-if="this.$route.path === '/'"
+      >
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             icon
@@ -47,7 +58,10 @@
             v-bind="attrs"
             v-on="on"
           >
-            <v-icon color="white" large>
+            <v-icon
+              large
+              color="white"
+            >
               mdi-apple-keyboard-control
             </v-icon>
           </v-btn>
@@ -69,11 +83,11 @@
 
     <!-- ドロワー -->
     <v-navigation-drawer
-      v-model="menuDrawer"
       temporary
-      color="white"
-      class="font-weight-bold"
       fixed
+      class="font-weight-bold"
+      color="white"
+      v-model="menuDrawer"
     >
       <drawer
         @switchDrawer="switchDrawer"
@@ -84,7 +98,11 @@
     </v-navigation-drawer>
 
     <!-- Cocktail Hubとは？ダイアログ -->
-    <v-dialog v-model="dialogExplanation" width="80%" raised>
+    <v-dialog
+      raised
+      width="80%"
+      v-model="dialogExplanation"
+    >
       <explanation @switchExplanation="switchExplanation"></explanation>
     </v-dialog>
   </v-card>

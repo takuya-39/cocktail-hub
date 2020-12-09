@@ -1,14 +1,14 @@
 <template>
   <v-card
-    height="600px"
-    color="#090422"
-    class="white--text"
     tile
+    class="white--text"
+    color="#090422"
+    height="600px"
   >
     <v-toolbar
-      color="#090422"
       dark
       flat
+      color="#090422"
     >
       <!-- Cocktail Hubとは？ダイアログのタイトル -->
       <v-card-title class="font-weight-bold">
