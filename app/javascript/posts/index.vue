@@ -2,8 +2,16 @@
   <v-app id="app">
 
     <!-- コンテンツ全体 -->
-    <v-card color="#060211" tile>
-      <v-container fluid class="mx-auto" max-width="100%" id="go-top">
+    <v-card
+      tile
+      color="#060211"
+    >
+      <v-container
+        fluid
+        id="go-top"
+        class="mx-auto"
+        max-width="100%"
+      >
 
       <!-- 投稿検索アイコン -->
       <v-tooltip bottom>
@@ -11,17 +19,20 @@
           <v-btn
             icon
             x-large
-            btn-primary
-            class="m-4 bg-primary search-post-btn"
-            @click="displaySearchForm"
+            fixed
+            right
+            bottom
+            id="posts-search-btn"
+            class="bg-primary m-4"
+            style="z-index: 10;"
             v-bind="attrs"
             v-on="on"
-            fixed
-            bottom
-            right
-            style="z-index: 10;"
+            @click="displaySearchForm"
           >
-            <v-icon color="white" large>
+            <v-icon
+              large
+              color="white"
+            >
               mdi-magnify
             </v-icon>
           </v-btn>
@@ -30,19 +41,21 @@
       </v-tooltip>
 
       <!-- 投稿検索フォーム -->
-      <v-form v-show="postSearchForm" @submit.prevent class="post-search-form">
+      <v-form
+        class="posts-search-form"
+        v-show="postSearchForm"
+        @submit.prevent
+      >
         <v-container
-          rounded
           fluid
+          rounded
           class="mt-1 mb-3 app-color-light"
         >
           <v-row>
 
           <!-- 投稿検索フォームタイトル -->
             <v-col>
-              <h4
-                class="mt-3 ml-5 text-monospace"
-              >
+              <h4 class="text-monospace mt-3 ml-5">
                 投稿を検索する
               </h4>
             </v-col>
@@ -71,7 +84,8 @@
           <v-text-field
             filled
             rounded
-            class="pt-4 text-monospace"
+            id="posts-search-form"
+            class="text-monospace pt-4"
             label="投稿検索ワードを入力"
             v-model="keyword"
           >
@@ -88,20 +102,20 @@
 
             <!-- (それぞれの投稿カード) -->
             <v-card
+              :class="[`post-${post.id}`]"
               @click="$router.push(`/posts/${post.id}`).catch(e=>{}), reload()"
-              class="post"
             >
               <!-- (投稿カードのイメージ) -->
               <v-img
-                v-bind:src="post.image"
                 class="align-end"
-                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                 height="250px"
+                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                :src="post.image"
               >
                 <!-- (投稿カードのタイトル) -->
                 <v-card-title
-                  v-text="post.title"
                   class="grey--text text--lighten-1 body-3 font-italic"
+                  v-text="post.title"
                 >
                 </v-card-title>
               </v-img>
@@ -182,7 +196,7 @@ export default {
 </script>
 
 <style scoped>
-.post-search-form {
+.posts-search-form {
   position: sticky;
   top: 80px;
   z-index: 1;

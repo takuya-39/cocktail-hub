@@ -23,13 +23,13 @@
             .container.bg-light.rounded
               .card-text
                 p
-                  = @post.ingredients
+                  = safe_join(@post.ingredients.split("\n"),tag(:br))
           .col-12.card-body.m-2
             h5 メモ
             .container.bg-light.rounded
               .card-text
                 p
-                  = @post.memo
+                  = safe_join(@post.memo.split("\n"),tag(:br))
 
           .col-12.row.m-2.d-flex.align-items-center
             .col-sm-4.col-md-4.bg-light.rounded= link_to @post.user, data: {"turbolinks" => false}
@@ -50,8 +50,8 @@
         h4.text-center.text-monospace コメント一覧
 
         .card-body
-          = render 'posts/shared/comments_index'
           = render 'posts/shared/comments_form'
+          = render 'posts/shared/comments_index'
 
   - if current_user.id == @post.user_id
     .container

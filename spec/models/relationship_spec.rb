@@ -23,16 +23,22 @@
 require 'rails_helper'
 
 RSpec.describe Relationship, type: :model do
-  before do
-    user = FactoryBot.create(:user)
-    other_user = FactoryBot.create(:user, :otheruser)
-    @relationship = Relationship.new(
-      follow_id: user.id,
-      user_id: other_user.id
-    )
-  end
+  describe 'Relationshipモデル' do
+    before do
+      user = create(:user)
+      other_user = create(:user, :other_user)
+      @relationship = Relationship.new(
+        follow_id: user.id,
+        user_id: other_user.id
+      )
+    end
 
-  it '関係が有効か' do
-    expect(@relationship).to be_valid
+    it '有効なファクトリを持つこと' do
+      expect(create(:relationship)).to be_valid
+    end
+
+    it 'フォロー関係が有効であること' do
+      expect(@relationship).to be_valid
+    end
   end
 end

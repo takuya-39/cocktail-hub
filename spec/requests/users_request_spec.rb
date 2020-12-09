@@ -1,33 +1,59 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
-  let(:user) { FactoryBot.create(:user) }
-  let(:post) { FactoryBot.create(:post) }
+  let(:user) { create(:user) }
 
   describe '#show' do
-    it '正常にアクセスできること' do
-      pending
-      get user_path(user)
-      expect(response).to have_http_status(:success)
-      expect(response).to have_http_status(200)
+    context 'ログインしている場合' do
+      it '正常にアクセスできること' do
+        sign_in user
+        get user_path(user)
+        expect(response).to have_http_status(:success)
+        expect(response.status).to eq 200
+      end
+    end
+    context 'ログインしていない場合' do
+      it 'ログインページにリダイレクトされること' do
+        get user_path(user)
+        expect(response.status).to eq 302
+        expect(response).to redirect_to login_path
+      end
     end
   end
 
   describe '#followings' do
-    it '正常にアクセスできること' do
-      pending
-      get user_followings_path(user)
-      expect(response).to have_http_status(:success)
-      expect(response).to have_http_status(200)
+    context 'ログインしている場合' do
+      it '正常にアクセスできること' do
+        sign_in user
+        get followings_user_path(user)
+        expect(response).to have_http_status(:success)
+        expect(response.status).to eq 200
+      end
+    end
+    context 'ログインしていない場合' do
+      it 'ログインページにリダイレクトされること' do
+        get followings_user_path(user)
+        expect(response.status).to eq 302
+        expect(response).to redirect_to login_path
+      end
     end
   end
 
   describe '#followers' do
-    it '正常にアクセスできること' do
-      pending
-      get user_followers_path(user)
-      expect(response).to have_http_status(:success)
-      expect(response).to have_http_status(200)
+    context 'ログインしている場合' do
+      it '正常にアクセスできること' do
+        sign_in user
+        get followers_user_path(user)
+        expect(response).to have_http_status(:success)
+        expect(response.status).to eq 200
+      end
+    end
+    context 'ログインしていない場合' do
+      it 'ログインページにリダイレクトされること' do
+        get followers_user_path(user)
+        expect(response.status).to eq 302
+        expect(response).to redirect_to login_path
+      end
     end
   end
 end

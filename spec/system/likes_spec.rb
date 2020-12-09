@@ -2,52 +2,40 @@ require 'rails_helper'
 
 RSpec.describe 'Likes', type: :system, js: true do
   include ActiveJob::TestHelper
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { create(:user) }
+  let(:other_user) { create(:user, :other_user) }
+  let!(:other_post) { create(:post, user: other_user) }
 
-  it 'いいね機能' do
-    # ログインする
+  it 'いいね、いいね解除ができること' do
+    # userがログインする
     valid_login(user)
-
-    # 新規投稿する
-    visit root_path
-    find('.posts-new-btn').click
-    expect(current_path).to eq new_post_path
-    expect(page).to have_content '新規投稿'
-
-    expect do
-      fill_in 'Title', with: 'オリジナルカクテル'
-      select 'ウイスキー', from: 'Genre'
-      attach_file 'Image', "#{ Rails.root }/spec/support/assets/sample_post_image.jpg"
-      fill_in 'Ingredients', with: '材料'
-      fill_in 'Memo', with: '作り方メモ'
-      click_button '投稿する'
-    end.to change(Post, :count).by(1)
-
-    post = Post.first
+    expect(current_path).to eq "/users/#{ user.id }"
 
     # 投稿詳細ページに移動する
     find('.nav-icon-btn').click
     find('.go-root').click
     expect(current_path).to eq root_path
 
-    find('.post').click
-    expect(current_path).to eq "/posts/#{ post.id }"
+    find(".post-#{ other_post.id }").click
+    expect(current_path).to eq "/posts/#{ other_post.id }"
 
     # 投稿にいいねをする
     expect do
       click_link 'like-btn'
       expect(page).to have_content '1'
-    end.to change(post.likes, :count).by(1)
+    end.to change(other_post.likes, :count).by(1)
 
     # いいねを解除する
-    visit root_path
+    find('.nav-icon-btn').click
+    find('.go-root').click
+    expect(current_path).to eq root_path
 
-    find('.post').click
-    expect(current_path).to eq "/posts/#{ post.id }"
+    find(".post-#{ other_post.id }").click
+    expect(current_path).to eq "/posts/#{ other_post.id }"
 
     expect do
       click_link 'unlike-btn'
       expect(page).to have_content '0'
-    end.to change(post.likes, :count).by(-1)
+    end.to change(other_post.likes, :count).by(-1)
   end
 end

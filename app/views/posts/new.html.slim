@@ -25,11 +25,11 @@
               .container.bg-light.rounded
                 .form-group.card-text
                   = p.label :ingredients, class: 'col-form-label-lg text-monospace'
-                  = p.text_area :ingredients, id: 'Ingredients', class: 'form-control border-dark', style: 'height: 150px;', value: '・&#13;&#10;・&#13;&#10;・&#13;&#10;・&#13;&#10;・'.html_safe
+                  = p.text_area :ingredients, id: 'Ingredients', class: 'form-control border-dark', style: 'height: 100px;'
             .col-10.card-body
               .container.bg-light.rounded
                 .form-group.card-text
                   = p.label :memo, class: 'col-form-label-lg text-monospace'
-                  = p.text_area :memo, id: 'Memo', class: 'form-control border-dark', placeholder: '作り方、感想'
+                  = p.text_area :memo, id: 'Memo', class: 'form-control border-dark', style: 'height: 100px;', placeholder: '作り方、感想'
             .col-8.form-group.text-center.mt-3
               = p.submit '投稿する', class: 'btn btn-lg shadow-lg text-light text-monospace app-color-btn'

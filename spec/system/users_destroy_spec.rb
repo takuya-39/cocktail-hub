@@ -1,34 +1,33 @@
 require 'rails_helper'
 
-RSpec.describe 'Users_Destroy', type: :system, js: true do
+RSpec.describe 'UsersDestroy', type: :system, js: true do
   include ActiveJob::TestHelper
-  let(:user) { FactoryBot.create(:user) }
+  let(:guest_user) { create(:user, :guest_user) }
 
   it 'ユーザーが削除できること' do
-    valid_login(user)
+    user = create(:user, email: 'destroy@example.com')
+    expect(User.where(email: 'destroy@example.com')).not_to be_empty
 
-    visit root_path
-    find('.nav-icon-btn').click
-    find('.users-show').click
+    valid_login(user)
+    expect(current_path).to eq "/users/#{ user.id }"
 
     click_link 'ユーザーを削除'
     page.driver.browser.switch_to.alert.accept
-
+    expect(page).to have_content 'ログインページ'
     expect(current_path).to eq login_path
+    expect(User.where(email: 'destroy@example.com')).to be_empty
   end
 
-  context 'ゲストユーザー' do
-    it 'ゲストユーザーを削除しようとするとホーム画面にリダイレクトされること' do
-      valid_guest_login(user)
-      visit root_path
-
-      find('.nav-icon-btn').click
-      find('.users-show').click
+  context 'ゲストユーザーの場合' do
+    it 'ゲストユーザーを削除しようとするとマイプロフィール画面にリダイレクトされること' do
+      valid_guest_login(guest_user)
+      expect(page).to have_content 'ゲストユーザーとしてログインしました。'
+      expect(current_path).to eq "/users/#{ guest_user.id }"
 
       click_link 'ユーザーを削除'
       page.driver.browser.switch_to.alert.accept
-
       expect(page).to have_content 'ゲストユーザーの編集、削除はできません'
+      expect(current_path).to eq "/users/#{ guest_user.id }"
     end
   end
 end

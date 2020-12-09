@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: %i[show new create edit update destroy]
+  before_action :authenticate, only: %i[show new create edit update destroy]
+  before_action :baria_user, only: %i[edit update destroy]
 
   def index
   end
@@ -44,7 +45,7 @@ class PostsController < ApplicationController
   def destroy
     set_post
     @post.destroy
-    redirect_to root_path
+    redirect_to root_url
   end
 
   private
@@ -53,8 +54,11 @@ class PostsController < ApplicationController
     params.require(:post).permit(:image, :title, :genre, :ingredients, :memo)
   end
 
-  # 特定のPostを@postに代入する
   def set_post
     @post = Post.find_by(id: params[:id])
+  end
+
+  def baria_user
+    redirect_to root_url(current_user) unless Post.find(params[:id]).user.id.to_i == current_user.id
   end
 end

@@ -25,12 +25,12 @@
               .container.bg-light.rounded
                 .form-group.card-text
                   = p.label :ingredients, class: 'col-form-label-lg text-monospace'
-                  = p.text_area :ingredients, id: 'Ingredients', class: 'form-control border-dark'
+                  = p.text_area :ingredients, id: 'Ingredients', class: 'form-control border-dark', style: 'height: 100px;'
             .col-10.card-body
               .container.bg-light.rounded
                 .form-group.card-text
                   = p.label :memo, class: 'col-form-label-lg text-monospace'
-                  = p.text_area :memo, id: 'Memo', class: 'form-control border-dark'
+                  = p.text_area :memo, id: 'Memo', class: 'form-control border-dark', style: 'height: 100px;'
             .col-10.text-secondary= simple_time(@post[:created_at])
             .col-8.form-group.text-center.mt-3
               = p.submit '更新する', class: 'btn btn-lg shadow-lg text-light text-monospace app-color-btn'

@@ -25,4 +25,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [%i[image], :username, :profile])
     devise_parameter_sanitizer.permit(:account_update, keys: [%i[image], :username, :profile])
   end
+
+  def authenticate
+    redirect_to login_path unless user_signed_in?
+  end
 end
