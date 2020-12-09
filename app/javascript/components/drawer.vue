@@ -78,7 +78,10 @@
       <!-- 投稿一覧ページでのみ表示するドロワーメニュー -->
       <v-list-item-group v-if="this.$route.path === '/'">
         <!-- ドロワーアイテム【いいねランキング】 -->
-        <v-list-item @click="$emit('switchDrawer')">
+        <v-list-item
+          class="drawer-ranking"
+          @click="$emit('switchDrawer'), $emit('switchRanking')"
+        >
           <v-list-item-icon>
             <v-icon class="mdi-36px">
               mdi-crown-outline
