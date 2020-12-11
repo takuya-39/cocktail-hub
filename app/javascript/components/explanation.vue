@@ -12,7 +12,7 @@
         color="#090422"
       >
         <!-- Cocktail Hubとは？ダイアログのタイトル -->
-        <v-card-title class="display-1 font-weight-bold mt-15">
+        <v-card-title class="display-1 font-weight-bold mt-15 ml-3">
           Cocktail Hubとは？
         </v-card-title>
 

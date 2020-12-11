@@ -113,7 +113,11 @@
       width="80%"
       v-model="dialogRanking"
     >
-      <ranking @switchRanking="switchRanking"></ranking>
+      <ranking
+        @switchRanking="switchRanking"
+        @reload="reload"
+      >
+      </ranking>
     </v-dialog>
 
   </v-card>

@@ -37,5 +37,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api, { format: 'json' } do
+    namespace :v1 do
+      resources :rankings, only: [:index]
+    end
+  end
+
   resources :relationships, only: [:create, :destroy]
 end
