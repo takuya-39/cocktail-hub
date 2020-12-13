@@ -9,7 +9,7 @@
         flat
         color="#d1c4e9"
       >
-        <!-- Cocktail Hubとは？ダイアログのタイトル -->
+        <!-- いいねランキングダイアログのタイトル -->
         <v-card-title class="display-1 font-weight-bold mt-15 ml-3">
           いいねランキング
         </v-card-title>
@@ -59,6 +59,7 @@
               <h3 class="text-bold text-monospace text-light">
                 いいね数{{ index + 1 }}位
               </h3>
+              <!-- <p>{{  }}</p> -->
             </v-col>
 
             <v-card
@@ -99,9 +100,8 @@ export default {
     }
   },
   created() {
-    let api_url = '/api/v1/rankings/';
     axios
-      .get(api_url)
+      .get('/api/v1/rankings/')
       .then(res => {
         this.posts = res.data
       })

@@ -91,7 +91,10 @@
         </v-list-item>
 
         <!-- ドロワーアイテム【ランダム】 -->
-        <v-list-item @click="$emit('switchDrawer')">
+        <v-list-item
+          class="drawer-random"
+          @click="$emit('switchDrawer'), $emit('switchRandom')"
+        >
           <v-list-item-icon>
             <v-icon class="mdi-36px">
               mdi-dice-5-outline

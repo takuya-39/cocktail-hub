@@ -26,7 +26,18 @@ RSpec.describe 'DrawerMenu', type: :system, js: true do
       expect(page).to have_selector '.index-0', text: '1位の投稿'
       expect(page).to have_selector '.index-1', text: '2位の投稿'
       expect(page).to have_selector '.index-2', text: '3位の投稿'
-      # その後ランダム機能開発
+    end
+  end
+
+  context 'ランダム' do
+    it 'ランダムダイアログが正常に表示されること' do
+      # post_a = create(:post, title: '投稿A')
+      # post_b = create(:post, title: '投稿B')
+      # post_c = create(:post, title: '投稿C')
+      visit root_path
+      find('.nav-icon-btn').click
+      find('.drawer-random').click
+      expect(page).to have_content 'ランダム'
     end
   end
 end
