@@ -23,7 +23,7 @@
             <v-btn
               icon
               large
-              class="mr-3"
+              class="mt-5 mr-3"
               v-bind="attrs"
               v-on="on"
               @click="$emit('switchRanking')"

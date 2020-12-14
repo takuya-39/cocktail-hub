@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'DrawerMenu', type: :system, js: true do
   let(:user) { create(:user) }
+  before do
+    valid_login(user)
+  end
 
   context 'Cocktail Hubとは？' do
     it 'Cocktail Hubとは？ダイアログが正常に表示されること' do
@@ -26,18 +29,19 @@ RSpec.describe 'DrawerMenu', type: :system, js: true do
       expect(page).to have_selector '.index-0', text: '1位の投稿'
       expect(page).to have_selector '.index-1', text: '2位の投稿'
       expect(page).to have_selector '.index-2', text: '3位の投稿'
+
+      # 投稿をクリックすると投稿詳細ページへ遷移する
+      find('.index-0').click
+      expect(current_path).to eq post_path(post_a)
     end
   end
 
   context 'ランダム' do
     it 'ランダムダイアログが正常に表示されること' do
-      # post_a = create(:post, title: '投稿A')
-      # post_b = create(:post, title: '投稿B')
-      # post_c = create(:post, title: '投稿C')
       visit root_path
       find('.nav-icon-btn').click
       find('.drawer-random').click
-      expect(page).to have_content 'ランダム'
+      expect(page).to have_content 'あなたが今日つくるのは↓'
     end
   end
 end
