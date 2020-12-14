@@ -21,7 +21,6 @@
         <v-list-item-title>Hubに戻る</v-list-item-title>
       </v-list-item>
 
-      <!-- ログインしているユーザーへのドロワー -->
       <v-list-item-group v-if="loggedInUser">
         <!-- ドロワーアイテム【マイプロフィール】 -->
         <v-list-item

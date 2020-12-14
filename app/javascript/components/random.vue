@@ -35,7 +35,7 @@
         </v-tooltip>
       </v-toolbar>
 
-      <!-- 本文 -->
+      <!-- 導入文 -->
       <v-container class="row mx-2">
         <v-container class="col-12 text-monospace mt-10">
           <h5>
@@ -50,6 +50,8 @@
             あなたが今日つくるのは↓
           </h4>
         </v-container>
+
+        <!-- ？ボタン -->
         <v-container>
           <v-card
               class="random-link"
@@ -88,7 +90,7 @@ export default {
       .get(api_url)
       .then(res => {
         this.posts = res.data
-        this.randomLink()
+        this.randomNumber()
       })
       .catch(err => {
         this.loading = false;
@@ -96,7 +98,7 @@ export default {
         });
   },
   methods: {
-    randomLink: function () {
+    randomNumber: function () {
       this.random = 1 + Math.floor( Math.random() * this.posts.length );
     },
   }
