@@ -27,8 +27,11 @@ RSpec.describe 'DrawerMenu', type: :system, js: true do
       find('.nav-icon-btn').click
       find('.drawer-ranking').click
       expect(page).to have_selector '.index-0', text: '1位の投稿'
+      expect(page).to have_content post_a.likes.count
       expect(page).to have_selector '.index-1', text: '2位の投稿'
+      expect(page).to have_content post_b.likes.count
       expect(page).to have_selector '.index-2', text: '3位の投稿'
+      expect(page).to have_content post_c.likes.count
 
       # 投稿をクリックすると投稿詳細ページへ遷移する
       find('.index-0').click

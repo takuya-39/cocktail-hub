@@ -43,7 +43,7 @@
             cols=10
           >
 
-            <v-col cols=10 class="d-flex align-items-center mt-3">
+            <v-col cols=10 class="d-flex mt-3">
               <!-- ランキング1位のアイコン -->
               <v-icon class="mdi-36px mr-5" color="#e6b422" v-if="index === 0">
                 mdi-podium-gold
@@ -56,10 +56,15 @@
               <v-icon class="mdi-36px mr-5" color="#b87333" v-if="index === 2">
                 mdi-podium-bronze
               </v-icon>
-              <h3 class="text-bold text-monospace text-light">
-                いいね数{{ index + 1 }}位
+              <h3 class="text-bold text-monospace text-light mt-3 mr-10">
+                {{ index + 1 }}位
               </h3>
-              <!-- <p>{{  }}</p> -->
+              <h3 class="text-bold text-monospace text-dark mt-3">
+                {{ post.likes.length }}
+              </h3>
+              <h5 class="text-light align-self-end">
+                いいね
+              </h5>
             </v-col>
 
             <v-card
