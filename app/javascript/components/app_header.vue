@@ -92,6 +92,8 @@
       <drawer
         @switchDrawer="switchDrawer"
         @switchExplanation="switchExplanation"
+        @switchRanking="switchRanking"
+        @switchRandom="switchRandom"
         @reload="reload"
       >
       </drawer>
@@ -105,23 +107,56 @@
     >
       <explanation @switchExplanation="switchExplanation"></explanation>
     </v-dialog>
+
+    <!-- いいねランキングダイアログ -->
+    <v-dialog
+      raised
+      width="80%"
+      v-model="dialogRanking"
+    >
+      <ranking
+        @switchRanking="switchRanking"
+        @reload="reload"
+      >
+      </ranking>
+    </v-dialog>
+
+    <!-- ランダムダイアログ -->
+    <v-dialog
+      raised
+      width="80%"
+      v-model="dialogRandom"
+    >
+      <random
+        @switchRandom="switchRandom"
+        @reload="reload"
+      >
+      </random>
+    </v-dialog>
+
   </v-card>
 </template>
 
 <script>
 import Drawer from "components/drawer.vue";
 import Explanation from "components/explanation.vue";
+import Ranking from "components/ranking.vue";
+import Random from "components/random.vue";
 
 export default {
   data: function () {
     return {
       menuDrawer: false,
       dialogExplanation: false,
+      dialogRanking: false,
+      dialogRandom: false,
     };
   },
   components: {
     Drawer,
     Explanation,
+    Ranking,
+    Random,
   },
   methods: {
     switchDrawer: function () {
@@ -129,6 +164,12 @@ export default {
     },
     switchExplanation: function () {
       this.dialogExplanation = !this.dialogExplanation;
+    },
+    switchRanking: function () {
+      this.dialogRanking = !this.dialogRanking;
+    },
+    switchRandom: function () {
+      this.dialogRandom = !this.dialogRandom;
     },
     reload() {
       this.$router.go({ path: this.$router.currentRoute.path, force: true });

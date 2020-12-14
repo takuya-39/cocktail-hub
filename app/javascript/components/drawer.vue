@@ -21,7 +21,6 @@
         <v-list-item-title>Hubに戻る</v-list-item-title>
       </v-list-item>
 
-      <!-- ログインしているユーザーへのドロワー -->
       <v-list-item-group v-if="loggedInUser">
         <!-- ドロワーアイテム【マイプロフィール】 -->
         <v-list-item
@@ -78,7 +77,10 @@
       <!-- 投稿一覧ページでのみ表示するドロワーメニュー -->
       <v-list-item-group v-if="this.$route.path === '/'">
         <!-- ドロワーアイテム【いいねランキング】 -->
-        <v-list-item @click="$emit('switchDrawer')">
+        <v-list-item
+          class="drawer-ranking"
+          @click="$emit('switchDrawer'), $emit('switchRanking')"
+        >
           <v-list-item-icon>
             <v-icon class="mdi-36px">
               mdi-crown-outline
@@ -88,7 +90,10 @@
         </v-list-item>
 
         <!-- ドロワーアイテム【ランダム】 -->
-        <v-list-item @click="$emit('switchDrawer')">
+        <v-list-item
+          class="drawer-random"
+          @click="$emit('switchDrawer'), $emit('switchRandom')"
+        >
           <v-list-item-icon>
             <v-icon class="mdi-36px">
               mdi-dice-5-outline
@@ -103,6 +108,7 @@
 
       <!-- ドロワーアイテム【Cooktail Hubとは？】 -->
       <v-list-item
+        class="drawer-explanation"
         @click="$emit('switchDrawer'), $emit('switchExplanation')"
       >
         <v-list-item-icon>
