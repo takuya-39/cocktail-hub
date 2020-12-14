@@ -1,4 +1,15 @@
 # ユーザーを作成する
+  # 管理ユーザーを作成する
+  user = User.create!(
+    username:              '管理ユーザー',
+    email:                 'admin@example.com',
+    password:              '00000000',
+    password_confirmation: '00000000',
+    profile:               '管理ユーザーです。',
+    admin:                 true
+  )
+  user.image.attach(io: File.open('app/assets/images/default_user_image.png'), filename: 'default_user_image.png')
+
   # ゲストユーザーを作成する
   user = User.create!(
     username:              'ゲストユーザー',
