@@ -13,6 +13,12 @@ class ApplicationController < ActionController::Base
     login_path
   end
 
+  # 管理ユーザーかどうかチェックし、管理ユーザーなら編集、削除ができないという警告を表示する
+  def check_admin
+    email = resource&.email || params[:user][:email].downcase
+    redirect_to user_path(id: current_user.id), notice: '管理ユーザーの編集、削除はできません' if email == 'admin@example.com'
+  end
+
   # ゲストかどうかチェックし、ゲストなら編集、削除ができないという警告を表示する
   def check_guest
     email = resource&.email || params[:user][:email].downcase

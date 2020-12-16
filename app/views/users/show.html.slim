@@ -40,7 +40,7 @@
 
         = render 'users/shared/follow_form', user: @user
 
-  - if current_user == @user
+  - if current_user == @user || current_user.admin?
     .container
       .card.rounded-lg.app-color-sub
         .row

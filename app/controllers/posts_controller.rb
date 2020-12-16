@@ -59,6 +59,6 @@ class PostsController < ApplicationController
   end
 
   def baria_user
-    redirect_to root_url(current_user) unless Post.find(params[:id]).user.id.to_i == current_user.id
+    redirect_to root_url(current_user) unless Post.find(params[:id]).user.id.to_i == current_user.id || current_user.admin?
   end
 end

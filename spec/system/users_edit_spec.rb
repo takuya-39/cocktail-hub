@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'UsersEdit', type: :system, js: true do
   include ActiveJob::TestHelper
   let(:user) { create(:user) }
+  let(:admin_user) { create(:user, :admin_user) }
   let(:guest_user) { create(:user, :guest_user) }
 
   it 'ユーザーが編集できること' do
@@ -36,6 +37,43 @@ RSpec.describe 'UsersEdit', type: :system, js: true do
       expect(current_path).to eq user_path(user)
       expect(page).to have_content 'アップデートユーザー'
       expect(page).to have_content 'アップデートユーザーです。'
+    end
+  end
+
+  context '管理ユーザーの場合' do
+    it '管理ユーザーを編集しようとするとマイプロフィール画面にリダイレクトされること' do
+      valid_login(admin_user)
+      expect(page).to have_content 'ログインしました。'
+      expect(current_path).to eq "/users/#{ admin_user.id }"
+
+      # ヘッダーのドロワーメニューの(ユーザーを編集する)ボタンから編集
+      find('.nav-icon-btn').click
+      find('.users-edit').click
+      perform_enqueued_jobs do
+        fill_in 'UserName', with: 'エディットユーザー'
+        fill_in 'Email', with: 'edit@example.com'
+        attach_file 'UserImage', "#{ Rails.root }/spec/support/assets/default_user_image.png"
+        fill_in 'Profile', with: 'エディットユーザーです。'
+        fill_in 'CurrentPassword', with: 'password'
+        click_button 'ユーザーを更新する'
+        expect(current_path).to eq user_path(admin_user)
+        expect(page).to have_content '管理ユーザー'
+        expect(page).to have_content '管理ユーザーです。'
+      end
+
+      # マイプロフィール画面の(ユーザーを編集)ボタンから編集
+      click_link 'ユーザーを編集'
+      perform_enqueued_jobs do
+        fill_in 'UserName', with: 'アップデートユーザー'
+        fill_in 'Email', with: 'update@example.com'
+        attach_file 'UserImage', "#{ Rails.root }/spec/support/assets/default_user_image.png"
+        fill_in 'Profile', with: 'アップデートユーザーです。'
+        fill_in 'CurrentPassword', with: 'password'
+        click_button 'ユーザーを更新する'
+        expect(current_path).to eq user_path(admin_user)
+        expect(page).to have_content '管理ユーザー'
+        expect(page).to have_content '管理ユーザーです。'
+      end
     end
   end
 

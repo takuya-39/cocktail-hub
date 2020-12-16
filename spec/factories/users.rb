@@ -43,4 +43,13 @@ FactoryBot.define do
     profile { 'ゲストユーザーです。' }
     image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/default_user_image.png'))
   end
+
+  trait :admin_user do
+    username { '管理ユーザー' }
+    email { 'admin@example.com' }
+    password { '000000000' }
+    profile { '管理ユーザーです。' }
+    image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/default_user_image.png'))
+    admin true
+  end
 end
