@@ -15,6 +15,10 @@ class UsersController < ApplicationController
     @posts = @user.posts.all.page(params[:page]).per(10)
   end
 
+  def like_posts
+    @posts = @user.liked_posts.all.page(params[:page]).per(10)
+  end
+
   def followings
     @users = @user.followings.page(params[:page]).per(10).order(created_at: 'DESC')
   end

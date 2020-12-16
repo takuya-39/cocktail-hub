@@ -40,6 +40,24 @@ RSpec.describe 'Users', type: :request do
     end
   end
 
+  describe '#like_posts' do
+    context 'ログインしている場合' do
+      it '正常にアクセスできること' do
+        sign_in user
+        get like_posts_user_path(user)
+        expect(response).to have_http_status(:success)
+        expect(response.status).to eq 200
+      end
+    end
+    context 'ログインしていない場合' do
+      it 'ログインページにリダイレクトされること' do
+        get like_posts_user_path(user)
+        expect(response.status).to eq 302
+        expect(response).to redirect_to login_path
+      end
+    end
+  end
+
   describe '#followings' do
     context 'ログインしている場合' do
       it '正常にアクセスできること' do

@@ -1,0 +1,13 @@
+#like-posts-pagination
+  = paginate @posts, remote: true
+  - @posts.each do |post|
+    div[id="post-#{ post.id }"]
+      .card.rounded.bg-light.mb-3.p-2
+        .row.d-flex.justify-content-center.align-items-center
+          .col-sm-3.col-md-3.mt-1
+            = link_to post, data: {"turbolinks" => false}
+              = image_tag post.display_image, class: 'resize-image rounded-circle', style: 'width: 70px; height: 70px;'
+          .col-sm-4.col-md-4.text-secondary
+            h5
+              = post.title
+  = paginate @posts, remote: true
