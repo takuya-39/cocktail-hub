@@ -54,27 +54,4 @@ RSpec.describe 'UsersProfile', type: :system, js: true do
       expect(page).not_to have_link 'ユーザーを削除'
     end
   end
-
-  context '管理ユーザーが別のユーザーのマイプロフィールにアクセスした場合' do
-    it '編集、削除ボタンとフォローボタンが表示されること' do
-      valid_login(admin_user)
-      expect(current_path).to eq user_path(admin_user)
-
-      find('.nav-icon-btn').click
-      find('.go-root').click
-      expect(current_path).to eq root_path
-
-      find(".post-#{ other_post.id }").click
-      expect(current_path).to eq "/posts/#{ other_post.id }"
-      find('.post-user').click
-      expect(current_path).to eq "/users/#{ other_user.id }"
-      expect(page).to have_content other_user.username
-      expect(page).to have_content other_user.profile
-      expect(page).to have_selector '#followings', text: other_user.followings.count
-      expect(page).to have_selector '#followers', text: other_user.followers.count
-      expect(page).to have_selector "#follow-form-#{ other_user.id }"
-      expect(page).to have_link 'ユーザーを編集'
-      expect(page).to have_link 'ユーザーを削除'
-    end
-  end
 end

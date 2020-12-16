@@ -1,21 +1,23 @@
 #followings-index
   = paginate @users, remote: true
   - @users.each do |user|
-    .card.rounded.bg-light.mb-3.p-2= link_to user, data: {"turbolinks" => false}
-      .row.d-flex.align-items-center
+    .card.rounded.bg-light.mb-3.p-2
+      .row.d-flex.justify-content-center.align-items-center
         - unless current_user == @user
           .col-sm-3.col-md-3.mt-1.ml-3
-            = image_tag user.display_image, class: 'resize-image rounded-circle', style: 'width: 70px; height: 70px;'
+            = link_to user, data: {"turbolinks" => false}
+              = image_tag user.display_image, class: 'resize-image rounded-circle', style: 'width: 70px; height: 70px;'
           .col-sm-4.col-md-4.text-secondary
             h5
               = user.username
         - else
           .col-sm-3.col-md-3.mt-1.ml-3
-            = image_tag user.display_image, class: 'resize-image rounded-circle', style: 'width: 70px; height: 70px;'
+            = link_to user, data: {"turbolinks" => false}
+              = image_tag user.display_image, class: 'resize-image rounded-circle', style: 'width: 70px; height: 70px;'
           .col-sm-4.col-md-4.text-secondary
             h5
               = user.username
-          .col.mr-2
+          .col-sm-4.col-md-4
             div[id="follow-form-#{ user.id }"]
               - if current_user.following?(user)
                 = form_for(current_user.relationships.find_by(follow_id: user.id), html: { method: :delete }, remote: true) do |f|

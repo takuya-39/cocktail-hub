@@ -80,6 +80,18 @@
   )
   user.image.attach(io: File.open('app/assets/images/user_f_image.jpg'), filename: 'user_f_image.jpg')
 
+  # ページネーションの表示確認の為のサンプルユーザーを10人作成する
+  10.times do |n|
+    user = User.create!(
+      username:              "サンプルユーザー#{ n }",
+      email:                 "sample-#{ n }@example.com",
+      password:              'password',
+      password_confirmation: 'password',
+      profile:               "サンプルユーザー#{ n }です。"
+    )
+    user.image.attach(io: File.open('app/assets/images/default_user_image.png'), filename: 'default_user_image.png')
+  end
+
 
 # ユーザーの投稿を作成する
   # ゲストユーザーの投稿を作成する

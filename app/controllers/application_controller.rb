@@ -32,7 +32,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [%i[image], :username, :profile])
   end
 
+  private
+
   def authenticate
     redirect_to login_path unless user_signed_in?
+  end
+
+  def baria_admin_user
+    redirect_to root_url(current_user) unless current_user.admin?
   end
 end
