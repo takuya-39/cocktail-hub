@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   def destroy
     set_post
     @post.destroy
-    redirect_to root_url
+    redirect_to root_url unless current_user.admin?
   end
 
   private

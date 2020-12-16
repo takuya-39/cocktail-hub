@@ -14,7 +14,7 @@ RSpec.describe 'AdminUsers', type: :system, js: true do
 
       visit admin_users_path
       expect(current_path).to eq admin_users_path
-      expect(page).to have_content test_user.username
+      expect(page).to have_content 'テストユーザー'
 
       # 管理ユーザーとゲストユーザーはユーザー一覧に表示されない
       expect(page).not_to have_content admin_user.username
@@ -23,7 +23,7 @@ RSpec.describe 'AdminUsers', type: :system, js: true do
       # ユーザーを削除する
       find("#user-delete-btn-#{ test_user.id }").click
       page.driver.browser.switch_to.alert.accept
-      expect(page).not_to have_content test_user.username
+      expect(page).not_to have_content 'テストユーザー'
       expect(User.where(email: 'test@example.com')).to be_empty
     end
   end
