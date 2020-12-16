@@ -11,6 +11,10 @@ class UsersController < ApplicationController
     @user.destroy
   end
 
+  def user_show_posts
+    @posts = @user.posts.all.page(params[:page]).per(10)
+  end
+
   def followings
     @users = @user.followings.page(params[:page]).per(10).order(created_at: 'DESC')
   end
