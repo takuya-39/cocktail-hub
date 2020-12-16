@@ -21,7 +21,23 @@ RSpec.describe 'UsersProfile', type: :system, js: true do
     expect(page).to have_link 'ユーザーを編集'
     expect(page).to have_link 'ユーザーを削除'
 
+    # ユーザーの投稿画面を確認する
+    click_link 'ユーザーの投稿'
+    expect(current_path).to eq "/users/#{ user.id }/user_show_posts"
+
+    # ユーザーのいいねした投稿画面を確認する
+    find('.nav-icon-btn').click
+    find('.users-show').click
+    expect(current_path).to eq "/users/#{ user.id }"
+
+    click_link 'いいねした投稿'
+    expect(current_path).to eq "/users/#{ user.id }/like_posts"
+
     # ユーザーのフォロー画面を確認する
+    find('.nav-icon-btn').click
+    find('.users-show').click
+    expect(current_path).to eq "/users/#{ user.id }"
+
     click_link 'フォロー'
     expect(current_path).to eq "/users/#{ user.id }/followings"
 
