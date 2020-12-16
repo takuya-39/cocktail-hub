@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   def destroy
     set_post
     @post.destroy
-    redirect_to root_url
+    redirect_to root_url unless current_user.admin?
   end
 
   private
@@ -59,6 +59,6 @@ class PostsController < ApplicationController
   end
 
   def baria_user
-    redirect_to root_url(current_user) unless Post.find(params[:id]).user.id.to_i == current_user.id
+    redirect_to root_url(current_user) unless Post.find(params[:id]).user.id.to_i == current_user.id || current_user.admin?
   end
 end

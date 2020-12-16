@@ -1,6 +1,9 @@
 .container-fluid.app-color-light
   .text-center.text-light.text-monospace.p-4
-    h1 マイプロフィール
+    - if current_user == @user
+      h1 マイプロフィール
+    - else
+      h1 ユーザープロフィール
 
   - if flash.notice.present?
       .alert.alert-primary
@@ -40,7 +43,7 @@
 
         = render 'users/shared/follow_form', user: @user
 
-  - if current_user == @user
+  - if current_user == @user || current_user.admin?
     .container
       .card.rounded-lg.app-color-sub
         .row

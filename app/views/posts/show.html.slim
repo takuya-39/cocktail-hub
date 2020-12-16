@@ -33,7 +33,7 @@
 
           .col-12.row.m-2.d-flex.align-items-center
             .col-sm-4.col-md-4.bg-light.rounded= link_to @post.user, data: {"turbolinks" => false}
-              = image_tag @post.user.display_image, class: 'resize-image rounded-circle post-user', style: 'width: 50px; height: 50px;'
+              = image_tag @post.user.display_image, class: 'resize-image rounded-circle mr-3 post-user', style: 'width: 50px; height: 50px;'
               p.text-secondary.d-inline-block.ml-2
                 = @post.user.username
 
@@ -53,7 +53,7 @@
           = render 'posts/shared/comments_form'
           = render 'posts/shared/comments_index'
 
-  - if current_user.id == @post.user_id
+  - if current_user.id == @post.user_id || current_user.admin?
     .container
       .card.rounded-lg.app-color-sub
         .row

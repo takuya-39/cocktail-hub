@@ -1,9 +1,14 @@
 class UsersController < ApplicationController
   before_action :authenticate
+  before_action :baria_admin_user, only: %i[destroy]
   before_action :set_user
 
   def show
     @relationshiops = @user.followings
+  end
+
+  def destroy
+    @user.destroy
   end
 
   def followings

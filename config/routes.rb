@@ -19,9 +19,10 @@ Rails.application.routes.draw do
   }
 
   devise_scope :user do
-    get 'signup', :to => 'users/registrations#new'
-    get 'login', :to => 'users/sessions#new'
-    get 'logout', :to => 'users/sessions#destroy'
+    resources :users
+    get 'signup', to: 'users/registrations#new'
+    get 'login', to: 'users/sessions#new'
+    get 'logout', to: 'users/sessions#destroy'
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   end
 
@@ -44,4 +45,9 @@ Rails.application.routes.draw do
   end
 
   resources :relationships, only: [:create, :destroy]
+
+  namespace :admin do
+    resources :users, only: [:index]
+    resources :posts, only: [:index]
+  end
 end

@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                     :bigint           not null, primary key
+#  admin                  :boolean          default(FALSE)
 #  email                  :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
 #  profile                :string(200)
@@ -41,5 +42,14 @@ FactoryBot.define do
     password { 'password' }
     profile { 'ゲストユーザーです。' }
     image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/default_user_image.png'))
+  end
+
+  trait :admin_user do
+    username { '管理ユーザー' }
+    email { 'admin@example.com' }
+    password { '000000000' }
+    profile { '管理ユーザーです。' }
+    image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/default_user_image.png'))
+    admin true
   end
 end
