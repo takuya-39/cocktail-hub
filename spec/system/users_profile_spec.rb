@@ -12,6 +12,8 @@ RSpec.describe 'UsersProfile', type: :system, js: true do
     # ユーザーのマイプロフィール画面を確認する
     valid_login(user)
     expect(current_path).to eq user_path(user)
+    expect(page).to have_content 'マイプロフィール'
+    expect(page).not_to have_content 'ユーザープロフィール'
     expect(page).to have_content user.username
     expect(page).to have_content user.profile
     expect(page).to have_selector '#followings', text: 1
@@ -45,6 +47,8 @@ RSpec.describe 'UsersProfile', type: :system, js: true do
       expect(current_path).to eq "/posts/#{ other_post.id }"
       find('.post-user').click
       expect(current_path).to eq "/users/#{ other_user.id }"
+      expect(page).to have_content 'ユーザープロフィール'
+      expect(page).not_to have_content 'マイプロフィール'
       expect(page).to have_content other_user.username
       expect(page).to have_content other_user.profile
       expect(page).to have_selector '#followings', text: other_user.followings.count
