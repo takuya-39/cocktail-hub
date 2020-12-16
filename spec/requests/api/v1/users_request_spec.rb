@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'ApiUsers', type: :request do
+RSpec.describe 'Api::V1::Users', type: :request do
   describe '#index' do
     let(:user) { create(:user, username: 'APIユーザー') }
 
