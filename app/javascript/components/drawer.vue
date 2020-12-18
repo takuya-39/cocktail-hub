@@ -7,6 +7,19 @@
       v-model="userData"
     >
 
+      <!-- ドロワーアイテム【ドロワーを閉じる】 -->
+      <v-list-item
+        class='close-drawer'
+        @click="$emit('switchDrawer')"
+      >
+        <v-list-item-icon>
+          <v-icon class="mdi-36px">
+            mdi-arrow-collapse-left
+          </v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>ドロワーを閉じる</v-list-item-title>
+      </v-list-item>
+
       <!-- ドロワーアイテム【Hubに戻る】 -->
       <v-list-item
         class='go-root'

@@ -126,7 +126,7 @@ export default {
     axios
       .get('/api/v1/rankings/')
       .then(res => {
-        this.posts = res.data
+        this.posts = res.data.slice(0, 3)
       })
       .catch(err => {
         this.loading = false;
