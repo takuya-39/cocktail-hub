@@ -4,7 +4,6 @@
   <v-list nav>
     <v-list-item-group
       active-class="deep-purple--text text--accent-4"
-      v-model="userData"
     >
 
       <!-- ドロワーアイテム【ドロワーを閉じる】 -->

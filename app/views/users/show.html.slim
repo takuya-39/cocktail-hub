@@ -6,8 +6,9 @@
       h1 ユーザープロフィール
 
   - if flash.notice.present?
-      .alert.alert-primary
-        = flash.notice
+      .container
+        .alert.alert-primary
+          = flash.notice
 
   .container
     .card.rounded-lg.app-color-sub
