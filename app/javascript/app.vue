@@ -1,7 +1,7 @@
 <template>
   <v-app id="app">
-    <app-header @goTop="goTop"/>
-    <router-view />
+    <app-header @goTop="goTop" @displaySearchForm="displaySearchForm" />
+    <router-view :postSearchForm="postSearchForm" @displaySearchForm="displaySearchForm" />
     <app-footer />
   </v-app>
 </template>
@@ -14,6 +14,7 @@ import AppFooter from 'components/app_footer.vue'
 export default {
   data: function () {
     return {
+      postSearchForm: false,
     }
   },
   components: {
@@ -23,6 +24,9 @@ export default {
   methods: {
     goTop: function() {
       document. getElementById("go-top").scrollIntoView(true)
+    },
+    displaySearchForm: function() {
+      this.postSearchForm = !this.postSearchForm;
     },
   }
 }

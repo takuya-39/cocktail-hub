@@ -11,9 +11,9 @@ RSpec.describe 'PostsSearch', type: :system, js: true do
     visit root_path
     expect(page).to have_selector ".post-#{ post_a.id }", text: 'サンプル'
     expect(page).to have_selector ".post-#{ post_b.id }", text: 'sample'
-    expect(page).to have_selector '#posts-search-btn'
+    expect(page).to have_selector '.posts-search-btn'
 
-    find('#posts-search-btn').click
+    find('.posts-search-btn').click
     fill_in '投稿検索ワードを入力', with: 'サンプル'
     expect(page).to have_selector ".post-#{ post_a.id }", text: 'サンプル'
     expect(page).not_to have_selector ".post-#{ post_b.id }", text: 'sample'
