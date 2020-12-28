@@ -80,12 +80,13 @@
       <v-spacer></v-spacer>
 
       <!-- ヘッダータイトル -->
-      <v-toolbar-title
-        class="font-weight-bold white--text display-1 mr-10"
+      <v-img
+        style="width: 300px; position: absolute; right: 20px; z-index: 10;"
+        :src="require('../../assets/images/app_title_image.png')"
         @click="$router.push('/').catch((e) => {}), reload()"
       >
-        Cooktail Hub
-      </v-toolbar-title>
+
+      </v-img>
     </v-app-bar>
 
     <!-- ドロワー -->
