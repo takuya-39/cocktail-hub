@@ -4,8 +4,20 @@
   <v-list nav>
     <v-list-item-group
       active-class="deep-purple--text text--accent-4"
-      v-model="userData"
     >
+
+      <!-- ドロワーアイテム【ドロワーを閉じる】 -->
+      <v-list-item
+        class='close-drawer'
+        @click="$emit('switchDrawer')"
+      >
+        <v-list-item-icon>
+          <v-icon class="mdi-36px">
+            mdi-arrow-collapse-left
+          </v-icon>
+        </v-list-item-icon>
+        <v-list-item-title>ドロワーを閉じる</v-list-item-title>
+      </v-list-item>
 
       <!-- ドロワーアイテム【Hubに戻る】 -->
       <v-list-item
@@ -157,7 +169,7 @@
 import axios from 'axios'
 
 export default {
-  data: function () {
+  data() {
     return {
       user: [],
       loggedInUser: [],

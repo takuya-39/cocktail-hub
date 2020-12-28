@@ -13,7 +13,7 @@
         max-width="100%"
       >
 
-      <!-- 投稿検索アイコン -->
+      <!-- 新規投稿アイコン -->
       <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
           <v-btn
@@ -22,22 +22,21 @@
             fixed
             right
             bottom
-            id="posts-search-btn"
-            class="bg-primary m-4"
-            style="z-index: 10;"
+            class="m-5 posts-new-btn"
+            style="background-color: #c1c1ff; z-index: 10;"
             v-bind="attrs"
             v-on="on"
-            @click="displaySearchForm"
+            @click="$router.push('/posts/new').catch((e) => {}), reload()"
           >
             <v-icon
-              large
+              x-large
               color="white"
             >
-              mdi-magnify
+              mdi-plus-circle-outline
             </v-icon>
           </v-btn>
-          </template>
-        <span>検索フォームを開く</span>
+        </template>
+        <span>投稿する</span>
       </v-tooltip>
 
       <!-- 投稿検索フォーム -->
@@ -70,7 +69,7 @@
                     class="mr-3"
                     v-bind="attrs"
                     v-on="on"
-                    @click="displaySearchForm"
+                    @click="$emit('displaySearchForm')"
                   >
                     <v-icon color="white">mdi-close</v-icon>
                   </v-btn>
@@ -86,7 +85,7 @@
             rounded
             id="posts-search-form"
             class="text-monospace pt-4"
-            label="投稿検索ワードを入力"
+            label="タイトルやジャンルを入力してください"
             v-model="keyword"
           >
           </v-text-field>
@@ -143,7 +142,7 @@
 import axios from 'axios'
 
 export default {
-  data: function() {
+  data() {
     return {
       posts: [],
       displayPosts: [],
@@ -151,42 +150,41 @@ export default {
       pageSize: 18,
       length: 0,
       keyword: '',
-      postSearchForm: false,
     };
   },
+  props: ['postSearchForm'],
   created() {
-    let api_url = '/api/v1/posts/';
-    axios
-      .get(api_url)
-      .then(res => {
-        this.posts = res.data
-      })
-      .catch(err => {
-        this.loading = false;
-        console.log(err);
-        });
+    this.getPosts();
   },
   computed: {
-    filteredPosts: function() {
-      this.length = Math.ceil(this.posts.length/this.pageSize);
-      this.displayPosts = this.posts.slice(this.pageSize*(this.page -1), this.pageSize*(this.page));
+    filteredPosts() {
       let displayPosts = [];
       for(let i in this.displayPosts) {
         let post = this.displayPosts[i];
-        if(post.title.indexOf(this.keyword) !== -1 ||
-          post.genre.indexOf(this.keyword) !== -1) {
+        if(post.title.indexOf(this.keyword) !== -1 || post.genre.indexOf(this.keyword) !== -1) {
           displayPosts.push(post);
         }
       }
-    return displayPosts;
-    },
+      return displayPosts;
+    }
   },
   methods: {
-    pageChange: function(pageNumber) {
-      this.displayPosts = this.posts.slice(this.pageSize*(pageNumber -1), this.pageSize*(pageNumber));
+    getPosts() {
+      let api_url = '/api/v1/posts/';
+      axios
+        .get(api_url)
+        .then(res => {
+          this.posts = res.data
+          this.length = Math.ceil(this.posts.length/this.pageSize);
+          this.displayPosts = this.posts.slice(this.pageSize*(this.page -1), this.pageSize*(this.page));
+        })
+        .catch(err => {
+          this.loading = false;
+          console.log(err);
+          });
     },
-    displaySearchForm: function() {
-      this.postSearchForm = !this.postSearchForm;
+    pageChange(page) {
+      this.displayPosts = this.posts.slice(this.pageSize*(page -1), this.pageSize*(page));
     },
     reload() {
       this.$router.go({path: this.$router.currentRoute.path, force: true});

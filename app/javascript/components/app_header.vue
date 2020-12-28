@@ -27,22 +27,29 @@
         <span>メニューを開く</span>
       </v-tooltip>
 
-      <!-- 新規投稿アイコン -->
-      <v-tooltip bottom>
+      <!-- 投稿検索アイコン -->
+      <v-tooltip
+        bottom
+        v-if="this.$route.path === '/'"
+      >
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             icon
-            class="posts-new-btn ml-10"
+            class="ml-10 posts-search-btn"
+            style="z-index: 10;"
             v-bind="attrs"
             v-on="on"
-            @click="$router.push('/posts/new').catch((e) => {}), reload()"
+            @click="$emit('displaySearchForm')"
           >
-            <v-icon color="white" large>
-              mdi-plus-circle-outline
+            <v-icon
+              large
+              color="white"
+            >
+              mdi-magnify
             </v-icon>
           </v-btn>
-        </template>
-        <span>投稿する</span>
+          </template>
+        <span>検索フォームを開く</span>
       </v-tooltip>
 
       <!-- トップに戻るアイコン -->
@@ -54,9 +61,9 @@
           <v-btn
             icon
             class="ml-10 mt-2 go-top-btn"
-            @click="$emit('goTop')"
             v-bind="attrs"
             v-on="on"
+            @click="$emit('goTop')"
           >
             <v-icon
               large
@@ -144,7 +151,7 @@ import Ranking from "components/ranking.vue";
 import Random from "components/random.vue";
 
 export default {
-  data: function () {
+  data() {
     return {
       menuDrawer: false,
       dialogExplanation: false,
@@ -159,16 +166,16 @@ export default {
     Random,
   },
   methods: {
-    switchDrawer: function () {
+    switchDrawer() {
       this.menuDrawer = !this.menuDrawer;
     },
-    switchExplanation: function () {
+    switchExplanation() {
       this.dialogExplanation = !this.dialogExplanation;
     },
-    switchRanking: function () {
+    switchRanking() {
       this.dialogRanking = !this.dialogRanking;
     },
-    switchRandom: function () {
+    switchRandom() {
       this.dialogRandom = !this.dialogRandom;
     },
     reload() {

@@ -235,21 +235,18 @@
     Like.create!(post_id: i, user_id: 5)
   end
 
-  # 安永が他の全ての投稿へいいねする
-  (21..27).each do |i|
-    next if i == 26
+  # 安永が一部の投稿へいいねする
+  (21..23).each do |i|
     Like.create!(post_id: i, user_id: 6)
   end
 
   # seiraが一部の投稿へいいねする
-  (21..24).each do |i|
+  (21..22).each do |i|
     Like.create!(post_id: i, user_id: 7)
   end
 
   # YUIが一部の投稿へいいねする
-  (25..27).each do |i|
-    Like.create!(post_id: i, user_id: 8)
-  end
+  Like.create!(post_id: 21, user_id: 8)
 
 # フォロー関係を作成する
   # ゲストユーザーが他の全てのサンプルユーザーをフォローする

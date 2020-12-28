@@ -8,6 +8,10 @@ RSpec.describe 'Posts', type: :system, js: true do
     expect(current_path).to eq "/users/#{ user.id }"
 
     # 新規投稿する
+    find('.nav-icon-btn').click
+    find('.go-root').click
+    expect(current_path).to eq root_path
+
     find('.posts-new-btn').click
     expect(current_path).to eq new_post_path
     expect(page).to have_content '新規投稿'

@@ -77,7 +77,7 @@
 import axios from 'axios'
 
 export default {
-  data: function () {
+  data() {
     return {
       imagePath: require('../../assets/images/question_image.jpg'),
       posts: [],
@@ -98,7 +98,7 @@ export default {
         });
   },
   methods: {
-    randomNumber: function () {
+    randomNumber() {
       this.random = 1 + Math.floor( Math.random() * this.posts.length );
     },
   }
