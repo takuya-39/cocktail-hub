@@ -14,25 +14,25 @@ RSpec.describe 'PostsSearch', type: :system, js: true do
     expect(page).to have_selector '.posts-search-btn'
 
     find('.posts-search-btn').click
-    fill_in '投稿検索ワードを入力', with: 'サンプル'
+    fill_in 'タイトルやジャンルを入力してください', with: 'サンプル'
     expect(page).to have_selector ".post-#{ post_a.id }", text: 'サンプル'
     expect(page).not_to have_selector ".post-#{ post_b.id }", text: 'sample'
 
-    fill_in '投稿検索ワードを入力', with: 'sample'
+    fill_in 'タイトルやジャンルを入力してください', with: 'sample'
     expect(page).not_to have_selector ".post-#{ post_a.id }", text: 'サンプル'
     expect(page).to have_selector ".post-#{ post_b.id }", text: 'sample'
 
     # ジャンルのワードで検索
-    fill_in '投稿検索ワードを入力', with: 'ビール'
+    fill_in 'タイトルやジャンルを入力してください', with: 'ビール'
     expect(page).to have_selector ".post-#{ post_a.id }", text: 'サンプル'
     expect(page).not_to have_selector ".post-#{ post_b.id }", text: 'sample'
 
-    fill_in '投稿検索ワードを入力', with: 'ウイスキー'
+    fill_in 'タイトルやジャンルを入力してください', with: 'ウイスキー'
     expect(page).not_to have_selector ".post-#{ post_a.id }", text: 'サンプル'
     expect(page).to have_selector ".post-#{ post_b.id }", text: 'sample'
 
     # リアルタイム検索
-    fill_in '投稿検索ワードを入力', with: 'サ'
+    fill_in 'タイトルやジャンルを入力してください', with: 'サ'
     expect(page).to have_selector ".post-#{ post_a.id }", text: 'サンプル'
     expect(page).not_to have_selector ".post-#{ post_b.id }", text: 'sample'
   end

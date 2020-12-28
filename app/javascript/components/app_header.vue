@@ -151,7 +151,7 @@ import Ranking from "components/ranking.vue";
 import Random from "components/random.vue";
 
 export default {
-  data: function () {
+  data() {
     return {
       menuDrawer: false,
       dialogExplanation: false,
@@ -166,16 +166,16 @@ export default {
     Random,
   },
   methods: {
-    switchDrawer: function () {
+    switchDrawer() {
       this.menuDrawer = !this.menuDrawer;
     },
-    switchExplanation: function () {
+    switchExplanation() {
       this.dialogExplanation = !this.dialogExplanation;
     },
-    switchRanking: function () {
+    switchRanking() {
       this.dialogRanking = !this.dialogRanking;
     },
-    switchRandom: function () {
+    switchRandom() {
       this.dialogRandom = !this.dialogRandom;
     },
     reload() {

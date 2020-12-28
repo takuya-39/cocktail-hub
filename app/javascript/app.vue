@@ -12,7 +12,7 @@ import AppHeader from 'components/app_header.vue'
 import AppFooter from 'components/app_footer.vue'
 
 export default {
-  data: function () {
+  data() {
     return {
       postSearchForm: false,
     }
@@ -22,10 +22,10 @@ export default {
     'app-footer': AppFooter,
   },
   methods: {
-    goTop: function() {
+    goTop() {
       document. getElementById("go-top").scrollIntoView(true)
     },
-    displaySearchForm: function() {
+    displaySearchForm() {
       this.postSearchForm = !this.postSearchForm;
     },
   }

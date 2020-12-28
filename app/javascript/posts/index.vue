@@ -85,7 +85,7 @@
             rounded
             id="posts-search-form"
             class="text-monospace pt-4"
-            label="投稿検索ワードを入力"
+            label="タイトルやジャンルを入力してください"
             v-model="keyword"
           >
           </v-text-field>
@@ -142,7 +142,7 @@
 import axios from 'axios'
 
 export default {
-  data: function() {
+  data() {
     return {
       posts: [],
       displayPosts: [],
@@ -154,35 +154,37 @@ export default {
   },
   props: ['postSearchForm'],
   created() {
-    let api_url = '/api/v1/posts/';
-    axios
-      .get(api_url)
-      .then(res => {
-        this.posts = res.data
-      })
-      .catch(err => {
-        this.loading = false;
-        console.log(err);
-        });
+    this.getPosts();
   },
   computed: {
-    filteredPosts: function() {
-      this.length = Math.ceil(this.posts.length/this.pageSize);
-      this.displayPosts = this.posts.slice(this.pageSize*(this.page -1), this.pageSize*(this.page));
+    filteredPosts() {
       let displayPosts = [];
       for(let i in this.displayPosts) {
         let post = this.displayPosts[i];
-        if(post.title.indexOf(this.keyword) !== -1 ||
-          post.genre.indexOf(this.keyword) !== -1) {
+        if(post.title.indexOf(this.keyword) !== -1 || post.genre.indexOf(this.keyword) !== -1) {
           displayPosts.push(post);
         }
       }
-    return displayPosts;
-    },
+      return displayPosts;
+    }
   },
   methods: {
-    pageChange: function(pageNumber) {
-      this.displayPosts = this.posts.slice(this.pageSize*(pageNumber -1), this.pageSize*(pageNumber));
+    getPosts() {
+      let api_url = '/api/v1/posts/';
+      axios
+        .get(api_url)
+        .then(res => {
+          this.posts = res.data
+          this.length = Math.ceil(this.posts.length/this.pageSize);
+          this.displayPosts = this.posts.slice(this.pageSize*(this.page -1), this.pageSize*(this.page));
+        })
+        .catch(err => {
+          this.loading = false;
+          console.log(err);
+          });
+    },
+    pageChange(page) {
+      this.displayPosts = this.posts.slice(this.pageSize*(page -1), this.pageSize*(page));
     },
     reload() {
       this.$router.go({path: this.$router.currentRoute.path, force: true});
