@@ -4,15 +4,15 @@
     div[id="post-#{ post.id }"]
       .card.rounded.bg-light.mb-3.p-2
         .row.d-flex.justify-content-center.align-items-center
-          .col-sm-3.col-md-3.mt-1
+          .col-3.mt-1
             = link_to post, data: {"turbolinks" => false}
               = image_tag post.display_image, class: 'resize-image rounded-circle', style: 'width: 70px; height: 70px;'
-          .col-sm-4.col-md-4.text-secondary
+          .col-4.text-secondary
             h5
               = post.title
-          .col-sm-2.col-md-2.text-dark
+          .col-2.text-dark
             p
               = post.user.username
-          .col-sm-2.col-md-2
+          .col-2
             = link_to '削除', post, method: :delete, data: {'turbolinks' => false, remote: true, confirm: '本当に投稿を削除しますか？'}, id: "post-delete-btn-#{ post.id }", class: 'btn btn-lg btn-danger text-light'
   = paginate @posts, remote: true

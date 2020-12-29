@@ -3,9 +3,9 @@
   - @users.each do |user|
     .card.rounded.bg-light.mb-3.p-2
       .row
-        .col-sm-3.col-md-3.mt-1.ml-3= link_to user, data: {"turbolinks" => false}
+        .col-3.mt-1.ml-3= link_to user, data: {"turbolinks" => false}
           = image_tag user.display_image, class: 'resize-image rounded-circle', style: 'width: 70px; height: 70px;'
-        .col-sm-4.col-md-4.text-secondary.d-flex.align-items-center
+        .col-4.text-secondary.d-flex.align-items-center
           h5
             = user.username
   = paginate @users, remote: true

@@ -9,10 +9,10 @@
       .card.rounded-lg.app-color-sub
         .card-body
           .row.card-title.justify-content-center
-            .col-sm-6.col-md-6.form-group
+            .col-10.col-lg-6.form-group
               = p.label :title, class: 'col-form-label-lg text-monospace'
               = p.text_field :title, id: 'Title', class: 'form-control border-dark', placeholder: 'オリジナルカクテル'
-            .col-sm-6.col-md-6.form-group
+            .col-10.col-lg-6.form-group
               = p.label :genre, class: 'col-form-label-lg text-monospace'
               = p.select :genre,
                 %i[ビール ウイスキー 焼酎 日本酒 ワイン ブランデー テキーラ ウォッカ ラム ジン 果実酒 その他 ノンアルコール おつまみ],

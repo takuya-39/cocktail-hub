@@ -11,10 +11,10 @@
       .card-body
         .row.justify-content-center
           .row.card-title.text-center
-            .col-sm-6.col-md-6
+            .col-12.col-sm-6
               h4.text-monospace
                 = @post.title
-            .col-sm-6.col-md-6
+            .col-12.col-sm-6
               h4.text-secondary
                 = @post.genre
           .col-12.card-img
@@ -33,16 +33,16 @@
                   = safe_join(@post.memo.split("\n"),tag(:br))
 
           .col-12.row.m-2.d-flex.align-items-center
-            .col-sm-4.col-md-4.bg-light.rounded= link_to @post.user, data: {"turbolinks" => false}
+            .col-4.bg-light.rounded= link_to @post.user, data: {"turbolinks" => false}
               = image_tag @post.user.display_image, class: 'resize-image rounded-circle mr-3 post-user', style: 'width: 50px; height: 50px;'
               p.text-secondary.d-inline-block.ml-2
                 = @post.user.username
 
-            .col-sm-4.col-md-4.text-secondary.ml-5
+            .col-4.text-secondary.ml-5
               p 投稿作成日時
               = simple_time(@post[:created_at])
 
-            .col-sm-2.col-md-2.card-body
+            .col-2.card-body
               = render 'posts/shared/like_form'
 
   .container
