@@ -22,13 +22,17 @@
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               icon
-              large
               class="mt-5 mr-3"
               v-bind="attrs"
               v-on="on"
               @click="$emit('switchRanking')"
             >
-              <v-icon color="white">mdi-close</v-icon>
+              <v-icon
+                size="50px"
+                color="white"
+              >
+                mdi-close
+              </v-icon>
             </v-btn>
           </template>
           <span>閉じる</span>
@@ -91,7 +95,7 @@
             >
               <v-img
                 class="align-end"
-                height="200px"
+                height="250px"
                 gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                 :src="post.image"
               >
@@ -123,16 +127,21 @@ export default {
     }
   },
   created() {
-    axios
-      .get('/api/v1/rankings/')
-      .then(res => {
-        this.posts = res.data
-      })
-      .catch(err => {
-        this.loading = false;
-        console.log(err);
-        });
+    this.getPosts();
   },
+  methods: {
+    getPosts() {
+      axios
+        .get('/api/v1/rankings/')
+        .then(res => {
+          this.posts = res.data
+        })
+        .catch(err => {
+          this.loading = false;
+          console.log(err);
+        });
+    }
+  }
 }
 </script>
 

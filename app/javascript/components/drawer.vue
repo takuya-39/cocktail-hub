@@ -176,12 +176,22 @@ export default {
     }
   },
   created() {
-    axios.get('/api/v1/users')
-      .then(res => {
-        this.user = res.data
-        this.loggedInUser = this.user
-      })
+    this.getUser();
   },
+  methods: {
+    getUser() {
+      axios
+        .get('/api/v1/users')
+        .then(res => {
+          this.user = res.data
+          this.loggedInUser = this.user
+        })
+        .catch(err => {
+          this.loading = false;
+          console.log(err);
+        });
+    }
+  }
 }
 </script>
 

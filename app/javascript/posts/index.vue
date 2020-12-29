@@ -14,22 +14,22 @@
       >
 
       <!-- 新規投稿アイコン -->
-      <v-tooltip bottom>
+      <v-tooltip
+        bottom
+      >
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             icon
-            x-large
             fixed
             right
             bottom
             class="m-5 posts-new-btn"
-            style="background-color: #c1c1ff; z-index: 10;"
             v-bind="attrs"
             v-on="on"
             @click="$router.push('/posts/new').catch((e) => {}), reload()"
           >
             <v-icon
-              x-large
+              size="80px"
               color="white"
             >
               mdi-plus-circle-outline
@@ -92,36 +92,40 @@
         </v-container>
       </v-form>
 
-        <v-row dense>
-          <v-col
-            v-for="post in filteredPosts"
-            :key="post.index"
-            cols=12 sm=6 md=6 lg=4
+      <v-row dense>
+        <v-col
+          v-for="post in filteredPosts"
+          :key="post.index"
+          cols=12
+          sm=6
+          md=6
+          lg=4
+        >
+
+          <!-- (それぞれの投稿カード) -->
+          <v-card
+            :class="[`post-${post.id}`]"
+            @click="$router.push(`/posts/${post.id}`).catch(e=>{}), reload()"
+            class=""
           >
-
-            <!-- (それぞれの投稿カード) -->
-            <v-card
-              :class="[`post-${post.id}`]"
-              @click="$router.push(`/posts/${post.id}`).catch(e=>{}), reload()"
+            <!-- (投稿カードのイメージ) -->
+            <v-img
+              class="align-end"
+              height="250px"
+              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+              :src="post.image"
             >
-              <!-- (投稿カードのイメージ) -->
-              <v-img
-                class="align-end"
-                height="250px"
-                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                :src="post.image"
+              <!-- (投稿カードのタイトル) -->
+              <v-card-title
+                class="grey--text text--lighten-1 body-3 font-italic"
+                v-text="post.title"
               >
-                <!-- (投稿カードのタイトル) -->
-                <v-card-title
-                  class="grey--text text--lighten-1 body-3 font-italic"
-                  v-text="post.title"
-                >
-                </v-card-title>
-              </v-img>
-            </v-card>
+              </v-card-title>
+            </v-img>
+          </v-card>
 
-          </v-col>
-        </v-row>
+        </v-col>
+      </v-row>
 
       <!-- ページネーション -->
       <v-pagination
@@ -181,7 +185,7 @@ export default {
         .catch(err => {
           this.loading = false;
           console.log(err);
-          });
+        });
     },
     pageChange(page) {
       this.displayPosts = this.posts.slice(this.pageSize*(page -1), this.pageSize*(page));
@@ -194,9 +198,17 @@ export default {
 </script>
 
 <style scoped>
-.posts-search-form {
-  position: sticky;
-  top: 80px;
-  z-index: 1;
-}
+  .posts-new-btn {
+    height: 80px;
+    width: 80px;
+    background-color: #c1c1ff;
+    opacity: 0.9;
+    z-index: 10;
+  }
+
+  .posts-search-form {
+    position: sticky;
+    top: 80px;
+    z-index: 1;
+  }
 </style>

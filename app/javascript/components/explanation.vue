@@ -24,13 +24,17 @@
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               icon
-              large
               class="mt-5 mr-3"
               v-bind="attrs"
               v-on="on"
               @click="$emit('switchExplanation')"
             >
-              <v-icon color="white">mdi-close</v-icon>
+              <v-icon
+                size="50px"
+                color="white"
+              >
+                mdi-close
+              </v-icon>
             </v-btn>
           </template>
           <span>閉じる</span>
