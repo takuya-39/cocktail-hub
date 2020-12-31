@@ -12,7 +12,7 @@
         color="#090422"
       >
         <!-- Cocktail Hubとは？ダイアログのタイトル -->
-        <v-card-title class="display-1 font-weight-bold mt-15 ml-3">
+        <v-card-title class="display-2 font-weight-bold mt-15 ml-3">
           Cocktail Hubとは？
         </v-card-title>
 
@@ -42,23 +42,23 @@
       </v-toolbar>
 
       <!-- 本文 -->
-      <v-container class="row mx-2">
+      <v-container class="row mx-5 mt-5">
         <v-container class="col-12 text-monospace mt-15">
           <h5>「これにあれを加えてみると美味しいのかな？」</h5>
         </v-container>
-        <v-container class="col-12 text-monospace mt-2">
+        <v-container class="col-12 text-monospace mt-5">
           <h5>
             Cocktail Hubとはあなたが作った<br>
             オリジナルのカクテルを沢山の人にシェアできるアプリです。
           </h5>
         </v-container>
-        <v-container class="col-12 text-monospace mt-2">
+        <v-container class="col-12 text-monospace mt-5">
           <h5>
             あなただけのアイデアを、あなただけの組み合わせを探してみませんか？<br>
             まずは好奇心のおもむくままに様々なカクテルをご自身で作成してみてください！
           </h5>
         </v-container>
-        <v-container class="col-12 text-monospace mt-2">
+        <v-container class="col-12 text-monospace mt-5">
           <h4>あなたが作ったオリジナルカクテルをみんなと共有してみましょう！</h4>
         </v-container>
       </v-container>
