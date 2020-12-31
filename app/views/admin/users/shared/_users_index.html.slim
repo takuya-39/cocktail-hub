@@ -6,12 +6,12 @@
     div[id="user-#{ user.id }"]
       .card.rounded.bg-light.mb-3.p-2
         .row.d-flex.justify-content-center.align-items-center
-          .col-sm-3.col-md-3.mt-1
+          .col-3.mt-1
             = link_to user, data: {"turbolinks" => false}
               = image_tag user.display_image, class: 'resize-image rounded-circle', style: 'width: 70px; height: 70px;'
-          .col-sm-4.col-md-4.text-secondary
+          .col-4.text-secondary
             h5
               = user.username
-          .col-sm-4.col-md-4
+          .col-4
             = link_to '削除', user, method: :delete, data: {'turbolinks' => false, remote: true, confirm: '本当にユーザーを削除しますか？'}, id: "user-delete-btn-#{ user.id }", class: 'btn btn-lg btn-danger text-light px-5'
   = paginate @users, remote: true

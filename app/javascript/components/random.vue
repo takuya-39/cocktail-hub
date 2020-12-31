@@ -22,13 +22,17 @@
           <template v-slot:activator="{ on, attrs }">
             <v-btn
               icon
-              large
               class="mt-5 mr-3"
               v-bind="attrs"
               v-on="on"
               @click="$emit('switchRandom')"
             >
-              <v-icon color="white">mdi-close</v-icon>
+              <v-icon
+                size="50px"
+                color="white"
+              >
+                mdi-close
+              </v-icon>
             </v-btn>
           </template>
           <span>閉じる</span>
@@ -59,7 +63,7 @@
             >
               <v-img
                 class="align-end"
-                height="200px"
+                height="250px"
                 gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                 :src="imagePath"
               >
@@ -85,19 +89,22 @@ export default {
     }
   },
   created() {
-    let api_url = '/api/v1/posts/';
-    axios
-      .get(api_url)
-      .then(res => {
-        this.posts = res.data
-        this.randomNumber()
-      })
-      .catch(err => {
-        this.loading = false;
-        console.log(err);
-        });
+    this.getPosts();
   },
   methods: {
+    getPosts() {
+      let api_url = '/api/v1/posts/';
+      axios
+        .get(api_url)
+        .then(res => {
+          this.posts = res.data
+          this.randomNumber()
+        })
+        .catch(err => {
+          this.loading = false;
+          console.log(err);
+        });
+    },
     randomNumber() {
       this.random = 1 + Math.floor( Math.random() * this.posts.length );
     },

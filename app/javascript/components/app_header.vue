@@ -9,20 +9,25 @@
       fixed
       class="white--text"
       color="#d1c4e9"
-      height="70px"
+      height="100px"
     >
       <!-- ヘッダーナビアイコン -->
       <v-tooltip bottom>
         <template v-slot:activator="{ on, attrs }">
-          <v-app-bar-nav-icon
-            x-large
-            class="nav-icon-btn ml-5"
-            color="white"
+          <v-btn
+            icon
+            class="ml-10 nav-icon-btn"
             v-bind="attrs"
             v-on="on"
             @click="switchDrawer"
           >
-          </v-app-bar-nav-icon>
+            <v-icon
+              size="50px"
+              color="white"
+            >
+              mdi-menu
+            </v-icon>
+          </v-btn>
         </template>
         <span>メニューを開く</span>
       </v-tooltip>
@@ -35,14 +40,14 @@
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             icon
-            class="ml-10 posts-search-btn"
+            class="ml-15 posts-search-btn"
             style="z-index: 10;"
             v-bind="attrs"
             v-on="on"
             @click="$emit('displaySearchForm')"
           >
             <v-icon
-              large
+              size="50px"
               color="white"
             >
               mdi-magnify
@@ -60,13 +65,13 @@
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             icon
-            class="ml-10 mt-2 go-top-btn"
+            class="ml-15 mt-2 go-top-btn"
             v-bind="attrs"
             v-on="on"
             @click="$emit('goTop')"
           >
             <v-icon
-              large
+              size="50px"
               color="white"
             >
               mdi-apple-keyboard-control
@@ -80,12 +85,12 @@
       <v-spacer></v-spacer>
 
       <!-- ヘッダータイトル -->
-      <v-toolbar-title
-        class="font-weight-bold white--text display-1 mr-10"
+      <v-img
+        class="app-title-image"
+        :src="imagePath"
         @click="$router.push('/').catch((e) => {}), reload()"
       >
-        Cooktail Hub
-      </v-toolbar-title>
+      </v-img>
     </v-app-bar>
 
     <!-- ドロワー -->
@@ -153,6 +158,7 @@ import Random from "components/random.vue";
 export default {
   data() {
     return {
+      imagePath: require('../../assets/images/app_title_image.png'),
       menuDrawer: false,
       dialogExplanation: false,
       dialogRanking: false,
@@ -185,5 +191,20 @@ export default {
 };
 </script>
 
-<style scoped>
+<style
+  lang="scss"
+  scoped
+>
+  .app-title-image {
+    width: 400px;
+    position: absolute;
+    right: 30px;
+    z-index: 10;
+  }
+
+  @media (max-width: 780px) {
+    .app-title-image {
+      display: none;
+    }
+}
 </style>

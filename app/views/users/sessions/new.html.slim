@@ -6,10 +6,10 @@
     .container.mb-3
       .card.rounded-lg.app-color-sub
         .row
-          .col.text-center
-            = link_to 'ゲストユーザーでログインする', users_guest_sign_in_path, method: :post, data: {"turbolinks" => false}, class: 'btn btn-lg shadow-lg text-light text-monospace m-2 app-color-dark'
-          .col.text-center
-            = link_to '新規ユーザーを作成する', signup_path, data: {"turbolinks" => false}, class: 'btn btn-lg shadow-lg text-light text-monospace m-2 app-color-dark'
+          .col-12.col-lg-6.text-center.my-2
+            = link_to 'ゲストユーザーでログインする', users_guest_sign_in_path, method: :post, data: {"turbolinks" => false}, class: 'btn btn-lg btn-primary shadow-lg text-light text-monospace m-2'
+          .col-12.col-lg-6.text-center.my-2
+            = link_to '新規ユーザーを作成する', signup_path, data: {"turbolinks" => false}, class: 'btn btn-lg shadow-lg text-light text-monospace m-2 app-color-btn'
 
     - if alert.present?
       .container
@@ -27,12 +27,12 @@
             = u.password_field :password, autofocus: true, autocomplete: 'new-password', id: 'Password', class: 'form-control border-dark'
           .container
             .row
-              .col
+              .col-6
                 - if devise_mapping.rememberable?
                   .container.text-center
                     .field
                       = u.label :remember_me, class: 'text-monospace mr-3'
                       = u.check_box :remember_me, class: 'border-dark', style: "transform:scale(2.0);"
-              .col
+              .col-6
                 .form-group.text-center
                   = u.submit 'ログインする', class: 'btn btn-lg shadow-lg text-light text-monospace app-color-btn'
