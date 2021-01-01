@@ -1,7 +1,6 @@
 # Cocktail Hub
 
-![cocktail-hub](https://user-images.githubusercontent.com/53992902/103436010-6a5a4300-4c5a-11eb-87a0-836df9d78486.gif)
-
+![cocktail-hub](https://user-images.githubusercontent.com/53992902/103436803-f7a19580-4c62-11eb-89ac-6a83240794d1.png)
 
 # 概要
 
@@ -103,7 +102,7 @@ https://www.cocktail-hub.site/
 
 # インフラ構成図
 
-![インフラ構成図](https://user-images.githubusercontent.com/53992902/103436025-bd33fa80-4c5a-11eb-8fbf-600ec8358a9d.png)
+![インフラ構成図](https://user-images.githubusercontent.com/53992902/103436635-320a3300-4c61-11eb-8091-0a6b4fcf3201.png)
 
 # 工夫した点
 
