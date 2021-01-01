@@ -94,9 +94,9 @@
 
 # ユーザーの投稿を作成する
   # ページネーション表示確認の為にゲストユーザーのサンプルの投稿を20個作成する
-  20.times do |n|
+  30.times do |n|
     post = Post.new(
-      title: "ページネーション表示確認用サンプル#{ n }",
+      title: "サンプル#{ n }",
       genre: 'その他',
       ingredients:
         "・サンプル".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
@@ -110,7 +110,7 @@
 
   # ゲストユーザーの投稿を作成する
   post = Post.new(
-    id: 21,
+    id: 31,
     title: 'ホットココアスキー',
     genre: 'ウイスキー',
     ingredients:
@@ -124,7 +124,7 @@
 
   # takuyaの投稿を作成する
   post = Post.new(
-    id: 22,
+    id: 32,
     title: '塩エルディアブロ',
     genre: 'テキーラ',
     ingredients:
@@ -138,7 +138,7 @@
 
   # いっしーの投稿を作成する
   post = Post.new(
-    id: 23,
+    id: 33,
     title: 'お手軽サングリア',
     genre: 'ワイン',
     ingredients:
@@ -152,7 +152,7 @@
 
   # ユウタロウの投稿を作成する
   post = Post.new(
-    id: 24,
+    id: 34,
     title: '超辛口ジンジャーハイボール',
     genre: 'ウイスキー',
     ingredients:
@@ -166,7 +166,7 @@
 
   # 安永の投稿を作成する
   post = Post.new(
-    id: 25,
+    id: 35,
     title: 'ラム梅酒~レモン仕立て~',
     genre: 'ラム',
     ingredients:
@@ -180,7 +180,7 @@
 
   # seiraの投稿を作成する
   post = Post.new(
-    id: 26,
+    id: 36,
     title: 'シナモン香るアップルミルク',
     genre: '果実酒',
     ingredients:
@@ -194,7 +194,7 @@
 
   # YUIの投稿を作成する
   post = Post.new(
-    id: 27,
+    id: 37,
     title: 'ノンアルコールモヒート',
     genre: 'ノンアルコール',
     ingredients:
@@ -209,44 +209,44 @@
 
 # 投稿へのいいねを作成する
   # ゲストユーザーが全ての投稿へいいねする
-  (21..27).each do |i|
+  (31..37).each do |i|
     Like.create!(post_id: i, user_id: 2)
   end
 
   # takuyaが全ての投稿へいいねする
-  (21..27).each do |i|
+  (31..37).each do |i|
     Like.create!(post_id: i, user_id: 3)
   end
 
   # いっしーが一部の投稿へいいねする
-  (21..27).each do |i|
-    next if i == 22
-    next if i == 24
-    next if i == 26
+  (31..37).each do |i|
+    next if i == 32
+    next if i == 34
+    next if i == 36
     Like.create!(post_id: i, user_id: 4)
   end
 
   # ユウタロウが一部の投稿へいいねする
-  (21..27).each do |i|
-    next if i == 21
-    next if i == 23
-    next if i == 25
-    next if i == 27
+  (31..37).each do |i|
+    next if i == 31
+    next if i == 33
+    next if i == 35
+    next if i == 37
     Like.create!(post_id: i, user_id: 5)
   end
 
   # 安永が一部の投稿へいいねする
-  (21..23).each do |i|
+  (31..33).each do |i|
     Like.create!(post_id: i, user_id: 6)
   end
 
   # seiraが一部の投稿へいいねする
-  (21..22).each do |i|
+  (31..32).each do |i|
     Like.create!(post_id: i, user_id: 7)
   end
 
   # YUIが一部の投稿へいいねする
-  Like.create!(post_id: 21, user_id: 8)
+  Like.create!(post_id: 31, user_id: 8)
 
 # フォロー関係を作成する
   # ゲストユーザーが他の全てのサンプルユーザーをフォローする
@@ -296,24 +296,29 @@
 
 # コメントを作成する
   # 一部のユーザーが全ての投稿にコメントする
-  Post.all.each do |post|
-    post.comments.create!(
+  (31..37).each do |i|
+    Comment.create!(
+      post_id: i,
       user_id: 2,
       content: 'すごく美味しそう！'
     )
-    post.comments.create!(
+    Comment.create!(
+      post_id: i,
       user_id: 3,
       content: '作ってみたくなりますね！'
     )
-    post.comments.create!(
+    Comment.create!(
+      post_id: i,
       user_id: 4,
       content: 'おしゃれ！！'
     )
-    post.comments.create!(
+    Comment.create!(
+      post_id: i,
       user_id: 5,
       content: 'アイデアがおもしろいと思います！'
     )
-    post.comments.create!(
+    Comment.create!(
+      post_id: i,
       user_id: 6,
       content: '実際に作ってみたけど美味しかったです！'
     )
@@ -321,7 +326,7 @@
 
   # ページネーション表示確認の為にゲストユーザーの投稿にサンプルコメントを50個作成する
   50.times do |n|
-    Post.first.comments.create!(
+    Post.find_by(id: 31).comments.create!(
         user_id: 2,
         content: "ページネーション表示確認用サンプルコメント#{n}"
     )

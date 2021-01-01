@@ -128,12 +128,12 @@
       </v-row>
 
       <!-- ページネーション -->
-      <v-pagination
+      <!-- <v-pagination
         v-model="page"
         :length="length"
         @input="pageChange"
       >
-      </v-pagination>
+      </v-pagination> -->
       </v-container>
     </v-card>
 
@@ -150,9 +150,9 @@ export default {
     return {
       posts: [],
       displayPosts: [],
-      page: 1,
-      pageSize: 18,
-      length: 0,
+      // page: 1,
+      // pageSize: 18,
+      // length: 0,
       keyword: '',
     };
   },
@@ -162,14 +162,14 @@ export default {
   },
   computed: {
     filteredPosts() {
-      let displayPosts = [];
-      for(let i in this.displayPosts) {
-        let post = this.displayPosts[i];
+      let posts = [];
+      for(let i in this.posts) {
+        let post = this.posts[i];
         if(post.title.indexOf(this.keyword) !== -1 || post.genre.indexOf(this.keyword) !== -1) {
-          displayPosts.push(post);
+          posts.push(post);
         }
       }
-      return displayPosts;
+      return posts;
     }
   },
   methods: {
@@ -179,17 +179,15 @@ export default {
         .get(api_url)
         .then(res => {
           this.posts = res.data
-          this.length = Math.ceil(this.posts.length/this.pageSize);
-          this.displayPosts = this.posts.slice(this.pageSize*(this.page -1), this.pageSize*(this.page));
         })
         .catch(err => {
           this.loading = false;
           console.log(err);
         });
     },
-    pageChange(page) {
-      this.displayPosts = this.posts.slice(this.pageSize*(page -1), this.pageSize*(page));
-    },
+    // pageChange(page) {
+    //   this.displayPosts = this.posts.slice(this.pageSize*(page -1), this.pageSize*(page));
+    // },
     reload() {
       this.$router.go({path: this.$router.currentRoute.path, force: true});
     },
