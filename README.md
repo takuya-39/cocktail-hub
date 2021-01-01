@@ -2,7 +2,6 @@
 
 ![cocktail-hub](https://user-images.githubusercontent.com/53992902/103436803-f7a19580-4c62-11eb-89ac-6a83240794d1.png)
 
-
 # 概要
 
 誰かの投稿を見て今日の飲み物を決めてみたり、 \
