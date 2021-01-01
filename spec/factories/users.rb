@@ -25,7 +25,7 @@ FactoryBot.define do
     sequence(:email) { |n| "user#{ n }@example.com" }
     password { 'password' }
     profile { 'よろしくお願いします' }
-    image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/user_a_image.jpg'))
+    image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/user_a_image.jpg')) }
   end
 
   trait :other_user do
@@ -33,7 +33,7 @@ FactoryBot.define do
     sequence(:email) { |n| "other#{ n }@example.com" }
     password { 'password' }
     profile { 'こんにちは！' }
-    image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/user_b_image.jpg'))
+    image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/user_b_image.jpg')) }
   end
 
   trait :guest_user do
@@ -41,7 +41,7 @@ FactoryBot.define do
     email { 'guest@example.com' }
     password { 'password' }
     profile { 'ゲストユーザーです。' }
-    image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/default_user_image.png'))
+    image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/default_user_image.png')) }
   end
 
   trait :admin_user do
@@ -49,7 +49,7 @@ FactoryBot.define do
     email { 'admin@example.com' }
     password { '000000000' }
     profile { '管理ユーザーです。' }
-    image Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/default_user_image.png'))
-    admin true
+    image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/support/assets/default_user_image.png')) }
+    admin { true }
   end
 end
