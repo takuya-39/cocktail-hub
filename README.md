@@ -1,6 +1,6 @@
 # Cocktail Hub
 
-[image](app/assets/images/app-readme-image.gif)
+![cocktail-hub](https://user-images.githubusercontent.com/53992902/103436010-6a5a4300-4c5a-11eb-87a0-836df9d78486.gif)
 
 
 # 概要
@@ -103,13 +103,13 @@ https://www.cocktail-hub.site/
 
 # インフラ構成図
 
-[image](app/assets/images/aws_build_image.png)
+![インフラ構成図](https://user-images.githubusercontent.com/53992902/103436025-bd33fa80-4c5a-11eb-8fbf-600ec8358a9d.png)
 
 # 工夫した点
 
 ## 一部ページへのVueの導入
 
-[image](app/assets/images/app-readme-Ingenuity-1.png)
+![工夫点1](https://user-images.githubusercontent.com/53992902/103436070-1dc33780-4c5b-11eb-8f85-78fdf4f8fc7c.png)
 
 フロントエンドでVue.jsを使用してみたいと思いアプリの一部をVueを使用して実装しています。 \
 Railsのみでの実装よりアプリ全体のユーザビリティや見た目が向上しています。
@@ -120,7 +120,7 @@ RailsとVueを組み合わせることで複雑になり、少し難易度が上
 
 ## CircleCIを使ったCI/CDパイプラインの実装
 
-[image](app/assets/images/app-readme-Ingenuity-2.png)
+![工夫点2](https://user-images.githubusercontent.com/53992902/103436079-3e8b8d00-4c5b-11eb-9393-bfd2eab3d54d.png)
 
 自動ビルド、テスト、デプロイができるように \
 CircleCIを使用してCI/CDパイプラインの構築を行っています。
@@ -130,7 +130,7 @@ CircleCIを使用してCI/CDパイプラインの構築を行っています。
 
 ## ダイアログでの機能実装
 
-[image](app/assets/images/app-readme-Ingenuity-3.png)
+![工夫点3](https://user-images.githubusercontent.com/53992902/103436085-4d723f80-4c5b-11eb-835f-95b05d08b4cd.png)
 
 いいねランキング機能やランダム遷移機能など \
 投稿一覧ページにダイアログとして表示することで \
