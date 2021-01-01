@@ -30,6 +30,7 @@ RSpec.describe 'Posts', type: :system, js: true do
     aggregate_failures do
       expect(post.title).to eq 'ホットココアスキー'
       expect(post.genre).to eq 'ウイスキー'
+      expect(page).to have_selector "img[src$='default_user_image.png']"
       expect(post.ingredients).to eq "・ウイスキー 30ml \r\n・ココアパウダー 5g \r\n・お湯 100ml"
       expect(post.memo).to eq "耐熱グラスにココアパウダーを入れて、 \r\nお湯で溶かしてウイスキーを入れて完成です！寒い日におすすめ！"
       expect(current_path).to eq "/posts/#{ post.id }"

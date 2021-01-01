@@ -1,5 +1,9 @@
 #comment-form
-  .card-body.text-center.rounded.m-3.app-color-light= form_with model: [@post, @comment], local: true do |c|
-    = c.text_field :content, id: 'Content', class: 'form-control border-dark'
-    = c.hidden_field :post_id, value: @post.id
-    = c.submit 'コメントする', class: 'btn btn-lg shadow-lg text-light text-monospace mt-4 app-color-btn'
+  - if user_signed_in?
+    .card-body.text-center.rounded.m-3.app-color-light= form_with model: [@post, @comment], local: true do |c|
+      = c.text_field :content, id: 'Content', class: 'form-control border-dark'
+      = c.hidden_field :post_id, value: @post.id
+      = c.submit 'コメントする', class: 'btn btn-lg shadow-lg text-light text-monospace mt-4 app-color-btn'
+  - else
+    .card-body.text-center.rounded.m-3.app-color-light
+      = link_to 'ログインしてコメントする', login_path, data: {"turbolinks" => false}, class: 'btn btn-lg shadow-lg text-light text-monospace m-2 app-color-btn'

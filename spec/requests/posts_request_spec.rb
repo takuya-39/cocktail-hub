@@ -16,22 +16,12 @@ RSpec.describe 'Posts', type: :request do
   end
 
   describe '#show' do
-    context 'ログインしている場合' do
-      it '正常にアクセスできること' do
-        post = create(:post, user: user)
-        sign_in user
-        get post_path(post)
-        expect(response).to have_http_status(:success)
-        expect(response.status).to eq 200
-      end
-    end
-    context 'ログインしていない場合' do
-      it 'ログインページにリダイレクトされること' do
-        post = create(:post)
-        get post_path(post)
-        expect(response.status).to eq 302
-        expect(response).to redirect_to login_path
-      end
+    it '正常にアクセスできること' do
+      post = create(:post, user: user)
+      sign_in user
+      get post_path(post)
+      expect(response).to have_http_status(:success)
+      expect(response.status).to eq 200
     end
   end
 
@@ -153,7 +143,7 @@ RSpec.describe 'Posts', type: :request do
     context 'ログインしていない場合' do
       it 'ログインページにリダイレクトされること' do
         post = create(:post)
-        get post_path(post), params: { post: post_params }
+        patch post_path(post), params: { post: post_params }
         expect(response.status).to eq 302
         expect(response).to redirect_to login_path
       end

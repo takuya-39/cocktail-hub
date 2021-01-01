@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate, only: %i[show new create edit update destroy]
+  before_action :authenticate, only: %i[new create edit update destroy]
   before_action :baria_user, only: %i[edit update destroy]
 
   def index
