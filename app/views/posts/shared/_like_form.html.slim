@@ -1,5 +1,12 @@
 div[id="like-form#{@post.id}"]
-  - if current_user.already_liked?(@post)
-    = render 'posts/shared/unlike_btn'
-  - else
-    = render 'posts/shared/like_btn'
+  - if user_signed_in?
+    - if current_user.already_liked?(@post)
+      = render 'posts/shared/unlike_btn'
+    - else
+      = render 'posts/shared/like_btn'
+  -else
+    .row.align-items-center
+      .col-5= link_to login_path, data: {"turbolinks" => false}, id: 'like-btn'
+        i.mdi.mdi-heart.like-btn
+      .col-3
+        div[id="likes"]= @likes_count
