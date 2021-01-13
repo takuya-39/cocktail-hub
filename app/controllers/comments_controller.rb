@@ -3,7 +3,6 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.new(comment_params)
-    @comment.save
     if @comment.save
       redirect_back(fallback_location: @post, notice: 'コメントを投稿しました')
     else
@@ -13,11 +12,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find_by(id: params[:id])
-    if @comment.destroy
-      redirect_back(fallback_location: @post, notice: 'コメントを削除しました')
-    else
-      redirect_back(fallback_location: @post, notice: 'コメントの削除に失敗しました')
-    end
+    @comment.destroy
   end
 
   private

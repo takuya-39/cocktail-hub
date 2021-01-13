@@ -1,16 +1,17 @@
 #comments-pagination
   = paginate @comments, remote: true
   - @comments.each do |comment|
-    .container.bg-light.rounded.border
-      .card-text
-        = link_to user_path(comment.user), data: {"turbolinks" => false}
-          = image_tag comment.user.display_image, class: 'resize-image rounded-circle', style: 'width: 50px; height: 50px;'
-        p.m-3.d-inline-block= comment.user.username
-        p.m-3.d-inline-block.p-wrap-90= comment.content
-      - if user_signed_in?
-        - if current_user.id == comment.user_id || current_user.admin?
-          .d-flex.justify-content-end.align-items-center
-            .mr-3
-              = simple_time(comment[:created_at])
-            = link_to 'コメントを削除', post_comment_path(@post, comment), method: :delete, data: {"turbolinks" => false}, class: 'btn btn-sm btn-danger'
+    div[id="comment-#{ comment.id }"]
+      .container.bg-light.rounded.border
+        .card-text
+          = link_to user_path(comment.user), data: {"turbolinks" => false}
+            = image_tag comment.user.display_image, class: 'resize-image rounded-circle', style: 'width: 50px; height: 50px;'
+          p.m-3.d-inline-block= comment.user.username
+          p.m-3.d-inline-block.p-wrap-90= comment.content
+        - if user_signed_in?
+          - if current_user.id == comment.user_id || current_user.admin?
+            .d-flex.justify-content-end.align-items-center
+              .mr-3
+                = simple_time(comment[:created_at])
+              = link_to 'コメントを削除', post_comment_path(@post, comment), method: :delete, data: {"turbolinks" => false}, remote: true, class: 'btn btn-sm btn-danger'
   = paginate @comments, remote: true
