@@ -31,7 +31,7 @@ RSpec.describe 'Comments', type: :system, js: true do
     # コメントを削除する
     comment = other_post.comments.find_by!(content: '美味しそう！')
     click_link 'コメントを削除', href: "/posts/#{ other_post.id }/comments/#{ comment.id }"
-    expect(page).to have_content 'コメントを削除しました'
+    expect(page).not_to have_content '美味しそう！'
     expect(Comment.where(id: comment.id)).to be_empty
   end
 end
