@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     nodejs \
     npm \
 &&  npm install n -g \
-&&  n stable \
+&&  n 12.18.0 \
 &&  apt-get clean \
 &&  rm -rf /var/lib/apt/lists/*
 
