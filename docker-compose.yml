@@ -26,3 +26,12 @@ services:
     tty: true
     depends_on:
       - db
+      - chrome
+    environment:
+      SELENIUM_REMOTE_URL: http://chrome:4444/wd/hub
+
+  chrome:
+    image: selenium/standalone-chrome:latest
+    shm_size: 256m
+    ports:
+      - 4444:4444

@@ -52,7 +52,7 @@ end
 group :test do
   gem 'capybara'
   gem 'rails-controller-testing'
-  gem 'webdrivers'
+  gem 'selenium-webdriver'
 end
 
 group :production, :staging do
