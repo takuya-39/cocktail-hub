@@ -17,7 +17,7 @@ gem 'mysql2',               '>= 0.5.3'
 gem 'nokogiri',             '>= 1.11.0.rc4'
 gem 'puma',                 '~> 4.3.6'
 gem 'parser',               '2.7.0.1'
-gem 'rails',                '~> 6.0.3.3'
+gem 'rails',                '~> 6.0.3.6'
 gem 'rails-i18n'
 gem 'ransack'
 gem 'sass-rails',           '>= 6'
@@ -33,8 +33,8 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
-  gem 'factory_bot_rails',   '~> 4.11'
-  gem 'rspec-rails',         '~> 4.0.0.beta2'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
   gem 'rubocop',             require: false
   gem 'rubocop-rails',       require: false
 end

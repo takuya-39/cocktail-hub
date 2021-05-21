@@ -1,4 +1,4 @@
-server '18.178.120.71',
+server '35.74.20.175',
 user: "test_user",
 roles: %w{app db web},
 ssh_options: {

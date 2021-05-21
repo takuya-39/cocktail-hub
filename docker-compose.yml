@@ -4,7 +4,6 @@ services:
     image: mysql
     command: mysqld --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: password
     ports:
       - '3306:3306'
@@ -21,9 +20,10 @@ services:
       - /cocktail-hub/log
       - /cocktail-hub/.git
     ports:
-      - "3000:3000"
-      - "3035:3035"
+      - '3000:3000'
+      - '3035:3035'
     stdin_open: true
     tty: true
+    shm_size: '256mb'
     depends_on:
       - db
