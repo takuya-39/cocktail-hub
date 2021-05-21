@@ -33,8 +33,8 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
-  gem 'factory_bot_rails',   '~> 4.11'
-  gem 'rspec-rails',         '~> 4.0.0.beta2'
+  gem 'factory_bot_rails'
+  gem 'rspec-rails'
   gem 'rubocop',             require: false
   gem 'rubocop-rails',       require: false
 end
@@ -52,7 +52,7 @@ end
 group :test do
   gem 'capybara'
   gem 'rails-controller-testing'
-  gem 'selenium-webdriver'
+  gem 'webdrivers'
 end
 
 group :production, :staging do
