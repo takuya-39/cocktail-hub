@@ -154,7 +154,6 @@ import Drawer from "components/drawer.vue";
 import Explanation from "components/explanation.vue";
 import Ranking from "components/ranking.vue";
 import Random from "components/random.vue";
-
 export default {
   data() {
     return {
@@ -191,17 +190,13 @@ export default {
 };
 </script>
 
-<style
-  lang="scss"
-  scoped
->
+<style lang="scss" scoped>
   .app-title-image {
     width: 400px;
     position: absolute;
     right: 30px;
     z-index: 10;
   }
-
   @media (max-width: 780px) {
     .app-title-image {
       display: none;

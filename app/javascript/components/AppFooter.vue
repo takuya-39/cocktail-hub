@@ -13,14 +13,12 @@
   </v-footer>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-    }
-  }
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+
+export default class AppFooter extends Vue {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 </style>

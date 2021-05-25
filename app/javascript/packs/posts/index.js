@@ -3,7 +3,7 @@ import PostsIndex from '../../posts/index.vue'
 import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
 import '@mdi/font/css/materialdesignicons.css'
-import router from '../router.js';
+import router from '../router.ts';
 
 
 Vue.use(Vuetify, {});
