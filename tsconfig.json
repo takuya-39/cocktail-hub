@@ -39,6 +39,7 @@
       "dom.iterable",
       "scripthost"
     ],
+    "forceConsistentCasingInFileNames": false,
   },
   "include": [
     "app/javascript/**/*.ts",

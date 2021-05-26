@@ -149,15 +149,24 @@
   </v-card>
 </template>
 
-<script>
-import Drawer from "components/drawer.vue";
-import Explanation from "components/explanation.vue";
-import Ranking from "components/ranking.vue";
-import Random from "components/random.vue";
+<script lnag="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import Drawer from "@/components/common/header/drawer/MainDrawer.vue";
+import Explanation from "@/components/common/dialogs/ExplanationDialog.vue";
+import Ranking from "@/components/common/dialogs/RankingDialog.vue";
+import Random from "@/components/common/dialogs/RandomDialog.vue";
+
+// @Component({
+//   components: {
+//     AppHeader,
+//     AppFooter
+//   }
+// })
+
 export default {
   data() {
     return {
-      imagePath: require('../../assets/images/app_title_image.png'),
+      imagePath: require('../../../../assets/images/app_title_image.png'),
       menuDrawer: false,
       dialogExplanation: false,
       dialogRanking: false,

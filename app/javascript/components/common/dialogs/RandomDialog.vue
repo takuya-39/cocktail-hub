@@ -83,7 +83,7 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      imagePath: require('../../assets/images/question_image.jpg'),
+      imagePath: require('../../../../assets/images/question_image.jpg'),
       posts: [],
       random: [],
     }
@@ -112,5 +112,5 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 </style>

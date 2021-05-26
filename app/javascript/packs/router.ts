@@ -43,7 +43,7 @@
 
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import PostsIndex from '@/posts/index.vue'
+import PostsIndex from '@/components/posts/index.vue'
 
 Vue.use(VueRouter)
 
