@@ -8,7 +8,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     npm \
 &&  npm install n -g \
 &&  n 12.18.0 \
-&&  npm rebuild node-sass \
 &&  apt-get clean \
 &&  rm -rf /var/lib/apt/lists/*
 

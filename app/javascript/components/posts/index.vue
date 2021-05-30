@@ -3,34 +3,34 @@
 
     <!-- コンテンツ全体 -->
     <v-card
-      tile
       color="#060211"
+      tile
     >
       <v-container
-        fluid
         id="go-top"
         class="mx-auto"
         max-width="100%"
+        fluid
       >
 
       <!-- 新規投稿アイコン -->
       <v-tooltip
         bottom
       >
-        <template v-slot:activator="{ on, attrs }">
+        <template #activator="{ on, attrs }">
           <v-btn
-            icon
-            fixed
-            right
-            bottom
             class="m-5 posts-new-btn"
+            bottom
+            fixed
+            icon
+            right
             v-bind="attrs"
             v-on="on"
-            @click="$router.push('/posts/new').catch((e) => {}), reload()"
+            @click="routerPostsNew()"
           >
             <v-icon
-              size="80px"
               color="white"
+              size="80px"
             >
               mdi-plus-circle-outline
             </v-icon>
@@ -46,9 +46,9 @@
         @submit.prevent
       >
         <v-container
+          class="mt-1 mb-3 app-color-light"
           fluid
           rounded
-          class="mt-1 mb-3 app-color-light"
         >
           <v-row>
 
@@ -62,14 +62,14 @@
             <!-- 閉じるボタン -->
             <v-col class="d-flex justify-content-end">
               <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
+                <template #activator="{ on, attrs }">
                   <v-btn
+                    class="mr-3"
                     icon
                     large
-                    class="mr-3"
                     v-bind="attrs"
                     v-on="on"
-                    @click="$emit('displaySearchForm')"
+                    @click="displaySearchForm()"
                   >
                     <v-icon color="white">mdi-close</v-icon>
                   </v-btn>
@@ -81,11 +81,11 @@
 
           <!-- 投稿検索入力フォーム -->
           <v-text-field
-            filled
-            rounded
             id="posts-search-form"
             class="text-monospace pt-4"
             label="タイトルやジャンルを入力してください"
+            filled
+            rounded
             v-model="keyword"
           >
           </v-text-field>
@@ -95,7 +95,7 @@
       <v-row dense>
         <v-col
           v-for="post in filteredPosts"
-          :key="post.index"
+          :key="post.id"
           cols=12
           sm=6
           md=6
@@ -104,9 +104,9 @@
 
           <!-- (それぞれの投稿カード) -->
           <v-card
+            class=""
             :class="[`post-${post.id}`]"
             @click="$router.push(`/posts/${post.id}`).catch(e=>{}), reload()"
-            class=""
           >
             <!-- (投稿カードのイメージ) -->
             <v-img
@@ -123,10 +123,8 @@
               </v-card-title>
             </v-img>
           </v-card>
-
         </v-col>
       </v-row>
-
       <!-- ページネーション -->
       <!-- <v-pagination
         v-model="page"
@@ -136,66 +134,78 @@
       </v-pagination> -->
       </v-container>
     </v-card>
-
   </v-app>
 </template>
 
 
-<script>
+<script lang="ts">
+import { Component, Vue, Emit, Model } from 'vue-property-decorator';
+import axios from 'axios';
+import { PostsData } from '@/types/@types/LibraryComponent';
 
-import axios from 'axios'
 
-export default {
-  data() {
-    return {
-      posts: [],
-      displayPosts: [],
-      // page: 1,
-      // pageSize: 18,
-      // length: 0,
-      keyword: '',
-    };
-  },
-  props: ['postSearchForm'],
-  created() {
+@Component({
+  components: {}
+})
+export default class PostsIndex extends Vue {
+  @Model('change', {type: Boolean}) public postSearchForm!: Boolean;
+
+  @Emit('displaySearchForm')
+  private displaySearchForm(): void {
+    this.postSearchForm = !this.postSearchForm;
+  }
+
+  private keyword: string = '';
+  private postsData: Array<PostsData> = [];
+
+  // 以下ページネーション機能の修正までコメントアウト
+  // private displayPosts: Array<PostsData> = [];
+  // private page: number = 1;
+  // private pageSize: number = 18;
+  // private length: number = 0;
+
+  private getPosts(): void {
+    let api_url = '/api/v1/posts/';
+    axios
+      .get(api_url)
+      .then(res => {
+        this.postsData = res.data;
+      })
+      return;
+  }
+
+  private routerPostsNew(): void {
+    this.$router.push('/posts/new').catch((e) => {});
+    this.$router.go(0);
+  }
+
+  private reload(): void {
+    this.$router.go(0);
+  }
+
+  private created(): void {
     this.getPosts();
-  },
-  computed: {
-    filteredPosts() {
-      let posts = [];
-      for(let i in this.posts) {
-        let post = this.posts[i];
-        if(post.title.indexOf(this.keyword) !== -1 || post.genre.indexOf(this.keyword) !== -1) {
-          posts.push(post);
-        }
+  }
+
+  private get filteredPosts(): Array<PostsData> {
+    let posts = [];
+    for(let i in this.postsData) {
+      let post = this.postsData[i];
+      if(post.title.indexOf(this.keyword) !== -1 || post.genre.indexOf(this.keyword) !== -1) {
+        posts.push(post);
       }
-      return posts;
     }
-  },
-  methods: {
-    getPosts() {
-      let api_url = '/api/v1/posts/';
-      axios
-        .get(api_url)
-        .then(res => {
-          this.posts = res.data
-        })
-        .catch(err => {
-          this.loading = false;
-          console.log(err);
-        });
-    },
-    // pageChange(page) {
-    //   this.displayPosts = this.posts.slice(this.pageSize*(page -1), this.pageSize*(page));
-    // },
-    reload() {
-      this.$router.go({path: this.$router.currentRoute.path, force: true});
-    },
-  },
+    return posts;
+  }
+
+  // 以下ページネーション機能の修正までコメントアウト
+  // private pageChange(page): void {
+  //   this.displayPosts = this.postsData.slice(this.pageSize*(page -1), this.pageSize*(page));
+  // },
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .posts-new-btn {
     height: 80px;
     width: 80px;

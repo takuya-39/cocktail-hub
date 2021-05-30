@@ -19,13 +19,13 @@
 
         <!-- 閉じるボタン -->
         <v-tooltip bottom>
-          <template v-slot:activator="{ on, attrs }">
+          <template #activator="{ on, attrs }">
             <v-btn
               icon
               class="mt-5 mr-3"
               v-bind="attrs"
               v-on="on"
-              @click="$emit('switchRandom')"
+              @click="switchRandom()"
             >
               <v-icon
                 size="50px"
@@ -59,7 +59,7 @@
         <v-container>
           <v-card
               class="random-link"
-              @click="$router.push(`/posts/${ random }`).catch(e=>{}), $emit('switchRandom'), $emit('reload')"
+              @click="routerRandom(), switchRandom()"
             >
               <v-img
                 class="align-end"
@@ -76,38 +76,48 @@
   </v-card>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue, Prop, Emit } from 'vue-property-decorator';
+import axios from 'axios';
+import { PostsData } from '@/types/@types/LibraryComponent';
 
-import axios from 'axios'
+@Component({
+  components: {}
+})
+export default class RandomDialog extends Vue {
+  @Prop(Boolean) public dialogRandom!: Boolean;
 
-export default {
-  data() {
-    return {
-      imagePath: require('../../../../assets/images/question_image.jpg'),
-      posts: [],
-      random: [],
-    }
-  },
-  created() {
+  @Emit('switchRandom')
+  private switchRandom(): void {
+    this.dialogRandom = !this.dialogRandom;
+  }
+
+  private imagePath: string =  require('../../../../assets/images/question_image.jpg');
+  private random: number = 0;
+  private postsData: Array<PostsData> = [];
+
+  private getPosts(): void {
+    let api_url = '/api/v1/posts/';
+    axios
+      .get(api_url)
+      .then(res => {
+        this.postsData = res.data;
+        this.randomNumber();
+      })
+      return;
+  }
+
+  private randomNumber(): void {
+    this.random = 1 + Math.floor( Math.random() * this.postsData.length );
+  }
+
+  private routerRandom(): void {
+    this.$router.push(`/posts/${ this.random }`).catch(e=>{});
+    this.$router.go(0);
+  }
+
+  private created(): void {
     this.getPosts();
-  },
-  methods: {
-    getPosts() {
-      let api_url = '/api/v1/posts/';
-      axios
-        .get(api_url)
-        .then(res => {
-          this.posts = res.data
-          this.randomNumber()
-        })
-        .catch(err => {
-          this.loading = false;
-          console.log(err);
-        });
-    },
-    randomNumber() {
-      this.random = 1 + Math.floor( Math.random() * this.posts.length );
-    },
   }
 }
 </script>

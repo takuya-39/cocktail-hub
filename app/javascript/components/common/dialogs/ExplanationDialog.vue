@@ -21,13 +21,13 @@
 
         <!-- 閉じるボタン -->
         <v-tooltip bottom>
-          <template v-slot:activator="{ on, attrs }">
+          <template #activator="{ on, attrs }">
             <v-btn
               icon
               class="mt-5 mr-3"
               v-bind="attrs"
               v-on="on"
-              @click="$emit('switchExplanation')"
+              @click="switchExplanation()"
             >
               <v-icon
                 size="50px"
@@ -67,11 +67,18 @@
   </v-card>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-    }
+<script lang="ts">
+import { Component, Vue, Prop, Emit } from 'vue-property-decorator';
+
+@Component({
+  components: {}
+})
+export default class ExplanationDialog extends Vue {
+  @Prop(Boolean) public dialogExplanation!: Boolean;
+
+  @Emit('switchExplanation')
+  private switchExplanation(): void {
+    this.dialogExplanation = !this.dialogExplanation;
   }
 }
 </script>

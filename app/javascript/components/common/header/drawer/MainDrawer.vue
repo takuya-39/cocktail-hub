@@ -9,7 +9,7 @@
       <!-- ドロワーアイテム【ドロワーを閉じる】 -->
       <v-list-item
         class='close-drawer'
-        @click="$emit('switchDrawer')"
+        @click="switchDrawer()"
       >
         <v-list-item-icon>
           <v-icon class="mdi-36px">
@@ -23,7 +23,7 @@
       <v-list-item
         class='go-root'
         v-if="this.$route.path !== '/'"
-        @click="$router.push('/').catch(e=>{}), $emit('reload')"
+        @click="routerRoot()"
       >
         <v-list-item-icon>
           <v-icon class="mdi-36px">
@@ -37,8 +37,8 @@
         <!-- ドロワーアイテム【マイプロフィール】 -->
         <v-list-item
           class='users-show'
-          v-if="this.$route.path !== `/users/${user.id}`"
-          @click="$router.push(`/users/${user.id}`).catch(e=>{}), $emit('reload')"
+          v-if="this.$route.path !== `/users/${userId}`"
+          @click="routerUserProfile()"
         >
           <v-list-item-icon>
             <v-icon class="mdi-36px">
@@ -52,7 +52,7 @@
         <v-list-item
           class='users-edit'
           v-if="this.$route.path !== '/users/edit'"
-          @click="$router.push('/users/edit').catch(e=>{}), $emit('reload')"
+          @click="routerUserEdit()"
         >
           <v-list-item-icon>
             <v-icon class="mdi-36px">
@@ -71,7 +71,7 @@
         <!-- ドロワーアイテム【ユーザーを作成する】 -->
         <v-list-item
           class='signup'
-          @click="$router.push('/signup').catch(e=>{}), $emit('reload')"
+          @click="routerSignup()"
         >
           <v-list-item-icon>
             <v-icon class="mdi-36px">
@@ -91,7 +91,7 @@
         <!-- ドロワーアイテム【いいねランキング】 -->
         <v-list-item
           class="drawer-ranking"
-          @click="$emit('switchDrawer'), $emit('switchRanking')"
+          @click="switchDrawer(), switchRanking()"
         >
           <v-list-item-icon>
             <v-icon class="mdi-36px">
@@ -104,7 +104,7 @@
         <!-- ドロワーアイテム【ランダム】 -->
         <v-list-item
           class="drawer-random"
-          @click="$emit('switchDrawer'), $emit('switchRandom')"
+          @click="switchDrawer(), switchRandom()"
         >
           <v-list-item-icon>
             <v-icon class="mdi-36px">
@@ -121,7 +121,7 @@
       <!-- ドロワーアイテム【Cooktail Hubとは？】 -->
       <v-list-item
         class="drawer-explanation"
-        @click="$emit('switchDrawer'), $emit('switchExplanation')"
+        @click="switchDrawer(), switchExplanation()"
       >
         <v-list-item-icon>
           <v-icon class="mdi-36px">
@@ -135,7 +135,7 @@
         <!-- ドロワーアイテム【ログアウト】 -->
         <v-list-item
           class='logout'
-          @click="$router.push('/logout').catch(e=>{}), $emit('reload')"
+          @click="routerLogout()"
         >
           <v-list-item-icon>
             <v-icon class="mdi-36px">
@@ -150,7 +150,7 @@
         <!-- ドロワーアイテム【ログイン】 -->
         <v-list-item
           class='login'
-          @click="$router.push('/login').catch(e=>{}), $emit('reload')"
+          @click="routerLogin()"
         >
           <v-list-item-icon>
             <v-icon class="mdi-36px">
@@ -161,36 +161,99 @@
         </v-list-item>
       </v-list-item-group>
     </v-list-item-group>
+    <h2>{{ this.loggedInUser }}</h2>
   </v-list>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue, Prop, Emit, Model } from 'vue-property-decorator';
+import axios from 'axios';
+import { LoggedInUser } from '@/types/@types/LibraryComponent';
 
-import axios from 'axios'
+@Component({
+  components: {}
+})
 
-export default {
-  data() {
-    return {
-      user: [],
-      loggedInUser: [],
-    }
-  },
-  created() {
+export default class MainDrawer extends Vue {
+  @Model('change', {type: Boolean}) public menuDrawer!: Boolean;
+
+  @Prop(Boolean) public dialogExplanation!: Boolean;
+  @Prop(Boolean) public dialogRanking!: Boolean;
+  @Prop(Boolean) public dialogRandom!: Boolean;
+
+  @Emit('switchDrawer')
+  private switchDrawer(): void {
+    this.menuDrawer = !this.menuDrawer;
+  }
+
+  @Emit('switchExplanation')
+  private switchExplanation(): void {
+    this.dialogExplanation = !this.dialogExplanation;
+  }
+
+  @Emit('switchRanking')
+  private switchRanking(): void {
+    this.dialogRanking = !this.dialogRanking;
+  }
+
+  @Emit('switchRandom')
+  private switchRandom(): void {
+    this.dialogRandom = !this.dialogRandom;
+  }
+
+  private userId: number = 0;
+  private loggedInUser: LoggedInUser = {
+    id: 0,
+    username: '',
+    profile: '',
+    email: '',
+    created_at: '',
+    updated_at: '',
+    admin: false
+  };
+
+  private getUser(): void {
+    axios
+      .get('/api/v1/users')
+      .then(res => {
+        this.loggedInUser = res.data;
+        this.userId = res.data.id;
+      })
+      return;
+  }
+
+  private routerRoot(): void {
+    this.$router.push('/').catch(e=>{});
+    this.$router.go(0);
+  }
+
+  private routerUserProfile(): void {
+    this.$router.push(`/users/${this.userId}`).catch(e=>{});
+    this.$router.go(0);
+  }
+
+  private routerUserEdit(): void {
+    this.$router.push('/users/edit').catch(e=>{});
+    this.$router.go(0);
+  }
+
+  private routerSignup(): void {
+    this.$router.push('/signup').catch(e=>{});
+    this.$router.go(0);
+  }
+
+  private routerLogin(): void {
+    this.$router.push('/login').catch(e=>{});
+    this.$router.go(0);
+  }
+
+  private routerLogout(): void {
+    this.$router.push('/logout').catch(e=>{});
+    this.$router.go(0);
+  }
+
+  private created(): void {
     this.getUser();
-  },
-  methods: {
-    getUser() {
-      axios
-        .get('/api/v1/users')
-        .then(res => {
-          this.user = res.data
-          this.loggedInUser = this.user
-        })
-        .catch(err => {
-          this.loading = false;
-          console.log(err);
-        });
-    }
   }
 }
 </script>

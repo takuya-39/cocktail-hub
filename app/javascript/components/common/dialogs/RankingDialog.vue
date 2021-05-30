@@ -19,13 +19,13 @@
 
         <!-- 閉じるボタン -->
         <v-tooltip bottom>
-          <template v-slot:activator="{ on, attrs }">
+          <template #activator="{ on, attrs }">
             <v-btn
               icon
               class="mt-5 mr-3"
               v-bind="attrs"
               v-on="on"
-              @click="$emit('switchRanking')"
+              @click="switchRanking()"
             >
               <v-icon
                 size="50px"
@@ -42,8 +42,8 @@
       <v-container class="mt-5">
         <v-row class="justify-content-center">
           <v-col
-            v-for="(post, index) in posts"
-            :key="post.index"
+            v-for="(post, index) in postsData"
+            :key="post.id"
             cols=10
           >
 
@@ -88,10 +88,10 @@
                 いいね
               </h5>
             </v-col>
-
+            <!-- 投稿カード -->
             <v-card
               :class="[`post-${ post.id }`, `index-${ index }`]"
-              @click="$router.push(`/posts/${ post.id }`).catch(e=>{}), $emit('switchRanking'), $emit('reload')"
+              @click="$router.push(`/posts/${ post.id }`).catch(e=>{}), switchRanking(), reload()"
             >
               <v-img
                 class="align-end"
@@ -106,41 +106,46 @@
                 </v-card-title>
               </v-img>
             </v-card>
-
           </v-col>
         </v-row>
       </v-container>
-
     </v-container>
-
   </v-card>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue, Prop, Emit } from 'vue-property-decorator';
+import axios from 'axios';
+import { PostsData } from '@/types/@types/LibraryComponent';
 
-import axios from 'axios'
+@Component({
+  components: {}
+})
+export default class RankingDialog extends Vue {
+  @Prop(Boolean) public dialogRanking!: Boolean;
 
-export default {
-  data() {
-    return {
-      posts: [],
-    }
-  },
-  created() {
+  @Emit('switchRanking')
+  private switchRanking(): void {
+    this.dialogRanking = !this.dialogRanking;
+  }
+
+  private postsData: Array<PostsData> = [];
+
+  private getPosts(): void {
+    axios
+      .get('/api/v1/rankings/')
+      .then(res => {
+        this.postsData = res.data;
+      })
+      return;
+  }
+
+  private reload(): void {
+    this.$router.go(0);
+  }
+
+  private created(): void {
     this.getPosts();
-  },
-  methods: {
-    getPosts() {
-      axios
-        .get('/api/v1/rankings/')
-        .then(res => {
-          this.posts = res.data
-        })
-        .catch(err => {
-          this.loading = false;
-          console.log(err);
-        });
-    }
   }
 }
 </script>
