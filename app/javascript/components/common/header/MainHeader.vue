@@ -1,15 +1,15 @@
 <template>
   <!-- 全体 -->
   <v-card
-    max-width="100%"
     tile
+    :max-width="headerMaxWidth"
   >
     <!-- ヘッダー -->
     <v-app-bar
       class="white--text"
-      color="#d1c4e9"
-      height="100px"
       fixed
+      :color="headerColor"
+      :height="headerHeight"
     >
       <!-- ヘッダーナビアイコン -->
       <v-tooltip bottom>
@@ -22,8 +22,8 @@
             @click="switchDrawer()"
           >
             <v-icon
-              color="white"
-              size="50px"
+              :color="headerIconColor"
+              :size="headerIconSize"
             >
               mdi-menu
             </v-icon>
@@ -31,7 +31,6 @@
         </template>
         <span>メニューを開く</span>
       </v-tooltip>
-
       <!-- 投稿検索アイコン -->
       <v-tooltip
         bottom
@@ -39,7 +38,6 @@
       >
         <template #activator="{ on, attrs }">
           <v-btn
-            style="z-index: 10;"
             class="ml-15 posts-search-btn"
             icon
             v-bind="attrs"
@@ -47,8 +45,8 @@
             @click="displaySearchForm()"
           >
             <v-icon
-              color="white"
-              size="50px"
+              :color="headerIconColor"
+              :size="headerIconSize"
             >
               mdi-magnify
             </v-icon>
@@ -56,7 +54,6 @@
           </template>
         <span>検索フォームを開く</span>
       </v-tooltip>
-
       <!-- トップに戻るアイコン -->
       <v-tooltip
         bottom
@@ -71,8 +68,8 @@
             @click="goTop()"
           >
             <v-icon
-              color="white"
-              size="50px"
+              :color="headerIconColor"
+              :size="headerIconSize"
             >
               mdi-apple-keyboard-control
             </v-icon>
@@ -80,26 +77,23 @@
         </template>
         <span>ページトップへ戻る</span>
       </v-tooltip>
-
       <!-- 空白 -->
       <v-spacer></v-spacer>
-
       <!-- ヘッダータイトル -->
       <v-img
         class="app-title-image"
-        height="100px"
         :src="imagePath"
+        :height="headerTitleHeight"
         @click="screenTransition(path = '/')"
       >
       </v-img>
     </v-app-bar>
-
     <!-- ドロワー -->
     <v-navigation-drawer
       class="font-weight-bold"
-      color="white"
       fixed
       temporary
+      :color="drawerColor"
       v-model="menuDrawer"
     >
       <MainDrawer
@@ -117,8 +111,8 @@
 
     <!-- Cocktail Hubとは？ダイアログ -->
     <v-dialog
-      width="80%"
       raised
+      :width="dialogWidth"
       v-model="dialogExplanation"
     >
       <ExplanationDialog
@@ -129,8 +123,8 @@
 
     <!-- いいねランキングダイアログ -->
     <v-dialog
-      width="80%"
       raised
+      :width="dialogWidth"
       v-model="dialogRanking"
     >
       <RankingDialog
@@ -141,8 +135,8 @@
 
     <!-- ランダムダイアログ -->
     <v-dialog
-      width="80%"
       raised
+      :width="dialogWidth"
       v-model="dialogRandom"
     >
       <RandomDialog
@@ -182,6 +176,14 @@ export default class MainHeader extends Vue {
   public dialogRanking: boolean = false;
   public dialogRandom: boolean = false;
 
+  private headerMaxWidth: string = '100%';
+  private headerColor: string = '#d1c4e9';
+  private headerHeight: string = '100px';
+  private headerIconColor: string = '#FFFFFF';
+  private headerIconSize: string = '50px';
+  private headerTitleHeight: string = '100px';
+  private drawerColor: string = 'drawerColor';
+  private dialogWidth: string = '80%';
   private imagePath: string = require('../../../../assets/images/app_title_image.png');
 
   private screenTransition(path: string): void {
@@ -213,12 +215,17 @@ export default class MainHeader extends Vue {
 </script>
 
 <style lang="scss" scoped>
+  .posts-search-btn {
+    z-index: 10
+  }
+
   .app-title-image {
     width: 400px;
     position: absolute;
     right: 30px;
     z-index: 10;
   }
+
   @media (max-width: 780px) {
     .app-title-image {
       display: none;

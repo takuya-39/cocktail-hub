@@ -11,20 +11,34 @@ a:link, a:visited, a:hover, a:active {
 }
 
 // アプリのテーマカラー
+$main-light: #d1c4e9;
+$main-dark: #090422;
+$sub-light: #e6e6fa;
+$sub-dark: #060211;
+$btn: #c1c1ff;
+
+@mixin app-color($color) {
+  background-color: $color;
+}
+
 .app-color-light {
-  background-color: #d1c4e9;
+  @include app-color($main-light);
 }
 
 .app-color-dark {
-  background-color: #090422;
+  @include app-color($main-dark);
 }
 
-.app-color-sub {
-  background-color: #e6e6fa;
+.app-color-sub-light {
+  @include app-color($sub-light);
+}
+
+.app-color-sub-dark {
+  @include app-color($sub-dark);
 }
 
 .app-color-btn {
-  background-color: #c1c1ff;
+  @include app-color($btn);
 }
 
 // イメージをリサイズする

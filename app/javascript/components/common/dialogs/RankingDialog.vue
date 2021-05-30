@@ -1,13 +1,13 @@
 <template>
   <v-card
-    color="#d1c4e9"
     tile
+    :color="rankingDialogColor"
   >
     <v-container class="p-3">
       <v-toolbar
-        color="#d1c4e9"
         dark
         flat
+        :color="rankingDialogColor"
       >
         <!-- いいねランキングダイアログのタイトル -->
         <v-card-title class="display-1 font-weight-bold mt-15 ml-3">
@@ -26,8 +26,8 @@
               @click="switchRanking()"
             >
               <v-icon
-                color="white"
-                size="50px"
+                :color="closeButtonColor"
+                :size="closeButtonSize"
               >
                 mdi-close
               </v-icon>
@@ -41,16 +41,16 @@
           <v-col
             v-for="(post, index) in postsData"
             :key="post.id"
-            cols=10
+            cols="10"
           >
             <v-col
-              cols=10
+              cols="10"
               class="d-flex mt-3"
             >
               <!-- ランキング1位のアイコン -->
               <v-icon
                 class="mdi-36px mr-5"
-                color="#e6b422"
+                :color="firstPlaceColor"
                 v-if="index === 0"
               >
                 mdi-podium-gold
@@ -58,7 +58,7 @@
               <!-- ランキング2位のアイコン -->
               <v-icon
                 class="mdi-36px mr-5"
-                color="#c0c0c0"
+                :color="secondPlaceColor"
                 v-if="index === 1"
               >
                 mdi-podium-silver
@@ -66,7 +66,7 @@
               <!-- ランキング3位のアイコン -->
               <v-icon
                 class="mdi-36px mr-5"
-                color="#b87333"
+                :color="thirdPlaceColor"
                 v-if="index === 2"
               >
                 mdi-podium-bronze
@@ -90,8 +90,8 @@
             >
               <v-img
                 class="align-end"
-                height="250px"
-                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                :height="rankingImageHeight"
+                :gradient="rankingImageGradient"
                 :src="post.image"
               >
                 <v-card-title
@@ -125,6 +125,14 @@ export default class RankingDialog extends Vue {
     this.dialogRanking = !this.dialogRanking;
   }
 
+  private rankingDialogColor: string = '#d1c4e9';
+  private closeButtonColor: string = '#FFFFFF';
+  private closeButtonSize: string = '50px';
+  private firstPlaceColor: string = '#e6b422';
+  private secondPlaceColor: string = '#c0c0c0';
+  private thirdPlaceColor: string = '#b87333';
+  private rankingImageHeight: string = '250px';
+  private rankingImageGradient: string = 'to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)';
   private postsData: Array<PostsData> = [];
 
   private getPosts(): void {

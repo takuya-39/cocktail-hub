@@ -5,10 +5,9 @@
     <v-list-item-group
       active-class="deep-purple--text text--accent-4"
     >
-
       <!-- ドロワーアイテム【ドロワーを閉じる】 -->
       <v-list-item
-        class='close-drawer'
+        class="close-drawer"
         @click="switchDrawer()"
       >
         <v-list-item-icon>
@@ -18,10 +17,9 @@
         </v-list-item-icon>
         <v-list-item-title>ドロワーを閉じる</v-list-item-title>
       </v-list-item>
-
       <!-- ドロワーアイテム【Hubに戻る】 -->
       <v-list-item
-        class='go-root'
+        class="go-root"
         v-if="this.$route.path !== '/'"
         @click="screenTransition(path = '/')"
       >
@@ -32,11 +30,10 @@
         </v-list-item-icon>
         <v-list-item-title>Hubに戻る</v-list-item-title>
       </v-list-item>
-
       <v-list-item-group v-if="loggedInUser">
         <!-- ドロワーアイテム【マイプロフィール】 -->
         <v-list-item
-          class='users-show'
+          class="users-show"
           v-if="this.$route.path !== `/users/${ userId }`"
           @click="screenTransition(path = `/users/${ userId }`)"
         >
@@ -47,10 +44,9 @@
           </v-list-item-icon>
           <v-list-item-title>マイプロフィール</v-list-item-title>
         </v-list-item>
-
         <!-- ドロワーアイテム【ユーザーを編集する】 -->
         <v-list-item
-          class='users-edit'
+          class="users-edit"
           v-if="this.$route.path !== '/users/edit'"
           @click="screenTransition(path = '/users/edit')"
         >
@@ -61,16 +57,13 @@
           </v-list-item-icon>
           <v-list-item-title>ユーザーを編集する</v-list-item-title>
         </v-list-item>
-
         <!-- 区切りライン -->
         <v-divider></v-divider>
-
       </v-list-item-group>
-
-      <v-list-item-group v-else>
+      <v-list-item-group v-if="!loggedInUser">
         <!-- ドロワーアイテム【ユーザーを作成する】 -->
         <v-list-item
-          class='signup'
+          class="signup"
           @click="screenTransition(path = '/signup')"
         >
           <v-list-item-icon>
@@ -80,12 +73,9 @@
           </v-list-item-icon>
           <v-list-item-title>ユーザーを作成する</v-list-item-title>
         </v-list-item>
-
         <!-- 区切りライン -->
         <v-divider></v-divider>
-
       </v-list-item-group>
-
       <!-- 投稿一覧ページでのみ表示するドロワーメニュー -->
       <v-list-item-group v-if="this.$route.path === '/'">
         <!-- ドロワーアイテム【いいねランキング】 -->
@@ -100,7 +90,6 @@
           </v-list-item-icon>
           <v-list-item-title>いいねランキング</v-list-item-title>
         </v-list-item>
-
         <!-- ドロワーアイテム【ランダム】 -->
         <v-list-item
           class="drawer-random"
@@ -113,11 +102,9 @@
           </v-list-item-icon>
           <v-list-item-title>ランダム</v-list-item-title>
         </v-list-item>
-
         <!-- 区切りライン -->
         <v-divider></v-divider>
       </v-list-item-group>
-
       <!-- ドロワーアイテム【Cooktail Hubとは？】 -->
       <v-list-item
         class="drawer-explanation"
@@ -130,11 +117,10 @@
         </v-list-item-icon>
         <v-list-item-title>Cooktail Hubとは？</v-list-item-title>
       </v-list-item>
-
       <v-list-item-group v-if="loggedInUser">
         <!-- ドロワーアイテム【ログアウト】 -->
         <v-list-item
-          class='logout'
+          class="logout"
           @click="screenTransition(path = '/logout')"
         >
           <v-list-item-icon>
@@ -145,11 +131,10 @@
           <v-list-item-title>ログアウト</v-list-item-title>
         </v-list-item>
       </v-list-item-group>
-
-      <v-list-item-group v-else>
+      <v-list-item-group v-if="!loggedInUser">
         <!-- ドロワーアイテム【ログイン】 -->
         <v-list-item
-          class='login'
+          class="login"
           @click="screenTransition(path = '/login')"
         >
           <v-list-item-icon>

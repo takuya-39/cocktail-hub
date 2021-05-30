@@ -4,7 +4,7 @@
       h1 ログインページ
 
     .container.mb-3
-      .card.rounded-lg.app-color-sub
+      .card.rounded-lg.app-color-sub-light
         .row
           .col-12.col-lg-6.text-center.my-2
             = link_to 'ゲストユーザーでログインする', users_guest_sign_in_path, method: :post, data: {"turbolinks" => false}, class: 'btn btn-lg btn-primary shadow-lg text-light text-monospace m-2'
@@ -17,7 +17,7 @@
           = flash.now[:alert]
 
     .container
-      .card.rounded-lg.app-color-sub
+      .card.rounded-lg.app-color-sub-light
         .card-body
           .form-group.m-5
             = u.label :email, class: 'col-form-label-lg text-monospace'

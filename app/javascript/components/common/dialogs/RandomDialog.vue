@@ -1,22 +1,20 @@
 <template>
   <v-card
-    color="#d1c4e9"
     tile
+    :color="randomDialogColor"
   >
     <v-container class="p-3">
       <v-toolbar
-        color="#d1c4e9"
         dark
         flat
+        :color="randomDialogColor"
       >
         <!-- ランダムダイアログのタイトル -->
         <v-card-title class="display-1 font-weight-bold mt-15 ml-3">
           ランダム
         </v-card-title>
-
         <!-- 空白 -->
         <v-spacer></v-spacer>
-
         <!-- 閉じるボタン -->
         <v-tooltip bottom>
           <template #activator="{ on, attrs }">
@@ -28,8 +26,8 @@
               @click="switchRandom()"
             >
               <v-icon
-                color="white"
-                size="50px"
+                :color="closeButtonColor"
+                :size="closeButtonSize"
               >
                 mdi-close
               </v-icon>
@@ -38,7 +36,6 @@
           <span>閉じる</span>
         </v-tooltip>
       </v-toolbar>
-
       <!-- 導入文 -->
       <v-container class="row mx-2">
         <v-container class="col-12 text-monospace mt-10">
@@ -54,7 +51,6 @@
             あなたが今日つくるのは↓
           </h4>
         </v-container>
-
         <!-- ？ボタン -->
         <v-container>
           <v-card
@@ -63,9 +59,9 @@
             >
               <v-img
                 class="align-end"
-                height="250px"
-                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                 :src="imagePath"
+                :height="questionImageHeight"
+                :gradient="questionImageGradient"
               >
               </v-img>
             </v-card>
@@ -93,6 +89,11 @@ export default class RandomDialog extends Vue {
     this.dialogRandom = !this.dialogRandom;
   }
 
+  private randomDialogColor: string = '#d1c4e9';
+  private closeButtonColor: string = '#FFFFFF';
+  private closeButtonSize: string = '50px';
+  private questionImageHeight: string = '250px';
+  private questionImageGradient: string = 'to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)';
   private imagePath: string =  require('../../../../assets/images/question_image.jpg');
   private random: number = 0;
   private postsData: Array<PostsData> = [];

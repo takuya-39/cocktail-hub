@@ -1,24 +1,22 @@
 <template>
   <v-card
     class="white--text"
-    color="#090422"
-    height="600px"
     tile
+    :color="explanationDialogColor"
+    :height="explanationDialogHeight"
   >
     <v-container class="p-3">
       <v-toolbar
-        color="#090422"
         dark
         flat
+        :color="explanationDialogColor"
       >
         <!-- Cocktail Hubとは？ダイアログのタイトル -->
         <v-card-title class="display-2 font-weight-bold mt-15 ml-3">
           Cocktail Hubとは？
         </v-card-title>
-
         <!-- 空白 -->
         <v-spacer></v-spacer>
-
         <!-- 閉じるボタン -->
         <v-tooltip bottom>
           <template #activator="{ on, attrs }">
@@ -30,8 +28,8 @@
               @click="switchExplanation()"
             >
               <v-icon
-                color="white"
-                size="50px"
+                :color="closeButtonColor"
+                :size="closeButtonSize"
               >
                 mdi-close
               </v-icon>
@@ -40,7 +38,6 @@
           <span>閉じる</span>
         </v-tooltip>
       </v-toolbar>
-
       <!-- 本文 -->
       <v-container class="row mx-5 mt-5">
         <v-container class="col-12 text-monospace mt-15">
@@ -81,6 +78,11 @@ export default class ExplanationDialog extends Vue {
   private switchExplanation(): void {
     this.dialogExplanation = !this.dialogExplanation;
   }
+
+  private explanationDialogColor: string = '#090422';
+  private explanationDialogHeight: string = '600px';
+  private closeButtonColor: string = '#FFFFFF';
+  private closeButtonSize: string = '50px';
 }
 </script>
 

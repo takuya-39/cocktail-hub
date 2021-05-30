@@ -1,8 +1,8 @@
 <template>
   <v-footer
     class="white--text"
-    color="#d1c4e9"
     padless
+    :color="footerColor"
   >
     <v-col
       class="text-center"
@@ -21,6 +21,7 @@ import { Component, Vue } from 'vue-property-decorator';
 })
 
 export default class Footer extends Vue {
+  private footerColor: string = '#d1c4e9';
 }
 </script>
 

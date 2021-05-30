@@ -1,25 +1,23 @@
 <template>
   <v-app id="app">
-
     <!-- コンテンツ全体 -->
     <v-card
-      color="#060211"
       tile
+      :color="postsIndexBackColor"
     >
       <v-container
         id="go-top"
         class="mx-auto"
-        max-width="100%"
         fluid
+        :max-width="postsIndexMaxWidth"
       >
-
       <!-- 新規投稿アイコン -->
       <v-tooltip
         bottom
       >
         <template #activator="{ on, attrs }">
           <v-btn
-            class="m-5 posts-new-btn"
+            class="m-5 post-new-btn"
             bottom
             fixed
             icon
@@ -29,8 +27,8 @@
             @click="routerPostsNew()"
           >
             <v-icon
-              color="white"
-              size="80px"
+              :color="postNewButtonColor"
+              :size="postNewButtonSize"
             >
               mdi-plus-circle-outline
             </v-icon>
@@ -38,7 +36,6 @@
         </template>
         <span>投稿する</span>
       </v-tooltip>
-
       <!-- 投稿検索フォーム -->
       <v-form
         class="posts-search-form"
@@ -51,14 +48,12 @@
           rounded
         >
           <v-row>
-
           <!-- 投稿検索フォームタイトル -->
             <v-col>
               <h4 class="text-monospace mt-3 ml-5">
                 投稿を検索する
               </h4>
             </v-col>
-
             <!-- 閉じるボタン -->
             <v-col class="d-flex justify-content-end">
               <v-tooltip bottom>
@@ -71,37 +66,39 @@
                     v-on="on"
                     @click="displaySearchForm()"
                   >
-                    <v-icon color="white">mdi-close</v-icon>
+                    <v-icon
+                      :color="closeButtonColor"
+                      :size="closeButtonSize"
+                    >
+                      mdi-close
+                    </v-icon>
                   </v-btn>
                 </template>
                 <span>閉じる</span>
               </v-tooltip>
             </v-col>
           </v-row>
-
           <!-- 投稿検索入力フォーム -->
           <v-text-field
             id="posts-search-form"
             class="text-monospace pt-4"
-            label="タイトルやジャンルを入力してください"
             filled
             rounded
+            :label="postsSearchFormLabel"
             v-model="keyword"
           >
           </v-text-field>
         </v-container>
       </v-form>
-
       <v-row dense>
         <v-col
           v-for="post in filteredPosts"
           :key="post.id"
-          cols=12
-          sm=6
-          md=6
-          lg=4
+          cols="12"
+          sm="6"
+          md="6"
+          lg="4"
         >
-
           <!-- (それぞれの投稿カード) -->
           <v-card
             class=""
@@ -111,9 +108,9 @@
             <!-- (投稿カードのイメージ) -->
             <v-img
               class="align-end"
-              height="250px"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
               :src="post.image"
+              :height="postImageHeight"
+              :gradient="postImageGradient"
             >
               <!-- (投稿カードのタイトル) -->
               <v-card-title
@@ -155,6 +152,15 @@ export default class PostsIndex extends Vue {
     this.postSearchForm = !this.postSearchForm;
   }
 
+  private postsIndexBackColor: string = '#060211';
+  private postsIndexMaxWidth: string = '100%';
+  private postNewButtonColor: string = '#FFFFFF';
+  private postNewButtonSize: string = '80px';
+  private closeButtonColor: string = '#FFFFFF';
+  private closeButtonSize: string = '50px';
+  private postImageHeight: string = '250px';
+  private postImageGradient: string = 'to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)';
+  private postsSearchFormLabel: string = 'タイトルやジャンルを入力してください';
   private keyword: string = '';
   private postsData: Array<PostsData> = [];
 
@@ -206,7 +212,7 @@ export default class PostsIndex extends Vue {
 </script>
 
 <style lang="scss" scoped>
-  .posts-new-btn {
+  .post-new-btn {
     height: 80px;
     width: 80px;
     background-color: #c1c1ff;
