@@ -1,35 +1,33 @@
 <template>
   <v-card
-    tile
     color="#d1c4e9"
+    tile
   >
     <v-container class="p-3">
       <v-toolbar
+        color="#d1c4e9"
         dark
         flat
-        color="#d1c4e9"
       >
         <!-- いいねランキングダイアログのタイトル -->
         <v-card-title class="display-1 font-weight-bold mt-15 ml-3">
           いいねランキング
         </v-card-title>
-
         <!-- 空白 -->
         <v-spacer></v-spacer>
-
         <!-- 閉じるボタン -->
         <v-tooltip bottom>
           <template #activator="{ on, attrs }">
             <v-btn
-              icon
               class="mt-5 mr-3"
+              icon
               v-bind="attrs"
               v-on="on"
               @click="switchRanking()"
             >
               <v-icon
-                size="50px"
                 color="white"
+                size="50px"
               >
                 mdi-close
               </v-icon>
@@ -38,7 +36,6 @@
           <span>閉じる</span>
         </v-tooltip>
       </v-toolbar>
-
       <v-container class="mt-5">
         <v-row class="justify-content-center">
           <v-col
@@ -46,12 +43,10 @@
             :key="post.id"
             cols=10
           >
-
             <v-col
               cols=10
               class="d-flex mt-3"
             >
-
               <!-- ランキング1位のアイコン -->
               <v-icon
                 class="mdi-36px mr-5"
@@ -91,7 +86,7 @@
             <!-- 投稿カード -->
             <v-card
               :class="[`post-${ post.id }`, `index-${ index }`]"
-              @click="$router.push(`/posts/${ post.id }`).catch(e=>{}), switchRanking(), reload()"
+              @click="screenTransition(path = `/posts/${ post.id }`), switchRanking()"
             >
               <v-img
                 class="align-end"
@@ -121,6 +116,7 @@ import { PostsData } from '@/types/@types/LibraryComponent';
 @Component({
   components: {}
 })
+
 export default class RankingDialog extends Vue {
   @Prop(Boolean) public dialogRanking!: Boolean;
 
@@ -140,7 +136,8 @@ export default class RankingDialog extends Vue {
       return;
   }
 
-  private reload(): void {
+  private screenTransition(path: string): void {
+    this.$router.push(path).catch(e=>{});
     this.$router.go(0);
   }
 

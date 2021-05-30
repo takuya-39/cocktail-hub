@@ -1,15 +1,15 @@
 <template>
   <v-card
-    tile
     class="white--text"
     color="#090422"
     height="600px"
+    tile
   >
     <v-container class="p-3">
       <v-toolbar
+        color="#090422"
         dark
         flat
-        color="#090422"
       >
         <!-- Cocktail Hubとは？ダイアログのタイトル -->
         <v-card-title class="display-2 font-weight-bold mt-15 ml-3">
@@ -23,15 +23,15 @@
         <v-tooltip bottom>
           <template #activator="{ on, attrs }">
             <v-btn
-              icon
               class="mt-5 mr-3"
+              icon
               v-bind="attrs"
               v-on="on"
               @click="switchExplanation()"
             >
               <v-icon
-                size="50px"
                 color="white"
+                size="50px"
               >
                 mdi-close
               </v-icon>
@@ -73,6 +73,7 @@ import { Component, Vue, Prop, Emit } from 'vue-property-decorator';
 @Component({
   components: {}
 })
+
 export default class ExplanationDialog extends Vue {
   @Prop(Boolean) public dialogExplanation!: Boolean;
 

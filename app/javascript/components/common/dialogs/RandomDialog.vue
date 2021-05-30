@@ -1,13 +1,13 @@
 <template>
   <v-card
-    tile
     color="#d1c4e9"
+    tile
   >
     <v-container class="p-3">
       <v-toolbar
+        color="#d1c4e9"
         dark
         flat
-        color="#d1c4e9"
       >
         <!-- ランダムダイアログのタイトル -->
         <v-card-title class="display-1 font-weight-bold mt-15 ml-3">
@@ -21,15 +21,15 @@
         <v-tooltip bottom>
           <template #activator="{ on, attrs }">
             <v-btn
-              icon
               class="mt-5 mr-3"
+              icon
               v-bind="attrs"
               v-on="on"
               @click="switchRandom()"
             >
               <v-icon
-                size="50px"
                 color="white"
+                size="50px"
               >
                 mdi-close
               </v-icon>
@@ -59,7 +59,7 @@
         <v-container>
           <v-card
               class="random-link"
-              @click="routerRandom(), switchRandom()"
+              @click="screenTransition(path = `/posts/${ random }`), switchRandom()"
             >
               <v-img
                 class="align-end"
@@ -84,6 +84,7 @@ import { PostsData } from '@/types/@types/LibraryComponent';
 @Component({
   components: {}
 })
+
 export default class RandomDialog extends Vue {
   @Prop(Boolean) public dialogRandom!: Boolean;
 
@@ -111,8 +112,8 @@ export default class RandomDialog extends Vue {
     this.random = 1 + Math.floor( Math.random() * this.postsData.length );
   }
 
-  private routerRandom(): void {
-    this.$router.push(`/posts/${ this.random }`).catch(e=>{});
+  private screenTransition(path: string): void {
+    this.$router.push(path).catch(e=>{});
     this.$router.go(0);
   }
 

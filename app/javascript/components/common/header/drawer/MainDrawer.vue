@@ -23,7 +23,7 @@
       <v-list-item
         class='go-root'
         v-if="this.$route.path !== '/'"
-        @click="routerRoot()"
+        @click="screenTransition(path = '/')"
       >
         <v-list-item-icon>
           <v-icon class="mdi-36px">
@@ -37,8 +37,8 @@
         <!-- ドロワーアイテム【マイプロフィール】 -->
         <v-list-item
           class='users-show'
-          v-if="this.$route.path !== `/users/${userId}`"
-          @click="routerUserProfile()"
+          v-if="this.$route.path !== `/users/${ userId }`"
+          @click="screenTransition(path = `/users/${ userId }`)"
         >
           <v-list-item-icon>
             <v-icon class="mdi-36px">
@@ -52,7 +52,7 @@
         <v-list-item
           class='users-edit'
           v-if="this.$route.path !== '/users/edit'"
-          @click="routerUserEdit()"
+          @click="screenTransition(path = '/users/edit')"
         >
           <v-list-item-icon>
             <v-icon class="mdi-36px">
@@ -71,7 +71,7 @@
         <!-- ドロワーアイテム【ユーザーを作成する】 -->
         <v-list-item
           class='signup'
-          @click="routerSignup()"
+          @click="screenTransition(path = '/signup')"
         >
           <v-list-item-icon>
             <v-icon class="mdi-36px">
@@ -135,7 +135,7 @@
         <!-- ドロワーアイテム【ログアウト】 -->
         <v-list-item
           class='logout'
-          @click="routerLogout()"
+          @click="screenTransition(path = '/logout')"
         >
           <v-list-item-icon>
             <v-icon class="mdi-36px">
@@ -150,7 +150,7 @@
         <!-- ドロワーアイテム【ログイン】 -->
         <v-list-item
           class='login'
-          @click="routerLogin()"
+          @click="screenTransition(path = '/login')"
         >
           <v-list-item-icon>
             <v-icon class="mdi-36px">
@@ -161,7 +161,6 @@
         </v-list-item>
       </v-list-item-group>
     </v-list-item-group>
-    <h2>{{ this.loggedInUser }}</h2>
   </v-list>
 </template>
 
@@ -212,6 +211,11 @@ export default class MainDrawer extends Vue {
     admin: false
   };
 
+  private screenTransition(path: string): void {
+    this.$router.push(path).catch(e=>{});
+    this.$router.go(0);
+  }
+
   private getUser(): void {
     axios
       .get('/api/v1/users')
@@ -220,36 +224,6 @@ export default class MainDrawer extends Vue {
         this.userId = res.data.id;
       })
       return;
-  }
-
-  private routerRoot(): void {
-    this.$router.push('/').catch(e=>{});
-    this.$router.go(0);
-  }
-
-  private routerUserProfile(): void {
-    this.$router.push(`/users/${this.userId}`).catch(e=>{});
-    this.$router.go(0);
-  }
-
-  private routerUserEdit(): void {
-    this.$router.push('/users/edit').catch(e=>{});
-    this.$router.go(0);
-  }
-
-  private routerSignup(): void {
-    this.$router.push('/signup').catch(e=>{});
-    this.$router.go(0);
-  }
-
-  private routerLogin(): void {
-    this.$router.push('/login').catch(e=>{});
-    this.$router.go(0);
-  }
-
-  private routerLogout(): void {
-    this.$router.push('/logout').catch(e=>{});
-    this.$router.go(0);
   }
 
   private created(): void {

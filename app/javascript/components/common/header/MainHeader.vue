@@ -89,7 +89,7 @@
         class="app-title-image"
         height="100px"
         :src="imagePath"
-        @click="routerRoot()"
+        @click="screenTransition(path = '/')"
       >
       </v-img>
     </v-app-bar>
@@ -110,6 +110,7 @@
         @switchExplanation="switchExplanation()"
         @switchRanking="switchRanking()"
         @switchRandom="switchRandom()"
+        @screenTransition="screenTransition()"
         v-model="menuDrawer"
       />
     </v-navigation-drawer>
@@ -183,6 +184,11 @@ export default class MainHeader extends Vue {
 
   private imagePath: string = require('../../../../assets/images/app_title_image.png');
 
+  private screenTransition(path: string): void {
+    this.$router.push(path).catch(e=>{});
+    this.$router.go(0);
+  }
+
   private switchDrawer(): void {
     this.menuDrawer = !this.menuDrawer;
   }
@@ -197,11 +203,6 @@ export default class MainHeader extends Vue {
 
   private switchRandom(): void {
     this.dialogRandom = !this.dialogRandom;
-  }
-
-  private routerRoot(): void {
-    this.$router.push('/').catch(e=>{});
-    this.$router.go(0);
   }
 
   private goTop(): void {
