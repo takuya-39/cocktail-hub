@@ -10,21 +10,21 @@
         .card-body
           .row.justify-content-center
             .col-8.form-group
-              = u.label :username, class: 'col-form-label-lg text-monospace'
+              = u.label :username, class: 'col-form-label-lg'
               = u.text_field :username, autofocus: true, id: 'UserName', class: 'form-control border-dark'
             .col-8.form-group
-              = u.label :email, class: 'col-form-label-lg text-monospace'
+              = u.label :email, class: 'col-form-label-lg'
               = u.email_field :email, autofocus: true, autocomplete: 'email', id: 'Email', class: 'form-control border-dark'
             .col-8.form-group.card-img
-              = u.label 'ユーザー画像', class: 'col-form-label-lg text-monospace'
+              = u.label 'ユーザー画像', class: 'col-form-label-lg'
               = u.file_field :image, id: 'UserImage', class: 'form-control border-dark'
             .col-8.card-body
               .container.bg-light.rounded
                 .form-group.card-text
-                  = u.label :profile, class: 'col-form-label-lg text-monospace'
+                  = u.label :profile, class: 'col-form-label-lg'
                   = u.text_area :profile, id: 'Profile', class: 'form-control border-dark'
             .col-8.form-group
-              = u.label '変更するには現在のパスワードを入力してください', class: 'col-form-label-lg text-monospace'
+              = u.label '変更するには現在のパスワードを入力してください', class: 'col-form-label-lg'
               = u.password_field :current_password, autocomplete: "current-password", id: 'CurrentPassword', class: 'form-control border-dark'
             .col-8.form-group.text-center.mt-3
-              = u.submit 'ユーザーを更新する', class: 'btn btn-lg shadow-lg text-light text-monospace app-color-btn'
+              = u.submit 'ユーザーを更新する', class: 'btn btn-lg shadow-lg text-light app-color-btn'

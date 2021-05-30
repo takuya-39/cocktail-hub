@@ -1,5 +1,5 @@
 .container-fluid.app-color-light
-  .text-center.text-light.text-monospace.p-4
+  .text-center.text-light.p-4
     h1 投稿詳細
 
   - if flash.notice.present?
@@ -12,7 +12,7 @@
         .row.justify-content-center
           .row.card-title.text-center
             .col-12.col-sm-6
-              h4.text-monospace
+              h4
                 = @post.title
             .col-12.col-sm-6
               h4.text-secondary
@@ -48,7 +48,7 @@
   .container
     .card.rounded-lg.app-color-sub-light
       .card-body
-        h4.text-center.text-monospace コメント一覧
+        h4.text-center コメント一覧
 
         .card-body
           = render 'posts/shared/comments_form'

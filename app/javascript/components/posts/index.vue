@@ -17,14 +17,14 @@
       >
         <template #activator="{ on, attrs }">
           <v-btn
-            class="m-5 post-new-btn"
+            class="post-new-btn"
             bottom
             fixed
             icon
             right
             v-bind="attrs"
             v-on="on"
-            @click="routerPostsNew()"
+            @click.stop="screenTransition(path = '/posts/new')"
           >
             <v-icon
               :color="postNewButtonColor"
@@ -50,7 +50,7 @@
           <v-row>
           <!-- 投稿検索フォームタイトル -->
             <v-col>
-              <h4 class="text-monospace mt-3 ml-5">
+              <h4 class="mt-3 ml-5">
                 投稿を検索する
               </h4>
             </v-col>
@@ -81,7 +81,7 @@
           <!-- 投稿検索入力フォーム -->
           <v-text-field
             id="posts-search-form"
-            class="text-monospace pt-4"
+            class="pt-4"
             filled
             rounded
             :label="postsSearchFormLabel"
@@ -101,9 +101,10 @@
         >
           <!-- (それぞれの投稿カード) -->
           <v-card
-            class=""
-            :class="[`post-${post.id}`]"
-            @click="$router.push(`/posts/${post.id}`).catch(e=>{}), reload()"
+            class="post-card"
+            tile
+            :class="[`post-${ post.id }`]"
+            @click="screenTransition(path = `/posts/${ post.id }`)"
           >
             <!-- (投稿カードのイメージ) -->
             <v-img
@@ -155,7 +156,7 @@ export default class PostsIndex extends Vue {
   private postsIndexBackColor: string = '#060211';
   private postsIndexMaxWidth: string = '100%';
   private postNewButtonColor: string = '#FFFFFF';
-  private postNewButtonSize: string = '80px';
+  private postNewButtonSize: string = '50px';
   private closeButtonColor: string = '#FFFFFF';
   private closeButtonSize: string = '50px';
   private postImageHeight: string = '250px';
@@ -180,8 +181,8 @@ export default class PostsIndex extends Vue {
       return;
   }
 
-  private routerPostsNew(): void {
-    this.$router.push('/posts/new').catch((e) => {});
+  private screenTransition(path: string): void {
+    this.$router.push(path).catch(e=>{});
     this.$router.go(0);
   }
 
@@ -213,16 +214,35 @@ export default class PostsIndex extends Vue {
 
 <style lang="scss" scoped>
   .post-new-btn {
-    height: 80px;
-    width: 80px;
+    position: fiexd;
+    bottom: 70px;
+    right: 100px;
+    height: 50px;
+    width: 50px;
     background-color: #c1c1ff;
-    opacity: 0.9;
+    opacity: .5;
     z-index: 10;
+    display: inline-block;
+    transition-duration: 1s;
+    transition-property: transform;
+    &:hover {
+      transform: scale(1.7);
+      opacity: 1;
+    }
   }
 
   .posts-search-form {
     position: sticky;
     top: 80px;
     z-index: 1;
+  }
+
+  .post-card {
+    display: inline-block;
+    transition-duration: .8s;
+    transition-property: border-radius;
+    &:hover {
+      border-radius: 5em !important;
+    }
   }
 </style>

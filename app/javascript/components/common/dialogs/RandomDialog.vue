@@ -38,15 +38,19 @@
       </v-toolbar>
       <!-- 導入文 -->
       <v-container class="row mx-2">
-        <v-container class="col-12 text-monospace mt-10">
+        <v-container class="col-12 mt-10 focus-in-1">
           <h5>
             下の？ボタンを押すと<br>
-            ランダムで選ばれた投稿の詳細ページに移動します。<br>
+            ランダムで選ばれた投稿の詳細ページに移動します。
+          </h5>
+        </v-container>
+        <v-container class="focus-in-2">
+          <h5>
             適当に決めたい時、友人とお家飲みの際に遊びで、など<br>
             今日のお供をランダムに決めてみましょう。
           </h5>
         </v-container>
-        <v-container class="col-12 text-monospace">
+        <v-container class="col-12 focus-in-3">
           <h4>
             あなたが今日つくるのは↓
           </h4>
@@ -54,7 +58,7 @@
         <!-- ？ボタン -->
         <v-container>
           <v-card
-              class="random-link"
+              class="random-link random-card"
               @click="screenTransition(path = `/posts/${ random }`), switchRandom()"
             >
               <v-img
@@ -125,4 +129,105 @@ export default class RandomDialog extends Vue {
 </script>
 
 <style lang="scss" scoped>
+  .random-card {
+    display: inline-block;
+    transition-duration: 1s;
+    transition-property: border-radius;
+    &:hover {
+      border-radius: 5em !important;
+    }
+  }
+
+  .focus-in-1 {
+    -webkit-animation: focus-in-1 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+            animation: focus-in-1 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  }
+
+  .focus-in-2 {
+    -webkit-animation: focus-in-2 3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+            animation: focus-in-2 3s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  }
+
+  .focus-in-3 {
+    -webkit-animation: focus-in-3 4.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+            animation: focus-in-3 4.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+  }
+
+  @-webkit-keyframes focus-in-1 {
+    0% {
+      -webkit-filter: blur(12px);
+              filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-filter: blur(0px);
+              filter: blur(0px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes focus-in-1 {
+    0% {
+      -webkit-filter: blur(12px);
+              filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-filter: blur(0px);
+              filter: blur(0px);
+      opacity: 1;
+    }
+  }
+
+  @-webkit-keyframes focus-in-2 {
+    0% {
+      -webkit-filter: blur(12px);
+              filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-filter: blur(0px);
+              filter: blur(0px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes focus-in-2 {
+    0% {
+      -webkit-filter: blur(12px);
+              filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-filter: blur(0px);
+              filter: blur(0px);
+      opacity: 1;
+    }
+  }
+
+  @-webkit-keyframes focus-in-3 {
+    0% {
+      -webkit-filter: blur(12px);
+              filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-filter: blur(0px);
+              filter: blur(0px);
+      opacity: 1;
+    }
+  }
+
+  @keyframes focus-in-3 {
+    0% {
+      -webkit-filter: blur(12px);
+              filter: blur(12px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-filter: blur(0px);
+              filter: blur(0px);
+      opacity: 1;
+    }
+  }
 </style>

@@ -1,13 +1,16 @@
 @import '~bootstrap/scss/bootstrap';
 
+* {
+  font-family: "ヒラギノ角ゴシック", "游ゴシック", "Yu Gothic", "Noto Sans Japanese", "sans-serif";
+  // outlineの装飾を消す
+  &:focus {
+    outline: none;
+  }
+}
+
 // リンクの装飾を消す
 a:link, a:visited, a:hover, a:active {
   text-decoration: none;
-}
-
-// outlineの装飾を消す
-*:focus {
-  outline: none;
 }
 
 // アプリのテーマカラー

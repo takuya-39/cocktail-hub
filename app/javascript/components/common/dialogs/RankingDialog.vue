@@ -72,11 +72,11 @@
                 mdi-podium-bronze
               </v-icon>
               <!-- 順位 -->
-              <h3 class="text-bold text-monospace text-light mt-3 mr-10">
+              <h3 class="text-bold text-light mt-3 mr-10">
                 {{ index + 1 }}位
               </h3>
               <!-- いいね数 -->
-              <h3 class="text-bold text-monospace text-dark mt-3">
+              <h3 class="text-bold text-dark mt-3">
                 {{ post.likes.length }}
               </h3>
               <h5 class="text-light align-self-end">
@@ -85,6 +85,7 @@
             </v-col>
             <!-- 投稿カード -->
             <v-card
+              class="ranking-card"
               :class="[`post-${ post.id }`, `index-${ index }`]"
               @click="screenTransition(path = `/posts/${ post.id }`), switchRanking()"
             >
@@ -156,4 +157,12 @@ export default class RankingDialog extends Vue {
 </script>
 
 <style lang="scss" scoped>
+  .ranking-card {
+    display: inline-block;
+    transition-duration: .8s;
+    transition-property: box-shadow;
+    &:hover {
+      box-shadow: 0 5px 20px rgba(6, 2, 18, .7) !important;
+    }
+  }
 </style>
