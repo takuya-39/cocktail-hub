@@ -77,3 +77,8 @@ $btn: #c1c1ff;
 .pagination>li>a:hover {
   border-radius: 30px;
 }
+
+// 下記v-appのデフォルトのmin-heightの影響でページによっては下部に大きく余白ができる為記述
+.v-application--wrap {
+  min-height: 0 !important;
+}

@@ -95,7 +95,7 @@ export default class RandomDialog extends Vue {
   private questionImageHeight: string = '250px';
   private questionImageGradient: string = 'to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)';
   private imagePath: string =  require('../../../../assets/images/question_image.jpg');
-  private random: number = 0;
+  private random: number = 1;
   private postsData: Array<PostsData> = [];
 
   private getPosts(): void {
