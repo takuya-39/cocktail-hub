@@ -16,7 +16,10 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
-export default class AppFooter extends Vue {
+@Component({
+  components: {}
+})
+export default class Footer extends Vue {
 }
 </script>
 

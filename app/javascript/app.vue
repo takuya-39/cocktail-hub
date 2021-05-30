@@ -15,12 +15,12 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import MainHeader from '@/components/common/header/MainHeader.vue';
-// import AppFooter from '@/components/common/footer/AppFooter.vue';
+import AppFooter from '@/components/common/footer/AppFooter.vue';
 
 @Component({
   components: {
     MainHeader,
-    // AppFooter
+    AppFooter
   }
 })
 
