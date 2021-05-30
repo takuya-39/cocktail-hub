@@ -1,0 +1,57 @@
+{
+  "compilerOptions": {
+    // どのバージョンでjsを出力するかを指定
+    "target": "es5",
+    // trueでtargetがES3, ES5の際にイテレータを使用した記法を使用できる
+    "downlevelIteration": true,
+    // 出力するjsモジュールの仕組みとして何を使用するかを指定
+    "module": "esnext",
+    "strict": true,
+    // tsxファイルをjsxやjsにコンパイルする際の出力の形式を指定
+    "jsx": "preserve",
+    // trueでtslibからimportすることで出力結果のファイルサイズを削減する
+    "importHelpers": true,
+    // tscのモジュール解決の方法を指定
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    // 相対的なカレントディレクトリを指定
+    "baseUrl": "./",
+    "types": [
+      "webpack-env",
+      "node",
+      "vuetify"
+    ],
+    // trueでコンパイルしたtsファイルのexportしているもの全ての型定義ファイルを作成する
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "paths": {
+      "*": ["node_modules/*", "app/javascript/*"],
+      "@/*": ["app/javascript/*"]
+    },
+    // コンパイルの際に使用する組み込みライブラリを指定
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ],
+    "forceConsistentCasingInFileNames": false,
+  },
+  "include": [
+    "app/javascript/**/*.ts",
+    "app/javascript/**/*.tsx",
+    "app/javascript/**/*.vue",
+    "app/javascript/**/*.js",
+  ],
+  "exclude": [
+    "**/*.spec.ts",
+    "node_modules",
+    "vendor",
+    "public"
+  ],
+  "compileOnSave": false
+}

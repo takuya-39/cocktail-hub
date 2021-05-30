@@ -1,33 +1,33 @@
 = form_with model: @user, url: user_registration_path, local: true do |u|
   .container-fluid.app-color-light
-    .text-center.text-light.text-monospace.p-4
+    .text-center.text-light.p-4
       h1 新規ユーザー登録
 
     = devise_error_messages
 
     .container
-      .card.rounded-lg.app-color-sub
+      .card.rounded-lg.app-color-sub-light
         .card-body
           .row.justify-content-center
             .col-8.form-group
-              = u.label :username, class: 'col-form-label-lg text-monospace'
+              = u.label :username, class: 'col-form-label-lg'
               = u.text_field :username, autofocus: true, id: 'UserName', class: 'form-control border-dark'
             .col-8.form-group
-              = u.label :email, class: 'col-form-label-lg text-monospace'
+              = u.label :email, class: 'col-form-label-lg'
               = u.email_field :email, autofocus: true, autocomplete: 'email', id: 'Email', class: 'form-control border-dark'
             .col-8.form-group
-              = u.label :password, class: 'col-form-label-lg text-monospace'
+              = u.label :password, class: 'col-form-label-lg'
               = u.password_field :password, autofocus: true, autocomplete: 'new-password', id: 'Password', class: 'form-control border-dark'
             .col-8.form-group
-              = u.label :password_confirmation, class: 'col-form-label-lg text-monospace'
+              = u.label :password_confirmation, class: 'col-form-label-lg'
               = u.password_field :password_confirmation, autofocus: true, autocomplete: 'new-password', id: 'PasswordConfirmation', class: 'form-control border-dark'
             .col-8.form-group.card-img
-              = u.label 'ユーザー画像', class: 'col-form-label-lg text-monospace'
+              = u.label 'ユーザー画像', class: 'col-form-label-lg'
               = u.file_field :image, id: 'UserImage', class: 'form-control border-dark'
             .col-8.card-body
               .container.bg-light.rounded
                 .form-group.card-text
-                  = u.label :profile, class: 'col-form-label-lg text-monospace'
+                  = u.label :profile, class: 'col-form-label-lg'
                   = u.text_area :profile, id: 'Profile', class: 'form-control border-dark'
             .col-8.form-group.text-center.mt-3
-              = u.submit '新規ユーザー登録をする', class: 'btn btn-lg shadow-lg text-light text-monospace app-color-btn'
+              = u.submit '新規ユーザー登録をする', class: 'btn btn-lg shadow-lg text-light app-color-btn'

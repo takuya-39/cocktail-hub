@@ -1,36 +1,37 @@
 <template>
   <v-app id="app">
-    <app-header @goTop="goTop" @displaySearchForm="displaySearchForm" />
-    <router-view :postSearchForm="postSearchForm" @displaySearchForm="displaySearchForm" />
-    <app-footer />
+    <MainHeader
+      v-model="postSearchForm"
+      @displaySearchForm="displaySearchForm()"
+    />
+    <router-view
+      v-model="postSearchForm"
+      @displaySearchForm="displaySearchForm()"
+    />
+    <AppFooter />
   </v-app>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import MainHeader from '@/components/common/header/MainHeader.vue';
+import AppFooter from '@/components/common/footer/AppFooter.vue';
 
-import AppHeader from 'components/app_header.vue'
-import AppFooter from 'components/app_footer.vue'
-
-export default {
-  data() {
-    return {
-      postSearchForm: false,
-    }
-  },
+@Component({
   components: {
-    'app-header': AppHeader,
-    'app-footer': AppFooter,
-  },
-  methods: {
-    goTop() {
-      document. getElementById("go-top").scrollIntoView(true)
-    },
-    displaySearchForm() {
-      this.postSearchForm = !this.postSearchForm;
-    },
+    MainHeader,
+    AppFooter
+  }
+})
+
+export default class App extends Vue {
+  public postSearchForm: boolean = false;
+
+  private displaySearchForm(): void {
+    this.postSearchForm = !this.postSearchForm;
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 </style>

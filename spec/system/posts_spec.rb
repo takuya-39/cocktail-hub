@@ -12,7 +12,7 @@ RSpec.describe 'Posts', type: :system, js: true do
     find('.go-root').click
     expect(current_path).to eq root_path
 
-    find('.posts-new-btn').click
+    find('.post-new-btn').click
     expect(current_path).to eq new_post_path
     expect(page).to have_content '新規投稿'
 

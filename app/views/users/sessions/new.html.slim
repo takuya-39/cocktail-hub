@@ -1,15 +1,15 @@
 = form_with model: @user, url: session_path(resource_name), local: true do |u|
   .container-fluid.app-color-light
-    .text-center.text-light.text-monospace.p-4
+    .text-center.text-light.p-4
       h1 ログインページ
 
     .container.mb-3
-      .card.rounded-lg.app-color-sub
+      .card.rounded-lg.app-color-sub-light
         .row
           .col-12.col-lg-6.text-center.my-2
-            = link_to 'ゲストユーザーでログインする', users_guest_sign_in_path, method: :post, data: {"turbolinks" => false}, class: 'btn btn-lg btn-primary shadow-lg text-light text-monospace m-2'
+            = link_to 'ゲストユーザーでログインする', users_guest_sign_in_path, method: :post, data: {"turbolinks" => false}, class: 'btn btn-lg btn-primary shadow-lg text-light m-2'
           .col-12.col-lg-6.text-center.my-2
-            = link_to '新規ユーザーを作成する', signup_path, data: {"turbolinks" => false}, class: 'btn btn-lg shadow-lg text-light text-monospace m-2 app-color-btn'
+            = link_to '新規ユーザーを作成する', signup_path, data: {"turbolinks" => false}, class: 'btn btn-lg shadow-lg text-light m-2 app-color-btn'
 
     - if alert.present?
       .container
@@ -17,13 +17,13 @@
           = flash.now[:alert]
 
     .container
-      .card.rounded-lg.app-color-sub
+      .card.rounded-lg.app-color-sub-light
         .card-body
           .form-group.m-5
-            = u.label :email, class: 'col-form-label-lg text-monospace'
+            = u.label :email, class: 'col-form-label-lg'
             = u.email_field :email, autofocus: true, autocomplete: 'email', id: 'Email', class: 'form-control border-dark'
           .form-group.m-5
-            = u.label :password, class: 'col-form-label-lg text-monospace'
+            = u.label :password, class: 'col-form-label-lg'
             = u.password_field :password, autofocus: true, autocomplete: 'new-password', id: 'Password', class: 'form-control border-dark'
           .container
             .row
@@ -31,8 +31,8 @@
                 - if devise_mapping.rememberable?
                   .container.text-center
                     .field
-                      = u.label :remember_me, class: 'text-monospace mr-3'
+                      = u.label :remember_me, class: 'mr-3'
                       = u.check_box :remember_me, class: 'border-dark', style: "transform:scale(2.0);"
               .col-6
                 .form-group.text-center
-                  = u.submit 'ログインする', class: 'btn btn-lg shadow-lg text-light text-monospace app-color-btn'
+                  = u.submit 'ログインする', class: 'btn btn-lg shadow-lg text-light app-color-btn'

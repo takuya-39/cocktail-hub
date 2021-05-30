@@ -1,5 +1,5 @@
 .container-fluid.app-color-light
-  .text-center.text-light.text-monospace.p-4
+  .text-center.text-light.p-4
     h1 投稿詳細
 
   - if flash.notice.present?
@@ -7,12 +7,12 @@
       .alert.alert-primary.m-3= flash.notice
 
   .container
-    .card.rounded-lg.app-color-sub
+    .card.rounded-lg.app-color-sub-light
       .card-body
         .row.justify-content-center
           .row.card-title.text-center
             .col-12.col-sm-6
-              h4.text-monospace
+              h4
                 = @post.title
             .col-12.col-sm-6
               h4.text-secondary
@@ -46,9 +46,9 @@
               = render 'posts/shared/like_form'
 
   .container
-    .card.rounded-lg.app-color-sub
+    .card.rounded-lg.app-color-sub-light
       .card-body
-        h4.text-center.text-monospace コメント一覧
+        h4.text-center コメント一覧
 
         .card-body
           = render 'posts/shared/comments_form'
@@ -57,7 +57,7 @@
   - if user_signed_in?
     - if current_user.id == @post.user_id || current_user.admin?
       .container
-        .card.rounded-lg.app-color-sub
+        .card.rounded-lg.app-color-sub-light
           .row
             .col.text-center.m-2
               = link_to '投稿を編集', edit_post_path(@post), data: {"turbolinks" => false}, class: 'btn btn-lg app-color-light'
