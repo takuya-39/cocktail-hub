@@ -24,6 +24,6 @@ services:
       - '3035:3035'
     stdin_open: true
     tty: true
-    shm_size: '2gb'
+    shm_size: '4gb'
     depends_on:
       - db

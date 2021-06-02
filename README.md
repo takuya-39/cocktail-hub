@@ -1,6 +1,6 @@
 # Cocktail Hub
 
-![cocktail-hub](https://user-images.githubusercontent.com/53992902/120230867-2c099400-c28b-11eb-9a4a-1be12086dd47.png)
+![cocktail-hub](https://user-images.githubusercontent.com/53992902/120404147-aec04b00-c380-11eb-8bad-9521a418f29c.png)
 
 # 概要
 
@@ -164,7 +164,6 @@ CircleCIを使用してCI/CDパイプラインの構築を行っています。
 - 動的にコンポーネントを入れ替えて表示を切り替える仕様の実装(投稿一覧画面の並び方を変更できるなど)
 - chart.jsなどのライブラリの使用
 - モーダルの機能の増量
-- 「おつまみ」などの項目も増やす、それに伴う仕様変更
 - ユーザー同士のDM機能
 - 気になるリスト機能
 - 新規投稿やログインなどの他の画面もVue.jsで実装する
