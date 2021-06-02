@@ -90,7 +90,7 @@
           </v-text-field>
         </v-container>
       </v-form>
-      <v-row dense>
+      <v-row dense xs="12">
         <v-col
           v-for="post in filteredPosts"
           :key="post.id"

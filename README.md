@@ -1,6 +1,6 @@
 # Cocktail Hub
 
-![cocktail-hub](https://user-images.githubusercontent.com/53992902/120404147-aec04b00-c380-11eb-8bad-9521a418f29c.png)
+![cocktail-hub](https://user-images.githubusercontent.com/53992902/120430863-9d903200-c3b2-11eb-9813-17ba5071dee9.png )
 
 # 概要
 
