@@ -11,125 +11,148 @@
         fluid
         :max-width="postsIndexMaxWidth"
       >
-      <!-- 新規投稿アイコン -->
-      <v-tooltip
-        bottom
-      >
-        <template #activator="{ on, attrs }">
-          <v-btn
-            class="post-new-btn"
-            bottom
-            fixed
-            icon
-            right
-            v-bind="attrs"
-            v-on="on"
-            @click.stop="screenTransition(path = '/posts/new')"
-          >
-            <v-icon
-              :color="postNewButtonColor"
-              :size="postNewButtonSize"
-            >
-              mdi-plus-circle-outline
-            </v-icon>
-          </v-btn>
-        </template>
-        <span>投稿する</span>
-      </v-tooltip>
-      <!-- 投稿検索フォーム -->
-      <v-form
-        class="posts-search-form"
-        v-show="postSearchForm"
-        @submit.prevent
-      >
-        <v-container
-          class="mt-1 mb-3 app-color-light"
-          fluid
-          rounded
+        <!-- 新規投稿アイコン -->
+        <v-tooltip
+          bottom
         >
-          <v-row>
-          <!-- 投稿検索フォームタイトル -->
-            <v-col>
-              <h4 class="mt-3 ml-5">
-                投稿を検索する
-              </h4>
-            </v-col>
-            <!-- 閉じるボタン -->
-            <v-col class="d-flex justify-content-end">
-              <v-tooltip bottom>
-                <template #activator="{ on, attrs }">
-                  <v-btn
-                    class="mr-3"
-                    icon
-                    large
-                    v-bind="attrs"
-                    v-on="on"
-                    @click="displaySearchForm()"
-                  >
-                    <v-icon
-                      :color="closeButtonColor"
-                      :size="closeButtonSize"
-                    >
-                      mdi-close
-                    </v-icon>
-                  </v-btn>
-                </template>
-                <span>閉じる</span>
-              </v-tooltip>
-            </v-col>
-          </v-row>
-          <!-- 投稿検索入力フォーム -->
-          <v-text-field
-            id="posts-search-form"
-            class="pt-4"
-            filled
-            rounded
-            :label="postsSearchFormLabel"
-            v-model="keyword"
-          >
-          </v-text-field>
-        </v-container>
-      </v-form>
-      <v-row dense xs="12">
-        <v-col
-          v-for="post in filteredPosts"
-          :key="post.id"
-          cols="12"
-          sm="6"
-          md="6"
-          lg="4"
-        >
-          <!-- (それぞれの投稿カード) -->
-          <v-card
-            class="post-card"
-            tile
-            :class="[`post-${ post.id }`]"
-            @click="screenTransition(path = `/posts/${ post.id }`)"
-          >
-            <!-- (投稿カードのイメージ) -->
-            <v-img
-              class="align-end"
-              :src="post.image"
-              :height="postImageHeight"
-              :gradient="postImageGradient"
-            >
-              <!-- (投稿カードのタイトル) -->
-              <v-card-title
-                class="grey--text text--lighten-1 body-3 font-italic"
-                v-text="post.title"
+          <template #activator="{ on, attrs }">
+            <!-- スマホでない場合 -->
+            <div v-show="!judgmentMobile">
+              <v-btn
+                class="post-new-btn default-post-new-btn"
+                bottom
+                fixed
+                icon
+                right
+                v-bind="attrs"
+                v-on="on"
+                @click.stop="screenTransition(path = '/posts/new')"
               >
-              </v-card-title>
-            </v-img>
-          </v-card>
-        </v-col>
-      </v-row>
-      <!-- ページネーション -->
-      <!-- <v-pagination
-        v-model="page"
-        :length="length"
-        @input="pageChange"
-      >
-      </v-pagination> -->
+                <v-icon
+                  :color="DefaultPostNewButtonColor"
+                  :size="DefaultPostNewButtonSize"
+                >
+                  mdi-plus-circle-outline
+                </v-icon>
+              </v-btn>
+            </div>
+            <!-- スマホの場合 -->
+            <div v-show="judgmentMobile">
+              <v-btn
+                class="post-new-btn mobile-post-new-btn"
+                bottom
+                fixed
+                icon
+                right
+                v-bind="attrs"
+                v-on="on"
+                @click.stop="screenTransition(path = '/posts/new')"
+              >
+                <v-icon
+                  :color="MobilePostNewButtonColor"
+                  :size="MobilePostNewButtonSize"
+                >
+                  mdi-plus-circle-outline
+                </v-icon>
+              </v-btn>
+            </div>
+          </template>
+          <span>投稿する</span>
+        </v-tooltip>
+        <!-- 投稿検索フォーム -->
+        <v-form
+          class="posts-search-form"
+          v-show="postSearchForm"
+          @submit.prevent
+        >
+          <v-container
+            class="mt-1 mb-3 app-color-light"
+            fluid
+            rounded
+          >
+            <v-row>
+            <!-- 投稿検索フォームタイトル -->
+              <v-col>
+                <h4 class="mt-3 ml-5">
+                  投稿を検索する
+                </h4>
+              </v-col>
+              <!-- 閉じるボタン -->
+              <v-col class="d-flex justify-content-end">
+                <v-tooltip bottom>
+                  <template #activator="{ on, attrs }">
+                    <v-btn
+                      class="mr-3"
+                      icon
+                      large
+                      v-bind="attrs"
+                      v-on="on"
+                      @click="displaySearchForm()"
+                    >
+                      <v-icon
+                        :color="closeButtonColor"
+                        :size="closeButtonSize"
+                      >
+                        mdi-close
+                      </v-icon>
+                    </v-btn>
+                  </template>
+                  <span>閉じる</span>
+                </v-tooltip>
+              </v-col>
+            </v-row>
+            <!-- 投稿検索入力フォーム -->
+            <v-text-field
+              id="posts-search-form"
+              class="pt-4"
+              filled
+              rounded
+              :label="postsSearchFormLabel"
+              v-model="keyword"
+            >
+            </v-text-field>
+          </v-container>
+        </v-form>
+        <v-row dense>
+          <v-col
+            v-for="post in filteredPosts"
+            :key="post.id"
+            cols="12"
+            sm="6"
+            md="6"
+            lg="4"
+          >
+            <!-- (それぞれの投稿カード) -->
+            <v-card
+              class="post-card"
+              tile
+              :class="[`post-${ post.id }`]"
+              @click="screenTransition(path = `/posts/${ post.id }`)"
+            >
+              <!-- (投稿カードのイメージ) -->
+              <v-img
+                class="align-end"
+                :src="post.image"
+                :height="postImageHeight"
+                :gradient="postImageGradient"
+              >
+                <!-- (投稿カードのタイトル) -->
+                <v-card-title
+                  class="grey--text text--lighten-1 body-3 font-italic"
+                  v-text="post.title"
+                >
+                </v-card-title>
+              </v-img>
+            </v-card>
+          </v-col>
+        </v-row>
+        <!-- ページネーション -->
+        <!-- <v-pagination
+          v-model="page"
+          :length="length"
+          @input="pageChange"
+        >
+        </v-pagination> -->
       </v-container>
     </v-card>
   </v-app>
@@ -139,8 +162,8 @@
 <script lang="ts">
 import { Component, Vue, Emit, Model } from 'vue-property-decorator';
 import axios from 'axios';
+import isMobile from 'ismobilejs';
 import { PostsData } from '@/types/@types/LibraryComponent';
-
 
 @Component({
   components: {}
@@ -155,13 +178,16 @@ export default class PostsIndex extends Vue {
 
   private postsIndexBackColor: string = '#060211';
   private postsIndexMaxWidth: string = '100%';
-  private postNewButtonColor: string = '#FFFFFF';
-  private postNewButtonSize: string = '50px';
+  private DefaultPostNewButtonColor: string = '#FFFFFF';
+  private DefaultPostNewButtonSize: string = '50px';
+  private MobilePostNewButtonColor: string = '#FFFFFF';
+  private MobilePostNewButtonSize: string = '200px';
   private closeButtonColor: string = '#FFFFFF';
   private closeButtonSize: string = '50px';
   private postImageHeight: string = '250px';
   private postImageGradient: string = 'to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)';
   private postsSearchFormLabel: string = 'タイトルやジャンルを入力してください';
+  private judgmentMobile: boolean = isMobile().phone;
   private keyword: string = '';
   private postsData: Array<PostsData> = [];
 
@@ -183,10 +209,6 @@ export default class PostsIndex extends Vue {
 
   private screenTransition(path: string): void {
     this.$router.push(path).catch(e=>{});
-    this.$router.go(0);
-  }
-
-  private reload(): void {
     this.$router.go(0);
   }
 
@@ -213,9 +235,9 @@ export default class PostsIndex extends Vue {
 </script>
 
 <style lang="scss" scoped>
-  .post-new-btn {
+  .default-post-new-btn {
     position: fiexd;
-    bottom: 70px;
+    bottom: 100px;
     right: 100px;
     height: 50px;
     width: 50px;
@@ -229,6 +251,19 @@ export default class PostsIndex extends Vue {
       transform: scale(1.7);
       opacity: 1;
     }
+  }
+
+  .mobile-post-new-btn {
+    position: fiexd;
+    bottom: 200px;
+    right: 100px;
+    height: 200px;
+    width: 200px;
+    background-color: #c1c1ff;
+    z-index: 10;
+    display: inline-block;
+    transition-duration: 1s;
+    transition-property: transform;
   }
 
   .posts-search-form {
