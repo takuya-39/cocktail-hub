@@ -24,8 +24,8 @@
               @click="switchDrawer()"
             >
               <v-icon
-                :color="headerIconColor"
-                :size="headerIconSize"
+                :color="defaultHeaderIconColor"
+                :size="defaultHeaderIconSize"
               >
                 mdi-menu
               </v-icon>
@@ -47,8 +47,8 @@
               @click="displaySearchForm()"
             >
               <v-icon
-                :color="headerIconColor"
-                :size="headerIconSize"
+                :color="defaultHeaderIconColor"
+                :size="defaultHeaderIconSize"
               >
                 mdi-magnify
               </v-icon>
@@ -70,8 +70,8 @@
               @click="goTop()"
             >
               <v-icon
-                :color="headerIconColor"
-                :size="headerIconSize"
+                :color="defaultHeaderIconColor"
+                :size="defaultHeaderIconSize"
               >
                 mdi-apple-keyboard-control
               </v-icon>
@@ -83,14 +83,15 @@
         <v-spacer></v-spacer>
         <!-- ヘッダータイトル -->
         <v-img
-          class="app-title-image"
+          class="default-app-title-image"
           :src="imagePath"
-          :height="headerTitleHeight"
+          :height="defaultHeaderTitleHeight"
           @click="screenTransition(path = '/')"
         >
         </v-img>
       </v-app-bar>
     </div>
+
     <!-- スマホの場合 -->
     <div v-show="judgmentMobile">
       <!-- ヘッダー -->
@@ -111,8 +112,8 @@
               @click="switchDrawer()"
             >
               <v-icon
-                :color="headerIconColor"
-                :size="headerIconSize"
+                :color="mobileHeaderIconColor"
+                :size="mobileHeaderIconSize"
               >
                 mdi-menu
               </v-icon>
@@ -127,15 +128,15 @@
         >
           <template #activator="{ on, attrs }">
             <v-btn
-              class="ml-15 posts-search-btn"
+              class="posts-search-btn mobile-posts-search-btn"
               icon
               v-bind="attrs"
               v-on="on"
               @click="displaySearchForm()"
             >
               <v-icon
-                :color="headerIconColor"
-                :size="headerIconSize"
+                :color="mobileHeaderIconColor"
+                :size="mobileHeaderIconSize"
               >
                 mdi-magnify
               </v-icon>
@@ -150,15 +151,15 @@
         >
           <template #activator="{ on, attrs }">
             <v-btn
-              class="ml-15 mt-2 go-top-btn"
+              class="go-top-btn mobile-go-top-btn"
               icon
               v-bind="attrs"
               v-on="on"
               @click="goTop()"
             >
               <v-icon
-                :color="headerIconColor"
-                :size="headerIconSize"
+                :color="mobileHeaderIconColor"
+                :size="mobileHeaderIconSize"
               >
                 mdi-apple-keyboard-control
               </v-icon>
@@ -170,9 +171,9 @@
         <v-spacer></v-spacer>
         <!-- ヘッダータイトル -->
         <v-img
-          class="app-title-image"
+          class="mobile-app-title-image"
           :src="imagePath"
-          :height="headerTitleHeight"
+          :height="mobileHeaderTitleHeight"
           @click="screenTransition(path = '/')"
         >
         </v-img>
@@ -270,12 +271,16 @@ export default class MainHeader extends Vue {
   private headerMaxWidth: string = '100%';
   private defaultHeaderColor: string = '#d1c4e9';
   private defaultHeaderHeight: string = '100px';
+  private defaultHeaderIconColor: string = '#FFFFFF';
+  private defaultHeaderIconSize: string = '50px';
+  private defaultHeaderTitleHeight: string = '100px';
+
   private mobileHeaderColor: string = '#d1c4e9';
   private mobileHeaderHeight: string = '200px';
-  private headerIconColor: string = '#FFFFFF';
-  private headerIconSize: string = '50px';
-  private headerTitleHeight: string = '100px';
-  private drawerColor: string = 'drawerColor';
+  private mobileHeaderIconColor: string = '#FFFFFF';
+  private mobileHeaderIconSize: string = '100px';
+  private mobileHeaderTitleHeight: string = '350px';
+  private drawerColor: string = '#FFFFFF';
   private dialogWidth: string = '80%';
   private imagePath: string = require('../../../../assets/images/app_title_image.png');
   private judgmentMobile: boolean = isMobile().phone;
@@ -309,19 +314,32 @@ export default class MainHeader extends Vue {
 </script>
 
 <style lang="scss" scoped>
-  .posts-search-btn {
-    z-index: 10
+  .mobile-posts-search-btn {
+    margin-top: 5px;
+    margin-left: 85px;
   }
 
-  .app-title-image {
+  .mobile-go-top-btn {
+    margin-top: 25px;
+    margin-left: 85px;
+  }
+
+  .default-app-title-image {
     width: 400px;
     position: absolute;
     right: 30px;
     z-index: 10;
   }
 
+  .mobile-app-title-image {
+    width: 500px;
+    position: absolute;
+    right: 30px;
+    z-index: 10;
+  }
+
   @media (max-width: 780px) {
-    .app-title-image {
+    .default-app-title-image {
       display: none;
     }
 }
