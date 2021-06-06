@@ -187,8 +187,8 @@ export default class PostsIndex extends Vue {
   private postImageHeight: string = '250px';
   private postImageGradient: string = 'to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)';
   private postsSearchFormLabel: string = 'タイトルやジャンルを入力してください';
-  private judgmentMobile: boolean = isMobile().phone;
   private keyword: string = '';
+  private judgmentMobile: boolean = isMobile().phone;
   private postsData: Array<PostsData> = [];
 
   // 以下ページネーション機能の修正までコメントアウト
@@ -260,6 +260,7 @@ export default class PostsIndex extends Vue {
     height: 200px;
     width: 200px;
     background-color: #c1c1ff;
+    opacity: .8;
     z-index: 10;
     display: inline-block;
     transition-duration: 1s;
