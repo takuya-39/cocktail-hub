@@ -16,8 +16,8 @@
           bottom
         >
           <template #activator="{ on, attrs }">
-            <!-- スマホでない場合 -->
-            <div v-show="!judgmentMobile">
+            <!-- スマートフォンでない場合 -->
+            <div v-if="!judgmentMobile">
               <v-btn
                 class="post-new-btn default-post-new-btn"
                 bottom
@@ -29,15 +29,15 @@
                 @click.stop="screenTransition(path = '/posts/new')"
               >
                 <v-icon
-                  :color="DefaultPostNewButtonColor"
-                  :size="DefaultPostNewButtonSize"
+                  :color="defaultPostNewButtonColor"
+                  :size="defaultPostNewButtonSize"
                 >
                   mdi-plus-circle-outline
                 </v-icon>
               </v-btn>
             </div>
-            <!-- スマホの場合 -->
-            <div v-show="judgmentMobile">
+            <!-- スマートフォンの場合 -->
+            <div v-if="judgmentMobile">
               <v-btn
                 class="post-new-btn mobile-post-new-btn"
                 bottom
@@ -49,8 +49,8 @@
                 @click.stop="screenTransition(path = '/posts/new')"
               >
                 <v-icon
-                  :color="MobilePostNewButtonColor"
-                  :size="MobilePostNewButtonSize"
+                  :color="mobilePostNewButtonColor"
+                  :size="mobilePostNewButtonSize"
                 >
                   mdi-plus-circle-outline
                 </v-icon>
@@ -59,60 +59,121 @@
           </template>
           <span>投稿する</span>
         </v-tooltip>
-        <!-- 投稿検索フォーム -->
-        <v-form
-          class="posts-search-form"
-          v-show="postSearchForm"
-          @submit.prevent
-        >
-          <v-container
-            class="mt-1 mb-3 app-color-light"
-            fluid
-            rounded
+        <!-- スマートフォンでない場合 -->
+        <div v-if="!judgmentMobile">
+          <!-- 投稿検索フォーム -->
+          <v-form
+            class="posts-search-form"
+            v-show="postSearchForm"
+            @submit.prevent
           >
-            <v-row>
-            <!-- 投稿検索フォームタイトル -->
-              <v-col>
-                <h4 class="mt-3 ml-5">
-                  投稿を検索する
-                </h4>
-              </v-col>
-              <!-- 閉じるボタン -->
-              <v-col class="d-flex justify-content-end">
-                <v-tooltip bottom>
-                  <template #activator="{ on, attrs }">
-                    <v-btn
-                      class="mr-3"
-                      icon
-                      large
-                      v-bind="attrs"
-                      v-on="on"
-                      @click="displaySearchForm()"
-                    >
-                      <v-icon
-                        :color="closeButtonColor"
-                        :size="closeButtonSize"
-                      >
-                        mdi-close
-                      </v-icon>
-                    </v-btn>
-                  </template>
-                  <span>閉じる</span>
-                </v-tooltip>
-              </v-col>
-            </v-row>
-            <!-- 投稿検索入力フォーム -->
-            <v-text-field
-              id="posts-search-form"
-              class="pt-4"
-              filled
+            <v-container
+              class="mt-1 mb-3 app-color-light"
+              fluid
               rounded
-              :label="postsSearchFormLabel"
-              v-model="keyword"
             >
-            </v-text-field>
-          </v-container>
-        </v-form>
+              <v-row>
+              <!-- 投稿検索フォームタイトル -->
+                <v-col>
+                  <h4 class="mt-3 ml-5">
+                    投稿を検索する
+                  </h4>
+                </v-col>
+                <!-- 閉じるボタン -->
+                <v-col class="d-flex justify-content-end">
+                  <v-tooltip bottom>
+                    <template #activator="{ on, attrs }">
+                      <v-btn
+                        class="mr-3"
+                        icon
+                        large
+                        v-bind="attrs"
+                        v-on="on"
+                        @click="displaySearchForm()"
+                      >
+                        <v-icon
+                          :color="closeButtonColor"
+                          :size="closeButtonSize"
+                        >
+                          mdi-close
+                        </v-icon>
+                      </v-btn>
+                    </template>
+                    <span>閉じる</span>
+                  </v-tooltip>
+                </v-col>
+              </v-row>
+              <!-- 投稿検索入力フォーム -->
+              <v-text-field
+                id="posts-search-form"
+                class="pt-4"
+                filled
+                rounded
+                :label="postsSearchLabel"
+                v-model="keyword"
+              >
+              </v-text-field>
+            </v-container>
+          </v-form>
+        </div>
+        <!-- スマートフォンの場合 -->
+        <div v-if="judgmentMobile">
+          <!-- 投稿検索フォーム -->
+          <v-form
+            class="posts-search-form"
+            v-show="postSearchForm"
+            @submit.prevent
+          >
+            <v-container
+              class="mt-1 mb-3 app-color-light mobile-posts-search-container"
+              fluid
+              rounded
+            >
+              <v-row>
+              <!-- 投稿検索フォームタイトル -->
+                <v-col>
+                  <h1 class="mt-3 ml-5">
+                    投稿を検索する
+                  </h1>
+                </v-col>
+                <!-- 閉じるボタン -->
+                <v-col class="d-flex justify-content-end">
+                  <v-tooltip bottom>
+                    <template #activator="{ on, attrs }">
+                      <v-btn
+                        class="mr-3"
+                        icon
+                        large
+                        v-bind="attrs"
+                        v-on="on"
+                        @click="displaySearchForm()"
+                      >
+                        <v-icon
+                          :color="closeButtonColor"
+                          :size="closeButtonSize"
+                        >
+                          mdi-close
+                        </v-icon>
+                      </v-btn>
+                    </template>
+                    <span>閉じる</span>
+                  </v-tooltip>
+                </v-col>
+              </v-row>
+              <!-- 投稿検索入力フォーム -->
+              <v-text-field
+                id="posts-search-form"
+                class="pt-10"
+                filled
+                rounded
+                :label="postsSearchLabel"
+                :height="mobilePostsSearchTextFieldHeight"
+                v-model="keyword"
+              >
+              </v-text-field>
+            </v-container>
+          </v-form>
+        </div>
         <v-row dense>
           <v-col
             v-for="post in filteredPosts"
@@ -178,15 +239,16 @@ export default class PostsIndex extends Vue {
 
   private postsIndexBackColor: string = '#060211';
   private postsIndexMaxWidth: string = '100%';
-  private DefaultPostNewButtonColor: string = '#FFFFFF';
-  private DefaultPostNewButtonSize: string = '50px';
-  private MobilePostNewButtonColor: string = '#FFFFFF';
-  private MobilePostNewButtonSize: string = '200px';
+  private defaultPostNewButtonColor: string = '#FFFFFF';
+  private defaultPostNewButtonSize: string = '50px';
   private closeButtonColor: string = '#FFFFFF';
   private closeButtonSize: string = '50px';
   private postImageHeight: string = '250px';
   private postImageGradient: string = 'to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)';
-  private postsSearchFormLabel: string = 'タイトルやジャンルを入力してください';
+  private postsSearchLabel: string = 'タイトルやジャンルを入力してください';
+  private mobilePostNewButtonColor: string = '#FFFFFF';
+  private mobilePostNewButtonSize: string = '200px';
+  private mobilePostsSearchTextFieldHeight: string = '130px'
   private keyword: string = '';
   private judgmentMobile: boolean = isMobile().phone;
   private postsData: Array<PostsData> = [];
@@ -280,5 +342,9 @@ export default class PostsIndex extends Vue {
     &:hover {
       border-radius: 5em !important;
     }
+  }
+
+  .mobile-posts-search-container {
+    height: 300px;
   }
 </style>

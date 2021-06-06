@@ -4,7 +4,7 @@
     tile
     :max-width="headerMaxWidth"
   >
-    <!-- スマホでない場合 -->
+    <!-- スマートフォンでない場合 -->
     <div v-if="!judgmentMobile">
       <!-- ヘッダー -->
       <v-app-bar
@@ -92,7 +92,7 @@
       </v-app-bar>
     </div>
 
-    <!-- スマホの場合 -->
+    <!-- スマートフォンの場合 -->
     <div v-if="judgmentMobile">
       <!-- ヘッダー -->
       <v-app-bar
@@ -181,7 +181,7 @@
     </div>
 
     <!-- ドロワー -->
-    <!-- スマホでない場合 -->
+    <!-- スマートフォンでない場合 -->
     <div v-if="!judgmentMobile">
       <v-navigation-drawer
         class="font-weight-bold"
@@ -203,7 +203,7 @@
         />
       </v-navigation-drawer>
     </div>
-    <!-- スマホの場合 -->
+    <!-- スマートフォンの場合 -->
     <div v-if="judgmentMobile">
       <v-navigation-drawer
         class="font-weight-bold"
@@ -306,7 +306,7 @@ export default class MainHeader extends Vue {
   private mobileHeaderHeight: string = '200px';
   private mobileHeaderIconColor: string = '#FFFFFF';
   private mobileHeaderIconSize: string = '100px';
-  private mobileHeaderTitleHeight: string = '350px';
+  private mobileHeaderTitleHeight: string = '280px';
   private mobileDrawerWidth: string ="500px";
   private dialogWidth: string = '80%';
   private imagePath: string = require('../../../../assets/images/app_title_image.png');
@@ -341,6 +341,13 @@ export default class MainHeader extends Vue {
 </script>
 
 <style lang="scss" scoped>
+  .default-app-title-image {
+    width: 400px;
+    position: absolute;
+    right: 30px;
+    z-index: 10;
+  }
+
   .mobile-posts-search-btn {
     margin-top: 5px;
     margin-left: 85px;
@@ -349,13 +356,6 @@ export default class MainHeader extends Vue {
   .mobile-go-top-btn {
     margin-top: 25px;
     margin-left: 85px;
-  }
-
-  .default-app-title-image {
-    width: 400px;
-    position: absolute;
-    right: 30px;
-    z-index: 10;
   }
 
   .mobile-app-title-image {

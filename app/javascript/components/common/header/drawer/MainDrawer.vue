@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- スマホでない場合 -->
+    <!-- スマートフォンでない場合 -->
     <div v-if="!judgmentMobile">
       <!-- ドロワーリスト -->
       <v-list nav>
@@ -171,7 +171,7 @@
       </v-list>
     </div>
 
-    <!-- スマホの場合 -->
+    <!-- スマートフォンの場合 -->
     <div v-if="judgmentMobile">
       <!-- ドロワーリスト -->
       <v-list nav>
