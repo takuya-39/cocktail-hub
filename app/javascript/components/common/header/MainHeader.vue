@@ -5,7 +5,7 @@
     :max-width="headerMaxWidth"
   >
     <!-- スマホでない場合 -->
-    <div v-show="!judgmentMobile">
+    <div v-if="!judgmentMobile">
       <!-- ヘッダー -->
       <v-app-bar
         class="white--text"
@@ -93,7 +93,7 @@
     </div>
 
     <!-- スマホの場合 -->
-    <div v-show="judgmentMobile">
+    <div v-if="judgmentMobile">
       <!-- ヘッダー -->
       <v-app-bar
         class="white--text"
@@ -179,26 +179,52 @@
         </v-img>
       </v-app-bar>
     </div>
+
     <!-- ドロワー -->
-    <v-navigation-drawer
-      class="font-weight-bold"
-      fixed
-      temporary
-      :color="drawerColor"
-      v-model="menuDrawer"
-    >
-      <MainDrawer
-        :dialogExplanation="dialogExplanation"
-        :dialogRanking="dialogRanking"
-        :dialogRandom="dialogRandom"
-        @switchDrawer="switchDrawer()"
-        @switchExplanation="switchExplanation()"
-        @switchRanking="switchRanking()"
-        @switchRandom="switchRandom()"
-        @screenTransition="screenTransition()"
+    <!-- スマホでない場合 -->
+    <div v-if="!judgmentMobile">
+      <v-navigation-drawer
+        class="font-weight-bold"
+        fixed
+        temporary
+        :width="defaultDrawerWidth"
         v-model="menuDrawer"
-      />
-    </v-navigation-drawer>
+      >
+        <MainDrawer
+          :dialogExplanation="dialogExplanation"
+          :dialogRanking="dialogRanking"
+          :dialogRandom="dialogRandom"
+          @switchDrawer="switchDrawer()"
+          @switchExplanation="switchExplanation()"
+          @switchRanking="switchRanking()"
+          @switchRandom="switchRandom()"
+          @screenTransition="screenTransition()"
+          v-model="menuDrawer"
+        />
+      </v-navigation-drawer>
+    </div>
+    <!-- スマホの場合 -->
+    <div v-if="judgmentMobile">
+      <v-navigation-drawer
+        class="font-weight-bold"
+        fixed
+        temporary
+        :width="mobileDrawerWidth"
+        v-model="menuDrawer"
+      >
+        <MainDrawer
+          :dialogExplanation="dialogExplanation"
+          :dialogRanking="dialogRanking"
+          :dialogRandom="dialogRandom"
+          @switchDrawer="switchDrawer()"
+          @switchExplanation="switchExplanation()"
+          @switchRanking="switchRanking()"
+          @switchRandom="switchRandom()"
+          @screenTransition="screenTransition()"
+          v-model="menuDrawer"
+        />
+      </v-navigation-drawer>
+    </div>
 
     <!-- Cocktail Hubとは？ダイアログ -->
     <v-dialog
@@ -274,13 +300,14 @@ export default class MainHeader extends Vue {
   private defaultHeaderIconColor: string = '#FFFFFF';
   private defaultHeaderIconSize: string = '50px';
   private defaultHeaderTitleHeight: string = '100px';
+  private defaultDrawerWidth: string ="280px";
 
   private mobileHeaderColor: string = '#d1c4e9';
   private mobileHeaderHeight: string = '200px';
   private mobileHeaderIconColor: string = '#FFFFFF';
   private mobileHeaderIconSize: string = '100px';
   private mobileHeaderTitleHeight: string = '350px';
-  private drawerColor: string = '#FFFFFF';
+  private mobileDrawerWidth: string ="500px";
   private dialogWidth: string = '80%';
   private imagePath: string = require('../../../../assets/images/app_title_image.png');
   private judgmentMobile: boolean = isMobile().phone;
