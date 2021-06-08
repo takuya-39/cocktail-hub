@@ -34,8 +34,8 @@
                   - if devise_mapping.rememberable?
                     .container.text-center
                       .field
-                        = u.label :remember_me, class: 'mr-5 '
-                        = u.check_box :remember_me, class: 'border-dark p-3', style: "transform:scale(2.0);"
+                        = u.label :remember_me, class: 'mr-5'
+                        = u.check_box :remember_me, class: 'border-dark p-3', style: 'transform:scale(2.0);'
                 .col-6
                   .form-group.text-center
                     = u.submit 'ログインする', class: 'btn btn-lg shadow-lg text-light app-color-btn px-5 py-4'
