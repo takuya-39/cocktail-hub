@@ -1,13 +1,29 @@
-#like-posts-pagination
-  = paginate @posts, remote: true
-  - @posts.each do |post|
-    div[id="post-#{ post.id }"]
-      .card.rounded.bg-light.mb-3.p-2
-        .row.d-flex.justify-content-center.align-items-center
-          .col-3.mt-1
-            = link_to post, data: {"turbolinks" => false}
-              = image_tag post.display_image, class: 'resize-image rounded-circle', style: 'width: 70px; height: 70px;'
-          .col-4.text-secondary
-            h5
-              = post.title
-  = paginate @posts, remote: true
+- if browser.device.mobile?
+  #like-posts-pagination
+    = paginate @posts, remote: true
+    - @posts.each do |post|
+      div[id="post-#{ post.id }"]
+        .card.rounded.bg-light.mb-3.p-2
+          .row.d-flex.justify-content-center.align-items-center.py-5
+            .col-3.mt-1
+              = link_to post, data: {"turbolinks" => false}
+                = image_tag post.display_image, class: 'resize-image rounded-circle', style: 'width: 200px; height: 200px;'
+            .col-4.text-secondary.ml-5
+              h2
+                = post.title
+    = paginate @posts, remote: true
+
+- else
+  #like-posts-pagination
+    = paginate @posts, remote: true
+    - @posts.each do |post|
+      div[id="post-#{ post.id }"]
+        .card.rounded.bg-light.mb-3.p-2
+          .row.d-flex.justify-content-center.align-items-center
+            .col-3.mt-1
+              = link_to post, data: {"turbolinks" => false}
+                = image_tag post.display_image, class: 'resize-image rounded-circle', style: 'width: 70px; height: 70px;'
+            .col-4.text-secondary
+              h5
+                = post.title
+    = paginate @posts, remote: true
