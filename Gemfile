@@ -5,6 +5,7 @@ ruby '2.7.1'
 
 gem 'annotate'
 gem 'bootsnap',             '>= 1.4.8', require: false
+gem 'browser'
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views'

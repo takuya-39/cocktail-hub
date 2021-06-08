@@ -105,7 +105,7 @@
     user_id: 2
   )
   post.save!(validate: false)
-  post.image.attach(io: File.open('app/assets/images/guest_user_post_image.jpg'), filename: 'guest_user_post_image.jpg')
+  post.image.attach(io: File.open('app/assets/images/guest_user_post_image1.jpg'), filename: 'guest_user_post_image1.jpg')
 
   # takuyaの投稿を作成する
   post = Post.new(
@@ -119,7 +119,7 @@
     user_id: 3
   )
   post.save!(validate: false)
-  post.image.attach(io: File.open('app/assets/images/user_a_post_image.jpg'), filename: 'user_a_post_image.jpg')
+  post.image.attach(io: File.open('app/assets/images/user_a_post_image1.jpg'), filename: 'user_a_post_image1.jpg')
 
   # いっしーの投稿を作成する
   post = Post.new(
@@ -133,7 +133,7 @@
     user_id: 4
   )
   post.save!(validate: false)
-  post.image.attach(io: File.open('app/assets/images/user_b_post_image.jpg'), filename: 'user_b_post_image.jpg')
+  post.image.attach(io: File.open('app/assets/images/user_b_post_image1.jpg'), filename: 'user_b_post_image1.jpg')
 
   # ユウタロウの投稿を作成する
   post = Post.new(
@@ -147,7 +147,7 @@
     user_id: 5
   )
   post.save!(validate: false)
-  post.image.attach(io: File.open('app/assets/images/user_c_post_image.jpg'), filename: 'user_c_post_image.jpg')
+  post.image.attach(io: File.open('app/assets/images/user_c_post_image1.jpg'), filename: 'user_c_post_image1.jpg')
 
   # 安永の投稿を作成する
   post = Post.new(
@@ -191,32 +191,161 @@
   post.save!(validate: false)
   post.image.attach(io: File.open('app/assets/images/user_f_post_image.jpg'), filename: 'user_f_post_image.jpg')
 
+  # 追加でゲストユーザーの投稿を作成する
+  post = Post.new(
+    id: 8,
+    title: 'バニラクリームビール',
+    genre: 'ビール',
+    ingredients:
+      "・ビール 350ml(お好きなものを) \n・バニラアイス お好みの量".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
+    memo:
+      "お好きなビールにバニラアイスを豪快に！ \n斬新な味わいです、ビールが好きで甘党な方は是非一度どうぞ！".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
+    user_id: 2
+  )
+  post.save!(validate: false)
+  post.image.attach(io: File.open('app/assets/images/guest_user_post_image2.jpg'), filename: 'guest_user_post_image2.jpg')
+
+  post = Post.new(
+    id: 9,
+    title: 'はちみつレモンソルティードッグ',
+    genre: 'ウォッカ',
+    ingredients:
+      "・ウォッカ 30ml \n・グレープフルーツジュース 70ml \n・レモン果汁 お好みの量 \n・塩 多めにグラスの縁につける \n・はちみつ お好みの量".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
+    memo:
+      "はちみつレモンの甘さが塩でシャキッと引き締まります！ \n甘さとのバランスを取るために塩は是非多めにつけてみてください！".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
+    user_id: 2
+  )
+  post.save!(validate: false)
+  post.image.attach(io: File.open('app/assets/images/guest_user_post_image3.jpg'), filename: 'guest_user_post_image3.jpg')
+
+  post = Post.new(
+    id: 10,
+    title: '沖縄風黒糖ブランデーストレート',
+    genre: 'ブランデー',
+    ingredients:
+      "・ブランデー 30ml \n・粉末黒糖 10g".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
+    memo:
+      "ストレートのブランデーに黒糖を加えただけのシンプルなカクテルです、 \nクセのある味わいをお楽しみください！".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
+    user_id: 2
+  )
+  post.save!(validate: false)
+  post.image.attach(io: File.open('app/assets/images/guest_user_post_image4.jpg'), filename: 'guest_user_post_image4.jpg')
+
+  # 追加でtakuyaの投稿を作成する
+  post = Post.new(
+    id: 11,
+    title: '洋梨のジンバック',
+    genre: 'ジン',
+    ingredients:
+      "・ジン 30ml \n・ジンジャーエール 70ml \n・炭酸水 50ml\n・洋梨シロップ 少々".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
+    memo:
+      "ジンバックに洋梨の甘みが加わることでより爽やかな風味が広がります！ \n洋梨シロップ、あまり見かけませんが是非試してみてください！ \n".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
+    user_id: 3
+  )
+  post.save!(validate: false)
+  post.image.attach(io: File.open('app/assets/images/user_a_post_image2.jpg'), filename: 'user_a_post_image2.jpg')
+
+  post = Post.new(
+    id: 12,
+    title: '日本酒サイダー',
+    genre: '日本酒',
+    ingredients:
+      "・三ツ矢サイダー 70ml \n・日本酒 30ml".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
+    memo:
+      "甘めのスパークリング日本酒が飲みたいと思い、 \n試しに作ってみたら意外にも美味しかったのでシェアします(笑) \nお好みでレモンなどを加えてもいいかもしれません。".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
+    user_id: 3
+  )
+  post.save!(validate: false)
+  post.image.attach(io: File.open('app/assets/images/user_a_post_image3.jpg'), filename: 'user_a_post_image3.jpg')
+
+  # 追加でいっしーの投稿を作成する
+  post = Post.new(
+    id: 13,
+    title: '健康を考えたオイルトマト焼酎',
+    genre: '焼酎',
+    ingredients:
+      "・焼酎 30ml \n・トマトジュース 70ml \n・オリーブオイル 少々 \n・オレンジ 2切れ".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
+    memo:
+      "お酒を飲む時に少しでも健康に気を遣いたいと思い作ってみました！ \n割とおしゃれな味がします！".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
+    user_id: 4
+  )
+  post.save!(validate: false)
+  post.image.attach(io: File.open('app/assets/images/user_b_post_image2.jpg'), filename: 'user_b_post_image2.jpg')
+
+  post = Post.new(
+    id: 14,
+    title: 'さっぱりとしたテキーラウーロン',
+    genre: 'テキーラ',
+    ingredients:
+      "・テキーラ 30ml \n・烏龍茶 70ml \n・レモン果汁 多めに".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
+    memo:
+      "さっぱりとした味わいです！ \nレモン果汁を多めに入れるとより飲みやすくなります！".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
+    user_id: 4
+  )
+  post.save!(validate: false)
+  post.image.attach(io: File.open('app/assets/images/user_b_post_image3.jpg'), filename: 'user_b_post_image3.jpg')
+
+  # 追加でユウタロウの投稿を作成する
+  post = Post.new(
+    id: 15,
+    title: '大人のレモンティー',
+    genre: 'ウイスキー',
+    ingredients:
+      "・ウイスキー 30ml \n・レモンティー 70ml \n・レモン 一切れ \n・フルーツビネガー 小さじ1杯".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
+    memo:
+      "レモンティーウイスキーを作ってみました！ \nフルーツビネガーの酸味で後味が上品に広がります。".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
+    user_id: 5
+  )
+  post.save!(validate: false)
+  post.image.attach(io: File.open('app/assets/images/user_c_post_image2.jpg'), filename: 'user_c_post_image2.jpg')
+
+  post = Post.new(
+    id: 16,
+    title: 'しっかり甘い、白桃酒カルピス',
+    genre: '果実酒',
+    ingredients:
+      "・白桃酒 20ml \n・カルピス 60ml \n".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
+    memo:
+      "爽やかな甘さでとても美味しいです！ \n市販の桃のカルピスのお酒版です！！".gsub(/(\\r\\n|\\r|\\n)/, "\n"),
+    user_id: 5
+  )
+  post.save!(validate: false)
+  post.image.attach(io: File.open('app/assets/images/user_c_post_image3.jpg'), filename: 'user_c_post_image3.jpg')
 
 # 投稿へのいいねを作成する
   # ゲストユーザーが全ての投稿へいいねする
-  (1..7).each do |i|
+  (1..16).each do |i|
     Like.create!(post_id: i, user_id: 2)
   end
 
   # takuyaが全ての投稿へいいねする
-  (1..7).each do |i|
+  (1..16).each do |i|
     Like.create!(post_id: i, user_id: 3)
   end
 
   # いっしーが一部の投稿へいいねする
-  (1..7).each do |i|
+  (1..16).each do |i|
     next if i == 2
     next if i == 4
     next if i == 6
+    next if i == 8
+    next if i == 10
+    next if i == 12
+    next if i == 14
+    next if i == 16
     Like.create!(post_id: i, user_id: 4)
   end
 
   # ユウタロウが一部の投稿へいいねする
-  (1..7).each do |i|
+  (1..16).each do |i|
     next if i == 1
     next if i == 3
     next if i == 5
     next if i == 7
+    next if i == 9
+    next if i == 11
+    next if i == 13
+    next if i == 15
     Like.create!(post_id: i, user_id: 5)
   end
 
@@ -281,7 +410,7 @@
 
 # コメントを作成する
   # 一部のユーザーが全ての投稿にコメントする
-  (1..7).each do |i|
+  (1..16).each do |i|
     Comment.create!(
       post_id: i,
       user_id: 2,
