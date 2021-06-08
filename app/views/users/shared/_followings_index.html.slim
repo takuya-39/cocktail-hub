@@ -5,14 +5,14 @@
       .card.rounded.bg-light.mb-3.p-2
         .row.d-flex.justify-content-center.align-items-center.py-5
           - unless current_user == @user
-            .col-3.mt-1.ml-3
+            .col-3.mt-1.ml-5
               = link_to user, data: {"turbolinks" => false}
                 = image_tag user.display_image, class: 'resize-image rounded-circle', style: 'width: 150px; height: 150px;'
             .col-4.text-secondary
               h2
                 = user.username
           - else
-            .col-3.mt-1.ml-3
+            .col-3.mt-1.ml-5
               = link_to user, data: {"turbolinks" => false}
                 = image_tag user.display_image, class: 'resize-image rounded-circle', style: 'width: 150px; height: 150px;'
             .col-4.text-secondary
