@@ -1,44 +1,4 @@
-- if browser.device.mobile?
-  = form_with model: @user, url: session_path(resource_name), local: true do |u|
-    .container-fluid.app-color-light
-      .text-center.text-light.p-4
-        h1.title-design ログインページ
-
-      .container.mb-3
-        .card.rounded-lg.app-color-sub-light
-          .row
-            .col-12.col-lg-6.text-center.my-2
-              = link_to 'ゲストユーザーでログインする', users_guest_sign_in_path, method: :post, data: {"turbolinks" => false}, class: 'guest-login-button'
-            .col-12.col-lg-6.text-center.my-2
-              = link_to '新規ユーザーを作成する', signup_path, data: {"turbolinks" => false}, class: 'user-create-button'
-
-      - if alert.present?
-        .container
-          .error_field.alert.alert-danger
-            = flash.now[:alert]
-
-      .container
-        .card.rounded-lg.app-color-sub-light
-          .card-body
-            .form-group.m-5
-              = u.label :email, class: 'col-form-label-lg'
-              = u.email_field :email, autofocus: true, autocomplete: 'email', id: 'Email', class: 'form-control border-dark p-4'
-            .form-group.m-5
-              = u.label :password, class: 'col-form-label-lg'
-              = u.password_field :password, autofocus: true, autocomplete: 'new-password', id: 'Password', class: 'form-control border-dark p-4'
-            .container
-              .row
-                .col-6
-                  - if devise_mapping.rememberable?
-                    .container.text-center
-                      .field
-                        = u.label :remember_me, class: 'mr-5'
-                        = u.check_box :remember_me, class: 'border-dark p-3', style: 'transform:scale(2.0);'
-                .col-6
-                  .form-group.text-center
-                    = u.submit 'ログインする', class: 'login-button'
-
-- else
+- unless browser.device.mobile?
   = form_with model: @user, url: session_path(resource_name), local: true do |u|
     .container-fluid.app-color-light
       .text-center.text-light.p-4
@@ -77,3 +37,43 @@
                 .col-6
                   .form-group.text-center
                     = u.submit 'ログインする', class: 'login-button'
+
+-else
+  = form_with model: @user, url: session_path(resource_name), local: true do |u|
+    .container-fluid.app-color-light
+      .text-center.text-light.p-4
+        h1.title-design ログインページ
+
+      .container.mb-3
+        .card.rounded-lg.app-color-sub-light
+          .row
+            .col-12.col-lg-6.text-center
+              = link_to 'ゲストユーザーでログインする', users_guest_sign_in_path, method: :post, data: {"turbolinks" => false}, class: 'mobile-guest-login-button'
+            .col-12.col-lg-6.text-center
+              = link_to '新規ユーザーを作成する', signup_path, data: {"turbolinks" => false}, class: 'mobile-user-create-button'
+
+      - if alert.present?
+        .container
+          .error_field.alert.alert-danger
+            = flash.now[:alert]
+
+      .container
+        .card.rounded-lg.app-color-sub-light
+          .card-body
+            .form-group.m-5
+              = u.label :email, class: 'col-form-label-lg'
+              = u.email_field :email, autofocus: true, autocomplete: 'email', id: 'Email', class: 'form-control border-dark p-4'
+            .form-group.m-5
+              = u.label :password, class: 'col-form-label-lg'
+              = u.password_field :password, autofocus: true, autocomplete: 'new-password', id: 'Password', class: 'form-control border-dark p-4'
+            .container
+              .row
+                .col-6
+                  - if devise_mapping.rememberable?
+                    .container.text-center
+                      .field
+                        = u.label :remember_me, class: 'mr-5'
+                        = u.check_box :remember_me, class: 'border-dark p-3', style: 'transform:scale(2.0);'
+                .col-6
+                  .form-group.text-center
+                    = u.submit 'ログインする', class: 'mobile-login-button'

@@ -1,35 +1,73 @@
-= form_with model: @post, local: true do |p|
-  .container-fluid.app-color-light
-    .text-center.text-light.p-4
-      h1.title-design 新規投稿
+- unless browser.device.mobile?
+  = form_with model: @post, local: true do |p|
+    .container-fluid.app-color-light
+      .text-center.text-light.p-4
+        h1.title-design 新規投稿
 
-    = render 'shared/error_messages', post: @post
+      = render 'shared/error_messages', post: @post
 
-    .container
-      .card.rounded-lg.app-color-sub-light
-        .card-body
-          .row.card-title.justify-content-center
-            .col-10.col-lg-6.form-group
-              = p.label :title, class: 'col-form-label-lg'
-              = p.text_field :title, id: 'Title', class: 'form-control border-dark', placeholder: 'オリジナルカクテル'
-            .col-10.col-lg-6.form-group
-              = p.label :genre, class: 'col-form-label-lg'
-              = p.select :genre,
-                %i[ビール ウイスキー 焼酎 日本酒 ワイン ブランデー テキーラ ウォッカ ラム ジン 果実酒 その他 ノンアルコール おつまみ],
-                {selected: 'ウイスキー'},
-                id: 'Genre', class: 'form-control custom-select border-dark'
-            .col-10.card-img.form-group
-              = p.label :image, class: 'col-form-label-lg'
-              = p.file_field :image, id: 'Image', class: 'form-control border-dark'
-            .col-10.card-body
-              .container.bg-light.rounded
-                .form-group.card-text
-                  = p.label :ingredients, class: 'col-form-label-lg'
-                  = p.text_area :ingredients, id: 'Ingredients', class: 'form-control border-dark', style: 'height: 100px;'
-            .col-10.card-body
-              .container.bg-light.rounded
-                .form-group.card-text
-                  = p.label :memo, class: 'col-form-label-lg'
-                  = p.text_area :memo, id: 'Memo', class: 'form-control border-dark', style: 'height: 100px;', placeholder: '作り方、感想'
-            .col-8.form-group.text-center.mt-3
-              = p.submit '投稿する', class: 'post-create-button'
+      .container
+        .card.rounded-lg.app-color-sub-light
+          .card-body
+            .row.card-title.justify-content-center
+              .col-10.col-lg-6.form-group
+                = p.label :title, class: 'col-form-label-lg'
+                = p.text_field :title, id: 'Title', class: 'form-control border-dark', placeholder: 'オリジナルカクテル'
+              .col-10.col-lg-6.form-group
+                = p.label :genre, class: 'col-form-label-lg'
+                = p.select :genre,
+                  %i[ビール ウイスキー 焼酎 日本酒 ワイン ブランデー テキーラ ウォッカ ラム ジン 果実酒 その他 ノンアルコール おつまみ],
+                  {selected: 'ウイスキー'},
+                  id: 'Genre', class: 'form-control custom-select border-dark'
+              .col-10.card-img.form-group
+                = p.label :image, class: 'col-form-label-lg'
+                = p.file_field :image, id: 'Image', class: 'form-control border-dark'
+              .col-10.card-body
+                .container.bg-light.rounded
+                  .form-group.card-text
+                    = p.label :ingredients, class: 'col-form-label-lg'
+                    = p.text_area :ingredients, id: 'Ingredients', class: 'form-control border-dark', style: 'height: 100px;'
+              .col-10.card-body
+                .container.bg-light.rounded
+                  .form-group.card-text
+                    = p.label :memo, class: 'col-form-label-lg'
+                    = p.text_area :memo, id: 'Memo', class: 'form-control border-dark', style: 'height: 100px;', placeholder: '作り方、感想'
+              .col-8.form-group.text-center.mt-3
+                = p.submit '投稿する', class: 'post-create-button'
+
+- else
+  = form_with model: @post, local: true do |p|
+    .container-fluid.app-color-light
+      .text-center.text-light.p-4
+        h1.title-design 新規投稿
+
+      = render 'shared/error_messages', post: @post
+
+      .container
+        .card.rounded-lg.app-color-sub-light
+          .card-body
+            .row.card-title.justify-content-center
+              .col-10.col-lg-6.form-group
+                = p.label :title, class: 'col-form-label-lg'
+                = p.text_field :title, id: 'Title', class: 'form-control border-dark p-4', placeholder: 'オリジナルカクテル'
+              .col-10.col-lg-6.form-group
+                = p.label :genre, class: 'col-form-label-lg'
+                = p.select :genre,
+                  %i[ビール ウイスキー 焼酎 日本酒 ワイン ブランデー テキーラ ウォッカ ラム ジン 果実酒 その他 ノンアルコール おつまみ],
+                  {selected: 'ウイスキー'},
+                  id: 'Genre', class: 'form-control custom-select border-dark p-4'
+              .col-10.card-img.form-group
+                = p.label :image, class: 'col-form-label-lg'
+                = p.file_field :image, id: 'Image', class: 'form-control border-dark'
+              .col-10.card-body
+                .container.bg-light.rounded
+                  .form-group.card-text
+                    = p.label :ingredients, class: 'col-form-label-lg'
+                    = p.text_area :ingredients, id: 'Ingredients', class: 'form-control border-dark', style: 'height: 300px;'
+              .col-10.card-body
+                .container.bg-light.rounded
+                  .form-group.card-text
+                    = p.label :memo, class: 'col-form-label-lg'
+                    = p.text_area :memo, id: 'Memo', class: 'form-control border-dark', style: 'height: 300px;', placeholder: '作り方、感想'
+              .col-8.form-group.text-center.mt-3
+                = p.submit '投稿する', class: 'mobile-post-create-button'

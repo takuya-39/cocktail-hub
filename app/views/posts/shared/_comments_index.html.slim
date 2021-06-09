@@ -1,24 +1,4 @@
-- if browser.device.mobile?
-  #comments-pagination
-    = paginate @comments, remote: true
-    - @comments.each do |comment|
-      div[id="comment-#{ comment.id }"]
-        .container.bg-light.rounded.border
-          .card-text
-            = link_to user_path(comment.user), data: {"turbolinks" => false}
-              = image_tag comment.user.display_image, class: 'resize-image rounded-circle', style: 'width: 100px; height: 100px;'
-            h3.m-3.d-inline-block= comment.user.username
-            h3.m-3.d-inline-block.p-wrap-90= comment.content
-          - if user_signed_in?
-            - if current_user.id == comment.user_id || current_user.admin?
-              .d-flex.justify-content-end.align-items-center
-                .mr-3
-                  = simple_time(comment[:created_at])
-                = link_to post_comment_path(@post, comment), method: :delete, data: {"turbolinks" => false}, remote: true, class: 'comment-delete-button'
-                  h4 コメントを削除
-    = paginate @comments, remote: true
-
-- else
+- unless browser.device.mobile?
   #comments-pagination
     = paginate @comments, remote: true
     - @comments.each do |comment|
@@ -35,4 +15,23 @@
                 .mr-3
                   = simple_time(comment[:created_at])
                 = link_to 'コメントを削除', post_comment_path(@post, comment), method: :delete, data: {"turbolinks" => false}, remote: true, class: 'comment-delete-button'
+    = paginate @comments, remote: true
+
+- else
+  #comments-pagination
+    = paginate @comments, remote: true
+    - @comments.each do |comment|
+      div[id="comment-#{ comment.id }"]
+        .container.bg-light.rounded.border
+          .card-text
+            = link_to user_path(comment.user), data: {"turbolinks" => false}
+              = image_tag comment.user.display_image, class: 'resize-image rounded-circle', style: 'width: 100px; height: 100px;'
+            h3.m-3.d-inline-block= comment.user.username
+            h3.m-3.d-inline-block.p-wrap-90= comment.content
+          - if user_signed_in?
+            - if current_user.id == comment.user_id || current_user.admin?
+              .d-flex.justify-content-end.align-items-center
+                .mr-3
+                  = simple_time(comment[:created_at])
+                = link_to 'コメントを削除', post_comment_path(@post, comment), method: :delete, data: {"turbolinks" => false}, remote: true, class: 'mobile-comment-delete-button'
     = paginate @comments, remote: true
