@@ -127,7 +127,7 @@ export default class RankingDialog extends Vue {
   }
 
   private rankingDialogColor: string = '#d1c4e9';
-  private closeButtonColor: string = '#FFFFFF';
+  private closeButtonColor: string = '#ffffff';
   private closeButtonSize: string = '50px';
   private firstPlaceColor: string = '#e6b422';
   private secondPlaceColor: string = '#c0c0c0';

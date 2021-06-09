@@ -94,7 +94,7 @@ export default class RandomDialog extends Vue {
   }
 
   private randomDialogColor: string = '#d1c4e9';
-  private closeButtonColor: string = '#FFFFFF';
+  private closeButtonColor: string = '#ffffff';
   private closeButtonSize: string = '50px';
   private questionImageHeight: string = '250px';
   private questionImageGradient: string = 'to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)';

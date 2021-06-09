@@ -23,11 +23,11 @@
                 - if current_user.following?(user)
                   = form_for(current_user.relationships.find_by(follow_id: user.id), html: { method: :delete }, remote: true) do |f|
                     = f.hidden_field :follow_id, value: user.id
-                    = f.submit 'フォロー中', id: 'unfollow', class: 'container bg-primary text-light text-center rounded-pill border border-secondary'
+                    = f.submit 'フォロー中', id: 'unfollow', class: 'user-index-unfollow-button'
                 - else
                   = form_for(current_user.relationships.build, remote: true) do |f|
                     = f.hidden_field :follow_id, value: user.id
-                    = f.submit 'フォローする', id: 'follow', class: 'container bg-light text-primary text-center rounded-pill border border-secondary'
+                    = f.submit 'フォローする', id: 'follow', class: 'user-index-follow-button'
     = paginate @users, remote: true
 
 - else
@@ -44,20 +44,20 @@
               h2
                 = user.username
           - else
-            .col-3.mt-1.ml-5
+            .col-3.mt-1.ml-2
               = link_to user, data: {"turbolinks" => false}
                 = image_tag user.display_image, class: 'resize-image rounded-circle', style: 'width: 150px; height: 150px;'
-            .col-4.text-secondary
+            .col-3.text-secondary
               h2
                 = user.username
-            .col-4
+            .col-5
               div[id="follow-form-#{ user.id }"]
                 - if current_user.following?(user)
                   = form_for(current_user.relationships.find_by(follow_id: user.id), html: { method: :delete }, remote: true) do |f|
                     = f.hidden_field :follow_id, value: user.id
-                    = f.submit 'フォロー中', id: 'unfollow', class: 'container bg-primary text-light text-center rounded-pill border border-secondary px-4 py-5'
+                    = f.submit 'フォロー中', id: 'unfollow', class: 'mobile-user-index-unfollow-button'
                 - else
                   = form_for(current_user.relationships.build, remote: true) do |f|
                     = f.hidden_field :follow_id, value: user.id
-                    = f.submit 'フォローする', id: 'follow', class: 'container bg-light text-primary text-center rounded-pill border border-secondary px-4 py-5'
+                    = f.submit 'フォローする', id: 'follow', class: 'mobile-user-index-follow-button'
     = paginate @users, remote: true

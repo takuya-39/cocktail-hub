@@ -239,14 +239,14 @@ export default class PostsIndex extends Vue {
 
   private postsIndexBackColor: string = '#060211';
   private postsIndexMaxWidth: string = '100%';
-  private defaultPostNewButtonColor: string = '#FFFFFF';
+  private defaultPostNewButtonColor: string = '#ffffff';
   private defaultPostNewButtonSize: string = '50px';
-  private closeButtonColor: string = '#FFFFFF';
+  private closeButtonColor: string = '#ffffff';
   private closeButtonSize: string = '50px';
   private postImageHeight: string = '250px';
   private postImageGradient: string = 'to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)';
   private postsSearchLabel: string = 'タイトルやジャンルを入力してください';
-  private mobilePostNewButtonColor: string = '#FFFFFF';
+  private mobilePostNewButtonColor: string = '#ffffff';
   private mobilePostNewButtonSize: string = '200px';
   private mobilePostsSearchTextFieldHeight: string = '130px'
   private keyword: string = '';

@@ -297,14 +297,14 @@ export default class MainHeader extends Vue {
   private headerMaxWidth: string = '100%';
   private defaultHeaderColor: string = '#d1c4e9';
   private defaultHeaderHeight: string = '100px';
-  private defaultHeaderIconColor: string = '#FFFFFF';
+  private defaultHeaderIconColor: string = '#ffffff';
   private defaultHeaderIconSize: string = '50px';
   private defaultHeaderTitleHeight: string = '100px';
   private defaultDrawerWidth: string ="280px";
 
   private mobileHeaderColor: string = '#d1c4e9';
   private mobileHeaderHeight: string = '200px';
-  private mobileHeaderIconColor: string = '#FFFFFF';
+  private mobileHeaderIconColor: string = '#ffffff';
   private mobileHeaderIconSize: string = '100px';
   private mobileHeaderTitleHeight: string = '280px';
   private mobileDrawerWidth: string ="500px";

@@ -81,7 +81,7 @@ export default class ExplanationDialog extends Vue {
 
   private explanationDialogColor: string = '#090422';
   private explanationDialogHeight: string = '600px';
-  private closeButtonColor: string = '#FFFFFF';
+  private closeButtonColor: string = '#ffffff';
   private closeButtonSize: string = '50px';
 }
 </script>
