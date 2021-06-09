@@ -7,7 +7,7 @@
         = c.submit 'コメントする', class: 'comment-form-button'
     - else
       .card-body.text-center.rounded.m-3.app-color-light
-        = link_to 'ログインしてコメントする', login_path, data: {"turbolinks" => false}, class: 'comment-form-button'
+        = link_to 'ログインしてコメントする', login_path, data: {"turbolinks" => false}, class: 'login-comment-form-button'
 
 - else
   #comment-form
@@ -18,4 +18,4 @@
         = c.submit 'コメントする', class: 'mobile-comment-form-button'
     - else
       .card-body.text-center.rounded.m-3.app-color-light
-        = link_to 'ログインしてコメントする', login_path, data: {"turbolinks" => false}, class: 'mobile-comment-form-button'
+        = link_to 'ログインしてコメントする', login_path, data: {"turbolinks" => false}, class: 'mobile-login-comment-form-button'
