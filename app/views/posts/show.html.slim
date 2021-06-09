@@ -1,7 +1,7 @@
 - if browser.device.mobile?
   .container-fluid.app-color-light
     .text-center.text-light.p-4
-      h1 投稿詳細
+      h1.title-design 投稿詳細
 
     - if flash.notice.present?
       .container
@@ -62,16 +62,14 @@
           .card.rounded-lg.app-color-sub-light
             .row
               .col.text-center.m-2
-                = link_to edit_post_path(@post), data: {"turbolinks" => false}, class: 'btn btn-lg app-color-light p-5'
-                  h2 投稿を編集
+                = link_to '投稿を編集', edit_post_path(@post), data: {"turbolinks" => false}, class: 'post-edit-button'
               .col.text-center.m-2
-                = link_to @post, method: :delete, data: {'turbolinks' => false, confirm: '本当に投稿を削除しますか？'}, class: 'btn btn-lg btn-danger text-light p-5'
-                  h2 投稿を削除
+                = link_to '投稿を削除', @post, method: :delete, data: {'turbolinks' => false, confirm: '本当に投稿を削除しますか？'}, class: 'post-delete-button'
 
 - else
   .container-fluid.app-color-light
     .text-center.text-light.p-4
-      h1 投稿詳細
+      h1.title-design 投稿詳細
 
     - if flash.notice.present?
       .container
@@ -131,6 +129,6 @@
           .card.rounded-lg.app-color-sub-light
             .row
               .col.text-center.m-2
-                = link_to '投稿を編集', edit_post_path(@post), data: {"turbolinks" => false}, class: 'btn btn-lg app-color-light'
+                = link_to '投稿を編集', edit_post_path(@post), data: {"turbolinks" => false}, class: 'post-edit-button'
               .col.text-center.m-2
-                = link_to '投稿を削除', @post, method: :delete, data: {'turbolinks' => false, confirm: '本当に投稿を削除しますか？'}, class: 'btn btn-lg btn-danger text-light'
+                = link_to '投稿を削除', @post, method: :delete, data: {'turbolinks' => false, confirm: '本当に投稿を削除しますか？'}, class: 'post-delete-button'

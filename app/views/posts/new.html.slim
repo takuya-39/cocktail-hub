@@ -1,7 +1,7 @@
 = form_with model: @post, local: true do |p|
   .container-fluid.app-color-light
     .text-center.text-light.p-4
-      h1 新規投稿
+      h1.title-design 新規投稿
 
     = render 'shared/error_messages', post: @post
 
@@ -32,4 +32,4 @@
                   = p.label :memo, class: 'col-form-label-lg'
                   = p.text_area :memo, id: 'Memo', class: 'form-control border-dark', style: 'height: 100px;', placeholder: '作り方、感想'
             .col-8.form-group.text-center.mt-3
-              = p.submit '投稿する', class: 'btn btn-lg shadow-lg text-light app-color-btn'
+              = p.submit '投稿する', class: 'post-create-button'

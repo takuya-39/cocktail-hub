@@ -2,7 +2,7 @@
   = form_with model: @user, url: user_registration_path, local: true do |u|
     .container-fluid.app-color-light
       .text-center.text-light.p-4
-        h1 新規ユーザー登録
+        h1.title-design 新規ユーザー登録
 
       = devise_error_messages
 
@@ -31,13 +31,13 @@
                     = u.label :profile, class: 'col-form-label-lg'
                     = u.text_area :profile, id: 'Profile', class: 'form-control border-dark p-4'
               .col-8.form-group.text-center.mt-3
-                = u.submit '新規ユーザー登録をする', class: 'btn btn-lg shadow-lg text-light app-color-btn px-5 py-4'
+                = u.submit '新規ユーザー登録をする', class: 'user-create-button'
 
 -else
   = form_with model: @user, url: user_registration_path, local: true do |u|
     .container-fluid.app-color-light
       .text-center.text-light.p-4
-        h1 新規ユーザー登録
+        h1.title-design 新規ユーザー登録
 
       = devise_error_messages
 
@@ -66,4 +66,4 @@
                     = u.label :profile, class: 'col-form-label-lg'
                     = u.text_area :profile, id: 'Profile', class: 'form-control border-dark'
               .col-8.form-group.text-center.mt-3
-                = u.submit '新規ユーザー登録をする', class: 'btn btn-lg shadow-lg text-light app-color-btn'
+                = u.submit '新規ユーザー登録をする', class: 'user-create-button'

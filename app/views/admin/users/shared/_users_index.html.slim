@@ -14,8 +14,7 @@
               h2
                 = user.username
             .col-4
-              = link_to user, method: :delete, data: {'turbolinks' => false, remote: true, confirm: '本当にユーザーを削除しますか？'}, id: "user-delete-btn-#{ user.id }", class: 'btn btn-lg btn-danger text-light px-5 py-4'
-                h2 削除
+              = link_to '削除', user, method: :delete, data: {'turbolinks' => false, remote: true, confirm: '本当にユーザーを削除しますか？'}, id: "user-delete-btn-#{ user.id }", class: 'users-index-delete-button'
     = paginate @users, remote: true
 
 - else
@@ -34,5 +33,5 @@
               h5
                 = user.username
             .col-4
-              = link_to '削除', user, method: :delete, data: {'turbolinks' => false, remote: true, confirm: '本当にユーザーを削除しますか？'}, id: "user-delete-btn-#{ user.id }", class: 'btn btn-lg btn-danger text-light px-5'
+              = link_to '削除', user, method: :delete, data: {'turbolinks' => false, remote: true, confirm: '本当にユーザーを削除しますか？'}, id: "user-delete-btn-#{ user.id }", class: 'users-index-delete-button'
     = paginate @users, remote: true

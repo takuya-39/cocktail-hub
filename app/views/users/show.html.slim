@@ -2,9 +2,9 @@
   .container-fluid.app-color-light
     .text-center.text-light.p-4
       - if current_user == @user
-        h1 マイプロフィール
+        h1.title-design マイプロフィール
       - else
-        h1 ユーザープロフィール
+        h1.title-design ユーザープロフィール
 
     - if flash.notice.present?
         .container
@@ -24,14 +24,12 @@
                   = @user.username
               .row
                 .col.text-center
-                  = link_to followings_user_path(@user), data: {"turbolinks" => false}, class: 'btn text-light app-color-btn mt-3 p-3'
-                    h4 フォロー
+                  = link_to 'フォロー', followings_user_path(@user), data: {"turbolinks" => false}, class: 'user-following-index-button'
                   .bg-light.rounded.shadow-lg.mt-4
                     h2#followings
                       =@user.followings.count
                 .col.text-center
-                  = link_to followers_user_path(@user), data: {"turbolinks" => false}, class: 'btn text-light app-color-btn mt-3 p-3'
-                    h4 フォロワー
+                  = link_to 'フォロワー', followers_user_path(@user), data: {"turbolinks" => false}, class: 'user-follower-index-button'
                   .bg-light.rounded.shadow-lg.mt-4
                     h2#followers
                       =@user.followers.count
@@ -51,30 +49,26 @@
       .card.rounded-lg.app-color-sub-light.mt-5
         .row
           .col.text-center.m-2
-            = link_to user_show_posts_user_path(@user), data: {"turbolinks" => false}, class: 'btn btn-lg text-light app-color-btn p-5'
-              h2 ユーザーの投稿
+            = link_to 'ユーザーの投稿', user_show_posts_user_path(@user), data: {"turbolinks" => false}, class: 'user-posts-index-button'
           .col.text-center.m-2
-            = link_to like_posts_user_path(@user), data: {"turbolinks" => false}, class: 'btn btn-lg text-light app-color-btn p-5'
-              h2 いいねした投稿
+            = link_to 'いいねした投稿', like_posts_user_path(@user), data: {"turbolinks" => false}, class: 'user-like-index-button'
 
     - if current_user == @user || current_user.admin?
       .container
         .card.rounded-lg.app-color-sub-light.mt-5
           .row
             .col.text-center.m-2
-              = link_to edit_user_registration_path, data: {'turbolinks' => false}, class: 'btn btn-lg app-color-light p-5'
-                h2 ユーザーを編集
+              = link_to 'ユーザーを編集', edit_user_registration_path, data: {'turbolinks' => false}, class: 'user-edit-button'
             .col.text-center.m-2
-              = link_to user_registration_path, method: :delete, data: {'turbolinks' => false, confirm: '本当にユーザーを削除しますか？'}, class: 'btn btn-lg btn-danger text-light p-5'
-                h2 ユーザーを削除
+              = link_to 'ユーザーを削除', user_registration_path, method: :delete, data: {'turbolinks' => false, confirm: '本当にユーザーを削除しますか？'}, class: 'user-delete-button'
 
 - else
   .container-fluid.app-color-light
     .text-center.text-light.p-4
       - if current_user == @user
-        h1 マイプロフィール
+        h1.title-design マイプロフィール
       - else
-        h1 ユーザープロフィール
+        h1.title-design ユーザープロフィール
 
     - if flash.notice.present?
         .container
@@ -94,12 +88,12 @@
                   = @user.username
               .row
                 .col.text-center
-                  = link_to 'フォロー', followings_user_path(@user), data: {"turbolinks" => false}, class: 'btn text-light app-color-btn'
+                  = link_to 'フォロー', followings_user_path(@user), data: {"turbolinks" => false}, class: 'user-following-index-button'
                   .bg-light.rounded.shadow-lg.mt-1.mx-4
                     p#followings
                       =@user.followings.count
                 .col.text-center
-                  = link_to 'フォロワー', followers_user_path(@user), data: {"turbolinks" => false}, class: 'btn text-light app-color-btn'
+                  = link_to 'フォロワー', followers_user_path(@user), data: {"turbolinks" => false}, class: 'user-follower-index-button'
                   .bg-light.rounded.shadow-lg.mt-1.mx-4
                     p#followers
                       =@user.followers.count
@@ -119,15 +113,15 @@
       .card.rounded-lg.app-color-sub-light
         .row
           .col.text-center.m-2
-            = link_to 'ユーザーの投稿', user_show_posts_user_path(@user), data: {"turbolinks" => false}, class: 'btn btn-lg text-light app-color-btn'
+            = link_to 'ユーザーの投稿', user_show_posts_user_path(@user), data: {"turbolinks" => false}, class: 'user-posts-index-button'
           .col.text-center.m-2
-            = link_to 'いいねした投稿', like_posts_user_path(@user), data: {"turbolinks" => false}, class: 'btn btn-lg text-light app-color-btn'
+            = link_to 'いいねした投稿', like_posts_user_path(@user), data: {"turbolinks" => false}, class: 'user-like-index-button'
 
     - if current_user == @user || current_user.admin?
       .container
         .card.rounded-lg.app-color-sub-light
           .row
             .col.text-center.m-2
-              = link_to 'ユーザーを編集', edit_user_registration_path, data: {'turbolinks' => false}, class: 'btn btn-lg app-color-light'
+              = link_to 'ユーザーを編集', edit_user_registration_path, data: {'turbolinks' => false}, class: 'user-edit-button'
             .col.text-center.m-2
-              = link_to 'ユーザーを削除', user_registration_path, method: :delete, data: {'turbolinks' => false, confirm: '本当にユーザーを削除しますか？'}, class: 'btn btn-lg btn-danger text-light'
+              = link_to 'ユーザーを削除', user_registration_path, method: :delete, data: {'turbolinks' => false, confirm: '本当にユーザーを削除しますか？'}, class: 'user-delete-button'

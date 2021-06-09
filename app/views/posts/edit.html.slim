@@ -1,7 +1,7 @@
 = form_with model: @post, local: true do |p|
   .container-fluid.app-color-light
     .text-center.text-light.p-4
-      h1 投稿編集
+      h1.title-design 投稿編集
 
     = render 'shared/error_messages', post: @post
 
@@ -33,4 +33,4 @@
                   = p.text_area :memo, id: 'Memo', class: 'form-control border-dark', style: 'height: 100px;'
             .col-10.text-secondary= simple_time(@post[:created_at])
             .col-8.form-group.text-center.mt-3
-              = p.submit '更新する', class: 'btn btn-lg shadow-lg text-light app-color-btn'
+              = p.submit '更新する', class: 'post-edit-button'
