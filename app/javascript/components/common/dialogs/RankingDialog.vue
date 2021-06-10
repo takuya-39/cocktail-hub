@@ -75,43 +75,46 @@
             >
               <!-- ランキング1位のアイコン -->
               <v-icon
-                class="mdi-36px mr-5"
+                class="mr-5"
                 :color="firstPlaceColor"
+                :size="firstPlaceSize"
                 v-if="index === 0"
               >
                 mdi-podium-gold
               </v-icon>
               <!-- ランキング2位のアイコン -->
               <v-icon
-                class="mdi-36px mr-5"
+                class="mr-5"
                 :color="secondPlaceColor"
+                :size="secondPlaceSize"
                 v-if="index === 1"
               >
                 mdi-podium-silver
               </v-icon>
               <!-- ランキング3位のアイコン -->
               <v-icon
-                class="mdi-36px mr-5"
+                class="mr-5"
                 :color="thirdPlaceColor"
+                :size="thirdPlaceSize"
                 v-if="index === 2"
               >
                 mdi-podium-bronze
               </v-icon>
               <!-- 順位 -->
-              <h3 class="text-bold text-light mt-3 mr-10">
+              <h1 class="text-light mt-5 mr-10">
                 {{ index + 1 }}位
-              </h3>
+              </h1>
               <!-- いいね数 -->
-              <h3 class="text-bold text-dark mt-3">
+              <h1 class="mr-2 like-count">
                 {{ post.likes.length }}
-              </h3>
-              <h5 class="text-light align-self-end">
+              </h1>
+              <h4 class="text-light align-self-end">
                 いいね
-              </h5>
+              </h4>
             </v-col>
             <!-- 投稿カード -->
             <v-card
-              class="ranking-card"
+              class="ranking-card reflection"
               :class="[`post-${ post.id }`, `index-${ index }`]"
               @click="screenTransition(path = `/posts/${ post.id }`), switchRanking()"
             >
@@ -159,9 +162,12 @@ export default class RankingDialog extends Vue {
   private mobileCloseButtonColor: string = '#ffffff';
   private mobileCloseButtonSize: string = '100px';
   private firstPlaceColor: string = '#e6b422';
+  private firstPlaceSize: string = '50px';
   private secondPlaceColor: string = '#c0c0c0';
+  private secondPlaceSize: string = '50px';
   private thirdPlaceColor: string = '#b87333';
-  private rankingImageHeight: string = '250px';
+  private thirdPlaceSize: string = '50px';
+  private rankingImageHeight: string = '350px';
   private rankingImageGradient: string = 'to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)';
   private judgmentMobile: boolean = isMobile().phone;
   private postsData: Array<PostsData> = [];
@@ -187,13 +193,49 @@ export default class RankingDialog extends Vue {
 </script>
 
 <style lang="scss" scoped>
-  .ranking-card {
-    display: inline-block;
-    transition-duration: .8s;
-    transition-property: box-shadow;
-    &:hover {
-      box-shadow: 0 5px 20px rgba(6, 2, 18, .7) !important;
-    }
+.like-count {
+  font-size: 60px;
+  color: #5e5977;
+}
+
+.ranking-card {
+  display: inline-block;
+  transition-duration: .8s;
+  transition-property: box-shadow;
+  &:hover {
+    box-shadow: 0 5px 20px rgba(6, 2, 18, .7) !important;
   }
-  
+}
+
+.reflection {
+  overflow: hidden;
+}
+
+.reflection::after {
+  content: "";
+  width: 30px;
+  height: 100%;
+  position: absolute;
+  top: -180px;
+  left: 0;
+  background-color: #ffffff;
+  opacity: 0;
+  transform: rotate(45deg);
+  animation: reflect 5s ease-in-out infinite;
+  -webkit-transform: rotate(45deg);
+  -webkit-animation: reflect 4s ease-in-out infinite;
+}
+
+@keyframes reflect {
+  0% { transform: scale(0) rotate(45deg); opacity: 0; }
+  80% { transform: scale(0) rotate(45deg); opacity: 0.5; }
+  81% { transform: scale(4) rotate(45deg); opacity: 1; }
+  100% { transform: scale(50) rotate(45deg); opacity: 0; }
+}
+@-webkit-keyframes reflect {
+  0% { transform: scale(0) rotate(45deg); opacity: 0; }
+  80% { transform: scale(0) rotate(45deg); opacity: 0.5; }
+  81% { transform: scale(4) rotate(45deg); opacity: 1; }
+  100% { transform: scale(50) rotate(45deg); opacity: 0; }
+}
 </style>
