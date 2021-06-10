@@ -17,26 +17,52 @@
         </v-card-title>
         <!-- 空白 -->
         <v-spacer></v-spacer>
-        <!-- 閉じるボタン -->
-        <v-tooltip bottom>
-          <template #activator="{ on, attrs }">
-            <v-btn
-              class="mt-5 mr-3"
-              icon
-              v-bind="attrs"
-              v-on="on"
-              @click="switchExplanation()"
-            >
-              <v-icon
-                :color="closeButtonColor"
-                :size="closeButtonSize"
+        <!-- スマートフォンでない場合 -->
+        <div v-if="!judgmentMobile">
+          <!-- 閉じるボタン -->
+          <v-tooltip bottom>
+            <template #activator="{ on, attrs }">
+              <v-btn
+                class="mt-5 mr-3"
+                icon
+                v-bind="attrs"
+                v-on="on"
+                @click="switchExplanation()"
               >
-                mdi-close
-              </v-icon>
-            </v-btn>
-          </template>
-          <span>閉じる</span>
-        </v-tooltip>
+                <v-icon
+                  :color="defaultCloseButtonColor"
+                  :size="defaultCloseButtonSize"
+                >
+                  mdi-close
+                </v-icon>
+              </v-btn>
+            </template>
+            <span>閉じる</span>
+          </v-tooltip>
+        </div>
+        <!-- スマートフォンの場合 -->
+        <div v-if="judgmentMobile">
+          <!-- 閉じるボタン -->
+          <v-tooltip bottom>
+            <template #activator="{ on, attrs }">
+              <v-btn
+                class="mt-5 mr-3"
+                icon
+                v-bind="attrs"
+                v-on="on"
+                @click="switchExplanation()"
+              >
+                <v-icon
+                  :color="mobileCloseButtonColor"
+                  :size="mobileCloseButtonSize"
+                >
+                  mdi-close
+                </v-icon>
+              </v-btn>
+            </template>
+            <span>閉じる</span>
+          </v-tooltip>
+        </div>
       </v-toolbar>
       <!-- 本文 -->
       <v-container class="row mx-5 mt-5">
@@ -66,6 +92,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Emit } from 'vue-property-decorator';
+import isMobile from 'ismobilejs';
 
 @Component({
   components: {}
@@ -81,8 +108,11 @@ export default class ExplanationDialog extends Vue {
 
   private explanationDialogColor: string = '#090422';
   private explanationDialogHeight: string = '600px';
-  private closeButtonColor: string = '#ffffff';
-  private closeButtonSize: string = '50px';
+  private defaultCloseButtonColor: string = '#ffffff';
+  private defaultCloseButtonSize: string = '50px';
+  private mobileCloseButtonColor: string = '#ffffff';
+  private mobileCloseButtonSize: string = '100px';
+  private judgmentMobile: boolean = isMobile().phone;
 }
 </script>
 

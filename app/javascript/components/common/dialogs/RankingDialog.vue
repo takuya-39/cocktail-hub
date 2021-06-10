@@ -15,26 +15,52 @@
         </v-card-title>
         <!-- 空白 -->
         <v-spacer></v-spacer>
-        <!-- 閉じるボタン -->
-        <v-tooltip bottom>
-          <template #activator="{ on, attrs }">
-            <v-btn
-              class="mt-5 mr-3"
-              icon
-              v-bind="attrs"
-              v-on="on"
-              @click="switchRanking()"
-            >
-              <v-icon
-                :color="closeButtonColor"
-                :size="closeButtonSize"
+        <!-- スマートフォンでない場合 -->
+        <div v-if="!judgmentMobile">
+          <!-- 閉じるボタン -->
+          <v-tooltip bottom>
+            <template #activator="{ on, attrs }">
+              <v-btn
+                class="mt-5 mr-3"
+                icon
+                v-bind="attrs"
+                v-on="on"
+                @click="switchRanking()"
               >
-                mdi-close
-              </v-icon>
-            </v-btn>
-          </template>
-          <span>閉じる</span>
-        </v-tooltip>
+                <v-icon
+                  :color="defaultCloseButtonColor"
+                  :size="defaultCloseButtonSize"
+                >
+                  mdi-close
+                </v-icon>
+              </v-btn>
+            </template>
+            <span>閉じる</span>
+          </v-tooltip>
+        </div>
+        <!-- スマートフォンの場合 -->
+        <div v-if="judgmentMobile">
+          <!-- 閉じるボタン -->
+          <v-tooltip bottom>
+            <template #activator="{ on, attrs }">
+              <v-btn
+                class="mt-5 mr-3"
+                icon
+                v-bind="attrs"
+                v-on="on"
+                @click="switchRanking()"
+              >
+                <v-icon
+                  :color="mobileCloseButtonColor"
+                  :size="mobileCloseButtonSize"
+                >
+                  mdi-close
+                </v-icon>
+              </v-btn>
+            </template>
+            <span>閉じる</span>
+          </v-tooltip>
+        </div>
       </v-toolbar>
       <v-container class="mt-5">
         <v-row class="justify-content-center">
@@ -112,6 +138,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, Emit } from 'vue-property-decorator';
 import axios from 'axios';
+import isMobile from 'ismobilejs';
 import { PostsData } from '@/types/@types/LibraryComponent';
 
 @Component({
@@ -127,13 +154,16 @@ export default class RankingDialog extends Vue {
   }
 
   private rankingDialogColor: string = '#d1c4e9';
-  private closeButtonColor: string = '#ffffff';
-  private closeButtonSize: string = '50px';
+  private defaultCloseButtonColor: string = '#ffffff';
+  private defaultCloseButtonSize: string = '50px';
+  private mobileCloseButtonColor: string = '#ffffff';
+  private mobileCloseButtonSize: string = '100px';
   private firstPlaceColor: string = '#e6b422';
   private secondPlaceColor: string = '#c0c0c0';
   private thirdPlaceColor: string = '#b87333';
   private rankingImageHeight: string = '250px';
   private rankingImageGradient: string = 'to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)';
+  private judgmentMobile: boolean = isMobile().phone;
   private postsData: Array<PostsData> = [];
 
   private getPosts(): void {
