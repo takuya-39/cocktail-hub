@@ -23,6 +23,8 @@ $button-blue: #4169e1;
 $button-red: #b7282e;
 $button-green: #20b2aa;
 $button-white: #dcdcdc;
+$button-like-color: #e54747;
+$button-unlike-color: #808080;
 
 @mixin app-color($color) {
   background-color: $color;
@@ -59,18 +61,6 @@ $button-white: #dcdcdc;
 // イメージをリサイズする
 .resize-image {
   width: 100%;
-}
-
-// いいねボタン
-.like-btn {
-  font-size: 25px;
-  color: #808080;
-}
-
-// いいね取り消しボタン
-.unlike-btn {
-  font-size: 25px;
-  color: #e54747;
 }
 
 // pタグを90%地点で折り返す
@@ -114,6 +104,24 @@ $button-white: #dcdcdc;
 }
 
 // PC、タブレットで表示される各ボタン
+
+// いいねボタン
+.like-button {
+  font-size: 50px;
+  color: $button-unlike-color;
+  transition: .4s;
+  &:hover {
+    color: $button-unlike-color;
+    opacity: .5;
+  }
+}
+
+// いいね取り消しボタン
+.unlike-button {
+  font-size: 50px;
+  color: $button-like-color;
+}
+
 .guest-login-button {
   @include app-color($button-blue);
   display: inline-block;
@@ -444,6 +452,24 @@ $button-white: #dcdcdc;
 }
 
 // スマートフォンで表示される各ボタン
+
+// いいねボタン
+.mobile-like-button {
+  font-size: 100px;
+  color: $button-unlike-color;
+  transition: .4s;
+  &:hover {
+    color: $button-unlike-color;
+    opacity: .5;
+  }
+}
+
+// いいね取り消しボタン
+.mobile-unlike-button {
+  font-size: 100px;
+  color: $button-like-color;
+}
+
 .mobile-guest-login-button {
   @include app-color($button-blue);
   display: inline-block;

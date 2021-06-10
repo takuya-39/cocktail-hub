@@ -165,4 +165,5 @@ export default class RankingDialog extends Vue {
       box-shadow: 0 5px 20px rgba(6, 2, 18, .7) !important;
     }
   }
+  
 </style>

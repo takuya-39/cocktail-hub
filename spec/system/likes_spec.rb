@@ -21,7 +21,7 @@ RSpec.describe 'Likes', type: :system, js: true do
 
     # 投稿にいいねをする
     expect do
-      click_link 'like-btn'
+      click_link 'like-button'
       expect(page).to have_content '1'
     end.to change(other_post.likes, :count).by(1)
 
@@ -34,7 +34,7 @@ RSpec.describe 'Likes', type: :system, js: true do
     expect(current_path).to eq "/posts/#{ other_post.id }"
 
     expect do
-      click_link 'unlike-btn'
+      click_link 'unlike-button'
       expect(page).to have_content '0'
     end.to change(other_post.likes, :count).by(-1)
   end
