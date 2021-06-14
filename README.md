@@ -143,7 +143,7 @@ CircleCIを使用してCI/CDパイプラインの構築を行いました。
 
 ## モバイル対応のレスポンシブデザイン
 
-![工夫点3](https://user-images.githubusercontent.com/53992902/120229781-d9c77380-c288-11eb-8657-7edb0d837d30.png)
+![工夫点3](https://user-images.githubusercontent.com/53992902/121827737-220a7b00-ccf8-11eb-96ba-69c99e4943f0.jpg)
 
 - Rails部分ではbrowser
 - Vue.js部分ではismobilejs
