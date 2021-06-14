@@ -1,5 +1,6 @@
 <template>
   <v-app id="app">
+    <Loading />
     <MainHeader
       v-model="postSearchForm"
       @displaySearchForm="displaySearchForm()"
@@ -16,11 +17,14 @@
 import { Component, Vue } from 'vue-property-decorator';
 import MainHeader from '@/components/common/header/MainHeader.vue';
 import AppFooter from '@/components/common/footer/AppFooter.vue';
+import Loading from '@/components/common/Loading.vue';
+
 
 @Component({
   components: {
     MainHeader,
-    AppFooter
+    AppFooter,
+    Loading
   }
 })
 

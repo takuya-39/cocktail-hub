@@ -1,18 +1,4 @@
-- if browser.device.mobile?
-  #followers-pagination
-    = paginate @users, remote: true
-    - @users.each do |user|
-      .card.rounded.bg-light.mb-3.p-2
-        .row.py-5
-          .col-3.mt-1.ml-5
-            = link_to user, data: {"turbolinks" => false}
-              = image_tag user.display_image, class: 'resize-image rounded-circle', style: 'width: 150px; height: 150px;'
-          .col-4.text-secondary.d-flex.align-items-center
-            h2
-              = user.username
-    = paginate @users, remote: true
-
-- else
+- unless browser.device.mobile?
   #followers-pagination
     = paginate @users, remote: true
     - @users.each do |user|
@@ -23,5 +9,19 @@
               = image_tag user.display_image, class: 'resize-image rounded-circle', style: 'width: 70px; height: 70px;'
           .col-4.text-secondary.d-flex.align-items-center
             h5
+              = user.username
+    = paginate @users, remote: true
+
+- else
+  #followers-pagination
+    = paginate @users, remote: true
+    - @users.each do |user|
+      .card.rounded.bg-light.mb-3.p-2
+        .row.py-5
+          .col-3.mt-1.ml-5
+            = link_to user, data: {"turbolinks" => false}
+              = image_tag user.display_image, class: 'resize-image rounded-circle', style: 'width: 150px; height: 150px;'
+          .col-4.text-secondary.d-flex.align-items-center
+            h2
               = user.username
     = paginate @users, remote: true

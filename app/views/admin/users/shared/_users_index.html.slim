@@ -1,24 +1,4 @@
-- if browser.device.mobile?
-  #users-pagination
-    = paginate @users, remote: true
-    - @users.each do |user|
-      - next if user.email == 'admin@example.com'
-      - next if user.email == 'guest@example.com'
-      div[id="user-#{ user.id }"]
-        .card.rounded.bg-light.mb-3.p-2
-          .row.d-flex.justify-content-center.align-items-center.py-5
-            .col-3.mt-1.ml-5
-              = link_to user, data: {"turbolinks" => false}
-                = image_tag user.display_image, class: 'resize-image rounded-circle', style: 'width: 150px; height: 150px;'
-            .col-4.text-secondary
-              h2
-                = user.username
-            .col-4
-              = link_to user, method: :delete, data: {'turbolinks' => false, remote: true, confirm: '本当にユーザーを削除しますか？'}, id: "user-delete-btn-#{ user.id }", class: 'btn btn-lg btn-danger text-light px-5 py-4'
-                h2 削除
-    = paginate @users, remote: true
-
-- else
+- unless browser.device.mobile?
   #users-pagination
     = paginate @users, remote: true
     - @users.each do |user|
@@ -34,5 +14,24 @@
               h5
                 = user.username
             .col-4
-              = link_to '削除', user, method: :delete, data: {'turbolinks' => false, remote: true, confirm: '本当にユーザーを削除しますか？'}, id: "user-delete-btn-#{ user.id }", class: 'btn btn-lg btn-danger text-light px-5'
+              = link_to '削除', user, method: :delete, data: {'turbolinks' => false, remote: true, confirm: '本当にユーザーを削除しますか？'}, id: "user-delete-btn-#{ user.id }", class: 'users-index-delete-button'
+    = paginate @users, remote: true
+
+- else
+  #users-pagination
+    = paginate @users, remote: true
+    - @users.each do |user|
+      - next if user.email == 'admin@example.com'
+      - next if user.email == 'guest@example.com'
+      div[id="user-#{ user.id }"]
+        .card.rounded.bg-light.mb-3.p-2
+          .row.d-flex.justify-content-center.align-items-center.py-5
+            .col-3.mt-1.ml-5
+              = link_to user, data: {"turbolinks" => false}
+                = image_tag user.display_image, class: 'resize-image rounded-circle', style: 'width: 150px; height: 150px;'
+            .col-4.text-secondary
+              h2
+                = user.username
+            .col-4
+              = link_to '削除', user, method: :delete, data: {'turbolinks' => false, remote: true, confirm: '本当にユーザーを削除しますか？'}, id: "user-delete-btn-#{ user.id }", class: 'mobile-users-index-delete-button'
     = paginate @users, remote: true

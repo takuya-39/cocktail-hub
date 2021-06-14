@@ -18,7 +18,14 @@ $main-light: #d1c4e9;
 $main-dark: #090422;
 $sub-light: #e6e6fa;
 $sub-dark: #060211;
-$btn: #c1c1ff;
+$button: #c1c1ff;
+$part: #5e5977;
+$button-blue: #4169e1;
+$button-red: #b7282e;
+$button-green: #20b2aa;
+$button-white: #dcdcdc;
+$button-like-color: #e54747;
+$button-unlike-color: #808080;
 
 @mixin app-color($color) {
   background-color: $color;
@@ -40,25 +47,21 @@ $btn: #c1c1ff;
   @include app-color($sub-dark);
 }
 
-.app-color-btn {
-  @include app-color($btn);
+.app-color-button {
+  @include app-color($button);
+}
+
+.app-color-button-blue {
+  @include app-color($button-blue);
+}
+
+.app-color-button-red {
+  @include app-color($button-red);
 }
 
 // イメージをリサイズする
 .resize-image {
   width: 100%;
-}
-
-// いいねボタン
-.like-btn {
-  font-size: 25px;
-  color: #808080;
-}
-
-// いいね取り消しボタン
-.unlike-btn {
-  font-size: 25px;
-  color: #e54747;
 }
 
 // pタグを90%地点で折り返す
@@ -67,18 +70,648 @@ $btn: #c1c1ff;
 }
 
 // ページネーションの装飾
-.pagination>li>a {
+.pagination > li > a {
   border: none;
-  color: #090422;
+  background-color: $main-light;
+  color: #ffffff;
+  height: 100px;
+  width: 100px;
+  text-align: center;
+  line-height: 80px;
+  font-size: 20px;
+  display: inline-block;
+  transition-duration: .8s;
+  transition-property: border-radius;
 }
 
-.pagination>.active>a {
-  background: #090422;
+.pagination > .active > a {
+  background-color: $main-dark !important;
+  color: #ffffff;
   border-radius: 15px;
 }
 
-.pagination>li>a:hover {
+.pagination > li > a:hover {
+  background-color: $main-dark;
+  color: #ffffff;
+  border-radius: 5em !important;
+}
+
+.title-design {
+  display: inline-block;
+  color: #ffffff;
+  border: solid 7px #ffffff;
+  padding: 0.5em;
+  border-radius: 0.5em;
+}
+
+// PC、タブレットで表示される各ボタン
+
+// いいねボタン
+.like-button {
+  font-size: 50px;
+  color: $button-unlike-color;
+  transition: .4s;
+  &:hover {
+    color: $button-unlike-color;
+    opacity: .5;
+  }
+}
+
+// いいね取り消しボタン
+.unlike-button {
+  font-size: 50px;
+  color: $button-like-color;
+}
+
+.guest-login-button {
+  @include app-color($button-blue);
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
   border-radius: 30px;
+  width: 400px;
+  height: 50px;
+  padding: 5px;
+  font-size: 25px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.25), inset 0 -4px 0px rgba(0, 0, 0, 0.18);
+  transition: .2s;
+  color: #ffffff !important;
+  text-decoration: none;
+  margin-top: 5px;
+  &:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+    border-bottom: none;
+    color: #ffffff;
+  }
+}
+
+.user-create-button {
+  @include app-color($button-green);
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 30px;
+  width: 400px;
+  height: 50px;
+  padding: 5px;
+  font-size: 25px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.25), inset 0 -4px 0px rgba(0, 0, 0, 0.18);
+  transition: .2s;
+  color: #ffffff !important;
+  text-decoration: none;
+  margin-top: 5px;
+  &:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+    border-bottom: none;
+    color: #ffffff;
+  }
+}
+
+.user-edit-button, .user-like-index-button, .user-posts-index-button, .post-create-button, .post-edit-button {
+  @include app-color($button);
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 30px;
+  width: 400px;
+  height: 50px;
+  padding: 5px;
+  font-size: 25px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.25), inset 0 -4px 0px rgba(0, 0, 0, 0.18);
+  transition: .2s;
+  color: #ffffff !important;
+  text-decoration: none;
+  &:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+    border-bottom: none;
+    color: #ffffff;
+  }
+}
+
+.user-delete-button, .post-delete-button {
+  @include app-color($button-red);
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 30px;
+  width: 400px;
+  height: 50px;
+  padding: 5px;
+  font-size: 25px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.25), inset 0 -4px 0px rgba(0, 0, 0, 0.18);
+  transition: .2s;
+  color: #ffffff !important;
+  text-decoration: none;
+  &:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+    border-bottom: none;
+    color: #ffffff;
+  }
+}
+
+.login-button, .following-button, .follower-button {
+  @include app-color($button);
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 30px;
+  width: 250px;
+  height: 50px;
+  padding: 5px;
+  font-size: 25px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.25), inset 0 -4px 0px rgba(0, 0, 0, 0.18);
+  transition: .2s;
+  color: #ffffff !important;
+  text-decoration: none;
+  margin-top: 5px;
+  &:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+    border-bottom: none;
+    color: #ffffff;
+  }
+}
+
+.user-following-index-button, .user-follower-index-button, .comment-form-button {
+  @include app-color($button);
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 200px;
+  height: 50px;
+  padding: 5px;
+  font-size: 25px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.25), inset 0 -4px 0px rgba(0, 0, 0, 0.18);
+  transition: .2s;
+  color: #ffffff !important;
+  text-decoration: none;
+  margin-top: 10px;
+  &:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+    border-bottom: none;
+    color: #ffffff;
+  }
+}
+
+.login-comment-form-button {
+  @include app-color($button);
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 400px;
+  height: 70px;
+  font-size: 25px;
+  text-align: center;
+  line-height: 65px;
+  font-weight: bold;
+  box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.25), inset 0 -4px 0px rgba(0, 0, 0, 0.18);
+  transition: .2s;
+  color: #ffffff !important;
+  text-decoration: none;
+  &:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+    border-bottom: none;
+    color: #ffffff;
+  }
+}
+
+.comment-delete-button {
+  @include app-color($button-red);
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 100px;
+  height: 30px;
+  padding: 5px;
+  font-size: 12px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.25), inset 0 -4px 0px rgba(0, 0, 0, 0.18);
+  transition: .2s;
+  color: #ffffff !important;
+  text-decoration: none;
+  &:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+    border-bottom: none;
+    color: #ffffff;
+  }
+}
+
+.users-index-delete-button, .posts-index-delete-button {
+  @include app-color($button-red);
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 200px;
+  height: 50px;
+  padding: 5px;
+  font-size: 25px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.25), inset 0 -4px 0px rgba(0, 0, 0, 0.18);
+  transition: .2s;
+  color: #ffffff !important;
+  text-decoration: none;
+  &:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+    border-bottom: none;
+    color: #ffffff;
+  }
+}
+
+.follow-button {
+  @include app-color($button-white);
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 50px;
+  width: 350px;
+  height: 80px;
+  font-size: 25px;
+  text-align: center;
+  line-height: 65px;
+  font-weight: bold;
+  box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.25), inset 0 -4px 0px rgba(0, 0, 0, 0.18);
+  transition: .2s;
+  color: #ffffff !important;
+  text-decoration: none;
+  &:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+    border-bottom: none;
+    color: #ffffff;
+  }
+}
+
+.unfollow-button {
+  @include app-color($button-blue);
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 50px;
+  width: 350px;
+  height: 80px;
+  font-size: 25px;
+  text-align: center;
+  line-height: 65px;
+  font-weight: bold;
+  box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.25), inset 0 -4px 0px rgba(0, 0, 0, 0.18);
+  transition: .2s;
+  color: #ffffff !important;
+  text-decoration: none;
+  &:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+    border-bottom: none;
+    color: #ffffff;
+  }
+}
+
+.user-index-follow-button {
+  @include app-color($button-white);
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 50px;
+  width: 350px;
+  height: 80px;
+  font-size: 25px;
+  text-align: center;
+  line-height: 65px;
+  font-weight: bold;
+  box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.25), inset 0 -4px 0px rgba(0, 0, 0, 0.18);
+  transition: .2s;
+  color: #ffffff !important;
+  text-decoration: none;
+  &:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+    border-bottom: none;
+    color: #ffffff;
+  }
+}
+
+.user-index-unfollow-button {
+  @include app-color($button-blue);
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 50px;
+  width: 350px;
+  height: 80px;
+  font-size: 25px;
+  text-align: center;
+  line-height: 65px;
+  font-weight: bold;
+  box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.25), inset 0 -4px 0px rgba(0, 0, 0, 0.18);
+  transition: .2s;
+  color: #ffffff !important;
+  text-decoration: none;
+  &:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+    border-bottom: none;
+    color: #ffffff;
+  }
+}
+
+// スマートフォンで表示される各ボタン
+
+// いいねボタン
+.mobile-like-button {
+  font-size: 100px;
+  color: $button-unlike-color;
+  transition: .4s;
+  &:hover {
+    color: $button-unlike-color;
+    opacity: .5;
+  }
+}
+
+// いいね取り消しボタン
+.mobile-unlike-button {
+  font-size: 100px;
+  color: $button-like-color;
+}
+
+.mobile-guest-login-button {
+  @include app-color($button-blue);
+  display: inline-block;
+  border-radius: 30px;
+  width: 500px;
+  height: 200px;
+  font-size: 30px;
+  text-align: center;
+  line-height: 195px;
+  font-weight: bold;
+  box-shadow: inset 0 5px 0px rgba(255, 255, 255, 0.25), inset 0 -10px 0px rgba(0, 0, 0, 0.18);
+  color: #ffffff !important;
+  text-decoration: none;
+  margin-top: 50px;
+}
+
+.mobile-user-create-button {
+  @include app-color($button-green);
+  display: inline-block;
+  border-radius: 30px;
+  width: 500px;
+  height: 200px;
+  font-size: 30px;
+  text-align: center;
+  line-height: 195px;
+  font-weight: bold;
+  box-shadow: inset 0 5px 0px rgba(255, 255, 255, 0.25), inset 0 -10px 0px rgba(0, 0, 0, 0.18);
+  color: #ffffff !important;
+  text-decoration: none;
+  margin: 50px 0;
+}
+
+.mobile-user-edit-button, .mobile-user-like-index-button, .mobile-user-posts-index-button, .mobile-post-create-button, .mobile-post-edit-button {
+  @include app-color($button);
+  display: inline-block;
+  border-radius: 30px;
+  width: 500px;
+  height: 200px;
+  font-size: 30px;
+  text-align: center;
+  line-height: 200px;
+  font-weight: bold;
+  box-shadow: inset 0 4px 0px rgba(255, 255, 255, 0.25), inset 0 -10px 0px rgba(0, 0, 0, 0.18);
+  color: #ffffff !important;
+  text-decoration: none;
+  margin: 50px 0;
+}
+
+.mobile-user-delete-button, .mobile-post-delete-button {
+  @include app-color($button-red);
+  display: inline-block;
+  border-radius: 30px;
+  width: 500px;
+  height: 200px;
+  font-size: 30px;
+  text-align: center;
+  line-height: 200px;
+  font-weight: bold;
+  box-shadow: inset 0 4px 0px rgba(255, 255, 255, 0.25), inset 0 -10px 0px rgba(0, 0, 0, 0.18);
+  color: #ffffff !important;
+  text-decoration: none;
+  margin: 50px 0;
+}
+
+.mobile-login-button {
+  @include app-color($button);
+  display: inline-block;
+  border-radius: 30px;
+  width: 250px;
+  height: 150px;
+  font-size: 30px;
+  text-align: center;
+  line-height: 90px;
+  font-weight: bold;
+  box-shadow: inset 0 5px 0px rgba(255, 255, 255, 0.25), inset 0 -10px 0px rgba(0, 0, 0, 0.18);
+  color: #ffffff !important;
+  text-decoration: none;
+  margin-top: 50px;
+}
+
+.mobile-user-following-index-button, .mobile-user-follower-index-button, .mobile-comment-form-button {
+  @include app-color($button);
+  display: inline-block;
+  border-radius: 30px;
+  width: 150px;
+  height: 150px;
+  font-size: 25px;
+  text-align: center;
+  line-height: 140px;
+  font-weight: bold;
+  box-shadow: inset 0 5px 0px rgba(255, 255, 255, 0.25), inset 0 -10px 0px rgba(0, 0, 0, 0.18);
+  color: #ffffff !important;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.mobile-login-comment-form-button {
+  @include app-color($button);
+  display: inline-block;
+  border-radius: 30px;
+  width: 400px;
+  height: 200px;
+  font-size: 25px;
+  text-align: center;
+  line-height: 180px;
+  font-weight: bold;
+  box-shadow: inset 0 5px 0px rgba(255, 255, 255, 0.25), inset 0 -10px 0px rgba(0, 0, 0, 0.18);
+  color: #ffffff !important;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.mobile-comment-delete-button {
+  @include app-color($button-red);
+  display: inline-block;
+  border-radius: 20px;
+  width: 150px;
+  height: 100px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 90px;
+  font-weight: bold;
+  box-shadow: inset 0 5px 0px rgba(255, 255, 255, 0.25), inset 0 -10px 0px rgba(0, 0, 0, 0.18);
+  color: #ffffff !important;
+  text-decoration: none;
+}
+
+.mobile-users-index-delete-button, .mobile-posts-index-delete-button {
+  @include app-color($button-red);
+  display: inline-block;
+  border-radius: 20px;
+  width: 130px;
+  height: 100px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 90px;
+  font-weight: bold;
+  box-shadow: inset 0 5px 0px rgba(255, 255, 255, 0.25), inset 0 -10px 0px rgba(0, 0, 0, 0.18);
+  color: #ffffff !important;
+  text-decoration: none;
+}
+
+
+.mobile-follow-button {
+  @include app-color($button-white);
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 50px;
+  width: 350px;
+  height: 80px;
+  font-size: 25px;
+  text-align: center;
+  line-height: 65px;
+  font-weight: bold;
+  box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.25), inset 0 -4px 0px rgba(0, 0, 0, 0.18);
+  transition: .2s;
+  color: #ffffff !important;
+  text-decoration: none;
+  &:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+    border-bottom: none;
+    color: #ffffff;
+  }
+}
+
+.mobile-unfollow-button {
+  @include app-color($button-blue);
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 50px;
+  width: 350px;
+  height: 80px;
+  font-size: 25px;
+  text-align: center;
+  line-height: 65px;
+  font-weight: bold;
+  box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.25), inset 0 -4px 0px rgba(0, 0, 0, 0.18);
+  transition: .2s;
+  color: #ffffff !important;
+  text-decoration: none;
+  &:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+    border-bottom: none;
+    color: #ffffff;
+  }
+}
+
+.mobile-user-index-follow-button {
+  @include app-color($button-white);
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 50px;
+  width: 350px;
+  height: 80px;
+  font-size: 25px;
+  text-align: center;
+  line-height: 65px;
+  font-weight: bold;
+  box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.25), inset 0 -4px 0px rgba(0, 0, 0, 0.18);
+  transition: .2s;
+  color: #ffffff !important;
+  text-decoration: none;
+  &:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+    border-bottom: none;
+    color: #ffffff;
+  }
+}
+
+.mobile-user-index-unfollow-button {
+  @include app-color($button-blue);
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 50px;
+  width: 350px;
+  height: 80px;
+  font-size: 25px;
+  text-align: center;
+  line-height: 65px;
+  font-weight: bold;
+  box-shadow: inset 0 2px 0px rgba(255, 255, 255, 0.25), inset 0 -4px 0px rgba(0, 0, 0, 0.18);
+  transition: .2s;
+  color: #ffffff !important;
+  text-decoration: none;
+  &:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.35);
+    border-bottom: none;
+    color: #ffffff;
+  }
 }
 
 // 下記v-appのデフォルトのmin-heightの影響でページによっては下部に大きく余白ができる為記述

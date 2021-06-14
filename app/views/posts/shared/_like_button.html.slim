@@ -1,0 +1,15 @@
+- unless browser.device.mobile?
+  .row.align-items-center
+    .col-5
+      = link_to post_likes_path(@post), method: :post, data: {"turbolinks" => false}, remote: true, id: 'like-button'
+        i.mdi.mdi-heart.like-button
+    .col-3
+      h3[id="likes"]= @likes_count
+
+- else
+  .row.align-items-center
+    .col-5
+      = link_to post_likes_path(@post), method: :post, data: {"turbolinks" => false}, remote: true, id: 'like-button'
+        i.mdi.mdi-heart.mobile-like-button
+    .col-2.ml-5
+      h1[id="likes"]= @likes_count

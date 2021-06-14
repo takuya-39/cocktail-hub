@@ -1,6 +1,0 @@
-.row.align-items-center
-  .col-5
-    = link_to post_like_path(post_id: @post ,id: @post.likes[0].id), method: :delete, data: {"turbolinks" => false}, remote: true, id: 'unlike-btn'
-      i.mdi.mdi-heart.unlike-btn
-  .col-2
-    div[id="likes"]= @likes_count

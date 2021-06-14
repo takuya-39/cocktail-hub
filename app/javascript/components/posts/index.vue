@@ -92,8 +92,8 @@
                         @click="displaySearchForm()"
                       >
                         <v-icon
-                          :color="closeButtonColor"
-                          :size="closeButtonSize"
+                          :color="defaultCloseButtonColor"
+                          :size="defaultCloseButtonSize"
                         >
                           mdi-close
                         </v-icon>
@@ -149,8 +149,8 @@
                         @click="displaySearchForm()"
                       >
                         <v-icon
-                          :color="closeButtonColor"
-                          :size="closeButtonSize"
+                          :color="mobileCloseButtonColor"
+                          :size="mobileCloseButtonSize"
                         >
                           mdi-close
                         </v-icon>
@@ -239,14 +239,16 @@ export default class PostsIndex extends Vue {
 
   private postsIndexBackColor: string = '#060211';
   private postsIndexMaxWidth: string = '100%';
-  private defaultPostNewButtonColor: string = '#FFFFFF';
+  private defaultPostNewButtonColor: string = '#ffffff';
   private defaultPostNewButtonSize: string = '50px';
-  private closeButtonColor: string = '#FFFFFF';
-  private closeButtonSize: string = '50px';
+  private defaultCloseButtonColor: string = '#ffffff';
+  private defaultCloseButtonSize: string = '50px';
   private postImageHeight: string = '250px';
   private postImageGradient: string = 'to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)';
   private postsSearchLabel: string = 'タイトルやジャンルを入力してください';
-  private mobilePostNewButtonColor: string = '#FFFFFF';
+  private mobileCloseButtonColor: string = '#ffffff';
+  private mobileCloseButtonSize: string = '100px';
+  private mobilePostNewButtonColor: string = '#ffffff';
   private mobilePostNewButtonSize: string = '200px';
   private mobilePostsSearchTextFieldHeight: string = '130px'
   private keyword: string = '';

@@ -1,3 +1,9 @@
-= form_for(current_user.relationships.build, remote: true) do |f|
-  = f.hidden_field :follow_id, value: @user.id
-  = f.submit 'フォローする', id: 'follow', class: 'container bg-light text-primary text-center rounded-pill border border-secondary'
+- unless browser.device.mobile?
+  = form_for(current_user.relationships.build, remote: true) do |f|
+    = f.hidden_field :follow_id, value: @user.id
+    = f.submit 'フォローする', id: 'follow', class: 'follow-button'
+
+- else
+  = form_for(current_user.relationships.build, remote: true) do |f|
+    = f.hidden_field :follow_id, value: @user.id
+    = f.submit 'フォローする', id: 'follow', class: 'mobile-follow-button'
