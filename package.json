@@ -35,7 +35,7 @@
     "vue-property-decorator": "^9.1.2",
     "vue-router": "^3.3.2",
     "vue-template-compiler": "^2.6.11",
-    "vuetify": "^2.2.30"
+    "vuetify": "^2.6.10"
   },
   "version": "0.1.0",
   "devDependencies": {
