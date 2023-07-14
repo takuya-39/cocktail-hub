@@ -10,7 +10,7 @@
     "@types/node": "^15.6.1",
     "@types/vue": "^2.0.0",
     "@types/webpack-env": "^1.16.0",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "bootstrap": "^4.5.0",
     "glob-parent": "5.1.2",
     "is-svg": "4.2.2",
